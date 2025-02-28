@@ -80,8 +80,8 @@ header {
     color: var(--secondary-color);
 }
 
-/* Hero Section */
-#hero {
+/* home Section */
+#home {
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://i.imgur.com/DXM7zt2.jpeg') center/cover no-repeat;
     height: 100vh;
     display: flex;
@@ -90,12 +90,12 @@ header {
     text-align: center;
     padding-top: 80px; /* offset for fixed header */
 }
-.hero-container h2 {
+.home-container h2 {
     font-size: 3rem;
     color: #fff;
     margin-bottom: 20px;
 }
-.hero-container p {
+.home-container p {
     font-size: 1.3rem;
     color: #ddd;
     margin-bottom: 30px;
@@ -289,10 +289,10 @@ footer {
     .nav-links li {
       margin: 5px 0;
     }
-    #hero h2 {
+    #home h2 {
       font-size: 2.5rem;
     }
-    #hero p {
+    #home p {
       font-size: 1.1rem;
     }
 }
