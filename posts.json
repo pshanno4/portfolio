@@ -1,0 +1,21 @@
+[
+    {
+      "title": "Understanding BMPs: The Power of Cover Crops",
+      "image": "https://images.unsplash.com/photo-1581091870620-76e64d1f7a4a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
+      "description": "Discover how cover crops act as nature’s safety net, holding soil in place and capturing excess nutrients before they reach our precious waterways.",
+      "link": "https://medium.com/@pshannon.2021/cover-crops-and-water-quality-1234567890ab"
+    },
+    {
+      "title": "Precision Nutrient Management: Balancing the Field",
+      "image": "https://images.unsplash.com/photo-1518977956815-cd3a1354d8f0?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
+      "description": "Learn how meticulous soil testing and smart fertilizer applications are transforming nutrient management and protecting water quality.",
+      "link": "https://medium.com/@pshannon.2021/precision-nutrient-management-abcdef123456"
+    },
+    {
+      "title": "Riparian Buffers: Nature’s Living Filter",
+      "image": "https://images.unsplash.com/photo-1524594151784-2d4c77fb8b36?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
+      "description": "Explore how vegetated buffer zones along stream banks filter runoff and create a natural barrier against nutrient pollution.",
+      "link": "https://medium.com/@pshannon.2021/riparian-buffers-living-filter-0987654321"
+    }
+  ]
+  
