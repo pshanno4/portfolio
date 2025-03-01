@@ -50,18 +50,28 @@ header {
     align-items: center;
     padding: 15px 0;
 }
+/* Ensure the logo is clickable */
 .logo {
-    font-size: 1.6rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #fff;
+  transition: color 0.3s ease;
 }
+
+.logo:hover {
+  color: var(--secondary-color);
+}
+
+/* Ensure image inside the logo doesn't break */
 .logo-icon {
-    width: 30px;
-    height: 30px;
-    margin-right: 8px;
-    border-radius: 50%;
-    object-fit: cover;
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 .nav-links {
     list-style: none;
