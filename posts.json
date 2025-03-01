@@ -1,24 +1,22 @@
-[
-    {
-      "title": "ENGin: Rebuilding Ukraine Through 1-on-1 Connections",
-      "image": "https://s3.us-east-1.amazonaws.com/files.galaxydigital.com/4731/agency/151297-6313860-67592e56_f.jpg",
-      "description": "ENGin is providing ESL services to underserved Ukrainian children. Read more to learn how to get involved.",
-      "link": "https://medium.com/@pshannon.2021/engin-rebuilding-ukraine-through-1-on-1-connections-b742752a22ea"
-        "date": "January 2, 2023"
-    },
-    {
-      "title": "Could Project 2025 Unleash Toxic Algae Under Trump’s Return?",
-      "image": "https://i.imgur.com/byoximq.png",
-      "description": "With fewer regulations, harmful algal blooms may surge. Read more to see what’s at stake.",
-      "link": "https://medium.com/@pshannon.2021/could-project-2025-unleash-a-surge-of-toxic-algal-blooms-under-trumps-return-0e3cd8401bbe"
-        "date": "November 12, 2024"
-    },
-    {
-      "title": "Rochester's Climate Movement: The People Turning Talk into Action",
-      "image": "https://media.licdn.com/dms/image/v2/D5612AQH8S_-_ag81cQ/article-cover_image-shrink_600_2000/B56ZVOTMc7HEAc-/0/1740775409891?e=1746057600&v=beta&t=okWXeIUVyPvl7XDsBqI17-xW_ntzB48TvLMHcVve86U",
-      "description": "A look at the people and groups driving change, education, and real climate action in Rochester.",
-      "link": "https://www.linkedin.com/pulse/rochesters-climate-movement-people-turning-talk-action-paul-shannon-8lvwc/"
-        "date": "February 28, 2025"
-    }
-  ]
-  
+ {
+    "title": "ENGin: Rebuilding Ukraine Through 1-on-1 Connections",
+    "image": "https://s3.us-east-1.amazonaws.com/files.galaxydigital.com/4731/agency/151297-6313860-67592e56_f.jpg",
+    "description": "ENGin is providing ESL services to underserved Ukrainian children. Read more to learn how to get involved.",
+    "link": "https://medium.com/@pshannon.2021/engin-rebuilding-ukraine-through-1-on-1-connections-b742752a22ea",
+    "date": "January 2, 2023"
+  },
+  {
+    "title": "Could Project 2025 Unleash Toxic Algae Under Trump’s Return?",
+    "image": "https://i.imgur.com/byoximq.png",
+    "description": "With fewer regulations, harmful algal blooms may surge. Read more to see what’s at stake.",
+    "link": "https://medium.com/@pshannon.2021/could-project-2025-unleash-a-surge-of-toxic-algal-blooms-under-trumps-return-0e3cd8401bbe",
+    "date": "November 12, 2024"
+  },
+  {
+    "title": "Rochester's Climate Movement: The People Turning Talk into Action",
+    "image": "https://media.licdn.com/dms/image/v2/D5612AQH8S_-_ag81cQ/article-cover_image-shrink_600_2000/B56ZVOTMc7HEAc-/0/1740775409891?e=1746057600&v=beta&t=okWXeIUVyPvl7XDsBqI17-xW_ntzB48TvLMHcVve86U",
+    "description": "A look at the people and groups driving change, education, and real climate action in Rochester.",
+    "link": "https://www.linkedin.com/pulse/rochesters-climate-movement-people-turning-talk-action-paul-shannon-8lvwc/",
+    "date": "February 28, 2025"
+  }
+]
