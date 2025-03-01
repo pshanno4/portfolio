@@ -155,18 +155,21 @@
     <div class="container contact-container">
       <h2>Schedule a FREE Consultation</h2>
       <!-- Using mailto: opens the user's email client with pre-populated fields -->
-      <form action="mailto:InquireWithPS@gmail.com" method="POST" enctype="text/plain" class="contact-form">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Your Name" required>
-  
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Your Email" required>
-  
-        <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-  
-        <button type="submit">Send Message</button>
-      </form>
+<form action="https://formspree.io/f/mwpvgolv" method="POST" class="contact-form">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+    <label for="message">Message</label>
+    <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+
+    <!-- Redirect to Thank You Page after Submission -->
+    <input type="hidden" name="_next" value="thankyou.html">
+
+    <button type="submit">Send Message</button>
+</form>
     </div>
   </section>
 
