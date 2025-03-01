@@ -50,4 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
   mobileMenu.addEventListener("click", function () {
     navLinks.classList.toggle("active");
   });
+});
+
 
