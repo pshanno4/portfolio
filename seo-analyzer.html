@@ -7,6 +7,43 @@
   <title>SEO Analyzer</title>
   <link rel="stylesheet" href="styles.css">
   <script defer src="seo-analyzer.js"></script>
+  <style>
+    .seo-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 40px;
+      background: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      text-align: center;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      resize: vertical;
+      margin-bottom: 15px;
+    }
+    button {
+      background-color: #ff6b6b;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button:hover {
+      background-color: #e05555;
+    }
+    #seo-results {
+      margin-top: 20px;
+      text-align: left;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -24,7 +61,7 @@
     </div>
   </header>
   
-  <section class="container">
+  <section class="seo-container">
     <h2>SEO Content Analyzer</h2>
     <p>Paste your content below, and we'll check its SEO optimization.</p>
     <textarea id="seo-input" placeholder="Paste your content here..."></textarea>
