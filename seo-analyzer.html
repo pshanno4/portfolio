@@ -159,6 +159,12 @@
     .dark-mode table, .dark-mode th, .dark-mode td { border: 1px solid #444; }
     .dark-mode th { background-color: #333; }
     .dark-mode .info { background: #1c1c1c; border: 1px solid #333; }
+    .dark-mode .toggle-dark button {
+      background: #333;
+      color: #fff;
+    }
+    /* In dark mode, override highlight and cell colors */
+    .dark-mode .highlight { background-color: #cc9900; }
   </style>
 </head>
 <body>
@@ -218,45 +224,21 @@
     <!-- Analysis Results -->
     <div id="results" class="analysis"></div>
     
-    <!-- In-Depth How It Works Section -->
+    <!-- In-Page How It Works (Brief Overview) -->
     <div class="info">
       <h2>How It Works</h2>
       <p>
-        This A.I.-powered SEO Analyzer processes your text through several steps:
-      </p>
-      <ol>
-        <li>
-          <strong>Normalization & Frequency:</strong> The tool removes punctuation and converts all text to lowercase. It then calculates the frequency of each word.
-        </li>
-        <li>
-          <strong>Keyword Filtering:</strong> An extensive blocklist filters out generic words (stopwords, prepositions, pronouns, common adjectives, verbs, adverbs, and many other non–industry-specific terms such as “truly”, “recommendations”, “access”, “appeal(s)”, “approach”, “even”, “maintaining”, “solutions”, “trusted”, “encourage(ing)”, “champion”, “adopt”, “advanced”, “amazing”, “ensuring”, “guide”, “interested”, “interest”, “introduce(d)”, “leading”, “reliable”, “remarkable”, “sharing”, “weve”, etc.). Additionally, words shorter than three characters are ignored. For any word not blocked, the tool then determines whether it qualifies as a potential keyword by checking if it exists in our industry–specific mapping or if a similarity algorithm can confidently “guess” its niche.
-        </li>
-        <li>
-          <strong>Keyword Classification:</strong> If a word is in our known mapping, it is assigned to its respective niche with a certainty of 100. Otherwise, a simple similarity function (which compares matching characters in order) attempts to guess the most likely niche and returns a confidence score. If the similarity is too low, the word is discarded.
-        </li>
-        <li>
-          <strong>Grouping & Display:</strong> Keywords that belong to your selected niche (whether directly known or guessed) are displayed in the main table. In the “Keyword” column, each term is annotated with “(guessed)” if it was not an exact match. Keywords from a different niche are grouped by niche in a secondary table that is hidden by default. A toggle button allows you to view these “Different Niche” keywords.
-        </li>
-        <li>
-          <strong>Occurrence Analysis:</strong> The tool computes the average occurrence of all relevant keywords. If a keyword appears at least twice the average, its occurrence cell is highlighted in yellow; if three times or more, it is highlighted in red.
-        </li>
-        <li>
-          <strong>Certainty Scoring & Coloring:</strong> In the main table, each keyword’s certainty is shown numerically. Certainty values from 70–100 are colored green, 40–70 yellow, and below 40 red. The same color-coding applies in the “Different Niche” table.
-        </li>
-        <li>
-          <strong>Dark Mode:</strong> A toggle button in the header allows you to switch between light and dark themes. In dark mode, backgrounds become dark and text high-contrast, ensuring a professional, easily readable interface.
-        </li>
-      </ol>
-      <p>
-        The similarity function works by comparing two words character-by-character and dividing the number of matching characters (in order) by the length of the longer word. This ratio is then multiplied by 100 to produce a confidence score. Occurrence values are compared against the average frequency among relevant keywords to determine if a term is unusually common.
+        Your text is normalized (punctuation removed, lowercased) and split into words. An extensive blocklist filters out generic words.
+        Remaining words are checked against industry–specific mappings. Exact matches are marked as “known” (100% certainty); others are
+        processed by a similarity algorithm to “guess” their niche and assign a confidence score. Keywords matching your selected niche appear
+        in the main table (with occurrence and certainty color–coding), while those from other niches are grouped in a secondary table (expandable
+        via a toggle). Dark Mode is available for a high–contrast, professional view.
       </p>
     </div>
   </div>
   
   <script>
-    /************************************************
-     *        Dark Mode Toggle Functionality        *
-     ************************************************/
+    // Dark Mode Toggle
     const darkModeBtn = document.getElementById("darkModeBtn");
     darkModeBtn.addEventListener("click", function() {
       document.body.classList.toggle("dark-mode");
@@ -266,6 +248,11 @@
         darkModeBtn.textContent = "Activate Dark Mode";
       }
     });
+    
+    // Helper: Check if Dark Mode is active
+    function isDarkMode() {
+      return document.body.classList.contains("dark-mode");
+    }
     
     /************************************************
      *        Overused SEO Keywords (Highlight)     *
@@ -316,7 +303,7 @@
       "start", "end", "finish", "begin", "continue", "stop", "find", "keep", "hold", "put", "think",
       "know", "want", "need", "like", "love", "hate", "live", "die", "give", "buy", "sell", "build",
       "create", "share", "ensure", "forget", "join", "connect", "network", "networking",
-      // Additional words per your request (expanded blocklist)
+      // Additional words per request (expanded blocklist)
       "truly", "recommendation", "recommendations", "access", "appeal", "appeals", "approach", "even",
       "maintaining", "solution", "solutions", "trusted", "encourage", "encouraging", "champion",
       "adopt", "advanced", "amazing", "ensuring", "guide", "interested", "interest", "introduce",
@@ -456,6 +443,32 @@
       "art & culture": "#fffae6"
     };
     
+    // Dark mode versions for niche colors
+    const darkNicheColors = {
+      "tech": "#4d8ba8",
+      "sustainability": "#4ba66d",
+      "finance": "#d4a02c",
+      "health": "#b04a50",
+      "travel": "#3a8bb7",
+      "education": "#707070",
+      "fashion": "#a64d8c",
+      "food": "#d97a2e",
+      "real estate": "#7d7d7d",
+      "entertainment": "#5c5f99",
+      "automotive": "#3da38f",
+      "sports": "#7a5ca8",
+      "beauty": "#d9546e",
+      "retail": "#3abbbf",
+      "gaming": "#b35900",
+      "lifestyle": "#7a7a7a",
+      "business": "#4d9fa8",
+      "legal": "#7a7a7a",
+      "home improvement": "#bfae90",
+      "parenting": "#d9534f",
+      "marketing": "#5cb85c",
+      "art & culture": "#d4af37"
+    };
+    
     /************************************************
      *    Build a Quick-Look Dictionary (lowercase) *
      ************************************************/
@@ -479,9 +492,7 @@
       const rawWords = text.split(/\s+/);
       for (let raw of rawWords) {
         const w = normalizeWord(raw);
-        if (w) { 
-          // Filter out very short words.
-          if (w.length < 3) continue;
+        if (w && w.length >= 3) { 
           freqMap[w] = (freqMap[w] || 0) + 1; 
         }
       }
@@ -518,33 +529,48 @@
     /************************************************
      *   Color Helpers for Occurrences and Certainty *
      ************************************************/
-    let totalWordsCount = 0; // global variable for occurrence calculations
+    let totalWordsCount = 0;
+    
     function getColorForNiche(niche) {
       if (!niche) return "#ffffff";
       const nicheLower = niche.toLowerCase();
+      if (isDarkMode() && darkNicheColors[nicheLower]) {
+        return darkNicheColors[nicheLower];
+      }
       return nicheColors[nicheLower] || "#ffffff";
     }
     
-    // Occurrence cell coloring: if occurrences are ≥ 3× the average, red; if ≥ 2×, yellow.
+    // Occurrence coloring: if occurrences are ≥ 3× average, red; if ≥2×, yellow; else default.
     function getOccurrencesColor(occurrences, avg) {
       let baseRatio = occurrences / totalWordsCount;
       if (avg > 0) {
-        if (occurrences >= 3 * avg) { return "#ffcccc"; }
-        else if (occurrences >= 2 * avg) { return "#fff5cc"; }
+        if (occurrences >= 3 * avg) {
+          return isDarkMode() ? "#8B0000" : "#ffcccc";
+        } else if (occurrences >= 2 * avg) {
+          return isDarkMode() ? "#B8860B" : "#fff5cc";
+        }
       }
-      if (baseRatio > 0.1) { return "#ffcccc"; }
-      else if (baseRatio > 0.05) { return "#fff5cc"; }
-      else { return "#ccffcc"; }
+      if (baseRatio > 0.1) {
+        return isDarkMode() ? "#8B0000" : "#ffcccc";
+      } else if (baseRatio > 0.05) {
+        return isDarkMode() ? "#B8860B" : "#fff5cc";
+      } else {
+        return isDarkMode() ? "#006400" : "#ccffcc";
+      }
     }
     
     // Certainty coloring: 70-100 = green, 40-70 = yellow, below 40 = red.
     function getCertaintyColor(certainty) {
       if (typeof certainty === "number") {
-        if (certainty >= 70) { return "#ccffcc"; }
-        else if (certainty >= 40) { return "#fff5cc"; }
-        else { return "#ffcccc"; }
+        if (certainty >= 70) {
+          return isDarkMode() ? "#006400" : "#ccffcc";
+        } else if (certainty >= 40) {
+          return isDarkMode() ? "#B8860B" : "#fff5cc";
+        } else {
+          return isDarkMode() ? "#8B0000" : "#ffcccc";
+        }
       }
-      return "#ffcccc";
+      return isDarkMode() ? "#8B0000" : "#ffcccc";
     }
     
     /************************************************
@@ -565,18 +591,17 @@
         return;
       }
       
-      // 1) Highlight overused SEO keywords in copy
+      // 1) Highlight overused SEO keywords
       const overusedRegex = new RegExp('\\b(' + overusedWords.join('|') + ')\\b', 'gi');
       const highlightedCopy = copy.replace(overusedRegex, function(match) {
         return '<span class="highlight" title="This term may be overused. Consider using synonyms.">' + match + '</span>';
       });
       
-      // 2) Build word frequency for the copy
+      // 2) Build word frequency
       const freqMap = getWordFrequencies(copy);
       totalWordsCount = Object.values(freqMap).reduce((a, b) => a + b, 0);
       
-      // 3) Analyze keywords: group into relevant (matching input niche) and different.
-      // For relevant keywords, mark whether they were guessed.
+      // 3) Analyze keywords: separate into relevant and different
       const relevantKeywords = [];
       const differentKeywords = [];
       const inputNicheLower = inputNiche.toLowerCase();
@@ -585,22 +610,29 @@
         const occurrences = freqMap[word];
         if (ignoreWords.includes(word)) { continue; }
         
-        // Check if the word is known or can be guessed.
         if (knownKeywords[word]) {
           const knownNiche = knownKeywords[word];
-          const isRelevant = (knownNiche.toLowerCase() === inputNicheLower);
-          relevantKeywords.push({
-            niche: knownNiche,
-            keyword: word + (isRelevant ? " (known)" : " (known)"),
-            occurrences,
-            certainty: 100,
-            guessed: false
-          });
+          if (knownNiche.toLowerCase() === inputNicheLower) {
+            relevantKeywords.push({
+              niche: knownNiche,
+              keyword: word + " (known)",
+              occurrences,
+              certainty: 100,
+              guessed: false
+            });
+          } else {
+            differentKeywords.push({
+              niche: knownNiche,
+              keyword: word + " (known)",
+              occurrences,
+              certainty: 100,
+              guessed: false
+            });
+          }
         } else {
           const guess = guessNiche(word);
           if (guess) {
-            const isRelevant = (guess.niche.toLowerCase() === inputNicheLower);
-            if (isRelevant) {
+            if (guess.niche.toLowerCase() === inputNicheLower) {
               relevantKeywords.push({
                 niche: "Guessed: " + guess.niche,
                 keyword: word + " (guessed)",
@@ -621,35 +653,33 @@
         }
       }
       
-      // Compute average occurrences for relevant keywords
+      // 4) Compute average occurrences for relevant keywords
       let avgOccurrence = 0;
       if (relevantKeywords.length > 0) {
         const sumOccurrences = relevantKeywords.reduce((sum, item) => sum + item.occurrences, 0);
         avgOccurrence = sumOccurrences / relevantKeywords.length;
       }
       
-      // Sort relevant keywords by niche then keyword
+      // 5) Sort tables: relevant keywords sorted by niche then keyword; different keywords sorted by niche then keyword.
       relevantKeywords.sort((a, b) => {
         if (a.niche < b.niche) return -1;
         if (a.niche > b.niche) return 1;
         return a.keyword.localeCompare(b.keyword);
       });
       
-      // Sort different keywords by niche then keyword
       differentKeywords.sort((a, b) => {
         if (a.niche < b.niche) return -1;
         if (a.niche > b.niche) return 1;
         return a.keyword.localeCompare(b.keyword);
       });
       
-      // 4) Overused keywords analysis (as before)
+      // 6) Overused keywords analysis
       const overusedCounts = {};
       overusedWords.forEach(word => {
         const regex = new RegExp('\\b' + word + '\\b', 'gi');
         const matches = copy.match(regex);
         overusedCounts[word] = matches ? matches.length : 0;
       });
-      
       let overusedHTML = '<div class="result-section"><h2>Overused SEO Keywords Analysis</h2><ul>';
       let foundOverused = false;
       for (const [word, count] of Object.entries(overusedCounts)) {
@@ -666,14 +696,14 @@
       }
       overusedHTML += '</div>';
       
-      // 5) Copy Analysis Section
+      // 7) Copy Analysis Section
       let analysisHTML = '<div class="result-section"><h2>Copy Analysis</h2>';
       analysisHTML += '<p>Total word count: ' + totalWordsCount + '</p>';
       analysisHTML += '<p>Highlighted copy with potential overused terms:</p>';
       analysisHTML += '<div class="results-box">' + highlightedCopy + '</div>';
       analysisHTML += '</div>';
       
-      // 6) Build the Relevant Keywords Table (Main Table)
+      // 8) Build the Relevant Keywords Table (Main Table)
       let nicheAnalysisHTML = '<div class="result-section"><h2>Niche Keywords Analysis</h2>';
       if (relevantKeywords.length === 0) {
         nicheAnalysisHTML += '<p>No relevant keywords for your niche were detected.</p>';
@@ -699,16 +729,15 @@
         nicheAnalysisHTML += '</table>';
       }
       
-      // 7) Build the Different Niche Keywords Table (Grouped by Niche)
+      // 9) Build the Different Niche Keywords Table (Grouped by Niche)
       if (differentKeywords.length > 0) {
-        // Group differentKeywords by niche.
         const groupMap = {};
         differentKeywords.forEach(item => {
           const key = item.niche;
           if (!groupMap[key]) { groupMap[key] = []; }
           groupMap[key].push(item);
         });
-        nicheAnalysisHTML += '<button class="toggle-btn" onclick="toggleDifferent()">Show Different Niche Keywords (' + differentKeywords.length + ')</button>';
+        nicheAnalysisHTML += '<button class="toggle-btn" onclick="toggleDifferent()">Show Other Niches (' + differentKeywords.length + ')</button>';
         nicheAnalysisHTML += '<div id="differentSection" style="display:none; margin-top:15px;">';
         for (const group in groupMap) {
           nicheAnalysisHTML += '<h3>' + group + '</h3>';
@@ -730,7 +759,7 @@
       
       nicheAnalysisHTML += '</div>';
       
-      // 8) Combine and Display All Results
+      // 10) Combine and Display All Results
       resultsDiv.innerHTML = analysisHTML + nicheAnalysisHTML + overusedHTML;
     });
     
