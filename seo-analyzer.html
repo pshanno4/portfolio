@@ -141,7 +141,6 @@
       background-color: #f9f9f9;
       font-weight: 600;
     }
-    /* Conditional coloring for table cells will be applied inline */
     .info {
       background: #eef2f7;
       border: 1px solid #ccd4db;
@@ -213,8 +212,8 @@
       <h2>How It Works</h2>
       <p>
         This A.I.-powered SEO analyzer evaluates your text by highlighting overused SEO keywords and detecting niche-specific keywords.
-        It ignores common stopwords to prevent noise in the analysis. For each keyword, it checks if it belongs to your chosen niche,
-        a different niche, or if it is unknown—attempting to classify it automatically with a confidence score. The table below is color-coded:
+        It ignores common stopwords and generic words to prevent noise in the analysis. For each keyword, it checks if it belongs to your chosen niche,
+        a different niche, or if it is unknown—attempting to classify it automatically with a confidence score.
       </p>
       <ul>
         <li><strong>Niche Column:</strong> Displays the keyword’s associated niche, with a background color assigned to that niche.</li>
@@ -239,11 +238,23 @@
     ];
     
     /************************************************
-     *           Stopwords / Ignore List            *
+     *      Expanded Stopwords / Ignore List        *
      ************************************************/
     const ignoreWords = [
-      "a", "an", "and", "all", "as", "at", "but", "by", "do", "don", "don't", "for", "if", "in", "is", "it", "of", "on", "or", "so", "the", "this", "to", "too", "while", "with", "there", "every"
-      // You can expand this list with more common English stopwords as needed.
+      // Prepositions
+      "about", "above", "across", "after", "against", "along", "among", "around", "at", "before", "behind", "below", "beneath", "beside", "between", "beyond", "by", "despite", "down", "during", "except", "for", "from", "in", "inside", "into", "like", "near", "of", "off", "on", "onto", "out", "outside", "over", "past", "regarding", "since", "through", "throughout", "to", "toward", "under", "underneath", "until", "up", "upon", "with", "within", "without",
+      // Pronouns
+      "i", "me", "you", "he", "him", "she", "her", "it", "we", "us", "they", "them", "my", "mine", "your", "yours", "his", "hers", "its", "our", "ours", "their", "theirs",
+      // Articles and Determiners
+      "a", "an", "the", "all", "any", "both", "each", "few", "more", "most", "other", "some", "such",
+      // Conjunctions and Connectors
+      "and", "or", "nor", "but", "if", "then", "else", "when", "while", "where", "because",
+      // Generic Verbs (non-industry-specific)
+      "sharing", "ensuring", "forget", "join", "getting", "taking", "making", "coming", "going", "doing", "is", "are", "was", "were", "be", "been", "being", "do", "does", "did", "have", "has", "had", "will", "would", "shall", "should", "can", "could", "may", "might", "must", "ought",
+      // Common Adjectives, Adverbs, and Miscellaneous
+      "really", "very", "just", "quite", "so", "too", "also", "ever", "never", "always", "often", "sometimes", "here", "there", "then", "than",
+      // Generic Nouns
+      "things", "stuff", "events", "information", "data", "news", "example", "sample"
     ];
     
     /************************************************
