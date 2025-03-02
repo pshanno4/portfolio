@@ -6,7 +6,9 @@
   <title>Advanced A.I. SEO Analyzer</title>
   <style>
     /* Base Styling */
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       padding: 0;
@@ -31,7 +33,9 @@
       font-size: 0.95em;
       transition: background 0.3s ease;
     }
-    .nav-left a:hover { background: rgba(255, 255, 255, 0.4); }
+    .nav-left a:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
     .header-center {
       text-align: center;
       flex-grow: 1;
@@ -59,6 +63,7 @@
       font-size: 0.9em;
       transition: background 0.3s ease, color 0.3s ease;
     }
+    
     /* Container */
     .container {
       max-width: 900px;
@@ -69,8 +74,14 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       transition: background 0.3s, color 0.3s;
     }
-    .input-group { margin-bottom: 20px; }
-    .input-group label { display: block; margin-bottom: 8px; font-weight: 600; }
+    .input-group {
+      margin-bottom: 20px;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
     .input-group select,
     .input-group textarea {
       width: 100%;
@@ -81,7 +92,10 @@
       transition: border-color 0.3s ease, background 0.3s, color 0.3s;
     }
     .input-group select:focus,
-    .input-group textarea:focus { outline: none; border-color: #1e3c72; }
+    .input-group textarea:focus {
+      outline: none;
+      border-color: #1e3c72;
+    }
     button {
       background-color: #1e3c72;
       color: #fff;
@@ -94,16 +108,30 @@
       transition: background 0.3s ease;
       margin-top: 10px;
     }
-    button:hover { background-color: #16335c; }
-    .analysis { margin-top: 30px; }
-    .result-section { margin-bottom: 30px; }
+    /* Hover colors: Light mode uses a lighter shade; dark mode uses original color */
+    button:hover {
+      background-color: #2c4d8f; /* Lighter color for light mode */
+    }
+    .dark-mode button:hover {
+      background-color: #16335c; /* Keep the same for dark mode */
+    }
+
+    .analysis {
+      margin-top: 30px;
+    }
+    .result-section {
+      margin-bottom: 30px;
+    }
     .result-section h2 {
       margin-bottom: 10px;
       padding-bottom: 5px;
       border-bottom: 1px solid #ddd;
       font-weight: 600;
     }
-    .result-section p, .result-section li { line-height: 1.6; }
+    .result-section p,
+    .result-section li {
+      line-height: 1.6;
+    }
     .highlight {
       background-color: #ffeb3b;
       padding: 2px 4px;
@@ -124,9 +152,21 @@
       border-collapse: collapse;
       margin-top: 10px;
     }
-    table, th, td { border: 1px solid #ddd; }
-    th, td { padding: 10px; text-align: left; font-size: 0.95em; }
-    th { background-color: #f9f9f9; font-weight: 600; }
+    table,
+    th,
+    td {
+      border: 1px solid #ddd;
+    }
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+      font-size: 0.95em;
+    }
+    th {
+      background-color: #f9f9f9;
+      font-weight: 600;
+    }
     .toggle-btn {
       background: #1e3c72;
       color: #fff;
@@ -136,6 +176,7 @@
       font-size: 0.9em;
       cursor: pointer;
       margin-top: 10px;
+      transition: background 0.3s ease, color 0.3s ease;
     }
     .info {
       background: #eef2f7;
@@ -145,26 +186,54 @@
       margin-top: 30px;
       font-size: 0.95em;
       line-height: 1.5;
+      transition: background 0.3s, color 0.3s;
     }
+    
     /* Dark Mode Styles */
-    .dark-mode body { background: #121212; color: #e0e0e0; }
-    .dark-mode header { background: #1c1c1c; }
-    .dark-mode .container { background: #1e1e1e; color: #e0e0e0; }
-    .dark-mode input, .dark-mode select, .dark-mode textarea {
-      background: #2a2a2a;
+    .dark-mode body {
+      background: #121212;
       color: #e0e0e0;
+    }
+    .dark-mode header {
+      background: #1c1c1c;
+    }
+    .dark-mode .container {
+      background: #1e1e1e;
+      color: #e0e0e0;
+    }
+    .dark-mode .analysis,
+    .dark-mode .result-section {
+      background: #1e1e1e;
+      color: #e0e0e0;
+    }
+    .dark-mode .result-section h2 {
+      border-bottom-color: #444;
+    }
+    .dark-mode .results-box {
+      background: #2a2a2a;
       border: 1px solid #444;
     }
-    .dark-mode .results-box { background: #2a2a2a; border: 1px solid #444; }
-    .dark-mode table, .dark-mode th, .dark-mode td { border: 1px solid #444; }
-    .dark-mode th { background-color: #333; }
-    .dark-mode .info { background: #1c1c1c; border: 1px solid #333; }
+    .dark-mode table,
+    .dark-mode th,
+    .dark-mode td {
+      border: 1px solid #444;
+    }
+    .dark-mode th {
+      background-color: #333;
+    }
+    .dark-mode .info {
+      background: #1c1c1c;
+      border: 1px solid #333;
+      color: #e0e0e0;
+    }
     .dark-mode .toggle-dark button {
       background: #333;
       color: #fff;
     }
     /* In dark mode, override highlight and cell colors */
-    .dark-mode .highlight { background-color: #cc9900; }
+    .dark-mode .highlight {
+      background-color: #cc9900;
+    }
   </style>
 </head>
 <body>
@@ -268,7 +337,7 @@
     /************************************************
      *    Expanded Stopwords / Ignore List          *
      ************************************************/
-   const ignoreWords = (`
+    const ignoreWords = (`
 a about above across after afterwards again against all almost alone along already also although always am among amongst amount an and another any anybody anyone anything anyway anywhere are around as at
 be became because become becomes becoming been before beforehand behind below beside besides between beyond both but by
 can cannot cant co con could couldnt de describe detail do does did doing down due during each eg eight either eleven else elsewhere enough etc even ever every everyone everything everywhere ex except
@@ -452,7 +521,9 @@ truly recommendation recommendations access appeal appeals approach even maintai
     for (const niche in nicheMapping) {
       nicheMapping[niche].forEach(keyword => {
         const lowerKey = keyword.toLowerCase();
-        if (!knownKeywords[lowerKey]) { knownKeywords[lowerKey] = niche; }
+        if (!knownKeywords[lowerKey]) {
+          knownKeywords[lowerKey] = niche;
+        }
       });
     }
     
@@ -476,7 +547,7 @@ truly recommendation recommendations access appeal appeals approach even maintai
     }
     
     /************************************************
-     *    Refined Guess Niche for Unknown Keyword     *
+     *    Refined Guess Niche for Unknown Keyword   *
      ************************************************/
     function guessNiche(word) {
       const wLower = word.toLowerCase();
@@ -488,9 +559,14 @@ truly recommendation recommendations access appeal appeals approach even maintai
       for (const knownWord in knownKeywords) {
         const niche = knownKeywords[knownWord];
         const score = similarity(wLower, knownWord);
-        if (score > bestScore) { bestScore = score; bestNiche = niche; }
+        if (score > bestScore) {
+          bestScore = score;
+          bestNiche = niche;
+        }
       }
-      if (bestScore < 0.3) { return null; }
+      if (bestScore < 0.3) {
+        return null;
+      }
       const confidence = Math.floor(bestScore * 100);
       return { niche: bestNiche, confidence };
     }
@@ -498,7 +574,11 @@ truly recommendation recommendations access appeal appeals approach even maintai
     function similarity(a, b) {
       let matches = 0;
       const len = Math.min(a.length, b.length);
-      for (let i = 0; i < len; i++) { if (a[i] === b[i]) { matches++; } }
+      for (let i = 0; i < len; i++) {
+        if (a[i] === b[i]) {
+          matches++;
+        }
+      }
       return matches / Math.max(a.length, b.length);
     }
     
@@ -506,6 +586,10 @@ truly recommendation recommendations access appeal appeals approach even maintai
      *   Color Helpers for Occurrences and Certainty *
      ************************************************/
     let totalWordsCount = 0;
+    
+    function isDarkMode() {
+      return document.body.classList.contains("dark-mode");
+    }
     
     function getColorForNiche(niche) {
       if (!niche) return "#ffffff";
@@ -584,7 +668,9 @@ truly recommendation recommendations access appeal appeals approach even maintai
       
       for (const word in freqMap) {
         const occurrences = freqMap[word];
-        if (ignoreWords.includes(word)) { continue; }
+        if (ignoreWords.includes(word)) {
+          continue;
+        }
         
         if (knownKeywords[word]) {
           const knownNiche = knownKeywords[word];
@@ -710,7 +796,9 @@ truly recommendation recommendations access appeal appeals approach even maintai
         const groupMap = {};
         differentKeywords.forEach(item => {
           const key = item.niche;
-          if (!groupMap[key]) { groupMap[key] = []; }
+          if (!groupMap[key]) {
+            groupMap[key] = [];
+          }
           groupMap[key].push(item);
         });
         nicheAnalysisHTML += '<button class="toggle-btn" onclick="toggleDifferent()">Show Other Niches (' + differentKeywords.length + ')</button>';
