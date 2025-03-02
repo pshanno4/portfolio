@@ -268,47 +268,23 @@
     /************************************************
      *    Expanded Stopwords / Ignore List          *
      ************************************************/
-    const ignoreWords = [
-      // Standard stopwords & common words
-      "i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours",
-      "yourself", "yourselves", "he", "him", "his", "himself", "she", "her", "hers", "herself",
-      "it", "its", "itself", "they", "them", "their", "theirs", "themselves",
-      "what", "which", "who", "whom", "this", "that", "these", "those",
-      "am", "is", "are", "was", "were", "be", "been", "being",
-      "have", "has", "had", "having", "do", "does", "did", "doing",
-      "a", "an", "the", "and", "but", "if", "or", "because", "as", "until", "while",
-      "of", "at", "by", "for", "with", "about", "against", "between", "into",
-      "through", "during", "before", "after", "above", "below", "to", "from",
-      "up", "down", "in", "out", "on", "off", "over", "under", "again", "further",
-      "then", "once", "here", "there", "when", "where", "why", "how",
-      "all", "any", "both", "each", "few", "more", "most", "other", "some", "such",
-      "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very",
-      "s", "t", "can", "will", "just", "don", "should", "now",
-      // Additional common prepositions and connectors
-      "about", "above", "across", "after", "against", "along", "amid", "amidst", "among", "amongst",
-      "anti", "around", "as", "at", "before", "behind", "below", "beneath", "beside", "besides",
-      "between", "beyond", "but", "by", "concerning", "despite", "down", "during", "except", "excepting",
-      "excluding", "following", "for", "from", "in", "inside", "into", "like", "minus", "near",
-      "of", "off", "on", "onto", "opposite", "out", "outside", "over", "past", "per", "plus",
-      "regarding", "round", "save", "since", "than", "through", "to", "toward", "towards", "under",
-      "underneath", "unlike", "until", "up", "upon", "versus", "via", "with", "within", "without",
-      // Additional generic adjectives, adverbs, nouns, verbs
-      "really", "quite", "much", "many", "also", "often", "ever", "never", "always", "sometimes",
-      "indeed", "perhaps", "maybe", "probably", "certainly", "basically", "generally", "mostly", "simply",
-      "actually", "thing", "things", "stuff", "anything", "everything", "something", "event", "events",
-      "item", "items", "object", "objects", "big", "small", "large", "little", "next", "previous", "new",
-      "old", "several", "more", "less", "few", "generic", "common", "standard",
-      // Additional generic verbs and expressions
-      "do", "make", "take", "get", "go", "come", "say", "tell", "see", "look", "use", "work", "run",
-      "start", "end", "finish", "begin", "continue", "stop", "find", "keep", "hold", "put", "think",
-      "know", "want", "need", "like", "love", "hate", "live", "die", "give", "buy", "sell", "build",
-      "create", "share", "ensure", "forget", "join", "connect", "network", "networking",
-      // Additional words per request (expanded blocklist)
-      "truly", "recommendation", "recommendations", "access", "appeal", "appeals", "approach", "even",
-      "maintaining", "solution", "solutions", "trusted", "encourage", "encouraging", "champion",
-      "adopt", "advanced", "amazing", "ensuring", "guide", "interested", "interest", "introduce",
-      "introduced", "leading", "reliable", "remarkable", "sharing", "weve", "advice", "tips", "age"
-    ];
+   const ignoreWords = (`
+a about above across after afterwards again against all almost alone along already also although always am among amongst amount an and another any anybody anyone anything anyway anywhere are around as at
+be became because become becomes becoming been before beforehand behind below beside besides between beyond both but by
+can cannot cant co con could couldnt de describe detail do does did doing down due during each eg eight either eleven else elsewhere enough etc even ever every everyone everything everywhere ex except
+further furthermore few for from further furthermore full fully function functions furtherance
+generic genericity general generally gently generalize generalization generalizations generalism
+if in into is it its itself just last later latter latest least less like little littlely likely mainly many may me meanwhile might mine more moreover most much must my myself
+n name names near nearly necessary need needed needing needs neither never nevertheless new next nine no nobody none nonetheless nor not nothing nowhere now nowhere
+of off often on once one only onto or other others otherwise our ours ourselves out over own particular primarily perhaps please plus possible possibly precisely pretty prior previously probably pro provide provided providing provides
+rather really regarding respectively rest result results respectively return returned returning returns review reviewed reviewing reviews said same saw say saying says scene scenes school schools seem seemed seeming seems self selves sensible sensitive sensitivity sentence sentences separate separately series serious seriously several shall she should shouldnt show showed showing shows significant significantly similar similarly since so some somebody someone something sometimes somewhere soon sorry specified specifying speaks spectrum spend spent spending spends sphere spin spun spun spontaneity spread spreads spontaneously square squash stand stood standing stands standard standards start started starting starts state states statement statements still stop stopped stopping stops strongly sub subject subsequent subsequently subtract subtraction subsequent subsequently subtly suddenly sufficient sufficiently suit suited suits suitable suitably summary summarize summarized summarizing summarizes super supra supply supplied supplying supplies support supported supporting supports sure surely suspected suspect suspicions suspense suspenseful swathe sweet swell swiftly
+t take taken taking takes talent talents talk talked talking talks tangent taxonomy teach taught teaching teaches team teams technical technologically technique techniques technology techniques tell tells telling tens term terms test tested testing tests than thank thanked thanks thankful thanks them themselves then there thereafter thereby therefore therein theres these they thick thin think thought thinking thinks third thorough thoroughly those though thought through throughout thus time times timed timing times title titles to together too took top total totally tough toward towards trade traded trading trades traditional traditionally transit transition transitions trap trapped trapping traps travel traveled traveling travels treat treated treating treats tree trees trial trials trick tricks truly try tried trying tries tube tubes tune tuned tuning tunes turn turned turning turns two type types typically
+u under underneath undo undesired unfortunately unimportant unique unit units universe universally unknown unless unlike unlikely until up upon us use used useful uses using usual usually
+v various vastly very via view viewed viewing views vital
+w want wanted wanting wants way ways we well went were what whatever when where wherever which while white who whoever whole wholly whom whose why will willing wish wished wishing wishes with within without wonder wonderful word words work worked working works world worlds would
+x y year years yellow yes yet you your yours yourself yourselves z ze zero
+truly recommendation recommendations access appeal appeals approach even maintaining solution solutions trusted encourage encouraging champion adopt advanced amazing ensuring guide interested interest introduce introduced leading reliable remarkable sharing weve
+`).split(/\s+/);
     
     /************************************************
      *       Niche Mapping and Known Keywords       *
