@@ -63,7 +63,14 @@
       font-size: 0.9em;
       transition: background 0.3s ease, color 0.3s ease;
     }
-    
+    /* Hover effect for dark/light toggle in light mode */
+    .toggle-dark button:hover {
+      background: #e0e0e0;
+    }
+    /* Dark mode override for toggle button hover */
+    .dark-mode .toggle-dark button:hover {
+      background: #444;
+    }
     /* Container */
     .container {
       max-width: 900px;
@@ -108,14 +115,9 @@
       transition: background 0.3s ease;
       margin-top: 10px;
     }
-    /* Hover colors: Light mode uses a lighter shade; dark mode uses original color */
     button:hover {
-      background-color: #2c4d8f; /* Lighter color for light mode */
+      background-color: #2c4d8f;
     }
-    .dark-mode button:hover {
-      background-color: #16335c; /* Keep the same for dark mode */
-    }
-
     .analysis {
       margin-top: 30px;
     }
@@ -152,13 +154,10 @@
       border-collapse: collapse;
       margin-top: 10px;
     }
-    table,
-    th,
-    td {
+    table, th, td {
       border: 1px solid #ddd;
     }
-    th,
-    td {
+    th, td {
       padding: 10px;
       text-align: left;
       font-size: 0.95em;
@@ -230,6 +229,9 @@
       background: #333;
       color: #fff;
     }
+    .dark-mode .toggle-dark button:hover {
+      background: #444;
+    }
     /* In dark mode, override highlight and cell colors */
     .dark-mode .highlight {
       background-color: #cc9900;
@@ -300,8 +302,9 @@
         Your text is normalized (punctuation removed, lowercased) and split into words. An extensive blocklist filters out generic words.
         Remaining words are checked against industry–specific mappings. Exact matches are marked as “known” (100% certainty); others are
         processed by a similarity algorithm to “guess” their niche and assign a confidence score. Keywords matching your selected niche appear
-        in the main table (with occurrence and certainty color–coding), while those from other niches are grouped in a secondary table (expandable
-        via a toggle). Dark Mode is available for a high–contrast, professional view.
+        in the main table (with occurrence and certainty color–coding, and an annotation indicating if they were guessed),
+        while those from other niches are grouped in a secondary table (expandable via a toggle). Dark Mode is available for a high–contrast,
+        professional view.
       </p>
     </div>
   </div>
@@ -539,8 +542,8 @@ truly recommendation recommendations access appeal appeals approach even maintai
       const rawWords = text.split(/\s+/);
       for (let raw of rawWords) {
         const w = normalizeWord(raw);
-        if (w && w.length >= 3) { 
-          freqMap[w] = (freqMap[w] || 0) + 1; 
+        if (w && w.length >= 3) {
+          freqMap[w] = (freqMap[w] || 0) + 1;
         }
       }
       return freqMap;
@@ -586,10 +589,6 @@ truly recommendation recommendations access appeal appeals approach even maintai
      *   Color Helpers for Occurrences and Certainty *
      ************************************************/
     let totalWordsCount = 0;
-    
-    function isDarkMode() {
-      return document.body.classList.contains("dark-mode");
-    }
     
     function getColorForNiche(niche) {
       if (!niche) return "#ffffff";
