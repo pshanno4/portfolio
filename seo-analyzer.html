@@ -5,19 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Advanced A.I. SEO Analyzer</title>
   <style>
-    /* Global Styles */
+    /* Modern, sleek styling */
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       padding: 0;
-      background-color: #f8f9fa;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f2f5;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       color: #333;
     }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-    /* Header Navigation */
     header {
       background: linear-gradient(135deg, #1e3c72, #2a5298);
       padding: 20px;
@@ -26,14 +24,12 @@
       justify-content: space-between;
       color: #fff;
     }
-    .nav-left {
-      font-size: 1em;
-    }
     .nav-left a {
       background: rgba(255, 255, 255, 0.2);
       padding: 8px 12px;
       border-radius: 4px;
       transition: background 0.3s ease;
+      font-size: 0.95em;
     }
     .nav-left a:hover {
       background: rgba(255, 255, 255, 0.4);
@@ -45,20 +41,20 @@
     .header-center h1 {
       margin: 0;
       font-size: 2.5em;
+      font-weight: 500;
     }
     .header-center p {
       margin: 5px 0 0;
-      font-size: 1.1em;
+      font-size: 1em;
       opacity: 0.9;
     }
-    /* Container */
     .container {
       max-width: 900px;
       margin: 30px auto;
       background: #fff;
       padding: 30px;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
     .input-group {
       margin-bottom: 20px;
@@ -66,15 +62,21 @@
     .input-group label {
       display: block;
       margin-bottom: 8px;
-      font-weight: bold;
+      font-weight: 600;
     }
-    .input-group input,
+    .input-group select,
     .input-group textarea {
       width: 100%;
       padding: 12px;
-      border: 1px solid #ccc;
+      border: 1px solid #ddd;
       border-radius: 4px;
       font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+    .input-group select:focus,
+    .input-group textarea:focus {
+      outline: none;
+      border-color: #1e3c72;
     }
     button {
       background-color: #1e3c72;
@@ -86,6 +88,7 @@
       font-size: 18px;
       cursor: pointer;
       transition: background 0.3s ease;
+      margin-top: 10px;
     }
     button:hover {
       background-color: #16335c;
@@ -98,8 +101,9 @@
     }
     .result-section h2 {
       margin-bottom: 10px;
-      border-bottom: 1px solid #ddd;
       padding-bottom: 5px;
+      border-bottom: 1px solid #ddd;
+      font-weight: 600;
     }
     .result-section p,
     .result-section li {
@@ -112,7 +116,7 @@
       cursor: help;
     }
     .results-box {
-      background: #f1f1f1;
+      background: #f7f7f7;
       padding: 15px;
       border: 1px solid #ddd;
       border-radius: 4px;
@@ -126,16 +130,18 @@
       margin-top: 10px;
     }
     table, th, td {
-      border: 1px solid #ccc;
+      border: 1px solid #ddd;
     }
     th, td {
       padding: 10px;
       text-align: left;
+      font-size: 0.95em;
     }
     th {
       background-color: #f9f9f9;
+      font-weight: 600;
     }
-    /* Info Section */
+    /* Conditional coloring for table cells will be applied inline */
     .info {
       background: #eef2f7;
       border: 1px solid #ccd4db;
@@ -156,15 +162,38 @@
       <h1>Advanced A.I. SEO Analyzer</h1>
       <p>Professional analysis for cutting-edge SEO performance</p>
     </div>
-    <!-- Placeholder for possible right-side content -->
     <div style="width: 150px;"></div>
   </header>
   
   <div class="container">
-    <!-- Required Niche Input -->
+    <!-- Niche Dropdown (Required) -->
     <div class="input-group">
       <label for="niche">Your Niche: <span style="color:red;">*</span></label>
-      <input type="text" id="niche" placeholder="e.g. Tech, Sustainability, Finance, Health..." required>
+      <select id="niche" required>
+        <option value="">-- Select Your Niche --</option>
+        <option value="tech">Tech</option>
+        <option value="sustainability">Sustainability</option>
+        <option value="finance">Finance</option>
+        <option value="health">Health</option>
+        <option value="travel">Travel</option>
+        <option value="education">Education</option>
+        <option value="fashion">Fashion</option>
+        <option value="food">Food</option>
+        <option value="real estate">Real Estate</option>
+        <option value="entertainment">Entertainment</option>
+        <option value="automotive">Automotive</option>
+        <option value="sports">Sports</option>
+        <option value="beauty">Beauty</option>
+        <option value="retail">Retail</option>
+        <option value="gaming">Gaming</option>
+        <option value="lifestyle">Lifestyle</option>
+        <option value="business">Business</option>
+        <option value="legal">Legal</option>
+        <option value="home improvement">Home Improvement</option>
+        <option value="parenting">Parenting</option>
+        <option value="marketing">Marketing</option>
+        <option value="art & culture">Art & Culture</option>
+      </select>
     </div>
     
     <!-- Main Copy Input -->
@@ -183,15 +212,16 @@
     <div class="info">
       <h2>How It Works</h2>
       <p>
-        This A.I.-powered SEO analyzer evaluates your text by checking for overused SEO keywords, ignoring common filler words, 
-        and assessing the relevance of niche-specific keywords. We highlight potential overused words so you can replace them with synonyms. 
-        For each detected keyword, we determine if it belongs to your chosen niche, a different niche, or if it's an unknown word we attempt 
-        to classify automatically. The table color-codes each column:
+        This A.I.-powered SEO analyzer evaluates your text by highlighting overused SEO keywords and detecting niche-specific keywords.
+        It ignores common stopwords to prevent noise in the analysis. For each keyword, it checks if it belongs to your chosen niche,
+        a different niche, or if it is unknown—attempting to classify it automatically with a confidence score. The table below is color-coded:
       </p>
       <ul>
-        <li><strong>Niche Column:</strong> Colored based on the niche.</li>
-        <li><strong>Occurrences Column:</strong> Green for low frequency, yellow for medium, red for high.</li>
-        <li><strong>Certainty Column:</strong> Green for high certainty (≥70%), yellow for medium (40-69%), red for low (&lt;40%).</li>
+        <li><strong>Niche Column:</strong> Displays the keyword’s associated niche, with a background color assigned to that niche.</li>
+        <li><strong>Occurrences Column:</strong> Cell color reflects frequency relative to total words (Green: low, Yellow: medium, Red: high).</li>
+        <li><strong>Certainty Column:</strong> Shows "100%" if the keyword is confirmed for your niche, or "Different Niche" if it belongs elsewhere.
+          For guessed keywords that match your niche, a confidence percentage is shown (color-coded: Green for high, Yellow for medium, Red for low).
+        </li>
       </ul>
     </div>
   </div>
@@ -209,10 +239,11 @@
     ];
     
     /************************************************
-     *    Words to Ignore for Niche Table           *
+     *           Stopwords / Ignore List            *
      ************************************************/
     const ignoreWords = [
-      "every", "don't", "there", "be", "the", "too", "guaranteed", "for", "best"
+      "a", "an", "and", "all", "as", "at", "but", "by", "do", "don", "don't", "for", "if", "in", "is", "it", "of", "on", "or", "so", "the", "this", "to", "too", "while", "with", "there", "every"
+      // You can expand this list with more common English stopwords as needed.
     ];
     
     /************************************************
@@ -350,7 +381,6 @@
     /************************************************
      *    Build a Quick-Look Dictionary (lowercase) *
      ************************************************/
-    // knownKeywords[word] = niche
     const knownKeywords = {};
     for (const niche in nicheMapping) {
       nicheMapping[niche].forEach(keyword => {
@@ -365,7 +395,6 @@
      *    Text Normalization / Word Frequency       *
      ************************************************/
     function normalizeWord(word) {
-      // Remove punctuation, keep letters/numbers
       return word.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
     }
     
@@ -375,8 +404,7 @@
       for (let raw of rawWords) {
         const w = normalizeWord(raw);
         if (w) {
-          if (!freqMap[w]) freqMap[w] = 0;
-          freqMap[w]++;
+          freqMap[w] = (freqMap[w] || 0) + 1;
         }
       }
       return freqMap;
@@ -384,7 +412,6 @@
     
     /************************************************
      *    Guess Niche for Unknown Keyword           *
-     *  Simple similarity approach for demonstration
      ************************************************/
     function guessNiche(word) {
       let bestScore = 0;
@@ -400,18 +427,13 @@
         }
       }
       
-      // If bestScore is too low, we consider it unassignable
       if (bestScore < 0.3) {
         return null;
       }
-      // Confidence as integer percentage
       const confidence = Math.floor(bestScore * 100);
       return { niche: bestNiche, confidence };
     }
     
-    // Very simple similarity function:
-    // returns ratio of matched characters at the same index
-    // to the max length of the two strings
     function similarity(a, b) {
       let matches = 0;
       const len = Math.min(a.length, b.length);
@@ -424,38 +446,36 @@
     }
     
     /************************************************
-     *   Color Helper for Niche, Occurrences, etc.  *
+     *   Color Helper for Occurrences and Certainty  *
      ************************************************/
     function getColorForNiche(niche) {
       if (!niche) return "#ffffff";
       const nicheLower = niche.toLowerCase();
-      if (nicheColors[nicheLower]) {
-        return nicheColors[nicheLower];
-      }
-      return "#ffffff";
+      return nicheColors[nicheLower] || "#ffffff";
     }
     
     function getOccurrencesColor(ratio) {
-      // ratio = occurrences / totalWords
-      // Example thresholds: >10% => red, >5% => yellow, else green
       if (ratio > 0.1) {
-        return "#ffcccc"; // red-ish
+        return "#ffcccc"; // high → red
       } else if (ratio > 0.05) {
-        return "#fff5cc"; // yellow-ish
+        return "#fff5cc"; // medium → yellow
       } else {
-        return "#ccffcc"; // green-ish
+        return "#ccffcc"; // low → green
       }
     }
     
     function getCertaintyColor(certainty) {
-      // Example thresholds: >=70 => green, >=40 => yellow, else red
-      if (certainty >= 70) {
-        return "#ccffcc"; // green-ish
-      } else if (certainty >= 40) {
-        return "#fff5cc"; // yellow-ish
-      } else {
-        return "#ffcccc"; // red-ish
+      if (typeof certainty === "number") {
+        if (certainty >= 70) {
+          return "#ccffcc"; // high (green)
+        } else if (certainty >= 40) {
+          return "#fff5cc"; // medium (yellow)
+        } else {
+          return "#ffcccc"; // low (red)
+        }
       }
+      // For non-numeric certainty (e.g., "Different Niche")
+      return "#ffcccc"; // red-ish
     }
     
     document.getElementById('analyzeBtn').addEventListener('click', function() {
@@ -464,9 +484,8 @@
       const resultsDiv = document.getElementById('results');
       resultsDiv.innerHTML = "";
       
-      // Validate that niche is provided.
       if (!inputNiche) {
-        resultsDiv.innerHTML = '<p style="color:red;">Please enter your niche to proceed.</p>';
+        resultsDiv.innerHTML = '<p style="color:red;">Please select your niche to proceed.</p>';
         return;
       }
       if (!copy) {
@@ -491,59 +510,49 @@
       /***********************************************
        * 3) Analyze Niche Keywords & Potential KW    *
        ***********************************************/
-      // We'll create an array of { niche, keyword, occurrences, certainty }
       const foundKeywords = [];
-      
-      // Convert the user's niche to lowercase for matching
       const inputNicheLower = inputNiche.toLowerCase();
       
       for (const word in freqMap) {
         const occurrences = freqMap[word];
-        
-        // Skip if word is in ignoreWords
         if (ignoreWords.includes(word)) {
           continue;
         }
         
-        // If this is a known keyword
         if (knownKeywords[word]) {
           const knownNiche = knownKeywords[word];
-          let finalCertainty = 0;
-          // If it matches the user's niche, 100% certain
+          let certaintyDisplay = "";
           if (knownNiche.toLowerCase() === inputNicheLower) {
-            finalCertainty = 100;
+            certaintyDisplay = "100%";
+          } else {
+            certaintyDisplay = "Different Niche";
           }
-          // If not, we keep it at 0 to indicate it's from a different niche
           foundKeywords.push({
             niche: knownNiche,
             keyword: word,
             occurrences,
-            certainty: finalCertainty
+            certainty: certaintyDisplay
           });
-        } 
-        else {
-          // Try to guess a niche for unknown words
+        } else {
           const guess = guessNiche(word);
           if (guess) {
-            let finalCertainty = 0;
-            // If guessed niche matches user's niche, use guess.confidence
+            let certaintyDisplay = "";
             if (guess.niche.toLowerCase() === inputNicheLower) {
-              finalCertainty = guess.confidence; 
+              certaintyDisplay = guess.confidence + "%";
+            } else {
+              certaintyDisplay = "Different Niche";
             }
-            // If guessed niche is different, keep it at 0
             foundKeywords.push({
               niche: "Guessed: " + guess.niche,
               keyword: word,
               occurrences,
-              certainty: finalCertainty
+              certainty: certaintyDisplay
             });
           }
         }
       }
       
-      // Sort found keywords for a cleaner table: by niche, then by keyword
       foundKeywords.sort((a, b) => {
-        // Sort by niche (alphabetically), then by keyword
         if (a.niche < b.niche) return -1;
         if (a.niche > b.niche) return 1;
         if (a.keyword < b.keyword) return -1;
@@ -554,7 +563,6 @@
       /***********************************************
        * 4) Overused Keywords Analysis              *
        ***********************************************/
-      // Count each overused word's occurrences in the raw copy
       const overusedCounts = {};
       overusedWords.forEach(word => {
         const regex = new RegExp('\\b' + word + '\\b', 'gi');
@@ -592,34 +600,28 @@
        ***********************************************/
       let nicheAnalysisHTML = '<div class="result-section"><h2>Niche Keywords Analysis</h2>';
       if (foundKeywords.length === 0) {
-        nicheAnalysisHTML += '<p>No niche-related or potential keywords were detected (or all were ignored filler words).</p></div>';
+        nicheAnalysisHTML += '<p>No niche-related or potential keywords were detected (or all were ignored stopwords).</p></div>';
       } else {
         nicheAnalysisHTML += '<table><tr><th>Niche</th><th>Keyword</th><th>Occurrences</th><th>Certainty</th></tr>';
-        
         foundKeywords.forEach(item => {
-          // Niche Column color
-          // If "Guessed: Something", extract the real niche
           let displayNiche = item.niche;
           let rawNiche = displayNiche.toLowerCase();
-          
           if (displayNiche.toLowerCase().startsWith("guessed: ")) {
             rawNiche = displayNiche.replace(/guessed:\s*/i, "").toLowerCase();
           }
           const nicheColor = getColorForNiche(rawNiche);
-          
-          // Occurrences Column color
           const ratio = item.occurrences / totalWordsCount;
           const occColor = getOccurrencesColor(ratio);
-          
-          // Certainty Column color
-          const certColor = getCertaintyColor(item.certainty);
+          const certColor = getCertaintyColor(
+            typeof item.certainty === "number" ? item.certainty : 0
+          );
           
           nicheAnalysisHTML += `
             <tr>
               <td style="background-color:${nicheColor};">${displayNiche}</td>
               <td>${item.keyword}</td>
               <td style="background-color:${occColor};">${item.occurrences}</td>
-              <td style="background-color:${certColor};">${item.certainty}%</td>
+              <td style="background-color:${certColor};">${item.certainty}</td>
             </tr>`;
         });
         nicheAnalysisHTML += '</table></div>';
