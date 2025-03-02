@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Advanced A.I. SEO Analyzer</title>
   <style>
     /* Global Styles */
@@ -183,13 +183,16 @@
     <div class="info">
       <h2>How It Works</h2>
       <p>
-        This A.I.-powered SEO analyzer evaluates your text by checking for overused SEO keywords and assessing the relevance of niche-specific keywords.
-        You must provide your target niche, which is then used to filter and assign a certainty score for keywords detected in your copy.
-        <br><br>
-        - <strong>Overused Keywords:</strong> We highlight potential overused words so you can replace them with synonyms. <br>
-        - <strong>Niche Keywords Analysis:</strong> We look for known keywords associated with your niche. If we see keywords from other niches, we assign them a <em>“not associated”</em> certainty value (making it clear they belong to a different niche). <br>
-        - <strong>Potential Keywords:</strong> If we encounter words not in our database, we attempt to guess their niche using a basic text similarity approach. We then provide a confidence score for how likely that guess is correct.
+        This A.I.-powered SEO analyzer evaluates your text by checking for overused SEO keywords, ignoring common filler words, 
+        and assessing the relevance of niche-specific keywords. We highlight potential overused words so you can replace them with synonyms. 
+        For each detected keyword, we determine if it belongs to your chosen niche, a different niche, or if it's an unknown word we attempt 
+        to classify automatically. The table color-codes each column:
       </p>
+      <ul>
+        <li><strong>Niche Column:</strong> Colored based on the niche.</li>
+        <li><strong>Occurrences Column:</strong> Green for low frequency, yellow for medium, red for high.</li>
+        <li><strong>Certainty Column:</strong> Green for high certainty (≥70%), yellow for medium (40-69%), red for low (&lt;40%).</li>
+      </ul>
     </div>
   </div>
   
@@ -206,11 +209,18 @@
     ];
     
     /************************************************
+     *    Words to Ignore for Niche Table           *
+     ************************************************/
+    const ignoreWords = [
+      "every", "don't", "there", "be", "the", "too", "guaranteed", "for", "best"
+    ];
+    
+    /************************************************
      *       Niche Mapping and Known Keywords       *
      ************************************************/
     const nicheMapping = {
       "tech": [
-        "AI", "machine", "learning", "technology", "tech", "robotics", "data", "science", 
+        "ai", "machine", "learning", "technology", "tech", "robotics", "data", "science", 
         "innovation", "software", "hardware", "cybersecurity", "gadgets", "iot", 
         "cloud", "big", "automation"
       ],
@@ -221,7 +231,7 @@
       ],
       "finance": [
         "investment", "stocks", "cryptocurrency", "banking", "loans", "finance", "trading", 
-        "financial", "planning", "wealth", "management", "insurance", "budget", "economics", 
+        "financial", "planning", "wealth", "insurance", "budget", "economics", 
         "interest", "rates", "savings", "tax", "dividends", "portfolio", "retirement"
       ],
       "health": [
@@ -310,7 +320,7 @@
     };
     
     /************************************************
-     *            Niche Colors for Table Rows       *
+     *            Niche Colors for Table            *
      ************************************************/
     const nicheColors = {
       "tech": "#d1ecf1",
@@ -355,8 +365,7 @@
      *    Text Normalization / Word Frequency       *
      ************************************************/
     function normalizeWord(word) {
-      // Remove most punctuation, keep letters/numbers
-      // E.g. "A.I." => "AI", "footprint," => "footprint"
+      // Remove punctuation, keep letters/numbers
       return word.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
     }
     
@@ -375,19 +384,16 @@
     
     /************************************************
      *    Guess Niche for Unknown Keyword           *
+     *  Simple similarity approach for demonstration
      ************************************************/
     function guessNiche(word) {
-      // A naive approach: find the best partial match with known keywords
-      // Then use that match to guess the niche. We measure similarity
-      // by substring overlap or naive ratio.
       let bestScore = 0;
       let bestNiche = null;
       const wLower = word.toLowerCase();
       
-      // Compare with each known keyword in knownKeywords
-      for (const kw in knownKeywords) {
-        const niche = knownKeywords[kw];
-        const score = similarity(wLower, kw); 
+      for (const knownWord in knownKeywords) {
+        const niche = knownKeywords[knownWord];
+        const score = similarity(wLower, knownWord);
         if (score > bestScore) {
           bestScore = score;
           bestNiche = niche;
@@ -398,7 +404,7 @@
       if (bestScore < 0.3) {
         return null;
       }
-      // Confidence as an integer percentage
+      // Confidence as integer percentage
       const confidence = Math.floor(bestScore * 100);
       return { niche: bestNiche, confidence };
     }
@@ -418,22 +424,40 @@
     }
     
     /************************************************
-     *           Color Helper for Table Rows        *
+     *   Color Helper for Niche, Occurrences, etc.  *
      ************************************************/
     function getColorForNiche(niche) {
       if (!niche) return "#ffffff";
-      // If niche color is known:
       const nicheLower = niche.toLowerCase();
       if (nicheColors[nicheLower]) {
         return nicheColors[nicheLower];
       }
-      // Fallback color if not in dictionary
       return "#ffffff";
     }
     
-    /************************************************
-     *              Main Analysis Logic             *
-     ************************************************/
+    function getOccurrencesColor(ratio) {
+      // ratio = occurrences / totalWords
+      // Example thresholds: >10% => red, >5% => yellow, else green
+      if (ratio > 0.1) {
+        return "#ffcccc"; // red-ish
+      } else if (ratio > 0.05) {
+        return "#fff5cc"; // yellow-ish
+      } else {
+        return "#ccffcc"; // green-ish
+      }
+    }
+    
+    function getCertaintyColor(certainty) {
+      // Example thresholds: >=70 => green, >=40 => yellow, else red
+      if (certainty >= 70) {
+        return "#ccffcc"; // green-ish
+      } else if (certainty >= 40) {
+        return "#fff5cc"; // yellow-ish
+      } else {
+        return "#ffcccc"; // red-ish
+      }
+    }
+    
     document.getElementById('analyzeBtn').addEventListener('click', function() {
       const inputNiche = document.getElementById('niche').value.trim();
       const copy = document.getElementById('copy').value;
@@ -462,6 +486,7 @@
        * 2) Build Word Frequency for the Copy        *
        ***********************************************/
       const freqMap = getWordFrequencies(copy);
+      const totalWordsCount = Object.values(freqMap).reduce((a, b) => a + b, 0);
       
       /***********************************************
        * 3) Analyze Niche Keywords & Potential KW    *
@@ -469,38 +494,43 @@
       // We'll create an array of { niche, keyword, occurrences, certainty }
       const foundKeywords = [];
       
-      // For each distinct word in freqMap, decide if it's a known keyword or guess a niche
+      // Convert the user's niche to lowercase for matching
+      const inputNicheLower = inputNiche.toLowerCase();
+      
       for (const word in freqMap) {
         const occurrences = freqMap[word];
         
-        // If this is a known keyword in our dictionary:
+        // Skip if word is in ignoreWords
+        if (ignoreWords.includes(word)) {
+          continue;
+        }
+        
+        // If this is a known keyword
         if (knownKeywords[word]) {
-          const nicheFound = knownKeywords[word];
-          // If it matches the user's niche (exact match ignoring case), 100%
-          // Else, we set it to 0% to indicate it's from a different niche
-          const certainty = (nicheFound.toLowerCase() === inputNiche.toLowerCase()) ? 100 : 0;
+          const knownNiche = knownKeywords[word];
+          let finalCertainty = 0;
+          // If it matches the user's niche, 100% certain
+          if (knownNiche.toLowerCase() === inputNicheLower) {
+            finalCertainty = 100;
+          }
+          // If not, we keep it at 0 to indicate it's from a different niche
           foundKeywords.push({
-            niche: nicheFound,
+            niche: knownNiche,
             keyword: word,
             occurrences,
-            certainty
+            certainty: finalCertainty
           });
         } 
         else {
-          // Try to guess a niche
+          // Try to guess a niche for unknown words
           const guess = guessNiche(word);
           if (guess) {
-            // If the guessed niche matches user input niche, we can keep guess.confidence
-            // Otherwise, let's show it as the guess's confidence for that other niche
-            // to illustrate the difference.
-            let finalCertainty = guess.confidence;
-            
-            // If the guessed niche doesn't match the user's input niche, 
-            // show it as "0% (Different Niche)" or something similarly obvious
-            if (guess.niche.toLowerCase() !== inputNiche.toLowerCase()) {
-              finalCertainty = 0; // clearly show it's not the user's niche
+            let finalCertainty = 0;
+            // If guessed niche matches user's niche, use guess.confidence
+            if (guess.niche.toLowerCase() === inputNicheLower) {
+              finalCertainty = guess.confidence; 
             }
-            
+            // If guessed niche is different, keep it at 0
             foundKeywords.push({
               niche: "Guessed: " + guess.niche,
               keyword: word,
@@ -551,9 +581,8 @@
       /***********************************************
        * 5) Copy Analysis Section (word count, etc.) *
        ***********************************************/
-      const totalWords = copy.match(/\w+/g)?.length || 0;
       let analysisHTML = '<div class="result-section"><h2>Copy Analysis</h2>';
-      analysisHTML += '<p>Total word count: ' + totalWords + '</p>';
+      analysisHTML += '<p>Total word count: ' + totalWordsCount + '</p>';
       analysisHTML += '<p>Highlighted copy with potential overused terms:</p>';
       analysisHTML += '<div class="results-box">' + highlightedCopy + '</div>';
       analysisHTML += '</div>';
@@ -563,23 +592,34 @@
        ***********************************************/
       let nicheAnalysisHTML = '<div class="result-section"><h2>Niche Keywords Analysis</h2>';
       if (foundKeywords.length === 0) {
-        nicheAnalysisHTML += '<p>No niche-related or potential keywords were detected.</p></div>';
+        nicheAnalysisHTML += '<p>No niche-related or potential keywords were detected (or all were ignored filler words).</p></div>';
       } else {
         nicheAnalysisHTML += '<table><tr><th>Niche</th><th>Keyword</th><th>Occurrences</th><th>Certainty</th></tr>';
+        
         foundKeywords.forEach(item => {
-          // Determine row color based on the "primary" niche (if "Guessed:", split off)
-          const nicheName = item.niche.toLowerCase().startsWith("guessed:") 
-            ? item.niche.toLowerCase().replace("guessed: ", "").trim()
-            : item.niche.toLowerCase();
+          // Niche Column color
+          // If "Guessed: Something", extract the real niche
+          let displayNiche = item.niche;
+          let rawNiche = displayNiche.toLowerCase();
           
-          const rowColor = getColorForNiche(nicheName);
+          if (displayNiche.toLowerCase().startsWith("guessed: ")) {
+            rawNiche = displayNiche.replace(/guessed:\s*/i, "").toLowerCase();
+          }
+          const nicheColor = getColorForNiche(rawNiche);
+          
+          // Occurrences Column color
+          const ratio = item.occurrences / totalWordsCount;
+          const occColor = getOccurrencesColor(ratio);
+          
+          // Certainty Column color
+          const certColor = getCertaintyColor(item.certainty);
           
           nicheAnalysisHTML += `
-            <tr style="background-color:${rowColor};">
-              <td>${item.niche}</td>
+            <tr>
+              <td style="background-color:${nicheColor};">${displayNiche}</td>
               <td>${item.keyword}</td>
-              <td>${item.occurrences}</td>
-              <td>${item.certainty}%</td>
+              <td style="background-color:${occColor};">${item.occurrences}</td>
+              <td style="background-color:${certColor};">${item.certainty}%</td>
             </tr>`;
         });
         nicheAnalysisHTML += '</table></div>';
