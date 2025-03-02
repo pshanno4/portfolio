@@ -170,6 +170,7 @@ header {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     align-items: start;
+    justify-content: center;
 }
 .project-card {
     background-color: #fff;
