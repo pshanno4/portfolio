@@ -328,14 +328,16 @@ footer {
   transition: 0.3s ease-in-out;
 }
 
-/* Mobile Navigation */
 @media (max-width: 768px) {
   .menu-toggle {
     display: flex;
   }
 
   .nav-links {
-    display: none;
+    /* Hide by default but allow transitions */
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
     flex-direction: column;
     background: var(--header-bg);
     width: 100%;
@@ -345,28 +347,22 @@ footer {
     text-align: center;
     padding: 10px 0;
     z-index: 100;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transform: translateY(-10px);
   }
 
   .nav-links.active {
-    display: flex;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
   }
 
   .nav-links li {
     padding: 15px 0;
   }
-
-  /* Smooth opening transition */
-  .nav-links {
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-  }
-
-  .nav-links.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
+
 /* Testimonials Section */
 #testimonials {
   background-color: #fff;
