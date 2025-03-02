@@ -155,16 +155,14 @@
       <h2>How It Works</h2>
       <p>
         This A.I.-powered SEO analyzer evaluates your text by highlighting overused SEO keywords and detecting niche-specific keywords.
-        It ignores a comprehensive list of common stopwords and generic words to prevent noise in the analysis.
-        For each keyword, it checks if it belongs to your chosen niche, a different niche, or if it is unknown—attempting to classify it automatically with a confidence score.
+        It ignores an extensive list of common words (stopwords, generic verbs, adjectives, adverbs, etc.) to prevent noise.
+        For each detected keyword, it checks if it belongs to your chosen niche, a different niche, or if it is unknown—attempting to classify it with a confidence score.
       </p>
       <ul>
-        <li><strong>Niche Column:</strong> Displays the keyword’s associated niche (with assigned background color).</li>
-        <li><strong>Occurrences Column:</strong> Cell color reflects frequency relative to total words (Green: low, Yellow: medium, Red: high).</li>
-        <li><strong>Certainty Column:</strong> Shows "100%" if confirmed for your niche, a confidence percentage (if guessed and matching),
-          or "Different Niche" if it belongs elsewhere.
-        </li>
-        <li>The table is split: keywords matching your niche are shown at the top, while those marked as "Different Niche" are hidden by default and can be expanded.</li>
+        <li><strong>Niche Column:</strong> Displays the keyword’s associated niche (with its assigned background color).</li>
+        <li><strong>Occurrences Column:</strong> If a keyword's count is 2× the mean of all relevant keywords, the cell is yellow; if 3× or more, red.</li>
+        <li><strong>Certainty Column:</strong> Displays a numeric confidence (40–70 yellow, 70–100 green) for matching your niche; otherwise, "Different Niche".</li>
+        <li>The table is split: relevant keywords appear at the top; keywords from a different niche are grouped by niche and hidden by default.</li>
       </ul>
     </div>
   </div>
@@ -174,41 +172,52 @@
      *        Overused SEO Keywords (Highlight)     *
      ************************************************/
     const overusedWords = [
-      "best", "top", "quality", "expert", "affordable", "solution", "unique", "leading", 
-      "powerful", "reliable", "trusted", "proven", "innovative", "cutting-edge", 
-      "state-of-the-art", "free", "guaranteed", "amazing", "ultimate", "essential", 
-      "premium", "efficient", "advanced", "strategic", "professional", "dynamic", 
+      "best", "top", "quality", "expert", "affordable", "solution", "unique", "leading",
+      "powerful", "reliable", "trusted", "proven", "innovative", "cutting-edge",
+      "state-of-the-art", "free", "guaranteed", "amazing", "ultimate", "essential",
+      "premium", "efficient", "advanced", "strategic", "professional", "dynamic",
       "holistic", "comprehensive", "optimal", "incredible", "remarkable"
     ];
     
     /************************************************
      *    Expanded Stopwords / Ignore List          *
-     * (A comprehensive list of generic words)      *
+     * (Includes a very large set of generic words)  *
      ************************************************/
     const ignoreWords = [
-      // Standard English stopwords from many sources:
+      // Standard stopwords and common connectors:
       "i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours",
       "yourself", "yourselves", "he", "him", "his", "himself", "she", "her", "hers", "herself",
-      "it", "its", "itself", "they", "them", "their", "theirs", "themselves", "what", "which",
-      "who", "whom", "this", "that", "these", "those", "am", "is", "are", "was", "were", "be",
-      "been", "being", "have", "has", "had", "having", "do", "does", "did", "doing", "a", "an",
-      "the", "and", "but", "if", "or", "because", "as", "until", "while", "of", "at", "by",
-      "for", "with", "about", "against", "between", "into", "through", "during", "before",
-      "after", "above", "below", "to", "from", "up", "down", "in", "out", "on", "off", "over",
-      "under", "again", "further", "then", "once", "here", "there", "when", "where", "why",
-      "how", "all", "any", "both", "each", "few", "more", "most", "other", "some", "such",
-      "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very", "s", "t", "can",
-      "will", "just", "don", "should", "now",
-      // Additional generic verbs, adjectives, adverbs, and nouns:
-      "really", "quite", "much", "many", "also", "often", "ever", "never", "always",
-      "sometimes", "indeed", "perhaps", "maybe", "probably", "certainly", "basically",
-      "generally", "mostly", "simply", "actually", "indeed", "thing", "things", "stuff",
-      "anything", "everything", "something", "event", "events", "item", "items", "object",
-      "objects", "thingamajig", "whatchamacallit", "do", "make", "take", "get", "go", "come",
-      "say", "tell", "see", "look", "use", "work", "run", "start", "end", "finish", "begin",
-      "continue", "stop", "end", "find", "keep", "hold", "put", "think", "know", "want",
-      "need", "like", "love", "hate", "live", "die", "give", "buy", "sell", "build", "create",
-      "share", "ensure", "forget", "join", "connect", "network", "networking"
+      "it", "its", "itself", "they", "them", "their", "theirs", "themselves",
+      "what", "which", "who", "whom", "this", "that", "these", "those",
+      "am", "is", "are", "was", "were", "be", "been", "being",
+      "have", "has", "had", "having", "do", "does", "did", "doing",
+      "a", "an", "the", "and", "but", "if", "or", "because", "as", "until", "while",
+      "of", "at", "by", "for", "with", "about", "against", "between", "into",
+      "through", "during", "before", "after", "above", "below", "to", "from",
+      "up", "down", "in", "out", "on", "off", "over", "under", "again", "further",
+      "then", "once", "here", "there", "when", "where", "why", "how",
+      "all", "any", "both", "each", "few", "more", "most", "other", "some", "such",
+      "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very",
+      "s", "t", "can", "will", "just", "don", "should", "now",
+      // Additional common prepositions, connectors, and generic words:
+      "about", "above", "across", "after", "against", "along", "amid", "amidst", "among", "amongst",
+      "anti", "around", "as", "at", "before", "behind", "below", "beneath", "beside", "besides",
+      "between", "beyond", "but", "by", "concerning", "despite", "down", "during", "except", "excepting",
+      "excluding", "following", "for", "from", "in", "inside", "into", "like", "minus", "near",
+      "of", "off", "on", "onto", "opposite", "out", "outside", "over", "past", "per", "plus",
+      "regarding", "round", "save", "since", "than", "through", "to", "toward", "towards", "under",
+      "underneath", "unlike", "until", "up", "upon", "versus", "via", "with", "within", "without",
+      // Additional generic adjectives/adverbs/nouns/verbs
+      "really", "quite", "much", "many", "also", "often", "ever", "never", "always", "sometimes",
+      "indeed", "perhaps", "maybe", "probably", "certainly", "basically", "generally", "mostly", "simply",
+      "actually", "thing", "things", "stuff", "anything", "everything", "something", "event", "events",
+      "item", "items", "object", "objects", "big", "small", "large", "little", "next", "previous", "new",
+      "old", "several", "more", "less", "few", "several", "generic", "common", "standard",
+      // More generic verbs that are not industry specific:
+      "do", "make", "take", "get", "go", "come", "say", "tell", "see", "look", "use", "work", "run",
+      "start", "end", "finish", "begin", "continue", "stop", "find", "keep", "hold", "put", "think",
+      "know", "want", "need", "like", "love", "hate", "live", "die", "give", "buy", "sell", "build",
+      "create", "share", "ensure", "forget", "join", "connect", "network", "networking"
     ];
     
     /************************************************
@@ -216,102 +225,102 @@
      ************************************************/
     const nicheMapping = {
       "tech": [
-        "ai", "machine", "learning", "technology", "tech", "robotics", "data", "science", 
-        "innovation", "software", "hardware", "cybersecurity", "gadgets", "iot", 
-        "cloud", "big", "automation", "blockchain"  // Added blockchain here
+        "ai", "machine", "learning", "technology", "tech", "robotics", "data", "science",
+        "innovation", "software", "hardware", "cybersecurity", "gadgets", "iot",
+        "cloud", "big", "automation", "blockchain"  // Manual override for blockchain
       ],
       "sustainability": [
-        "nature", "recycling", "reuse", "sustainable", "environment", "green", "eco", 
-        "renewable", "conservation", "organic", "biodiversity", "carbon", "footprint", 
+        "nature", "recycling", "reuse", "sustainable", "environment", "green", "eco",
+        "renewable", "conservation", "organic", "biodiversity", "carbon", "footprint",
         "waste", "management"
       ],
       "finance": [
-        "investment", "stocks", "cryptocurrency", "banking", "loans", "finance", "trading", 
-        "financial", "planning", "wealth", "insurance", "budget", "economics", 
+        "investment", "stocks", "cryptocurrency", "banking", "loans", "finance", "trading",
+        "financial", "planning", "wealth", "insurance", "budget", "economics",
         "interest", "rates", "savings", "tax", "dividends", "portfolio", "retirement"
       ],
       "health": [
-        "health", "wellness", "nutrition", "fitness", "exercise", "medicine", "mental", 
-        "medical", "diet", "treatment", "prevention", "wellbeing", "therapy", "healthcare", 
+        "health", "wellness", "nutrition", "fitness", "exercise", "medicine", "mental",
+        "medical", "diet", "treatment", "prevention", "wellbeing", "therapy", "healthcare",
         "doctor", "clinic"
       ],
       "travel": [
-        "travel", "vacation", "tourism", "destination", "holiday", "flight", "hotel", 
-        "adventure", "explore", "journey", "itinerary", "cruise", "sightseeing", 
+        "travel", "vacation", "tourism", "destination", "holiday", "flight", "hotel",
+        "adventure", "explore", "journey", "itinerary", "cruise", "sightseeing",
         "backpacking", "road", "trip"
       ],
       "education": [
-        "education", "learning", "courses", "classes", "tutoring", "scholarship", 
-        "university", "college", "academic", "research", "training", "e-learning", 
+        "education", "learning", "courses", "classes", "tutoring", "scholarship",
+        "university", "college", "academic", "research", "training", "e-learning",
         "study", "curriculum"
       ],
       "fashion": [
-        "fashion", "style", "trends", "apparel", "clothing", "accessories", "couture", 
+        "fashion", "style", "trends", "apparel", "clothing", "accessories", "couture",
         "designer", "runway", "vintage", "moda", "outfit", "wardrobe", "glamour", "chic"
       ],
       "food": [
-        "food", "cuisine", "recipe", "dining", "restaurant", "gourmet", "chef", "cooking", 
+        "food", "cuisine", "recipe", "dining", "restaurant", "gourmet", "chef", "cooking",
         "meal", "snack", "flavor", "organic", "fast", "bakery", "delicious", "savory"
       ],
       "real estate": [
-        "real", "estate", "property", "homes", "housing", "mortgage", "apartment", 
+        "real", "estate", "property", "homes", "housing", "mortgage", "apartment",
         "commercial", "condo", "residential", "rentals", "market", "construction"
       ],
       "entertainment": [
-        "entertainment", "movies", "music", "celebrity", "tv", "film", "concert", 
-        "streaming", "theater", "festival", "pop", "culture", "blockbuster", "award", 
+        "entertainment", "movies", "music", "celebrity", "tv", "film", "concert",
+        "streaming", "theater", "festival", "pop", "culture", "blockbuster", "award",
         "drama", "comedy"
       ],
       "automotive": [
-        "automotive", "cars", "vehicles", "auto", "transportation", "engine", "dealership", 
+        "automotive", "cars", "vehicles", "auto", "transportation", "engine", "dealership",
         "electric", "hybrid", "suv", "sedan", "trucks", "performance", "motor", "driving"
       ],
       "sports": [
-        "sports", "football", "basketball", "soccer", "baseball", "tennis", "athlete", 
-        "tournament", "game", "league", "score", "coach", "stadium", "olympics", 
+        "sports", "football", "basketball", "soccer", "baseball", "tennis", "athlete",
+        "tournament", "game", "league", "score", "coach", "stadium", "olympics",
         "competition"
       ],
       "beauty": [
-        "beauty", "skincare", "makeup", "cosmetics", "hair", "spa", "salon", "anti-aging", 
+        "beauty", "skincare", "makeup", "cosmetics", "hair", "spa", "salon", "anti-aging",
         "fragrance", "esthetic", "organic", "glam", "chic"
       ],
       "retail": [
-        "retail", "shopping", "e-commerce", "store", "discount", "sale", "deal", "consumer", 
+        "retail", "shopping", "e-commerce", "store", "discount", "sale", "deal", "consumer",
         "online", "delivery", "customer", "service", "brand", "merchandise"
       ],
       "gaming": [
-        "gaming", "video", "games", "esports", "console", "pc", "multiplayer", "rpg", 
+        "gaming", "video", "games", "esports", "console", "pc", "multiplayer", "rpg",
         "fps", "strategy", "gameplay", "virtual", "tournament", "beta"
       ],
       "lifestyle": [
-        "lifestyle", "culture", "living", "home", "decor", "diy", "personal", "development", 
+        "lifestyle", "culture", "living", "home", "decor", "diy", "personal", "development",
         "hobbies", "mindfulness", "fitness", "art", "entertainment"
       ],
       "business": [
-        "business", "entrepreneur", "startup", "management", "leadership", "strategy", 
+        "business", "entrepreneur", "startup", "management", "leadership", "strategy",
         "growth", "marketing", "sales", "operations", "corporate", "b2b", "b2c", "industry",
-        "networking"  // Added networking override later in guessNiche
+        "networking"  // Manual override for networking → Business
       ],
       "legal": [
-        "legal", "law", "attorney", "lawsuit", "regulation", "compliance", "court", 
+        "legal", "law", "attorney", "lawsuit", "regulation", "compliance", "court",
         "contract", "litigation", "policy", "rights", "justice", "criminal", "civil"
       ],
       "home improvement": [
-        "home", "improvement", "diy", "renovation", "remodel", "construction", 
-        "interior", "exterior", "maintenance", "repair", "architecture", "landscaping", 
+        "home", "improvement", "diy", "renovation", "remodel", "construction",
+        "interior", "exterior", "maintenance", "repair", "architecture", "landscaping",
         "decor"
       ],
       "parenting": [
-        "parenting", "kids", "children", "family", "mom", "dad", "parent", "childcare", 
+        "parenting", "kids", "children", "family", "mom", "dad", "parent", "childcare",
         "baby", "toddler", "advice", "support", "growth"
       ],
       "marketing": [
-        "marketing", "advertising", "branding", "content", "social", "media", "seo", 
-        "analytics", "campaign", "digital", "inbound", "engagement", "influencer", 
+        "marketing", "advertising", "branding", "content", "social", "media", "seo",
+        "analytics", "campaign", "digital", "inbound", "engagement", "influencer",
         "lead", "generation"
       ],
       "art & culture": [
-        "art", "culture", "gallery", "exhibition", "artist", "creative", "design", 
+        "art", "culture", "gallery", "exhibition", "artist", "creative", "design",
         "museum", "craft", "sculpture", "painting", "installation", "performance", "curator"
       ]
     };
@@ -351,9 +360,7 @@
     for (const niche in nicheMapping) {
       nicheMapping[niche].forEach(keyword => {
         const lowerKey = keyword.toLowerCase();
-        if (!knownKeywords[lowerKey]) {
-          knownKeywords[lowerKey] = niche;
-        }
+        if (!knownKeywords[lowerKey]) { knownKeywords[lowerKey] = niche; }
       });
     }
     
@@ -379,19 +386,15 @@
      ************************************************/
     function guessNiche(word) {
       const wLower = word.toLowerCase();
-      // Manual overrides for known problematic words
+      // Manual overrides
       if (wLower === "blockchain") { return { niche: "tech", confidence: 100 }; }
       if (wLower === "networking") { return { niche: "business", confidence: 100 }; }
-      
       let bestScore = 0;
       let bestNiche = null;
       for (const knownWord in knownKeywords) {
         const niche = knownKeywords[knownWord];
         const score = similarity(wLower, knownWord);
-        if (score > bestScore) {
-          bestScore = score;
-          bestNiche = niche;
-        }
+        if (score > bestScore) { bestScore = score; bestNiche = niche; }
       }
       if (bestScore < 0.3) { return null; }
       const confidence = Math.floor(bestScore * 100);
@@ -401,9 +404,7 @@
     function similarity(a, b) {
       let matches = 0;
       const len = Math.min(a.length, b.length);
-      for (let i = 0; i < len; i++) {
-        if (a[i] === b[i]) { matches++; }
-      }
+      for (let i = 0; i < len; i++) { if (a[i] === b[i]) { matches++; } }
       return matches / Math.max(a.length, b.length);
     }
     
@@ -416,19 +417,20 @@
       return nicheColors[nicheLower] || "#ffffff";
     }
     
+    // Default occurrence color based on ratio
     function getOccurrencesColor(ratio) {
-      if (ratio > 0.1) { return "#ffcccc"; }      // high → red
-      else if (ratio > 0.05) { return "#fff5cc"; }  // medium → yellow
-      else { return "#ccffcc"; }                   // low → green
+      if (ratio > 0.1) { return "#ffcccc"; } // red
+      else if (ratio > 0.05) { return "#fff5cc"; } // yellow
+      else { return "#ccffcc"; } // green
     }
     
+    // Certainty coloring: 40-70 = yellow, 70-100 = green, below 40 = red
     function getCertaintyColor(certainty) {
       if (typeof certainty === "number") {
         if (certainty >= 70) { return "#ccffcc"; }
         else if (certainty >= 40) { return "#fff5cc"; }
         else { return "#ffcccc"; }
       }
-      // For non-numeric certainty (e.g., "Different Niche")
       return "#ffcccc";
     }
     
@@ -450,23 +452,17 @@
         return;
       }
       
-      /***********************************************
-       * 1) Highlight Overused SEO Keywords in Copy  *
-       ***********************************************/
+      // 1) Highlight Overused SEO keywords in copy
       const overusedRegex = new RegExp('\\b(' + overusedWords.join('|') + ')\\b', 'gi');
       const highlightedCopy = copy.replace(overusedRegex, function(match) {
         return '<span class="highlight" title="This term may be overused. Consider using synonyms.">' + match + '</span>';
       });
       
-      /***********************************************
-       * 2) Build Word Frequency for the Copy        *
-       ***********************************************/
+      // 2) Build word frequency for the copy
       const freqMap = getWordFrequencies(copy);
       const totalWordsCount = Object.values(freqMap).reduce((a, b) => a + b, 0);
       
-      /***********************************************
-       * 3) Analyze Niche Keywords & Potential KW    *
-       ***********************************************/
+      // 3) Analyze keywords: separate into relevant (matching input niche) and different
       const relevantKeywords = [];
       const differentKeywords = [];
       const inputNicheLower = inputNiche.toLowerCase();
@@ -477,62 +473,61 @@
         
         if (knownKeywords[word]) {
           const knownNiche = knownKeywords[word];
-          let certaintyDisplay = "";
           if (knownNiche.toLowerCase() === inputNicheLower) {
-            certaintyDisplay = "100%";
             relevantKeywords.push({
               niche: knownNiche,
               keyword: word,
               occurrences,
-              certainty: certaintyDisplay
+              certainty: 100  // store as number
             });
           } else {
-            certaintyDisplay = "Different Niche";
             differentKeywords.push({
               niche: knownNiche,
               keyword: word,
               occurrences,
-              certainty: certaintyDisplay
+              certainty: "Different Niche"
             });
           }
         } else {
           const guess = guessNiche(word);
           if (guess) {
-            let certaintyDisplay = "";
             if (guess.niche.toLowerCase() === inputNicheLower) {
-              certaintyDisplay = guess.confidence + "%";
               relevantKeywords.push({
                 niche: "Guessed: " + guess.niche,
                 keyword: word,
                 occurrences,
-                certainty: certaintyDisplay
+                certainty: guess.confidence  // store as number
               });
             } else {
-              certaintyDisplay = "Different Niche";
               differentKeywords.push({
                 niche: "Guessed: " + guess.niche,
                 keyword: word,
                 occurrences,
-                certainty: certaintyDisplay
+                certainty: "Different Niche"
               });
             }
           }
         }
       }
       
-      // Sort relevant keywords alphabetically by niche and keyword
+      // Compute average occurrences for relevant keywords for override coloring
+      let avgOccurrence = 0;
+      if (relevantKeywords.length > 0) {
+        const sumOccurrences = relevantKeywords.reduce((sum, item) => sum + item.occurrences, 0);
+        avgOccurrence = sumOccurrences / relevantKeywords.length;
+      }
+      
+      // Sort relevant keywords (by niche then keyword)
       relevantKeywords.sort((a, b) => {
         if (a.niche < b.niche) return -1;
         if (a.niche > b.niche) return 1;
         return a.keyword.localeCompare(b.keyword);
       });
       
-      // Sort different niche keywords alphabetically
+      // Sort different keywords (by niche then keyword)
       differentKeywords.sort((a, b) => a.keyword.localeCompare(b.keyword));
       
-      /***********************************************
-       * 4) Overused Keywords Analysis              *
-       ***********************************************/
+      // 4) Overused keywords analysis (same as before)
       const overusedCounts = {};
       overusedWords.forEach(word => {
         const regex = new RegExp('\\b' + word + '\\b', 'gi');
@@ -556,87 +551,93 @@
       }
       overusedHTML += '</div>';
       
-      /***********************************************
-       * 5) Copy Analysis Section (word count, etc.) *
-       ***********************************************/
+      // 5) Copy Analysis Section
       let analysisHTML = '<div class="result-section"><h2>Copy Analysis</h2>';
       analysisHTML += '<p>Total word count: ' + totalWordsCount + '</p>';
       analysisHTML += '<p>Highlighted copy with potential overused terms:</p>';
       analysisHTML += '<div class="results-box">' + highlightedCopy + '</div>';
       analysisHTML += '</div>';
       
-      /***********************************************
-       * 6) Build the Niche Keywords Table           *
-       ***********************************************/
+      // 6) Build the Relevant Keywords Table (Main Table)
       let nicheAnalysisHTML = '<div class="result-section"><h2>Niche Keywords Analysis</h2>';
-      
       if (relevantKeywords.length === 0) {
         nicheAnalysisHTML += '<p>No relevant keywords for your niche were detected.</p>';
       } else {
         nicheAnalysisHTML += '<table><tr><th>Niche</th><th>Keyword</th><th>Occurrences</th><th>Certainty</th></tr>';
         relevantKeywords.forEach(item => {
+          // Determine niche cell color
           let displayNiche = item.niche;
           let rawNiche = displayNiche.toLowerCase();
           if (displayNiche.toLowerCase().startsWith("guessed: ")) {
             rawNiche = displayNiche.replace(/guessed:\s*/i, "").toLowerCase();
           }
           const nicheColor = getColorForNiche(rawNiche);
-          const ratio = item.occurrences / totalWordsCount;
-          const occColor = getOccurrencesColor(ratio);
-          const certColor = getCertaintyColor(typeof item.certainty === "number" ? item.certainty : 0);
+          
+          // Occurrence cell color: override if substantially higher than the mean
+          let occColor = getOccurrencesColor(item.occurrences / totalWordsCount);
+          if (avgOccurrence > 0) {
+            if (item.occurrences >= 3 * avgOccurrence) {
+              occColor = "#ffcccc"; // red
+            } else if (item.occurrences >= 2 * avgOccurrence) {
+              occColor = "#fff5cc"; // yellow
+            }
+          }
+          
+          // Certainty cell color (only for numeric values)
+          let certColor = getCertaintyColor(item.certainty);
+          // Display certainty as number with "%" appended.
+          let certDisplay = (typeof item.certainty === "number") ? item.certainty + "%" : item.certainty;
+          
           nicheAnalysisHTML += `
             <tr>
               <td style="background-color:${nicheColor};">${displayNiche}</td>
               <td>${item.keyword}</td>
               <td style="background-color:${occColor};">${item.occurrences}</td>
-              <td style="background-color:${certColor};">${item.certainty}</td>
+              <td style="background-color:${certColor};">${certDisplay}</td>
             </tr>`;
         });
         nicheAnalysisHTML += '</table>';
       }
       
-      // Add a toggle button and table for Different Niche keywords if any exist.
+      // 7) Build the Different Niche Keywords Table (Grouped by Niche)
       if (differentKeywords.length > 0) {
+        // Group the differentKeywords by niche
+        const groupMap = {};
+        differentKeywords.forEach(item => {
+          const key = item.niche;
+          if (!groupMap[key]) { groupMap[key] = []; }
+          groupMap[key].push(item);
+        });
         nicheAnalysisHTML += '<button class="toggle-btn" onclick="toggleDifferent()">Show Different Niche Keywords (' + differentKeywords.length + ')</button>';
         nicheAnalysisHTML += '<div id="differentSection" style="display:none; margin-top:15px;">';
-        nicheAnalysisHTML += '<table><tr><th>Niche</th><th>Keyword</th><th>Occurrences</th><th>Certainty</th></tr>';
-        differentKeywords.forEach(item => {
-          let displayNiche = item.niche;
-          let rawNiche = displayNiche.toLowerCase();
-          if (displayNiche.toLowerCase().startsWith("guessed: ")) {
-            rawNiche = displayNiche.replace(/guessed:\s*/i, "").toLowerCase();
-          }
-          const nicheColor = getColorForNiche(rawNiche);
-          const ratio = item.occurrences / totalWordsCount;
-          const occColor = getOccurrencesColor(ratio);
-          const certColor = getCertaintyColor(0);
-          nicheAnalysisHTML += `
-            <tr>
-              <td style="background-color:${nicheColor};">${displayNiche}</td>
-              <td>${item.keyword}</td>
-              <td style="background-color:${occColor};">${item.occurrences}</td>
-              <td style="background-color:${certColor};">${item.certainty}</td>
-            </tr>`;
-        });
-        nicheAnalysisHTML += '</table></div>';
+        for (const group in groupMap) {
+          nicheAnalysisHTML += '<h3>' + group + '</h3>';
+          nicheAnalysisHTML += '<table><tr><th>Keyword</th><th>Occurrences</th><th>Certainty</th></tr>';
+          groupMap[group].forEach(item => {
+            // For these, occurrences color as before (using default getOccurrencesColor)
+            const occColor = getOccurrencesColor(item.occurrences / totalWordsCount);
+            nicheAnalysisHTML += `
+              <tr>
+                <td>${item.keyword}</td>
+                <td style="background-color:${occColor};">${item.occurrences}</td>
+                <td style="background-color:${getCertaintyColor(0)};">${item.certainty}</td>
+              </tr>`;
+          });
+          nicheAnalysisHTML += '</table>';
+        }
+        nicheAnalysisHTML += '</div>';
       }
       
       nicheAnalysisHTML += '</div>';
       
-      /***********************************************
-       * 7) Combine and Display Results              *
-       ***********************************************/
+      // 8) Combine and Display All Results
       resultsDiv.innerHTML = analysisHTML + nicheAnalysisHTML + overusedHTML;
     });
     
-    // Toggle function for showing/hiding Different Niche keywords section
+    // Toggle function for showing/hiding the Different Niche keywords section
     function toggleDifferent() {
       const section = document.getElementById("differentSection");
-      if (section.style.display === "none") {
-        section.style.display = "block";
-      } else {
-        section.style.display = "none";
-      }
+      section.style.display = (section.style.display === "none") ? "block" : "none";
     }
   </script>
 </body>
