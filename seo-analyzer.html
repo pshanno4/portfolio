@@ -138,10 +138,10 @@
       </select>
     </div>
     
-    <!-- Main Copy Input -->
+    <!-- Main Copy Input (with maxlength 5000) -->
     <div class="input-group">
       <label for="copy">Your Copy:</label>
-      <textarea id="copy" rows="10" placeholder="Paste your text here..."></textarea>
+      <textarea id="copy" rows="10" maxlength="5000" placeholder="Paste your text here..."></textarea>
     </div>
     
     <!-- Analyze Button -->
@@ -150,20 +150,38 @@
     <!-- Analysis Results -->
     <div id="results" class="analysis"></div>
     
-    <!-- Info Section -->
+    <!-- In-Depth How It Works Section -->
     <div class="info">
       <h2>How It Works</h2>
       <p>
-        This A.I.-powered SEO analyzer evaluates your text by highlighting overused SEO keywords and detecting niche-specific keywords.
-        It ignores an extensive list of common words (stopwords, generic verbs, adjectives, adverbs, etc.) to prevent noise.
-        For each detected keyword, it checks if it belongs to your chosen niche, a different niche, or if it is unknown—attempting to classify it with a confidence score.
+        This A.I.-powered SEO Analyzer processes your text in several steps:
       </p>
-      <ul>
-        <li><strong>Niche Column:</strong> Displays the keyword’s associated niche (with its assigned background color).</li>
-        <li><strong>Occurrences Column:</strong> If a keyword's count is 2× the mean of all relevant keywords, the cell is yellow; if 3× or more, red.</li>
-        <li><strong>Certainty Column:</strong> Displays a numeric confidence (40–70 yellow, 70–100 green) for matching your niche; otherwise, "Different Niche".</li>
-        <li>The table is split: relevant keywords appear at the top; keywords from a different niche are grouped by niche and hidden by default.</li>
-      </ul>
+      <ol>
+        <li>
+          <strong>Text Normalization & Word Frequency:</strong> The tool first normalizes your copy by removing punctuation and converting all words to lowercase. It then calculates the frequency of each distinct word.
+        </li>
+        <li>
+          <strong>Stopwords and Generic Word Filtering:</strong> An extensive blocklist (ignoreWords) removes nearly every generic English word—such as common prepositions, pronouns, determiners, conjunctions, as well as generic verbs, adjectives, adverbs, and nouns (e.g. “truly”, “recommendation(s)”, “access”, “appeal(s)”, “approach”, “even”, “maintaining”, “solution(s)”, “trusted”, “encourage(ing)”, “champion”, “adopt”, “advanced”, “amazing”, “ensuring”, “guide”, “interested”, “interest”, “introduce(d)”, “leading”, “reliable”, “remarkable”, “sharing”, “weve”, etc.). While context matters, this broad blocklist minimizes noise from non–industry–specific words.
+        </li>
+        <li>
+          <strong>Keyword Classification:</strong> For each remaining word, the analyzer checks if it is present in our predefined industry-specific mapping. If a word is an exact match, it is assigned to that niche with a certainty score of 100. For words not found in our mapping, a similarity algorithm (comparing character-by-character overlap) attempts to guess the most likely niche and assigns a confidence score.
+        </li>
+        <li>
+          <strong>Occurrence Analysis:</strong> The tool calculates the average occurrence of all relevant keywords. If a keyword appears at least twice the average, its occurrence cell is highlighted in yellow; if three times or more, it is highlighted in red.
+        </li>
+        <li>
+          <strong>Certainty Scoring & Coloring:</strong> In the main table, keywords that match your chosen niche show a numeric certainty value (green if 70–100, yellow if 40–70, and red if below 40). For keywords from a different niche, the tool now also calculates and displays a numeric certainty score (typically 100 for exact matches or the guess’s confidence for approximations) using the same color-coding.
+        </li>
+        <li>
+          <strong>Dual Table Display:</strong> The results are split into two tables. The main table displays keywords relevant to your selected niche, while a secondary section—hidden by default—groups keywords detected as belonging to a different niche (organized by niche). A toggle button allows you to expand or collapse the “Different Niche” table for a concise view.
+        </li>
+        <li>
+          <strong>Final Presentation:</strong> All results are presented in a modern, sleek interface with color-coded cells for quick visual analysis.
+        </li>
+      </ol>
+      <p>
+        The math behind the similarity function is simple: for two words, the number of matching characters (in order) is divided by the maximum length of the two words to produce a ratio. This ratio is then multiplied by 100 to yield a confidence percentage. Occurrence coloring compares each keyword’s count against the mean count of all relevant keywords.
+      </p>
     </div>
   </div>
   
@@ -181,10 +199,10 @@
     
     /************************************************
      *    Expanded Stopwords / Ignore List          *
-     * (Includes a very large set of generic words)  *
+     * (Very extensive generic word blocklist)      *
      ************************************************/
     const ignoreWords = [
-      // Standard stopwords and common connectors:
+      // Standard stopwords
       "i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours",
       "yourself", "yourselves", "he", "him", "his", "himself", "she", "her", "hers", "herself",
       "it", "its", "itself", "they", "them", "their", "theirs", "themselves",
@@ -199,7 +217,7 @@
       "all", "any", "both", "each", "few", "more", "most", "other", "some", "such",
       "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very",
       "s", "t", "can", "will", "just", "don", "should", "now",
-      // Additional common prepositions, connectors, and generic words:
+      // Additional common prepositions, connectors, etc.
       "about", "above", "across", "after", "against", "along", "amid", "amidst", "among", "amongst",
       "anti", "around", "as", "at", "before", "behind", "below", "beneath", "beside", "besides",
       "between", "beyond", "but", "by", "concerning", "despite", "down", "during", "except", "excepting",
@@ -207,17 +225,24 @@
       "of", "off", "on", "onto", "opposite", "out", "outside", "over", "past", "per", "plus",
       "regarding", "round", "save", "since", "than", "through", "to", "toward", "towards", "under",
       "underneath", "unlike", "until", "up", "upon", "versus", "via", "with", "within", "without",
-      // Additional generic adjectives/adverbs/nouns/verbs
+      // Additional generic adjectives, adverbs, nouns, verbs
       "really", "quite", "much", "many", "also", "often", "ever", "never", "always", "sometimes",
       "indeed", "perhaps", "maybe", "probably", "certainly", "basically", "generally", "mostly", "simply",
       "actually", "thing", "things", "stuff", "anything", "everything", "something", "event", "events",
       "item", "items", "object", "objects", "big", "small", "large", "little", "next", "previous", "new",
-      "old", "several", "more", "less", "few", "several", "generic", "common", "standard",
-      // More generic verbs that are not industry specific:
+      "old", "several", "more", "less", "few", "generic", "common", "standard",
+      // Additional generic verbs and expressions (non-industry)
       "do", "make", "take", "get", "go", "come", "say", "tell", "see", "look", "use", "work", "run",
       "start", "end", "finish", "begin", "continue", "stop", "find", "keep", "hold", "put", "think",
       "know", "want", "need", "like", "love", "hate", "live", "die", "give", "buy", "sell", "build",
-      "create", "share", "ensure", "forget", "join", "connect", "network", "networking"
+      "create", "share", "ensure", "forget", "join", "connect", "network", "networking",
+      // Additional words per your request
+      "truly", "recommendation", "recommendations", "access", "appeal", "appeals", "approach", "even",
+      "maintaining", "solution", "solutions", "trusted", "encourage", "encouraging", "champion",
+      "adopt", "advanced", "amazing", "ensuring", "guide", "interested", "interest", "introduce",
+      "introduced", "leading", "reliable", "remarkable", "sharing", "weve",
+      // You can add even more generic terms as needed...
+      "advice", "tips", "age"
     ];
     
     /************************************************
@@ -227,7 +252,7 @@
       "tech": [
         "ai", "machine", "learning", "technology", "tech", "robotics", "data", "science",
         "innovation", "software", "hardware", "cybersecurity", "gadgets", "iot",
-        "cloud", "big", "automation", "blockchain"  // Manual override for blockchain
+        "cloud", "big", "automation", "blockchain"
       ],
       "sustainability": [
         "nature", "recycling", "reuse", "sustainable", "environment", "green", "eco",
@@ -299,7 +324,7 @@
       "business": [
         "business", "entrepreneur", "startup", "management", "leadership", "strategy",
         "growth", "marketing", "sales", "operations", "corporate", "b2b", "b2c", "industry",
-        "networking"  // Manual override for networking → Business
+        "networking"
       ],
       "legal": [
         "legal", "law", "attorney", "lawsuit", "regulation", "compliance", "court",
@@ -417,14 +442,21 @@
       return nicheColors[nicheLower] || "#ffffff";
     }
     
-    // Default occurrence color based on ratio
-    function getOccurrencesColor(ratio) {
-      if (ratio > 0.1) { return "#ffcccc"; } // red
-      else if (ratio > 0.05) { return "#fff5cc"; } // yellow
-      else { return "#ccffcc"; } // green
+    // Occurrence color based on ratio and deviation from average
+    function getOccurrencesColor(occurrences, avg) {
+      let baseRatio = occurrences / totalWordsCount;
+      // Override: if occurrences are >= 3x average, red; if >=2x, yellow.
+      if (avg > 0) {
+        if (occurrences >= 3 * avg) { return "#ffcccc"; }
+        else if (occurrences >= 2 * avg) { return "#fff5cc"; }
+      }
+      // Otherwise, use default ratio-based coloring
+      if (baseRatio > 0.1) { return "#ffcccc"; }
+      else if (baseRatio > 0.05) { return "#fff5cc"; }
+      else { return "#ccffcc"; }
     }
     
-    // Certainty coloring: 40-70 = yellow, 70-100 = green, below 40 = red
+    // Certainty coloring: 70-100 = green, 40-70 = yellow, below 40 = red.
     function getCertaintyColor(certainty) {
       if (typeof certainty === "number") {
         if (certainty >= 70) { return "#ccffcc"; }
@@ -433,6 +465,8 @@
       }
       return "#ffcccc";
     }
+    
+    let totalWordsCount = 0; // global to use in occurrence coloring
     
     /************************************************
      *           Main Analysis Logic                *
@@ -452,7 +486,7 @@
         return;
       }
       
-      // 1) Highlight Overused SEO keywords in copy
+      // 1) Highlight overused SEO keywords in copy
       const overusedRegex = new RegExp('\\b(' + overusedWords.join('|') + ')\\b', 'gi');
       const highlightedCopy = copy.replace(overusedRegex, function(match) {
         return '<span class="highlight" title="This term may be overused. Consider using synonyms.">' + match + '</span>';
@@ -460,7 +494,7 @@
       
       // 2) Build word frequency for the copy
       const freqMap = getWordFrequencies(copy);
-      const totalWordsCount = Object.values(freqMap).reduce((a, b) => a + b, 0);
+      totalWordsCount = Object.values(freqMap).reduce((a, b) => a + b, 0);
       
       // 3) Analyze keywords: separate into relevant (matching input niche) and different
       const relevantKeywords = [];
@@ -478,14 +512,15 @@
               niche: knownNiche,
               keyword: word,
               occurrences,
-              certainty: 100  // store as number
+              certainty: 100 // exact match = 100%
             });
           } else {
+            // For known keywords not in input niche, assign 100% certainty (since it's an exact mapping)
             differentKeywords.push({
               niche: knownNiche,
               keyword: word,
               occurrences,
-              certainty: "Different Niche"
+              certainty: 100
             });
           }
         } else {
@@ -496,38 +531,38 @@
                 niche: "Guessed: " + guess.niche,
                 keyword: word,
                 occurrences,
-                certainty: guess.confidence  // store as number
+                certainty: guess.confidence
               });
             } else {
               differentKeywords.push({
                 niche: "Guessed: " + guess.niche,
                 keyword: word,
                 occurrences,
-                certainty: "Different Niche"
+                certainty: guess.confidence
               });
             }
           }
         }
       }
       
-      // Compute average occurrences for relevant keywords for override coloring
+      // Compute average occurrences for relevant keywords (for occurrence coloring)
       let avgOccurrence = 0;
       if (relevantKeywords.length > 0) {
         const sumOccurrences = relevantKeywords.reduce((sum, item) => sum + item.occurrences, 0);
         avgOccurrence = sumOccurrences / relevantKeywords.length;
       }
       
-      // Sort relevant keywords (by niche then keyword)
+      // Sort relevant keywords by niche then keyword
       relevantKeywords.sort((a, b) => {
         if (a.niche < b.niche) return -1;
         if (a.niche > b.niche) return 1;
         return a.keyword.localeCompare(b.keyword);
       });
       
-      // Sort different keywords (by niche then keyword)
+      // Sort different keywords by keyword
       differentKeywords.sort((a, b) => a.keyword.localeCompare(b.keyword));
       
-      // 4) Overused keywords analysis (same as before)
+      // 4) Overused keywords analysis (as before)
       const overusedCounts = {};
       overusedWords.forEach(word => {
         const regex = new RegExp('\\b' + word + '\\b', 'gi');
@@ -565,35 +600,20 @@
       } else {
         nicheAnalysisHTML += '<table><tr><th>Niche</th><th>Keyword</th><th>Occurrences</th><th>Certainty</th></tr>';
         relevantKeywords.forEach(item => {
-          // Determine niche cell color
           let displayNiche = item.niche;
           let rawNiche = displayNiche.toLowerCase();
           if (displayNiche.toLowerCase().startsWith("guessed: ")) {
             rawNiche = displayNiche.replace(/guessed:\s*/i, "").toLowerCase();
           }
           const nicheColor = getColorForNiche(rawNiche);
-          
-          // Occurrence cell color: override if substantially higher than the mean
-          let occColor = getOccurrencesColor(item.occurrences / totalWordsCount);
-          if (avgOccurrence > 0) {
-            if (item.occurrences >= 3 * avgOccurrence) {
-              occColor = "#ffcccc"; // red
-            } else if (item.occurrences >= 2 * avgOccurrence) {
-              occColor = "#fff5cc"; // yellow
-            }
-          }
-          
-          // Certainty cell color (only for numeric values)
-          let certColor = getCertaintyColor(item.certainty);
-          // Display certainty as number with "%" appended.
-          let certDisplay = (typeof item.certainty === "number") ? item.certainty + "%" : item.certainty;
-          
+          const occColor = getOccurrencesColor(item.occurrences, avgOccurrence);
+          const certColor = getCertaintyColor(item.certainty);
           nicheAnalysisHTML += `
             <tr>
               <td style="background-color:${nicheColor};">${displayNiche}</td>
               <td>${item.keyword}</td>
               <td style="background-color:${occColor};">${item.occurrences}</td>
-              <td style="background-color:${certColor};">${certDisplay}</td>
+              <td style="background-color:${certColor};">${item.certainty}%</td>
             </tr>`;
         });
         nicheAnalysisHTML += '</table>';
@@ -601,7 +621,6 @@
       
       // 7) Build the Different Niche Keywords Table (Grouped by Niche)
       if (differentKeywords.length > 0) {
-        // Group the differentKeywords by niche
         const groupMap = {};
         differentKeywords.forEach(item => {
           const key = item.niche;
@@ -614,13 +633,13 @@
           nicheAnalysisHTML += '<h3>' + group + '</h3>';
           nicheAnalysisHTML += '<table><tr><th>Keyword</th><th>Occurrences</th><th>Certainty</th></tr>';
           groupMap[group].forEach(item => {
-            // For these, occurrences color as before (using default getOccurrencesColor)
-            const occColor = getOccurrencesColor(item.occurrences / totalWordsCount);
+            const occColor = getOccurrencesColor(item.occurrences, avgOccurrence);
+            const certColor = getCertaintyColor(item.certainty);
             nicheAnalysisHTML += `
               <tr>
                 <td>${item.keyword}</td>
                 <td style="background-color:${occColor};">${item.occurrences}</td>
-                <td style="background-color:${getCertaintyColor(0)};">${item.certainty}</td>
+                <td style="background-color:${certColor};">${item.certainty}%</td>
               </tr>`;
           });
           nicheAnalysisHTML += '</table>';
