@@ -4,18 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Advanced A.I. SEO Analyzer</title>
+  
+  <!-- Include the Compromise NLP library from a CDN -->
+  <script src="https://unpkg.com/compromise@13.11.2/builds/compromise.min.js"></script>
+  
   <style>
     /* Base Styling */
     * {
       box-sizing: border-box;
     }
+    /* Set the default background for html and body */
+    html, body {
+      background: #f0f2f5;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
     body {
       margin: 0;
       padding: 0;
-      background: #f0f2f5;
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      color: #333;
-      transition: background 0.3s, color 0.3s;
     }
     header {
       background: linear-gradient(135deg, #1e3c72, #2a5298);
@@ -63,20 +70,10 @@
       font-size: 0.9em;
       transition: background 0.3s ease, color 0.3s ease;
     }
-    /* Hover effect for dark/light mode button in light mode */
+    /* Hover effect for dark/light toggle in light mode */
     .toggle-dark button:hover {
-      background-color: #e8e8e8; /* Light gray for a normal hover effect */
+      background-color: #e8e8e8;
     }
-    /* Dark Mode button override */
-    .dark-mode .toggle-dark button {
-      background: #333;
-      color: #fff;
-    }
-    /* Hover effect for dark/light mode button in dark mode */
-    .dark-mode .toggle-dark button:hover {
-      background-color: #444; /* Slightly lighter than #333 for a normal hover effect */
-    }
-
     /* Container */
     .container {
       max-width: 900px;
@@ -122,12 +119,8 @@
       margin-top: 10px;
     }
     button:hover {
-      background-color: #2c4d8f; /* Lighter color for light mode */
+      background-color: #2c4d8f;
     }
-    .dark-mode button:hover {
-      background-color: #16335c; /* Keep the same color in dark mode */
-    }
-
     .analysis {
       margin-top: 30px;
     }
@@ -158,6 +151,7 @@
       margin-top: 10px;
       font-family: Consolas, monospace;
       white-space: pre-wrap;
+      transition: background 0.3s;
     }
     table {
       width: 100%;
@@ -202,9 +196,9 @@
     }
     
     /* Dark Mode Styles */
-    .dark-mode body {
-      background: #121212;
-      color: #e0e0e0;
+    .dark-mode, .dark-mode html, .dark-mode body {
+      background: #121212 !important;
+      color: #e0e0e0 !important;
     }
     .dark-mode header {
       background: #1c1c1c;
@@ -242,7 +236,9 @@
       background: #333;
       color: #fff;
     }
-    /* In dark mode, override highlight and cell colors */
+    .dark-mode .toggle-dark button:hover {
+      background: #444;
+    }
     .dark-mode .highlight {
       background-color: #cc9900;
     }
@@ -305,23 +301,20 @@
     <!-- Analysis Results -->
     <div id="results" class="analysis"></div>
     
-    <!-- In-Page How It Works (Brief Overview) -->
+    <!-- Info Section -->
     <div class="info">
       <h2>How It Works</h2>
       <p>
-        Your text is normalized (punctuation removed, lowercased) and split into words. An extensive blocklist filters out generic words.
-        Remaining words are checked against industry–specific mappings. Exact matches are marked as “known” (100% certainty); others are
-        processed by a similarity algorithm to “guess” their niche and assign a confidence score. Keywords matching your selected niche appear
-        in the main table (with occurrence and certainty color–coding), while those from other niches are grouped in a secondary table (expandable
-        via a toggle). Dark Mode is available for a high–contrast, professional view.
+        Your text is normalized (punctuation removed, lowercased) and processed with the Compromise NLP library to extract nouns and named entities. If no keywords are found via nouns/entities, the tool falls back to analyzing all terms. An extensive blocklist filters out generic words (unless context deems them relevant, such as in Parenting). Relevant keywords are shown in the main table while non-matching ones appear in an expandable secondary table. Dark Mode turns the entire page—including all whitespace—dark for a high-contrast, professional view.
       </p>
     </div>
   </div>
   
   <script>
-    // Dark Mode Toggle
+    // Dark Mode Toggle: add "dark-mode" to both html and body for full-page effect
     const darkModeBtn = document.getElementById("darkModeBtn");
     darkModeBtn.addEventListener("click", function() {
+      document.documentElement.classList.toggle("dark-mode");
       document.body.classList.toggle("dark-mode");
       if (document.body.classList.contains("dark-mode")) {
         darkModeBtn.textContent = "Activate Light Mode";
@@ -330,13 +323,12 @@
       }
     });
     
-    // Helper: Check if Dark Mode is active
     function isDarkMode() {
       return document.body.classList.contains("dark-mode");
     }
     
     /************************************************
-     *        Overused SEO Keywords (Highlight)     *
+     * Overused SEO Keywords (Highlight)
      ************************************************/
     const overusedWords = [
       "best", "top", "quality", "expert", "affordable", "solution", "unique", "leading",
@@ -347,7 +339,7 @@
     ];
     
     /************************************************
-     *    Expanded Stopwords / Ignore List          *
+     * Expanded Stopwords / Ignore List
      ************************************************/
     const ignoreWords = (`
 a about above across after afterwards again against all almost alone along already also although always am among amongst amount an and another any anybody anyone anything anyway anywhere are around as at
@@ -368,7 +360,7 @@ truly recommendation recommendations access appeal appeals approach even maintai
 `).split(/\s+/);
     
     /************************************************
-     *       Niche Mapping and Known Keywords       *
+     * Niche Mapping & Known Keywords
      ************************************************/
     const nicheMapping = {
       "tech": [
@@ -559,49 +551,59 @@ truly recommendation recommendations access appeal appeals approach even maintai
     }
     
     /************************************************
-     *    Refined Guess Niche for Unknown Keyword   *
+     * Advanced Keyword Extraction (Compromise)
      ************************************************/
-    function guessNiche(word) {
-      const wLower = word.toLowerCase();
-      // Manual overrides
-      if (wLower === "blockchain") { return { niche: "tech", confidence: 100 }; }
-      if (wLower === "networking") { return { niche: "business", confidence: 100 }; }
-      let bestScore = 0;
-      let bestNiche = null;
-      for (const knownWord in knownKeywords) {
-        const niche = knownKeywords[knownWord];
-        const score = similarity(wLower, knownWord);
-        if (score > bestScore) {
-          bestScore = score;
-          bestNiche = niche;
-        }
+    function advancedExtractKeywords(copy) {
+      const doc = nlp(copy);
+      const freqMap = {};
+      const nounFreq = doc.nouns().out('freq') || [];
+      const entityFreq = doc.entities().out('freq') || [];
+      
+      if (nounFreq.length > 0) {
+        nounFreq.forEach(item => {
+          if (!item || !item.normal) return;
+          const w = item.normal.toLowerCase();
+          freqMap[w] = (freqMap[w] || 0) + (item.count || 1);
+        });
+        entityFreq.forEach(item => {
+          if (!item || !item.normal) return;
+          const w = item.normal.toLowerCase();
+          freqMap[w] = (freqMap[w] || 0) + (item.count || 1);
+        });
+      } else {
+        // Fallback: use all terms if no nouns/entities detected
+        const termFreq = nlp(copy).terms().out('freq') || [];
+        termFreq.forEach(item => {
+          if (!item || !item.normal) return;
+          const w = item.normal.toLowerCase();
+          freqMap[w] = (freqMap[w] || 0) + (item.count || 1);
+        });
       }
-      if (bestScore < 0.3) {
-        return null;
-      }
-      const confidence = Math.floor(bestScore * 100);
-      return { niche: bestNiche, confidence };
-    }
-    
-    function similarity(a, b) {
-      let matches = 0;
-      const len = Math.min(a.length, b.length);
-      for (let i = 0; i < len; i++) {
-        if (a[i] === b[i]) {
-          matches++;
-        }
-      }
-      return matches / Math.max(a.length, b.length);
+      return freqMap;
     }
     
     /************************************************
-     *   Color Helpers for Occurrences and Certainty *
+     * Context-Aware Filtering (Example: Parenting)
+     ************************************************/
+    function isContextuallyRelevant(word, niche, doc) {
+      if (niche.toLowerCase() !== "parenting") return false;
+      const relevantParentingWords = ["advice", "tips", "age"];
+      if (!relevantParentingWords.includes(word.toLowerCase())) return false;
+      const parentingContextWords = ["mom", "dad", "child", "children", "baby", "kids", "family", "parenting"];
+      for (let cw of parentingContextWords) {
+        const nearPattern1 = `${cw} .{0,5} ${word}`;
+        const nearPattern2 = `${word} .{0,5} ${cw}`;
+        if (doc.match(nearPattern1).found || doc.match(nearPattern2).found) {
+          return true;
+        }
+      }
+      return false;
+    }
+    
+    /************************************************
+     * Color Helpers for Occurrences and Certainty
      ************************************************/
     let totalWordsCount = 0;
-    
-    function isDarkMode() {
-      return document.body.classList.contains("dark-mode");
-    }
     
     function getColorForNiche(niche) {
       if (!niche) return "#ffffff";
@@ -612,9 +614,8 @@ truly recommendation recommendations access appeal appeals approach even maintai
       return nicheColors[nicheLower] || "#ffffff";
     }
     
-    // Occurrence coloring: if occurrences are ≥ 3× average, red; if ≥2×, yellow; else default.
     function getOccurrencesColor(occurrences, avg) {
-      let baseRatio = occurrences / totalWordsCount;
+      const baseRatio = occurrences / totalWordsCount;
       if (avg > 0) {
         if (occurrences >= 3 * avg) {
           return isDarkMode() ? "#8B0000" : "#ffcccc";
@@ -626,12 +627,10 @@ truly recommendation recommendations access appeal appeals approach even maintai
         return isDarkMode() ? "#8B0000" : "#ffcccc";
       } else if (baseRatio > 0.05) {
         return isDarkMode() ? "#B8860B" : "#fff5cc";
-      } else {
-        return isDarkMode() ? "#006400" : "#ccffcc";
       }
+      return isDarkMode() ? "#006400" : "#ccffcc";
     }
     
-    // Certainty coloring: 70-100 = green, 40-70 = yellow, below 40 = red.
     function getCertaintyColor(certainty) {
       if (typeof certainty === "number") {
         if (certainty >= 70) {
@@ -646,7 +645,7 @@ truly recommendation recommendations access appeal appeals approach even maintai
     }
     
     /************************************************
-     *           Main Analysis Logic                *
+     * Main Analysis Logic
      ************************************************/
     document.getElementById('analyzeBtn').addEventListener('click', function() {
       const inputNiche = document.getElementById('niche').value.trim();
@@ -663,27 +662,26 @@ truly recommendation recommendations access appeal appeals approach even maintai
         return;
       }
       
-      // 1) Highlight overused SEO keywords
+      // 1) Highlight Overused SEO Keywords
       const overusedRegex = new RegExp('\\b(' + overusedWords.join('|') + ')\\b', 'gi');
       const highlightedCopy = copy.replace(overusedRegex, function(match) {
-        return '<span class="highlight" title="This term may be overused. Consider using synonyms.">' + match + '</span>';
+        return `<span class="highlight" title="Overused: consider synonyms.">${match}</span>`;
       });
       
-      // 2) Build word frequency
-      const freqMap = getWordFrequencies(copy);
-      totalWordsCount = Object.values(freqMap).reduce((a, b) => a + b, 0);
+      // 2) Advanced Keyword Extraction using Compromise
+      const doc = nlp(copy);
+      const freqMap = advancedExtractKeywords(copy);
+      totalWordsCount = doc.wordCount();
       
-      // 3) Analyze keywords: separate into relevant and different
+      // 3) Build relevant vs. different niche arrays
       const relevantKeywords = [];
       const differentKeywords = [];
       const inputNicheLower = inputNiche.toLowerCase();
       
-      for (const word in freqMap) {
-        const occurrences = freqMap[word];
+      for (const [word, occurrences] of Object.entries(freqMap)) {
         if (ignoreWords.includes(word)) {
-          continue;
+          if (!isContextuallyRelevant(word, inputNiche, doc)) continue;
         }
-        
         if (knownKeywords[word]) {
           const knownNiche = knownKeywords[word];
           if (knownNiche.toLowerCase() === inputNicheLower) {
@@ -727,39 +725,38 @@ truly recommendation recommendations access appeal appeals approach even maintai
         }
       }
       
-      // 4) Compute average occurrences for relevant keywords
-      let avgOccurrence = 0;
-      if (relevantKeywords.length > 0) {
-        const sumOccurrences = relevantKeywords.reduce((sum, item) => sum + item.occurrences, 0);
-        avgOccurrence = sumOccurrences / relevantKeywords.length;
-      }
-      
-      // 5) Sort tables: relevant keywords sorted by niche then keyword; different keywords sorted by niche then keyword.
+      // 4) Sort arrays
       relevantKeywords.sort((a, b) => {
         if (a.niche < b.niche) return -1;
         if (a.niche > b.niche) return 1;
         return a.keyword.localeCompare(b.keyword);
       });
-      
       differentKeywords.sort((a, b) => {
         if (a.niche < b.niche) return -1;
         if (a.niche > b.niche) return 1;
         return a.keyword.localeCompare(b.keyword);
       });
       
-      // 6) Overused keywords analysis
+      // 5) Compute average occurrences for relevant keywords
+      let avgOccurrence = 0;
+      if (relevantKeywords.length > 0) {
+        const sumOccurrences = relevantKeywords.reduce((sum, item) => sum + item.occurrences, 0);
+        avgOccurrence = sumOccurrences / relevantKeywords.length;
+      }
+      
+      // 6) Overused SEO Keywords Analysis
       const overusedCounts = {};
-      overusedWords.forEach(word => {
-        const regex = new RegExp('\\b' + word + '\\b', 'gi');
+      overusedWords.forEach(ow => {
+        const regex = new RegExp('\\b' + ow + '\\b', 'gi');
         const matches = copy.match(regex);
-        overusedCounts[word] = matches ? matches.length : 0;
+        overusedCounts[ow] = matches ? matches.length : 0;
       });
       let overusedHTML = '<div class="result-section"><h2>Overused SEO Keywords Analysis</h2><ul>';
       let foundOverused = false;
-      for (const [word, count] of Object.entries(overusedCounts)) {
+      for (const [oword, count] of Object.entries(overusedCounts)) {
         if (count > 0) {
           foundOverused = true;
-          overusedHTML += '<li><strong>' + word + '</strong>: ' + count + ' occurrence' + (count > 1 ? 's' : '') + '</li>';
+          overusedHTML += `<li><strong>${oword}</strong>: ${count} occurrence${count > 1 ? 's' : ''}</li>`;
         }
       }
       overusedHTML += '</ul>';
@@ -772,9 +769,9 @@ truly recommendation recommendations access appeal appeals approach even maintai
       
       // 7) Copy Analysis Section
       let analysisHTML = '<div class="result-section"><h2>Copy Analysis</h2>';
-      analysisHTML += '<p>Total word count: ' + totalWordsCount + '</p>';
+      analysisHTML += `<p>Total word count: ${totalWordsCount}</p>`;
       analysisHTML += '<p>Highlighted copy with potential overused terms:</p>';
-      analysisHTML += '<div class="results-box">' + highlightedCopy + '</div>';
+      analysisHTML += `<div class="results-box">${highlightedCopy}</div>`;
       analysisHTML += '</div>';
       
       // 8) Build the Relevant Keywords Table (Main Table)
@@ -784,17 +781,13 @@ truly recommendation recommendations access appeal appeals approach even maintai
       } else {
         nicheAnalysisHTML += '<table><tr><th>Niche</th><th>Keyword</th><th>Occurrences</th><th>Certainty</th></tr>';
         relevantKeywords.forEach(item => {
-          let displayNiche = item.niche;
-          let rawNiche = displayNiche.toLowerCase();
-          if (displayNiche.toLowerCase().startsWith("guessed: ")) {
-            rawNiche = displayNiche.replace(/guessed:\s*/i, "").toLowerCase();
-          }
+          const rawNiche = item.niche.toLowerCase().replace(/^guessed:\s*/, "");
           const nicheColor = getColorForNiche(rawNiche);
           const occColor = getOccurrencesColor(item.occurrences, avgOccurrence);
           const certColor = getCertaintyColor(item.certainty);
           nicheAnalysisHTML += `
             <tr>
-              <td style="background-color:${nicheColor};">${displayNiche}</td>
+              <td style="background-color:${nicheColor};">${item.niche}</td>
               <td>${item.keyword}</td>
               <td style="background-color:${occColor};">${item.occurrences}</td>
               <td style="background-color:${certColor};">${item.certainty}%</td>
@@ -813,10 +806,10 @@ truly recommendation recommendations access appeal appeals approach even maintai
           }
           groupMap[key].push(item);
         });
-        nicheAnalysisHTML += '<button class="toggle-btn" onclick="toggleDifferent()">Show Other Niches (' + differentKeywords.length + ')</button>';
+        nicheAnalysisHTML += `<button class="toggle-btn" onclick="toggleDifferent()">Show Other Niches (${differentKeywords.length})</button>`;
         nicheAnalysisHTML += '<div id="differentSection" style="display:none; margin-top:15px;">';
         for (const group in groupMap) {
-          nicheAnalysisHTML += '<h3>' + group + '</h3>';
+          nicheAnalysisHTML += `<h3>${group}</h3>`;
           nicheAnalysisHTML += '<table><tr><th>Keyword</th><th>Occurrences</th><th>Certainty</th></tr>';
           groupMap[group].forEach(item => {
             const occColor = getOccurrencesColor(item.occurrences, avgOccurrence);
@@ -832,7 +825,6 @@ truly recommendation recommendations access appeal appeals approach even maintai
         }
         nicheAnalysisHTML += '</div>';
       }
-      
       nicheAnalysisHTML += '</div>';
       
       // 10) Combine and Display All Results
@@ -843,6 +835,44 @@ truly recommendation recommendations access appeal appeals approach even maintai
     function toggleDifferent() {
       const section = document.getElementById("differentSection");
       section.style.display = (section.style.display === "none") ? "block" : "none";
+    }
+    
+    /************************************************
+     * Guess Niche Function
+     ************************************************/
+    function guessNiche(word) {
+      const wLower = word.toLowerCase();
+      if (wLower === "blockchain") { return { niche: "tech", confidence: 100 }; }
+      if (wLower === "networking") { return { niche: "business", confidence: 100 }; }
+      let bestScore = 0;
+      let bestNiche = null;
+      for (const knownWord in knownKeywords) {
+        const niche = knownKeywords[knownWord];
+        const score = similarity(wLower, knownWord);
+        if (score > bestScore) {
+          bestScore = score;
+          bestNiche = niche;
+        }
+      }
+      if (bestScore < 0.3) {
+        return null;
+      }
+      const confidence = Math.floor(bestScore * 100);
+      return { niche: bestNiche, confidence };
+    }
+    
+    /************************************************
+     * Basic Similarity Function
+     ************************************************/
+    function similarity(a, b) {
+      let matches = 0;
+      const len = Math.min(a.length, b.length);
+      for (let i = 0; i < len; i++) {
+        if (a[i] === b[i]) {
+          matches++;
+        }
+      }
+      return matches / Math.max(a.length, b.length);
     }
   </script>
 </body>
