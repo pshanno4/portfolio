@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Advanced A.I. SEO Analyzer</title>
   <style>
-    /* Professional, modern styling for an A.I.-powered SEO analysis tool */
+    /* Global Styles */
     body {
       margin: 0;
       padding: 0;
@@ -13,21 +13,45 @@
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       color: #333;
     }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    /* Header Navigation */
     header {
       background: linear-gradient(135deg, #1e3c72, #2a5298);
       padding: 20px;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       color: #fff;
     }
-    header h1 {
+    .nav-left {
+      font-size: 1em;
+    }
+    .nav-left a {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+    .nav-left a:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+    .header-center {
+      text-align: center;
+      flex-grow: 1;
+    }
+    .header-center h1 {
       margin: 0;
       font-size: 2.5em;
     }
-    header p {
-      margin-top: 5px;
+    .header-center p {
+      margin: 5px 0 0;
       font-size: 1.1em;
       opacity: 0.9;
     }
+    /* Container */
     .container {
       max-width: 900px;
       margin: 30px auto;
@@ -111,22 +135,39 @@
     th {
       background-color: #f9f9f9;
     }
+    /* Info Section */
+    .info {
+      background: #eef2f7;
+      border: 1px solid #ccd4db;
+      border-radius: 4px;
+      padding: 15px;
+      margin-top: 30px;
+      font-size: 0.95em;
+      line-height: 1.5;
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Advanced A.I. SEO Analyzer</h1>
-    <p>Professional analysis for cutting-edge SEO performance</p>
+    <div class="nav-left">
+      <a href="index.html">&larr; Return Home</a>
+    </div>
+    <div class="header-center">
+      <h1>Advanced A.I. SEO Analyzer</h1>
+      <p>Professional analysis for cutting-edge SEO performance</p>
+    </div>
+    <!-- Placeholder for possible right-side content -->
+    <div style="width: 150px;"></div>
   </header>
   
   <div class="container">
-    <!-- Optional manual niche input -->
+    <!-- Required Niche Input -->
     <div class="input-group">
-      <label for="niche">Your Niche (optional):</label>
-      <input type="text" id="niche" placeholder="e.g. Digital Marketing, Health & Fitness, etc.">
+      <label for="niche">Your Niche: <span style="color:red;">*</span></label>
+      <input type="text" id="niche" placeholder="e.g. Tech, Sustainability, Finance, Health..." required>
     </div>
     
-    <!-- Main copy input -->
+    <!-- Main Copy Input -->
     <div class="input-group">
       <label for="copy">Your Copy:</label>
       <textarea id="copy" rows="10" placeholder="Paste your text here..."></textarea>
@@ -137,14 +178,31 @@
     
     <!-- Analysis Results -->
     <div id="results" class="analysis"></div>
+    
+    <!-- Info Section -->
+    <div class="info">
+      <h2>How It Works</h2>
+      <p>
+        This A.I.-powered SEO analyzer evaluates your text by checking for overused SEO keywords and assessing the relevance of niche-specific keywords.
+        You must provide your target niche, which is then used to filter and assign a certainty score for keywords detected in your copy.
+        Keywords that match your niche are given a 100% certainty, while those from other niches receive a lower certainty (e.g., 25%).
+        The tool also highlights potential overused SEO terms to help you refine your copy for better organic performance.
+      </p>
+    </div>
   </div>
   
   <script>
     document.getElementById('analyzeBtn').addEventListener('click', function() {
-      const nicheInput = document.getElementById('niche').value.trim();
+      const inputNiche = document.getElementById('niche').value.trim();
       const copy = document.getElementById('copy').value;
       const resultsDiv = document.getElementById('results');
       resultsDiv.innerHTML = "";
+      
+      // Validate that niche is provided.
+      if (!inputNiche) {
+        resultsDiv.innerHTML = '<p style="color:red;">Please enter your niche to proceed.</p>';
+        return;
+      }
       
       if (!copy) {
         resultsDiv.innerHTML = '<p>Please enter some copy to analyze.</p>';
@@ -180,55 +238,73 @@
         overusedCounts[word] = matches ? matches.length : 0;
       });
       
-      // Niche keyword mapping for automatic detection
+      // Robust Niche Mapping with many niches and associated keywords
       const nicheMapping = {
-        "Tech": ["A\\.I", "machine learning", "technology", "tech", "robotics", "data science"],
-        "Sustainability": ["nature", "recycling", "reuse", "sustainable", "environment", "green", "eco"]
-        // Additional niches can be added here
+        "tech": ["A\\.I", "machine learning", "technology", "tech", "robotics", "data science", "innovation", "software", "hardware", "cybersecurity", "gadgets", "IoT", "cloud", "big data", "automation"],
+        "sustainability": ["nature", "recycling", "reuse", "sustainable", "environment", "green", "eco", "renewable", "conservation", "organic", "biodiversity", "carbon footprint", "waste management"],
+        "finance": ["investment", "stocks", "cryptocurrency", "banking", "loans", "finance", "trading", "financial planning", "wealth management", "insurance", "budget", "economics", "interest rates", "savings", "tax", "dividends", "portfolio", "retirement"],
+        "health": ["health", "wellness", "nutrition", "fitness", "exercise", "medicine", "mental health", "medical", "diet", "treatment", "prevention", "wellbeing", "therapy", "healthcare", "doctor", "clinic"],
+        "travel": ["travel", "vacation", "tourism", "destination", "holiday", "flight", "hotel", "adventure", "explore", "journey", "itinerary", "cruise", "sightseeing", "backpacking", "road trip", "getaway"],
+        "education": ["education", "learning", "courses", "classes", "tutoring", "scholarship", "university", "college", "academic", "research", "training", "e-learning", "study", "curriculum"],
+        "fashion": ["fashion", "style", "trends", "apparel", "clothing", "accessories", "couture", "designer", "runway", "vintage", "moda", "outfit", "wardrobe", "glamour", "chic"],
+        "food": ["food", "cuisine", "recipe", "dining", "restaurant", "gourmet", "chef", "cooking", "meal", "snack", "flavor", "organic", "fast food", "bakery", "delicious", "savory"],
+        "real estate": ["real estate", "property", "homes", "housing", "mortgage", "apartment", "commercial", "investment", "condo", "residential", "rentals", "market", "construction"],
+        "entertainment": ["entertainment", "movies", "music", "celebrity", "TV", "film", "concert", "streaming", "theater", "festival", "pop culture", "blockbuster", "award", "drama", "comedy"],
+        "automotive": ["automotive", "cars", "vehicles", "auto", "transportation", "engine", "dealership", "electric", "hybrid", "SUV", "sedan", "trucks", "performance", "motor", "driving"],
+        "sports": ["sports", "football", "basketball", "soccer", "baseball", "tennis", "athlete", "tournament", "game", "league", "score", "coach", "stadium", "olympics", "competition"],
+        "beauty": ["beauty", "skincare", "makeup", "cosmetics", "hair", "spa", "salon", "anti-aging", "fragrance", "esthetic", "organic beauty", "glam", "chic"],
+        "retail": ["retail", "shopping", "e-commerce", "store", "discount", "sale", "deal", "consumer", "online shopping", "delivery", "customer service", "brand", "merchandise"],
+        "gaming": ["gaming", "video games", "esports", "console", "PC gaming", "multiplayer", "RPG", "FPS", "strategy", "gameplay", "interactive", "virtual", "tournament", "beta"],
+        "lifestyle": ["lifestyle", "culture", "living", "home", "decor", "DIY", "personal development", "hobbies", "mindfulness", "fitness", "art", "entertainment"],
+        "business": ["business", "entrepreneur", "startup", "management", "leadership", "strategy", "growth", "marketing", "sales", "investment", "operations", "corporate", "B2B", "B2C", "industry"],
+        "legal": ["legal", "law", "attorney", "lawsuit", "regulation", "compliance", "court", "contract", "litigation", "policy", "rights", "justice", "criminal", "civil"],
+        "home improvement": ["home improvement", "DIY", "renovation", "remodel", "construction", "interior design", "exterior", "maintenance", "repair", "architecture", "landscaping", "home decor"],
+        "parenting": ["parenting", "kids", "children", "family", "mom", "dad", "parent", "childcare", "baby", "toddler", "advice", "support", "growth"],
+        "marketing": ["marketing", "advertising", "branding", "content", "social media", "SEO", "analytics", "campaign", "digital", "inbound", "engagement", "influencer", "lead generation"],
+        "art & culture": ["art", "culture", "gallery", "exhibition", "artist", "creative", "design", "museum", "craft", "sculpture", "painting", "installation", "performance", "curator"]
       };
       
-      // Function to compute a simple certainty score (each occurrence = 25% up to a cap of 100%)
-      function computeCertainty(count) {
-        return Math.min(100, count * 25);
+      // Convert input niche to lower case for comparison
+      const inputNicheLower = inputNiche.toLowerCase();
+      
+      // Function to compute certainty based on how closely the keyword's niche matches the input niche.
+      function computeCertainty(nicheKey) {
+        const nicheKeyLower = nicheKey.toLowerCase();
+        // If exact match or one contains the other, then we are fully sure.
+        if (nicheKeyLower === inputNicheLower || nicheKeyLower.indexOf(inputNicheLower) !== -1 || inputNicheLower.indexOf(nicheKeyLower) !== -1) {
+          return 100;
+        }
+        // Otherwise, assign a low certainty value.
+        return 25;
       }
       
-      // Generate Niche Keywords Analysis section (automatic detection)
+      // Generate Niche Keywords Analysis section
       let nicheAnalysisHTML = '<div class="result-section"><h2>Niche Keywords Analysis</h2>';
       nicheAnalysisHTML += '<table><tr><th>Niche</th><th>Keyword</th><th>Occurrences</th><th>Certainty</th></tr>';
-      let anyNicheFound = false;
+      let anyKeywordFound = false;
       
-      // Loop over each niche and its keywords
+      // Loop over each niche mapping and only include keywords from all niches,
+      // but assign certainty based on relation to the input niche.
       for (const niche in nicheMapping) {
         nicheMapping[niche].forEach(keywordPattern => {
-          // Create a regex for the keyword (the pattern may include regex escapes)
+          // Build a regex for each keyword. Escape special characters if needed.
           const regex = new RegExp('\\b' + keywordPattern + '\\b', 'gi');
           const matches = copy.match(regex);
           const count = matches ? matches.length : 0;
-          const certainty = computeCertainty(count);
           if (count > 0) {
-            anyNicheFound = true;
-            // Clean the keyword display (remove extra escape characters)
+            anyKeywordFound = true;
+            const certainty = computeCertainty(niche);
+            // Clean the keyword display (remove regex escape characters)
             const cleanKeyword = keywordPattern.replace(/\\\./g, ".");
-            nicheAnalysisHTML += '<tr><td>' + niche + '</td><td>' + cleanKeyword + '</td><td>' + count + '</td><td>' + certainty + '%</td></tr>';
+            nicheAnalysisHTML += '<tr><td>' + niche.charAt(0).toUpperCase() + niche.slice(1) + '</td><td>' + cleanKeyword + '</td><td>' + count + '</td><td>' + certainty + '%</td></tr>';
           }
         });
       }
-      if (!anyNicheFound) {
-        nicheAnalysisHTML += '<tr><td colspan="4">No niche-specific keywords were detected.</td></tr>';
+      
+      if (!anyKeywordFound) {
+        nicheAnalysisHTML += '<tr><td colspan="4">No niche-specific keywords were detected in your copy.</td></tr>';
       }
       nicheAnalysisHTML += '</table></div>';
-      
-      // Manual niche analysis if user provided an optional niche input
-      let manualNicheHTML = '';
-      if (nicheInput) {
-        const nicheKeywords = nicheInput.split(/[\s,]+/).filter(Boolean);
-        const nicheRegex = new RegExp('\\b(' + nicheKeywords.join('|') + ')\\b', 'gi');
-        const matches = copy.match(nicheRegex) || [];
-        manualNicheHTML += '<div class="result-section"><h2>Manual Niche Analysis</h2>';
-        manualNicheHTML += '<p>Your provided niche: <strong>' + nicheInput + '</strong></p>';
-        manualNicheHTML += '<p>Occurrences of your niche keywords in your copy: ' + matches.length + '</p>';
-        manualNicheHTML += '</div>';
-      }
       
       // Overused SEO Keywords Analysis Section
       let overusedHTML = '<div class="result-section"><h2>Overused SEO Keywords Analysis</h2><ul>';
@@ -243,7 +319,7 @@
       if (!foundOverused) {
         overusedHTML += '<p>No overused SEO keywords were detected in your copy!</p>';
       } else {
-        overusedHTML += '<p>Review the highlighted terms above; consider using synonyms to improve natural language flow.</p>';
+        overusedHTML += '<p>Review the highlighted terms above; consider using synonyms for a more natural language flow.</p>';
       }
       overusedHTML += '</div>';
       
@@ -255,7 +331,7 @@
       analysisHTML += '</div>';
       
       // Combine all analysis sections
-      resultsDiv.innerHTML = analysisHTML + nicheAnalysisHTML + manualNicheHTML + overusedHTML;
+      resultsDiv.innerHTML = analysisHTML + nicheAnalysisHTML + overusedHTML;
     });
   </script>
 </body>
