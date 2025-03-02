@@ -185,13 +185,255 @@
       <p>
         This A.I.-powered SEO analyzer evaluates your text by checking for overused SEO keywords and assessing the relevance of niche-specific keywords.
         You must provide your target niche, which is then used to filter and assign a certainty score for keywords detected in your copy.
-        Keywords that match your niche are given a 100% certainty, while those from other niches receive a lower certainty (e.g., 25%).
-        The tool also highlights potential overused SEO terms to help you refine your copy for better organic performance.
+        <br><br>
+        - <strong>Overused Keywords:</strong> We highlight potential overused words so you can replace them with synonyms. <br>
+        - <strong>Niche Keywords Analysis:</strong> We look for known keywords associated with your niche. If we see keywords from other niches, we assign them a <em>“not associated”</em> certainty value (making it clear they belong to a different niche). <br>
+        - <strong>Potential Keywords:</strong> If we encounter words not in our database, we attempt to guess their niche using a basic text similarity approach. We then provide a confidence score for how likely that guess is correct.
       </p>
     </div>
   </div>
   
   <script>
+    /************************************************
+     *        Overused SEO Keywords (Highlight)     *
+     ************************************************/
+    const overusedWords = [
+      "best", "top", "quality", "expert", "affordable", "solution", "unique", "leading", 
+      "powerful", "reliable", "trusted", "proven", "innovative", "cutting-edge", 
+      "state-of-the-art", "free", "guaranteed", "amazing", "ultimate", "essential", 
+      "premium", "efficient", "advanced", "strategic", "professional", "dynamic", 
+      "holistic", "comprehensive", "optimal", "incredible", "remarkable"
+    ];
+    
+    /************************************************
+     *       Niche Mapping and Known Keywords       *
+     ************************************************/
+    const nicheMapping = {
+      "tech": [
+        "AI", "machine", "learning", "technology", "tech", "robotics", "data", "science", 
+        "innovation", "software", "hardware", "cybersecurity", "gadgets", "iot", 
+        "cloud", "big", "automation"
+      ],
+      "sustainability": [
+        "nature", "recycling", "reuse", "sustainable", "environment", "green", "eco", 
+        "renewable", "conservation", "organic", "biodiversity", "carbon", "footprint", 
+        "waste", "management"
+      ],
+      "finance": [
+        "investment", "stocks", "cryptocurrency", "banking", "loans", "finance", "trading", 
+        "financial", "planning", "wealth", "management", "insurance", "budget", "economics", 
+        "interest", "rates", "savings", "tax", "dividends", "portfolio", "retirement"
+      ],
+      "health": [
+        "health", "wellness", "nutrition", "fitness", "exercise", "medicine", "mental", 
+        "medical", "diet", "treatment", "prevention", "wellbeing", "therapy", "healthcare", 
+        "doctor", "clinic"
+      ],
+      "travel": [
+        "travel", "vacation", "tourism", "destination", "holiday", "flight", "hotel", 
+        "adventure", "explore", "journey", "itinerary", "cruise", "sightseeing", 
+        "backpacking", "road", "trip"
+      ],
+      "education": [
+        "education", "learning", "courses", "classes", "tutoring", "scholarship", 
+        "university", "college", "academic", "research", "training", "e-learning", 
+        "study", "curriculum"
+      ],
+      "fashion": [
+        "fashion", "style", "trends", "apparel", "clothing", "accessories", "couture", 
+        "designer", "runway", "vintage", "moda", "outfit", "wardrobe", "glamour", "chic"
+      ],
+      "food": [
+        "food", "cuisine", "recipe", "dining", "restaurant", "gourmet", "chef", "cooking", 
+        "meal", "snack", "flavor", "organic", "fast", "bakery", "delicious", "savory"
+      ],
+      "real estate": [
+        "real", "estate", "property", "homes", "housing", "mortgage", "apartment", 
+        "commercial", "condo", "residential", "rentals", "market", "construction"
+      ],
+      "entertainment": [
+        "entertainment", "movies", "music", "celebrity", "tv", "film", "concert", 
+        "streaming", "theater", "festival", "pop", "culture", "blockbuster", "award", 
+        "drama", "comedy"
+      ],
+      "automotive": [
+        "automotive", "cars", "vehicles", "auto", "transportation", "engine", "dealership", 
+        "electric", "hybrid", "suv", "sedan", "trucks", "performance", "motor", "driving"
+      ],
+      "sports": [
+        "sports", "football", "basketball", "soccer", "baseball", "tennis", "athlete", 
+        "tournament", "game", "league", "score", "coach", "stadium", "olympics", 
+        "competition"
+      ],
+      "beauty": [
+        "beauty", "skincare", "makeup", "cosmetics", "hair", "spa", "salon", "anti-aging", 
+        "fragrance", "esthetic", "organic", "glam", "chic"
+      ],
+      "retail": [
+        "retail", "shopping", "e-commerce", "store", "discount", "sale", "deal", "consumer", 
+        "online", "delivery", "customer", "service", "brand", "merchandise"
+      ],
+      "gaming": [
+        "gaming", "video", "games", "esports", "console", "pc", "multiplayer", "rpg", 
+        "fps", "strategy", "gameplay", "virtual", "tournament", "beta"
+      ],
+      "lifestyle": [
+        "lifestyle", "culture", "living", "home", "decor", "diy", "personal", "development", 
+        "hobbies", "mindfulness", "fitness", "art", "entertainment"
+      ],
+      "business": [
+        "business", "entrepreneur", "startup", "management", "leadership", "strategy", 
+        "growth", "marketing", "sales", "operations", "corporate", "b2b", "b2c", "industry"
+      ],
+      "legal": [
+        "legal", "law", "attorney", "lawsuit", "regulation", "compliance", "court", 
+        "contract", "litigation", "policy", "rights", "justice", "criminal", "civil"
+      ],
+      "home improvement": [
+        "home", "improvement", "diy", "renovation", "remodel", "construction", 
+        "interior", "exterior", "maintenance", "repair", "architecture", "landscaping", 
+        "decor"
+      ],
+      "parenting": [
+        "parenting", "kids", "children", "family", "mom", "dad", "parent", "childcare", 
+        "baby", "toddler", "advice", "support", "growth"
+      ],
+      "marketing": [
+        "marketing", "advertising", "branding", "content", "social", "media", "seo", 
+        "analytics", "campaign", "digital", "inbound", "engagement", "influencer", 
+        "lead", "generation"
+      ],
+      "art & culture": [
+        "art", "culture", "gallery", "exhibition", "artist", "creative", "design", 
+        "museum", "craft", "sculpture", "painting", "installation", "performance", "curator"
+      ]
+    };
+    
+    /************************************************
+     *            Niche Colors for Table Rows       *
+     ************************************************/
+    const nicheColors = {
+      "tech": "#d1ecf1",
+      "sustainability": "#d4edda",
+      "finance": "#fff3cd",
+      "health": "#f8d7da",
+      "travel": "#cce5ff",
+      "education": "#e2e3e5",
+      "fashion": "#f5dbf5",
+      "food": "#ffeed4",
+      "real estate": "#e6e6e6",
+      "entertainment": "#ececff",
+      "automotive": "#e4fcef",
+      "sports": "#f0e6ff",
+      "beauty": "#ffe6f2",
+      "retail": "#e6fff5",
+      "gaming": "#ffe6cc",
+      "lifestyle": "#f4f4f4",
+      "business": "#ddefef",
+      "legal": "#e7e7e7",
+      "home improvement": "#f9f6e8",
+      "parenting": "#fde8e8",
+      "marketing": "#f0ffe4",
+      "art & culture": "#fffae6"
+    };
+    
+    /************************************************
+     *    Build a Quick-Look Dictionary (lowercase) *
+     ************************************************/
+    // knownKeywords[word] = niche
+    const knownKeywords = {};
+    for (const niche in nicheMapping) {
+      nicheMapping[niche].forEach(keyword => {
+        const lowerKey = keyword.toLowerCase();
+        if (!knownKeywords[lowerKey]) {
+          knownKeywords[lowerKey] = niche;
+        }
+      });
+    }
+    
+    /************************************************
+     *    Text Normalization / Word Frequency       *
+     ************************************************/
+    function normalizeWord(word) {
+      // Remove most punctuation, keep letters/numbers
+      // E.g. "A.I." => "AI", "footprint," => "footprint"
+      return word.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+    }
+    
+    function getWordFrequencies(text) {
+      const freqMap = {};
+      const rawWords = text.split(/\s+/);
+      for (let raw of rawWords) {
+        const w = normalizeWord(raw);
+        if (w) {
+          if (!freqMap[w]) freqMap[w] = 0;
+          freqMap[w]++;
+        }
+      }
+      return freqMap;
+    }
+    
+    /************************************************
+     *    Guess Niche for Unknown Keyword           *
+     ************************************************/
+    function guessNiche(word) {
+      // A naive approach: find the best partial match with known keywords
+      // Then use that match to guess the niche. We measure similarity
+      // by substring overlap or naive ratio.
+      let bestScore = 0;
+      let bestNiche = null;
+      const wLower = word.toLowerCase();
+      
+      // Compare with each known keyword in knownKeywords
+      for (const kw in knownKeywords) {
+        const niche = knownKeywords[kw];
+        const score = similarity(wLower, kw); 
+        if (score > bestScore) {
+          bestScore = score;
+          bestNiche = niche;
+        }
+      }
+      
+      // If bestScore is too low, we consider it unassignable
+      if (bestScore < 0.3) {
+        return null;
+      }
+      // Confidence as an integer percentage
+      const confidence = Math.floor(bestScore * 100);
+      return { niche: bestNiche, confidence };
+    }
+    
+    // Very simple similarity function:
+    // returns ratio of matched characters at the same index
+    // to the max length of the two strings
+    function similarity(a, b) {
+      let matches = 0;
+      const len = Math.min(a.length, b.length);
+      for (let i = 0; i < len; i++) {
+        if (a[i] === b[i]) {
+          matches++;
+        }
+      }
+      return matches / Math.max(a.length, b.length);
+    }
+    
+    /************************************************
+     *           Color Helper for Table Rows        *
+     ************************************************/
+    function getColorForNiche(niche) {
+      if (!niche) return "#ffffff";
+      // If niche color is known:
+      const nicheLower = niche.toLowerCase();
+      if (nicheColors[nicheLower]) {
+        return nicheColors[nicheLower];
+      }
+      // Fallback color if not in dictionary
+      return "#ffffff";
+    }
+    
+    /************************************************
+     *              Main Analysis Logic             *
+     ************************************************/
     document.getElementById('analyzeBtn').addEventListener('click', function() {
       const inputNiche = document.getElementById('niche').value.trim();
       const copy = document.getElementById('copy').value;
@@ -203,34 +445,86 @@
         resultsDiv.innerHTML = '<p style="color:red;">Please enter your niche to proceed.</p>';
         return;
       }
-      
       if (!copy) {
         resultsDiv.innerHTML = '<p>Please enter some copy to analyze.</p>';
         return;
       }
       
-      // Extended list of overused SEO words
-      const overusedWords = [
-        "best", "top", "quality", "expert", "affordable", "solution", "unique", "leading", 
-        "powerful", "reliable", "trusted", "proven", "innovative", "cutting-edge", 
-        "state-of-the-art", "free", "guaranteed", "amazing", "ultimate", "essential", 
-        "premium", "efficient", "advanced", "strategic", "professional", "dynamic", 
-        "holistic", "comprehensive", "optimal", "incredible", "remarkable"
-      ];
-      
-      // Regex to detect overused words (case-insensitive, whole words)
+      /***********************************************
+       * 1) Highlight Overused SEO Keywords in Copy  *
+       ***********************************************/
       const overusedRegex = new RegExp('\\b(' + overusedWords.join('|') + ')\\b', 'gi');
-      
-      // Highlight overused words in the copy
       const highlightedCopy = copy.replace(overusedRegex, function(match) {
         return '<span class="highlight" title="This term may be overused in SEO. Consider using synonyms.">' + match + '</span>';
       });
       
-      // Compute total word count
-      const words = copy.match(/\w+/g) || [];
-      const totalWords = words.length;
+      /***********************************************
+       * 2) Build Word Frequency for the Copy        *
+       ***********************************************/
+      const freqMap = getWordFrequencies(copy);
       
-      // Count each overused word's occurrences
+      /***********************************************
+       * 3) Analyze Niche Keywords & Potential KW    *
+       ***********************************************/
+      // We'll create an array of { niche, keyword, occurrences, certainty }
+      const foundKeywords = [];
+      
+      // For each distinct word in freqMap, decide if it's a known keyword or guess a niche
+      for (const word in freqMap) {
+        const occurrences = freqMap[word];
+        
+        // If this is a known keyword in our dictionary:
+        if (knownKeywords[word]) {
+          const nicheFound = knownKeywords[word];
+          // If it matches the user's niche (exact match ignoring case), 100%
+          // Else, we set it to 0% to indicate it's from a different niche
+          const certainty = (nicheFound.toLowerCase() === inputNiche.toLowerCase()) ? 100 : 0;
+          foundKeywords.push({
+            niche: nicheFound,
+            keyword: word,
+            occurrences,
+            certainty
+          });
+        } 
+        else {
+          // Try to guess a niche
+          const guess = guessNiche(word);
+          if (guess) {
+            // If the guessed niche matches user input niche, we can keep guess.confidence
+            // Otherwise, let's show it as the guess's confidence for that other niche
+            // to illustrate the difference.
+            let finalCertainty = guess.confidence;
+            
+            // If the guessed niche doesn't match the user's input niche, 
+            // show it as "0% (Different Niche)" or something similarly obvious
+            if (guess.niche.toLowerCase() !== inputNiche.toLowerCase()) {
+              finalCertainty = 0; // clearly show it's not the user's niche
+            }
+            
+            foundKeywords.push({
+              niche: "Guessed: " + guess.niche,
+              keyword: word,
+              occurrences,
+              certainty: finalCertainty
+            });
+          }
+        }
+      }
+      
+      // Sort found keywords for a cleaner table: by niche, then by keyword
+      foundKeywords.sort((a, b) => {
+        // Sort by niche (alphabetically), then by keyword
+        if (a.niche < b.niche) return -1;
+        if (a.niche > b.niche) return 1;
+        if (a.keyword < b.keyword) return -1;
+        if (a.keyword > b.keyword) return 1;
+        return 0;
+      });
+      
+      /***********************************************
+       * 4) Overused Keywords Analysis              *
+       ***********************************************/
+      // Count each overused word's occurrences in the raw copy
       const overusedCounts = {};
       overusedWords.forEach(word => {
         const regex = new RegExp('\\b' + word + '\\b', 'gi');
@@ -238,75 +532,6 @@
         overusedCounts[word] = matches ? matches.length : 0;
       });
       
-      // Robust Niche Mapping with many niches and associated keywords
-      const nicheMapping = {
-        "tech": ["A\\.I", "machine learning", "technology", "tech", "robotics", "data science", "innovation", "software", "hardware", "cybersecurity", "gadgets", "IoT", "cloud", "big data", "automation"],
-        "sustainability": ["nature", "recycling", "reuse", "sustainable", "environment", "green", "eco", "renewable", "conservation", "organic", "biodiversity", "carbon footprint", "waste management"],
-        "finance": ["investment", "stocks", "cryptocurrency", "banking", "loans", "finance", "trading", "financial planning", "wealth management", "insurance", "budget", "economics", "interest rates", "savings", "tax", "dividends", "portfolio", "retirement"],
-        "health": ["health", "wellness", "nutrition", "fitness", "exercise", "medicine", "mental health", "medical", "diet", "treatment", "prevention", "wellbeing", "therapy", "healthcare", "doctor", "clinic"],
-        "travel": ["travel", "vacation", "tourism", "destination", "holiday", "flight", "hotel", "adventure", "explore", "journey", "itinerary", "cruise", "sightseeing", "backpacking", "road trip", "getaway"],
-        "education": ["education", "learning", "courses", "classes", "tutoring", "scholarship", "university", "college", "academic", "research", "training", "e-learning", "study", "curriculum"],
-        "fashion": ["fashion", "style", "trends", "apparel", "clothing", "accessories", "couture", "designer", "runway", "vintage", "moda", "outfit", "wardrobe", "glamour", "chic"],
-        "food": ["food", "cuisine", "recipe", "dining", "restaurant", "gourmet", "chef", "cooking", "meal", "snack", "flavor", "organic", "fast food", "bakery", "delicious", "savory"],
-        "real estate": ["real estate", "property", "homes", "housing", "mortgage", "apartment", "commercial", "investment", "condo", "residential", "rentals", "market", "construction"],
-        "entertainment": ["entertainment", "movies", "music", "celebrity", "TV", "film", "concert", "streaming", "theater", "festival", "pop culture", "blockbuster", "award", "drama", "comedy"],
-        "automotive": ["automotive", "cars", "vehicles", "auto", "transportation", "engine", "dealership", "electric", "hybrid", "SUV", "sedan", "trucks", "performance", "motor", "driving"],
-        "sports": ["sports", "football", "basketball", "soccer", "baseball", "tennis", "athlete", "tournament", "game", "league", "score", "coach", "stadium", "olympics", "competition"],
-        "beauty": ["beauty", "skincare", "makeup", "cosmetics", "hair", "spa", "salon", "anti-aging", "fragrance", "esthetic", "organic beauty", "glam", "chic"],
-        "retail": ["retail", "shopping", "e-commerce", "store", "discount", "sale", "deal", "consumer", "online shopping", "delivery", "customer service", "brand", "merchandise"],
-        "gaming": ["gaming", "video games", "esports", "console", "PC gaming", "multiplayer", "RPG", "FPS", "strategy", "gameplay", "interactive", "virtual", "tournament", "beta"],
-        "lifestyle": ["lifestyle", "culture", "living", "home", "decor", "DIY", "personal development", "hobbies", "mindfulness", "fitness", "art", "entertainment"],
-        "business": ["business", "entrepreneur", "startup", "management", "leadership", "strategy", "growth", "marketing", "sales", "investment", "operations", "corporate", "B2B", "B2C", "industry"],
-        "legal": ["legal", "law", "attorney", "lawsuit", "regulation", "compliance", "court", "contract", "litigation", "policy", "rights", "justice", "criminal", "civil"],
-        "home improvement": ["home improvement", "DIY", "renovation", "remodel", "construction", "interior design", "exterior", "maintenance", "repair", "architecture", "landscaping", "home decor"],
-        "parenting": ["parenting", "kids", "children", "family", "mom", "dad", "parent", "childcare", "baby", "toddler", "advice", "support", "growth"],
-        "marketing": ["marketing", "advertising", "branding", "content", "social media", "SEO", "analytics", "campaign", "digital", "inbound", "engagement", "influencer", "lead generation"],
-        "art & culture": ["art", "culture", "gallery", "exhibition", "artist", "creative", "design", "museum", "craft", "sculpture", "painting", "installation", "performance", "curator"]
-      };
-      
-      // Convert input niche to lower case for comparison
-      const inputNicheLower = inputNiche.toLowerCase();
-      
-      // Function to compute certainty based on how closely the keyword's niche matches the input niche.
-      function computeCertainty(nicheKey) {
-        const nicheKeyLower = nicheKey.toLowerCase();
-        // If exact match or one contains the other, then we are fully sure.
-        if (nicheKeyLower === inputNicheLower || nicheKeyLower.indexOf(inputNicheLower) !== -1 || inputNicheLower.indexOf(nicheKeyLower) !== -1) {
-          return 100;
-        }
-        // Otherwise, assign a low certainty value.
-        return 25;
-      }
-      
-      // Generate Niche Keywords Analysis section
-      let nicheAnalysisHTML = '<div class="result-section"><h2>Niche Keywords Analysis</h2>';
-      nicheAnalysisHTML += '<table><tr><th>Niche</th><th>Keyword</th><th>Occurrences</th><th>Certainty</th></tr>';
-      let anyKeywordFound = false;
-      
-      // Loop over each niche mapping and only include keywords from all niches,
-      // but assign certainty based on relation to the input niche.
-      for (const niche in nicheMapping) {
-        nicheMapping[niche].forEach(keywordPattern => {
-          // Build a regex for each keyword. Escape special characters if needed.
-          const regex = new RegExp('\\b' + keywordPattern + '\\b', 'gi');
-          const matches = copy.match(regex);
-          const count = matches ? matches.length : 0;
-          if (count > 0) {
-            anyKeywordFound = true;
-            const certainty = computeCertainty(niche);
-            // Clean the keyword display (remove regex escape characters)
-            const cleanKeyword = keywordPattern.replace(/\\\./g, ".");
-            nicheAnalysisHTML += '<tr><td>' + niche.charAt(0).toUpperCase() + niche.slice(1) + '</td><td>' + cleanKeyword + '</td><td>' + count + '</td><td>' + certainty + '%</td></tr>';
-          }
-        });
-      }
-      
-      if (!anyKeywordFound) {
-        nicheAnalysisHTML += '<tr><td colspan="4">No niche-specific keywords were detected in your copy.</td></tr>';
-      }
-      nicheAnalysisHTML += '</table></div>';
-      
-      // Overused SEO Keywords Analysis Section
       let overusedHTML = '<div class="result-section"><h2>Overused SEO Keywords Analysis</h2><ul>';
       let foundOverused = false;
       for (const [word, count] of Object.entries(overusedCounts)) {
@@ -323,14 +548,46 @@
       }
       overusedHTML += '</div>';
       
-      // Copy Analysis Section
+      /***********************************************
+       * 5) Copy Analysis Section (word count, etc.) *
+       ***********************************************/
+      const totalWords = copy.match(/\w+/g)?.length || 0;
       let analysisHTML = '<div class="result-section"><h2>Copy Analysis</h2>';
       analysisHTML += '<p>Total word count: ' + totalWords + '</p>';
       analysisHTML += '<p>Highlighted copy with potential overused terms:</p>';
       analysisHTML += '<div class="results-box">' + highlightedCopy + '</div>';
       analysisHTML += '</div>';
       
-      // Combine all analysis sections
+      /***********************************************
+       * 6) Build the Niche Keywords Table           *
+       ***********************************************/
+      let nicheAnalysisHTML = '<div class="result-section"><h2>Niche Keywords Analysis</h2>';
+      if (foundKeywords.length === 0) {
+        nicheAnalysisHTML += '<p>No niche-related or potential keywords were detected.</p></div>';
+      } else {
+        nicheAnalysisHTML += '<table><tr><th>Niche</th><th>Keyword</th><th>Occurrences</th><th>Certainty</th></tr>';
+        foundKeywords.forEach(item => {
+          // Determine row color based on the "primary" niche (if "Guessed:", split off)
+          const nicheName = item.niche.toLowerCase().startsWith("guessed:") 
+            ? item.niche.toLowerCase().replace("guessed: ", "").trim()
+            : item.niche.toLowerCase();
+          
+          const rowColor = getColorForNiche(nicheName);
+          
+          nicheAnalysisHTML += `
+            <tr style="background-color:${rowColor};">
+              <td>${item.niche}</td>
+              <td>${item.keyword}</td>
+              <td>${item.occurrences}</td>
+              <td>${item.certainty}%</td>
+            </tr>`;
+        });
+        nicheAnalysisHTML += '</table></div>';
+      }
+      
+      /***********************************************
+       * 7) Combine and Display Results              *
+       ***********************************************/
       resultsDiv.innerHTML = analysisHTML + nicheAnalysisHTML + overusedHTML;
     });
   </script>
