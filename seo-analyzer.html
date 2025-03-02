@@ -6,12 +6,9 @@
   <title>Advanced A.I. SEO Analyzer</title>
   <style>
     /* Modern, sleek styling */
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       background: #f0f2f5;
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       color: #333;
@@ -31,124 +28,70 @@
       transition: background 0.3s ease;
       font-size: 0.95em;
     }
-    .nav-left a:hover {
-      background: rgba(255, 255, 255, 0.4);
-    }
-    .header-center {
-      text-align: center;
-      flex-grow: 1;
-    }
+    .nav-left a:hover { background: rgba(255, 255, 255, 0.4); }
+    .header-center { text-align: center; flex-grow: 1; }
     .header-center h1 {
-      margin: 0;
-      font-size: 2.5em;
-      font-weight: 500;
+      margin: 0; font-size: 2.5em; font-weight: 500;
     }
     .header-center p {
-      margin: 5px 0 0;
-      font-size: 1em;
-      opacity: 0.9;
+      margin: 5px 0 0; font-size: 1em; opacity: 0.9;
     }
     .container {
-      max-width: 900px;
-      margin: 30px auto;
-      background: #fff;
-      padding: 30px;
+      max-width: 900px; margin: 30px auto;
+      background: #fff; padding: 30px;
       border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-    .input-group {
-      margin-bottom: 20px;
-    }
-    .input-group label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
+    .input-group { margin-bottom: 20px; }
+    .input-group label { display: block; margin-bottom: 8px; font-weight: 600; }
     .input-group select,
     .input-group textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 16px;
-      transition: border-color 0.3s ease;
+      width: 100%; padding: 12px;
+      border: 1px solid #ddd; border-radius: 4px;
+      font-size: 16px; transition: border-color 0.3s ease;
     }
     .input-group select:focus,
-    .input-group textarea:focus {
-      outline: none;
-      border-color: #1e3c72;
-    }
+    .input-group textarea:focus { outline: none; border-color: #1e3c72; }
     button {
-      background-color: #1e3c72;
-      color: #fff;
-      border: none;
-      padding: 15px;
-      width: 100%;
-      border-radius: 4px;
-      font-size: 18px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      margin-top: 10px;
+      background-color: #1e3c72; color: #fff;
+      border: none; padding: 15px; width: 100%;
+      border-radius: 4px; font-size: 18px; cursor: pointer;
+      transition: background 0.3s ease; margin-top: 10px;
     }
-    button:hover {
-      background-color: #16335c;
-    }
-    .analysis {
-      margin-top: 30px;
-    }
-    .result-section {
-      margin-bottom: 30px;
-    }
+    button:hover { background-color: #16335c; }
+    .analysis { margin-top: 30px; }
+    .result-section { margin-bottom: 30px; }
     .result-section h2 {
-      margin-bottom: 10px;
-      padding-bottom: 5px;
-      border-bottom: 1px solid #ddd;
-      font-weight: 600;
+      margin-bottom: 10px; padding-bottom: 5px;
+      border-bottom: 1px solid #ddd; font-weight: 600;
     }
-    .result-section p,
-    .result-section li {
-      line-height: 1.6;
-    }
+    .result-section p, .result-section li { line-height: 1.6; }
     .highlight {
-      background-color: #ffeb3b;
-      padding: 2px 4px;
-      border-radius: 3px;
-      cursor: help;
+      background-color: #ffeb3b; padding: 2px 4px;
+      border-radius: 3px; cursor: help;
     }
     .results-box {
-      background: #f7f7f7;
-      padding: 15px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      margin-top: 10px;
-      font-family: Consolas, monospace;
+      background: #f7f7f7; padding: 15px;
+      border: 1px solid #ddd; border-radius: 4px;
+      margin-top: 10px; font-family: Consolas, monospace;
       white-space: pre-wrap;
     }
     table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
+      width: 100%; border-collapse: collapse; margin-top: 10px;
     }
-    table, th, td {
-      border: 1px solid #ddd;
-    }
-    th, td {
-      padding: 10px;
-      text-align: left;
-      font-size: 0.95em;
-    }
-    th {
-      background-color: #f9f9f9;
-      font-weight: 600;
+    table, th, td { border: 1px solid #ddd; }
+    th, td { padding: 10px; text-align: left; font-size: 0.95em; }
+    th { background-color: #f9f9f9; font-weight: 600; }
+    .toggle-btn {
+      background: #1e3c72; color: #fff;
+      border: none; padding: 10px 15px;
+      border-radius: 4px; font-size: 0.9em;
+      cursor: pointer; margin-top: 10px;
     }
     .info {
-      background: #eef2f7;
-      border: 1px solid #ccd4db;
-      border-radius: 4px;
-      padding: 15px;
-      margin-top: 30px;
-      font-size: 0.95em;
-      line-height: 1.5;
+      background: #eef2f7; border: 1px solid #ccd4db;
+      border-radius: 4px; padding: 15px; margin-top: 30px;
+      font-size: 0.95em; line-height: 1.5;
     }
   </style>
 </head>
@@ -212,15 +155,16 @@
       <h2>How It Works</h2>
       <p>
         This A.I.-powered SEO analyzer evaluates your text by highlighting overused SEO keywords and detecting niche-specific keywords.
-        It ignores common stopwords and generic words to prevent noise in the analysis. For each keyword, it checks if it belongs to your chosen niche,
-        a different niche, or if it is unknown—attempting to classify it automatically with a confidence score.
+        It ignores a comprehensive list of common stopwords and generic words to prevent noise in the analysis.
+        For each keyword, it checks if it belongs to your chosen niche, a different niche, or if it is unknown—attempting to classify it automatically with a confidence score.
       </p>
       <ul>
-        <li><strong>Niche Column:</strong> Displays the keyword’s associated niche, with a background color assigned to that niche.</li>
+        <li><strong>Niche Column:</strong> Displays the keyword’s associated niche (with assigned background color).</li>
         <li><strong>Occurrences Column:</strong> Cell color reflects frequency relative to total words (Green: low, Yellow: medium, Red: high).</li>
-        <li><strong>Certainty Column:</strong> Shows "100%" if the keyword is confirmed for your niche, or "Different Niche" if it belongs elsewhere.
-          For guessed keywords that match your niche, a confidence percentage is shown (color-coded: Green for high, Yellow for medium, Red for low).
+        <li><strong>Certainty Column:</strong> Shows "100%" if confirmed for your niche, a confidence percentage (if guessed and matching),
+          or "Different Niche" if it belongs elsewhere.
         </li>
+        <li>The table is split: keywords matching your niche are shown at the top, while those marked as "Different Niche" are hidden by default and can be expanded.</li>
       </ul>
     </div>
   </div>
@@ -238,23 +182,33 @@
     ];
     
     /************************************************
-     *      Expanded Stopwords / Ignore List        *
+     *    Expanded Stopwords / Ignore List          *
+     * (A comprehensive list of generic words)      *
      ************************************************/
     const ignoreWords = [
-      // Prepositions
-      "about", "above", "across", "after", "against", "along", "among", "around", "at", "before", "behind", "below", "beneath", "beside", "between", "beyond", "by", "despite", "down", "during", "except", "for", "from", "in", "inside", "into", "like", "near", "of", "off", "on", "onto", "out", "outside", "over", "past", "regarding", "since", "through", "throughout", "to", "toward", "under", "underneath", "until", "up", "upon", "with", "within", "without",
-      // Pronouns
-      "i", "me", "you", "he", "him", "she", "her", "it", "we", "us", "they", "them", "my", "mine", "your", "yours", "his", "hers", "its", "our", "ours", "their", "theirs",
-      // Articles and Determiners
-      "a", "an", "the", "all", "any", "both", "each", "few", "more", "most", "other", "some", "such",
-      // Conjunctions and Connectors
-      "and", "or", "nor", "but", "if", "then", "else", "when", "while", "where", "because",
-      // Generic Verbs (non-industry-specific)
-      "sharing", "ensuring", "forget", "join", "getting", "taking", "making", "coming", "going", "doing", "is", "are", "was", "were", "be", "been", "being", "do", "does", "did", "have", "has", "had", "will", "would", "shall", "should", "can", "could", "may", "might", "must", "ought",
-      // Common Adjectives, Adverbs, and Miscellaneous
-      "really", "very", "just", "quite", "so", "too", "also", "ever", "never", "always", "often", "sometimes", "here", "there", "then", "than",
-      // Generic Nouns
-      "things", "stuff", "events", "information", "data", "news", "example", "sample"
+      // Standard English stopwords from many sources:
+      "i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours",
+      "yourself", "yourselves", "he", "him", "his", "himself", "she", "her", "hers", "herself",
+      "it", "its", "itself", "they", "them", "their", "theirs", "themselves", "what", "which",
+      "who", "whom", "this", "that", "these", "those", "am", "is", "are", "was", "were", "be",
+      "been", "being", "have", "has", "had", "having", "do", "does", "did", "doing", "a", "an",
+      "the", "and", "but", "if", "or", "because", "as", "until", "while", "of", "at", "by",
+      "for", "with", "about", "against", "between", "into", "through", "during", "before",
+      "after", "above", "below", "to", "from", "up", "down", "in", "out", "on", "off", "over",
+      "under", "again", "further", "then", "once", "here", "there", "when", "where", "why",
+      "how", "all", "any", "both", "each", "few", "more", "most", "other", "some", "such",
+      "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very", "s", "t", "can",
+      "will", "just", "don", "should", "now",
+      // Additional generic verbs, adjectives, adverbs, and nouns:
+      "really", "quite", "much", "many", "also", "often", "ever", "never", "always",
+      "sometimes", "indeed", "perhaps", "maybe", "probably", "certainly", "basically",
+      "generally", "mostly", "simply", "actually", "indeed", "thing", "things", "stuff",
+      "anything", "everything", "something", "event", "events", "item", "items", "object",
+      "objects", "thingamajig", "whatchamacallit", "do", "make", "take", "get", "go", "come",
+      "say", "tell", "see", "look", "use", "work", "run", "start", "end", "finish", "begin",
+      "continue", "stop", "end", "find", "keep", "hold", "put", "think", "know", "want",
+      "need", "like", "love", "hate", "live", "die", "give", "buy", "sell", "build", "create",
+      "share", "ensure", "forget", "join", "connect", "network", "networking"
     ];
     
     /************************************************
@@ -264,7 +218,7 @@
       "tech": [
         "ai", "machine", "learning", "technology", "tech", "robotics", "data", "science", 
         "innovation", "software", "hardware", "cybersecurity", "gadgets", "iot", 
-        "cloud", "big", "automation"
+        "cloud", "big", "automation", "blockchain"  // Added blockchain here
       ],
       "sustainability": [
         "nature", "recycling", "reuse", "sustainable", "environment", "green", "eco", 
@@ -335,7 +289,8 @@
       ],
       "business": [
         "business", "entrepreneur", "startup", "management", "leadership", "strategy", 
-        "growth", "marketing", "sales", "operations", "corporate", "b2b", "b2c", "industry"
+        "growth", "marketing", "sales", "operations", "corporate", "b2b", "b2c", "industry",
+        "networking"  // Added networking override later in guessNiche
       ],
       "legal": [
         "legal", "law", "attorney", "lawsuit", "regulation", "compliance", "court", 
@@ -414,21 +369,22 @@
       const rawWords = text.split(/\s+/);
       for (let raw of rawWords) {
         const w = normalizeWord(raw);
-        if (w) {
-          freqMap[w] = (freqMap[w] || 0) + 1;
-        }
+        if (w) { freqMap[w] = (freqMap[w] || 0) + 1; }
       }
       return freqMap;
     }
     
     /************************************************
-     *    Guess Niche for Unknown Keyword           *
+     *    Refined Guess Niche for Unknown Keyword     *
      ************************************************/
     function guessNiche(word) {
+      const wLower = word.toLowerCase();
+      // Manual overrides for known problematic words
+      if (wLower === "blockchain") { return { niche: "tech", confidence: 100 }; }
+      if (wLower === "networking") { return { niche: "business", confidence: 100 }; }
+      
       let bestScore = 0;
       let bestNiche = null;
-      const wLower = word.toLowerCase();
-      
       for (const knownWord in knownKeywords) {
         const niche = knownKeywords[knownWord];
         const score = similarity(wLower, knownWord);
@@ -437,10 +393,7 @@
           bestNiche = niche;
         }
       }
-      
-      if (bestScore < 0.3) {
-        return null;
-      }
+      if (bestScore < 0.3) { return null; }
       const confidence = Math.floor(bestScore * 100);
       return { niche: bestNiche, confidence };
     }
@@ -449,15 +402,13 @@
       let matches = 0;
       const len = Math.min(a.length, b.length);
       for (let i = 0; i < len; i++) {
-        if (a[i] === b[i]) {
-          matches++;
-        }
+        if (a[i] === b[i]) { matches++; }
       }
       return matches / Math.max(a.length, b.length);
     }
     
     /************************************************
-     *   Color Helper for Occurrences and Certainty  *
+     *   Color Helpers for Occurrences and Certainty *
      ************************************************/
     function getColorForNiche(niche) {
       if (!niche) return "#ffffff";
@@ -466,29 +417,24 @@
     }
     
     function getOccurrencesColor(ratio) {
-      if (ratio > 0.1) {
-        return "#ffcccc"; // high → red
-      } else if (ratio > 0.05) {
-        return "#fff5cc"; // medium → yellow
-      } else {
-        return "#ccffcc"; // low → green
-      }
+      if (ratio > 0.1) { return "#ffcccc"; }      // high → red
+      else if (ratio > 0.05) { return "#fff5cc"; }  // medium → yellow
+      else { return "#ccffcc"; }                   // low → green
     }
     
     function getCertaintyColor(certainty) {
       if (typeof certainty === "number") {
-        if (certainty >= 70) {
-          return "#ccffcc"; // high (green)
-        } else if (certainty >= 40) {
-          return "#fff5cc"; // medium (yellow)
-        } else {
-          return "#ffcccc"; // low (red)
-        }
+        if (certainty >= 70) { return "#ccffcc"; }
+        else if (certainty >= 40) { return "#fff5cc"; }
+        else { return "#ffcccc"; }
       }
       // For non-numeric certainty (e.g., "Different Niche")
-      return "#ffcccc"; // red-ish
+      return "#ffcccc";
     }
     
+    /************************************************
+     *           Main Analysis Logic                *
+     ************************************************/
     document.getElementById('analyzeBtn').addEventListener('click', function() {
       const inputNiche = document.getElementById('niche').value.trim();
       const copy = document.getElementById('copy').value;
@@ -509,7 +455,7 @@
        ***********************************************/
       const overusedRegex = new RegExp('\\b(' + overusedWords.join('|') + ')\\b', 'gi');
       const highlightedCopy = copy.replace(overusedRegex, function(match) {
-        return '<span class="highlight" title="This term may be overused in SEO. Consider using synonyms.">' + match + '</span>';
+        return '<span class="highlight" title="This term may be overused. Consider using synonyms.">' + match + '</span>';
       });
       
       /***********************************************
@@ -521,55 +467,68 @@
       /***********************************************
        * 3) Analyze Niche Keywords & Potential KW    *
        ***********************************************/
-      const foundKeywords = [];
+      const relevantKeywords = [];
+      const differentKeywords = [];
       const inputNicheLower = inputNiche.toLowerCase();
       
       for (const word in freqMap) {
         const occurrences = freqMap[word];
-        if (ignoreWords.includes(word)) {
-          continue;
-        }
+        if (ignoreWords.includes(word)) { continue; }
         
         if (knownKeywords[word]) {
           const knownNiche = knownKeywords[word];
           let certaintyDisplay = "";
           if (knownNiche.toLowerCase() === inputNicheLower) {
             certaintyDisplay = "100%";
+            relevantKeywords.push({
+              niche: knownNiche,
+              keyword: word,
+              occurrences,
+              certainty: certaintyDisplay
+            });
           } else {
             certaintyDisplay = "Different Niche";
+            differentKeywords.push({
+              niche: knownNiche,
+              keyword: word,
+              occurrences,
+              certainty: certaintyDisplay
+            });
           }
-          foundKeywords.push({
-            niche: knownNiche,
-            keyword: word,
-            occurrences,
-            certainty: certaintyDisplay
-          });
         } else {
           const guess = guessNiche(word);
           if (guess) {
             let certaintyDisplay = "";
             if (guess.niche.toLowerCase() === inputNicheLower) {
               certaintyDisplay = guess.confidence + "%";
+              relevantKeywords.push({
+                niche: "Guessed: " + guess.niche,
+                keyword: word,
+                occurrences,
+                certainty: certaintyDisplay
+              });
             } else {
               certaintyDisplay = "Different Niche";
+              differentKeywords.push({
+                niche: "Guessed: " + guess.niche,
+                keyword: word,
+                occurrences,
+                certainty: certaintyDisplay
+              });
             }
-            foundKeywords.push({
-              niche: "Guessed: " + guess.niche,
-              keyword: word,
-              occurrences,
-              certainty: certaintyDisplay
-            });
           }
         }
       }
       
-      foundKeywords.sort((a, b) => {
+      // Sort relevant keywords alphabetically by niche and keyword
+      relevantKeywords.sort((a, b) => {
         if (a.niche < b.niche) return -1;
         if (a.niche > b.niche) return 1;
-        if (a.keyword < b.keyword) return -1;
-        if (a.keyword > b.keyword) return 1;
-        return 0;
+        return a.keyword.localeCompare(b.keyword);
       });
+      
+      // Sort different niche keywords alphabetically
+      differentKeywords.sort((a, b) => a.keyword.localeCompare(b.keyword));
       
       /***********************************************
        * 4) Overused Keywords Analysis              *
@@ -610,11 +569,12 @@
        * 6) Build the Niche Keywords Table           *
        ***********************************************/
       let nicheAnalysisHTML = '<div class="result-section"><h2>Niche Keywords Analysis</h2>';
-      if (foundKeywords.length === 0) {
-        nicheAnalysisHTML += '<p>No niche-related or potential keywords were detected (or all were ignored stopwords).</p></div>';
+      
+      if (relevantKeywords.length === 0) {
+        nicheAnalysisHTML += '<p>No relevant keywords for your niche were detected.</p>';
       } else {
         nicheAnalysisHTML += '<table><tr><th>Niche</th><th>Keyword</th><th>Occurrences</th><th>Certainty</th></tr>';
-        foundKeywords.forEach(item => {
+        relevantKeywords.forEach(item => {
           let displayNiche = item.niche;
           let rawNiche = displayNiche.toLowerCase();
           if (displayNiche.toLowerCase().startsWith("guessed: ")) {
@@ -623,10 +583,33 @@
           const nicheColor = getColorForNiche(rawNiche);
           const ratio = item.occurrences / totalWordsCount;
           const occColor = getOccurrencesColor(ratio);
-          const certColor = getCertaintyColor(
-            typeof item.certainty === "number" ? item.certainty : 0
-          );
-          
+          const certColor = getCertaintyColor(typeof item.certainty === "number" ? item.certainty : 0);
+          nicheAnalysisHTML += `
+            <tr>
+              <td style="background-color:${nicheColor};">${displayNiche}</td>
+              <td>${item.keyword}</td>
+              <td style="background-color:${occColor};">${item.occurrences}</td>
+              <td style="background-color:${certColor};">${item.certainty}</td>
+            </tr>`;
+        });
+        nicheAnalysisHTML += '</table>';
+      }
+      
+      // Add a toggle button and table for Different Niche keywords if any exist.
+      if (differentKeywords.length > 0) {
+        nicheAnalysisHTML += '<button class="toggle-btn" onclick="toggleDifferent()">Show Different Niche Keywords (' + differentKeywords.length + ')</button>';
+        nicheAnalysisHTML += '<div id="differentSection" style="display:none; margin-top:15px;">';
+        nicheAnalysisHTML += '<table><tr><th>Niche</th><th>Keyword</th><th>Occurrences</th><th>Certainty</th></tr>';
+        differentKeywords.forEach(item => {
+          let displayNiche = item.niche;
+          let rawNiche = displayNiche.toLowerCase();
+          if (displayNiche.toLowerCase().startsWith("guessed: ")) {
+            rawNiche = displayNiche.replace(/guessed:\s*/i, "").toLowerCase();
+          }
+          const nicheColor = getColorForNiche(rawNiche);
+          const ratio = item.occurrences / totalWordsCount;
+          const occColor = getOccurrencesColor(ratio);
+          const certColor = getCertaintyColor(0);
           nicheAnalysisHTML += `
             <tr>
               <td style="background-color:${nicheColor};">${displayNiche}</td>
@@ -638,11 +621,23 @@
         nicheAnalysisHTML += '</table></div>';
       }
       
+      nicheAnalysisHTML += '</div>';
+      
       /***********************************************
        * 7) Combine and Display Results              *
        ***********************************************/
       resultsDiv.innerHTML = analysisHTML + nicheAnalysisHTML + overusedHTML;
     });
+    
+    // Toggle function for showing/hiding Different Niche keywords section
+    function toggleDifferent() {
+      const section = document.getElementById("differentSection");
+      if (section.style.display === "none") {
+        section.style.display = "block";
+      } else {
+        section.style.display = "none";
+      }
+    }
   </script>
 </body>
 </html>
