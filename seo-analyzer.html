@@ -4,18 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Advanced A.I. SEO Analyzer</title>
-
-  <!-- Include the Compromise NLP library from a CDN -->
-  <script src="https://unpkg.com/compromise@13.11.2/builds/compromise.min.js"></script>
-
   <style>
     /* Base Styling */
-    * { box-sizing: border-box; }
-    
-    html {
-      background-color: #f0f2f5;
+    * {
+      box-sizing: border-box;
     }
-    
     body {
       margin: 0;
       padding: 0;
@@ -24,7 +17,6 @@
       color: #333;
       transition: background 0.3s, color 0.3s;
     }
-    
     header {
       background: linear-gradient(135deg, #1e3c72, #2a5298);
       padding: 20px;
@@ -33,7 +25,6 @@
       justify-content: space-between;
       color: #fff;
     }
-    
     .nav-left a {
       background: rgba(255, 255, 255, 0.2);
       padding: 8px 12px;
@@ -42,30 +33,26 @@
       font-size: 0.95em;
       transition: background 0.3s ease;
     }
-    
-    .nav-left a:hover { background: rgba(255, 255, 255, 0.4); }
-    
+    .nav-left a:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
     .header-center {
       text-align: center;
       flex-grow: 1;
     }
-    
     .header-center h1 {
       margin: 0;
       font-size: 2.5em;
       font-weight: 500;
     }
-    
     .header-center p {
       margin: 5px 0 0;
       font-size: 1em;
       opacity: 0.9;
     }
-    
     .toggle-dark {
       margin-left: 10px;
     }
-    
     .toggle-dark button {
       background: #fff;
       color: #1e3c72;
@@ -76,17 +63,20 @@
       font-size: 0.9em;
       transition: background 0.3s ease, color 0.3s ease;
     }
-    
-    /* Hover effect for dark/light toggle in light mode */
+    /* Hover effect for dark/light mode button in light mode */
     .toggle-dark button:hover {
-      background: #e0e0e0;
+      background-color: #e8e8e8; /* Light gray for a normal hover effect */
     }
-    
-    /* Dark mode override for toggle button hover */
+    /* Dark Mode button override */
+    .dark-mode .toggle-dark button {
+      background: #333;
+      color: #fff;
+    }
+    /* Hover effect for dark/light mode button in dark mode */
     .dark-mode .toggle-dark button:hover {
-      background: #444;
+      background-color: #444; /* Slightly lighter than #333 for a normal hover effect */
     }
-    
+
     /* Container */
     .container {
       max-width: 900px;
@@ -97,20 +87,14 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       transition: background 0.3s, color 0.3s;
     }
-    
-    .analysis,
-    .result-section {
-      transition: background 0.3s, color 0.3s;
+    .input-group {
+      margin-bottom: 20px;
     }
-    
-    .input-group { margin-bottom: 20px; }
-    
     .input-group label {
       display: block;
       margin-bottom: 8px;
       font-weight: 600;
     }
-    
     .input-group select,
     .input-group textarea {
       width: 100%;
@@ -120,13 +104,11 @@
       font-size: 16px;
       transition: border-color 0.3s ease, background 0.3s, color 0.3s;
     }
-    
     .input-group select:focus,
     .input-group textarea:focus {
       outline: none;
       border-color: #1e3c72;
     }
-    
     button {
       background-color: #1e3c72;
       color: #fff;
@@ -139,34 +121,35 @@
       transition: background 0.3s ease;
       margin-top: 10px;
     }
-    
     button:hover {
-      background-color: #2c4d8f;
+      background-color: #2c4d8f; /* Lighter color for light mode */
     }
-    
     .dark-mode button:hover {
-      background-color: #16335c;
+      background-color: #16335c; /* Keep the same color in dark mode */
     }
-    
+
+    .analysis {
+      margin-top: 30px;
+    }
+    .result-section {
+      margin-bottom: 30px;
+    }
     .result-section h2 {
       margin-bottom: 10px;
       padding-bottom: 5px;
       border-bottom: 1px solid #ddd;
       font-weight: 600;
     }
-    
     .result-section p,
     .result-section li {
       line-height: 1.6;
     }
-    
     .highlight {
       background-color: #ffeb3b;
       padding: 2px 4px;
       border-radius: 3px;
       cursor: help;
     }
-    
     .results-box {
       background: #f7f7f7;
       padding: 15px;
@@ -175,33 +158,27 @@
       margin-top: 10px;
       font-family: Consolas, monospace;
       white-space: pre-wrap;
-      transition: background 0.3s;
     }
-    
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 10px;
     }
-    
     table,
     th,
     td {
       border: 1px solid #ddd;
     }
-    
     th,
     td {
       padding: 10px;
       text-align: left;
       font-size: 0.95em;
     }
-    
     th {
       background-color: #f9f9f9;
       font-weight: 600;
     }
-    
     .toggle-btn {
       background: #1e3c72;
       color: #fff;
@@ -213,7 +190,6 @@
       margin-top: 10px;
       transition: background 0.3s ease, color 0.3s ease;
     }
-    
     .info {
       background: #eef2f7;
       border: 1px solid #ccd4db;
@@ -226,64 +202,47 @@
     }
     
     /* Dark Mode Styles */
-    .dark-mode html {
-      background-color: #121212;
-    }
-    
     .dark-mode body {
       background: #121212;
       color: #e0e0e0;
     }
-    
     .dark-mode header {
       background: #1c1c1c;
     }
-    
     .dark-mode .container {
       background: #1e1e1e;
       color: #e0e0e0;
     }
-    
     .dark-mode .analysis,
     .dark-mode .result-section {
       background: #1e1e1e;
       color: #e0e0e0;
     }
-    
     .dark-mode .result-section h2 {
       border-bottom-color: #444;
     }
-    
     .dark-mode .results-box {
       background: #2a2a2a;
       border: 1px solid #444;
     }
-    
     .dark-mode table,
     .dark-mode th,
     .dark-mode td {
       border: 1px solid #444;
     }
-    
     .dark-mode th {
       background-color: #333;
     }
-    
     .dark-mode .info {
       background: #1c1c1c;
       border: 1px solid #333;
       color: #e0e0e0;
     }
-    
     .dark-mode .toggle-dark button {
       background: #333;
       color: #fff;
     }
-    
-    .dark-mode .toggle-dark button:hover {
-      background: #444;
-    }
-    
+    /* In dark mode, override highlight and cell colors */
     .dark-mode .highlight {
       background-color: #cc9900;
     }
@@ -346,14 +305,15 @@
     <!-- Analysis Results -->
     <div id="results" class="analysis"></div>
     
-    <!-- Info Section -->
+    <!-- In-Page How It Works (Brief Overview) -->
     <div class="info">
       <h2>How It Works</h2>
       <p>
-        This version uses the Compromise NLP library to extract nouns and named entities. If no keywords are detected by that method,
-        it falls back to analyzing all terms. An extensive blocklist filters out generic words unless context (e.g. in Parenting) saves them.
-        Keywords matching your selected niche appear in the main table, while others are grouped in an expandable secondary table.
-        Dark Mode converts all white backgrounds (including the container and page background) to dark tones.
+        Your text is normalized (punctuation removed, lowercased) and split into words. An extensive blocklist filters out generic words.
+        Remaining words are checked against industry–specific mappings. Exact matches are marked as “known” (100% certainty); others are
+        processed by a similarity algorithm to “guess” their niche and assign a confidence score. Keywords matching your selected niche appear
+        in the main table (with occurrence and certainty color–coding), while those from other niches are grouped in a secondary table (expandable
+        via a toggle). Dark Mode is available for a high–contrast, professional view.
       </p>
     </div>
   </div>
@@ -369,12 +329,14 @@
         darkModeBtn.textContent = "Activate Dark Mode";
       }
     });
+    
+    // Helper: Check if Dark Mode is active
     function isDarkMode() {
       return document.body.classList.contains("dark-mode");
     }
-
+    
     /************************************************
-     * Overused SEO Keywords (Highlight)
+     *        Overused SEO Keywords (Highlight)     *
      ************************************************/
     const overusedWords = [
       "best", "top", "quality", "expert", "affordable", "solution", "unique", "leading",
@@ -383,9 +345,9 @@
       "premium", "efficient", "advanced", "strategic", "professional", "dynamic",
       "holistic", "comprehensive", "optimal", "incredible", "remarkable"
     ];
-
+    
     /************************************************
-     * Expanded Stopwords / Ignore List
+     *    Expanded Stopwords / Ignore List          *
      ************************************************/
     const ignoreWords = (`
 a about above across after afterwards again against all almost alone along already also although always am among amongst amount an and another any anybody anyone anything anyway anywhere are around as at
@@ -404,319 +366,204 @@ w want wanted wanting wants way ways we well went were what whatever when where 
 x y year years yellow yes yet you your yours yourself yourselves z ze zero
 truly recommendation recommendations access appeal appeals approach even maintaining solution solutions trusted encourage encouraging champion adopt advanced amazing ensuring guide interested interest introduce introduced leading reliable remarkable sharing weve
 `).split(/\s+/);
-
+    
     /************************************************
-     * Niche Mapping & Known Keywords
+     *       Niche Mapping and Known Keywords       *
      ************************************************/
     const nicheMapping = {
-      "tech": ["ai","machine","learning","technology","tech","robotics","data","science","innovation","software","hardware","cybersecurity","gadgets","iot","cloud","big","automation","blockchain"],
-      "parenting": ["parenting","kids","children","family","mom","dad","parent","childcare","baby","toddler","advice","support","growth"]
-      // ... add other niches as needed ...
+      "tech": [
+        "ai", "machine", "learning", "technology", "tech", "robotics", "data", "science",
+        "innovation", "software", "hardware", "cybersecurity", "gadgets", "iot",
+        "cloud", "big", "automation", "blockchain"
+      ],
+      "sustainability": [
+        "nature", "recycling", "reuse", "sustainable", "environment", "green", "eco",
+        "renewable", "conservation", "organic", "biodiversity", "carbon", "footprint",
+        "waste", "management"
+      ],
+      "finance": [
+        "investment", "stocks", "cryptocurrency", "banking", "loans", "finance", "trading",
+        "financial", "planning", "wealth", "insurance", "budget", "economics",
+        "interest", "rates", "savings", "tax", "dividends", "portfolio", "retirement"
+      ],
+      "health": [
+        "health", "wellness", "nutrition", "fitness", "exercise", "medicine", "mental",
+        "medical", "diet", "treatment", "prevention", "wellbeing", "therapy", "healthcare",
+        "doctor", "clinic"
+      ],
+      "travel": [
+        "travel", "vacation", "tourism", "destination", "holiday", "flight", "hotel",
+        "adventure", "explore", "journey", "itinerary", "cruise", "sightseeing",
+        "backpacking", "road", "trip"
+      ],
+      "education": [
+        "education", "learning", "courses", "classes", "tutoring", "scholarship",
+        "university", "college", "academic", "research", "training", "e-learning",
+        "study", "curriculum"
+      ],
+      "fashion": [
+        "fashion", "style", "trends", "apparel", "clothing", "accessories", "couture",
+        "designer", "runway", "vintage", "moda", "outfit", "wardrobe", "glamour", "chic"
+      ],
+      "food": [
+        "food", "cuisine", "recipe", "dining", "restaurant", "gourmet", "chef", "cooking",
+        "meal", "snack", "flavor", "organic", "fast", "bakery", "delicious", "savory"
+      ],
+      "real estate": [
+        "real", "estate", "property", "homes", "housing", "mortgage", "apartment",
+        "commercial", "condo", "residential", "rentals", "market", "construction"
+      ],
+      "entertainment": [
+        "entertainment", "movies", "music", "celebrity", "tv", "film", "concert",
+        "streaming", "theater", "festival", "pop", "culture", "blockbuster", "award",
+        "drama", "comedy"
+      ],
+      "automotive": [
+        "automotive", "cars", "vehicles", "auto", "transportation", "engine", "dealership",
+        "electric", "hybrid", "suv", "sedan", "trucks", "performance", "motor", "driving"
+      ],
+      "sports": [
+        "sports", "football", "basketball", "soccer", "baseball", "tennis", "athlete",
+        "tournament", "game", "league", "score", "coach", "stadium", "olympics",
+        "competition"
+      ],
+      "beauty": [
+        "beauty", "skincare", "makeup", "cosmetics", "hair", "spa", "salon", "anti-aging",
+        "fragrance", "esthetic", "organic", "glam", "chic"
+      ],
+      "retail": [
+        "retail", "shopping", "e-commerce", "store", "discount", "sale", "deal", "consumer",
+        "online", "delivery", "customer", "service", "brand", "merchandise"
+      ],
+      "gaming": [
+        "gaming", "video", "games", "esports", "console", "pc", "multiplayer", "rpg",
+        "fps", "strategy", "gameplay", "virtual", "tournament", "beta"
+      ],
+      "lifestyle": [
+        "lifestyle", "culture", "living", "home", "decor", "diy", "personal", "development",
+        "hobbies", "mindfulness", "fitness", "art", "entertainment"
+      ],
+      "business": [
+        "business", "entrepreneur", "startup", "management", "leadership", "strategy",
+        "growth", "marketing", "sales", "operations", "corporate", "b2b", "b2c", "industry",
+        "networking"
+      ],
+      "legal": [
+        "legal", "law", "attorney", "lawsuit", "regulation", "compliance", "court",
+        "contract", "litigation", "policy", "rights", "justice", "criminal", "civil"
+      ],
+      "home improvement": [
+        "home", "improvement", "diy", "renovation", "remodel", "construction",
+        "interior", "exterior", "maintenance", "repair", "architecture", "landscaping",
+        "decor"
+      ],
+      "parenting": [
+        "parenting", "kids", "children", "family", "mom", "dad", "parent", "childcare",
+        "baby", "toddler", "advice", "support", "growth"
+      ],
+      "marketing": [
+        "marketing", "advertising", "branding", "content", "social", "media", "seo",
+        "analytics", "campaign", "digital", "inbound", "engagement", "influencer",
+        "lead", "generation"
+      ],
+      "art & culture": [
+        "art", "culture", "gallery", "exhibition", "artist", "creative", "design",
+        "museum", "craft", "sculpture", "painting", "installation", "performance", "curator"
+      ]
     };
-
-    // Build knownKeywords dictionary
+    
+    /************************************************
+     *            Niche Colors for Table            *
+     ************************************************/
+    const nicheColors = {
+      "tech": "#d1ecf1",
+      "sustainability": "#d4edda",
+      "finance": "#fff3cd",
+      "health": "#f8d7da",
+      "travel": "#cce5ff",
+      "education": "#e2e3e5",
+      "fashion": "#f5dbf5",
+      "food": "#ffeed4",
+      "real estate": "#e6e6e6",
+      "entertainment": "#ececff",
+      "automotive": "#e4fcef",
+      "sports": "#f0e6ff",
+      "beauty": "#ffe6f2",
+      "retail": "#e6fff5",
+      "gaming": "#ffe6cc",
+      "lifestyle": "#f4f4f4",
+      "business": "#ddefef",
+      "legal": "#e7e7e7",
+      "home improvement": "#f9f6e8",
+      "parenting": "#fde8e8",
+      "marketing": "#f0ffe4",
+      "art & culture": "#fffae6"
+    };
+    
+    // Dark mode versions for niche colors
+    const darkNicheColors = {
+      "tech": "#4d8ba8",
+      "sustainability": "#4ba66d",
+      "finance": "#d4a02c",
+      "health": "#b04a50",
+      "travel": "#3a8bb7",
+      "education": "#707070",
+      "fashion": "#a64d8c",
+      "food": "#d97a2e",
+      "real estate": "#7d7d7d",
+      "entertainment": "#5c5f99",
+      "automotive": "#3da38f",
+      "sports": "#7a5ca8",
+      "beauty": "#d9546e",
+      "retail": "#3abbbf",
+      "gaming": "#b35900",
+      "lifestyle": "#7a7a7a",
+      "business": "#4d9fa8",
+      "legal": "#7a7a7a",
+      "home improvement": "#bfae90",
+      "parenting": "#d9534f",
+      "marketing": "#5cb85c",
+      "art & culture": "#d4af37"
+    };
+    
+    /************************************************
+     *    Build a Quick-Look Dictionary (lowercase) *
+     ************************************************/
     const knownKeywords = {};
     for (const niche in nicheMapping) {
-      nicheMapping[niche].forEach(k => {
-        knownKeywords[k.toLowerCase()] = niche;
+      nicheMapping[niche].forEach(keyword => {
+        const lowerKey = keyword.toLowerCase();
+        if (!knownKeywords[lowerKey]) {
+          knownKeywords[lowerKey] = niche;
+        }
       });
     }
-
+    
     /************************************************
-     * Advanced Keyword Extraction (Compromise)
+     *    Text Normalization / Word Frequency       *
      ************************************************/
-    function advancedExtractKeywords(copy) {
-      const doc = nlp(copy);
+    function normalizeWord(word) {
+      return word.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+    }
+    
+    function getWordFrequencies(text) {
       const freqMap = {};
-      const nounFreq = doc.nouns().out('freq') || [];
-      const entityFreq = doc.entities().out('freq') || [];
-      
-      if (nounFreq.length > 0) {
-        nounFreq.forEach(item => {
-          if (!item || !item.normal) return;
-          const w = item.normal.toLowerCase();
-          freqMap[w] = (freqMap[w] || 0) + (item.count || 1);
-        });
-        entityFreq.forEach(item => {
-          if (!item || !item.normal) return;
-          const w = item.normal.toLowerCase();
-          freqMap[w] = (freqMap[w] || 0) + (item.count || 1);
-        });
-      } else {
-        // Fallback: use all terms if no nouns/entities detected
-        const termFreq = doc.terms().out('freq') || [];
-        termFreq.forEach(item => {
-          if (!item || !item.normal) return;
-          const w = item.normal.toLowerCase();
-          freqMap[w] = (freqMap[w] || 0) + (item.count || 1);
-        });
+      const rawWords = text.split(/\s+/);
+      for (let raw of rawWords) {
+        const w = normalizeWord(raw);
+        if (w && w.length >= 3) {
+          freqMap[w] = (freqMap[w] || 0) + 1;
+        }
       }
       return freqMap;
     }
-
+    
     /************************************************
-     * Context-Aware Filtering (Example: Parenting)
-     ************************************************/
-    function isContextuallyRelevant(word, niche, doc) {
-      if (niche.toLowerCase() !== "parenting") return false;
-      const relevantParentingWords = ["advice", "tips", "age"];
-      if (!relevantParentingWords.includes(word.toLowerCase())) return false;
-      const parentingContextWords = ["mom", "dad", "child", "children", "baby", "kids", "family", "parenting"];
-      for (let cw of parentingContextWords) {
-        const nearPattern1 = `${cw} .{0,5} ${word}`;
-        const nearPattern2 = `${word} .{0,5} ${cw}`;
-        if (doc.match(nearPattern1).found || doc.match(nearPattern2).found) {
-          return true;
-        }
-      }
-      return false;
-    }
-
-    /************************************************
-     * Color Helpers for Occurrences and Certainty
-     ************************************************/
-    let totalWordsCount = 0;
-    const nicheColors = {
-      "tech": "#d1ecf1",
-      "parenting": "#fde8e8"
-    };
-    const darkNicheColors = {
-      "tech": "#4d8ba8",
-      "parenting": "#d9534f"
-    };
-
-    function getColorForNiche(niche) {
-      if (!niche) return "#ffffff";
-      const nicheLower = niche.toLowerCase();
-      if (isDarkMode() && darkNicheColors[nicheLower]) {
-        return darkNicheColors[nicheLower];
-      }
-      return nicheColors[nicheLower] || "#ffffff";
-    }
-
-    function getOccurrencesColor(occurrences, avg) {
-      const baseRatio = occurrences / totalWordsCount;
-      if (avg > 0) {
-        if (occurrences >= 3 * avg) {
-          return isDarkMode() ? "#8B0000" : "#ffcccc";
-        } else if (occurrences >= 2 * avg) {
-          return isDarkMode() ? "#B8860B" : "#fff5cc";
-        }
-      }
-      if (baseRatio > 0.1) {
-        return isDarkMode() ? "#8B0000" : "#ffcccc";
-      } else if (baseRatio > 0.05) {
-        return isDarkMode() ? "#B8860B" : "#fff5cc";
-      }
-      return isDarkMode() ? "#006400" : "#ccffcc";
-    }
-
-    function getCertaintyColor(certainty) {
-      if (typeof certainty === "number") {
-        if (certainty >= 70) {
-          return isDarkMode() ? "#006400" : "#ccffcc";
-        } else if (certainty >= 40) {
-          return isDarkMode() ? "#B8860B" : "#fff5cc";
-        } else {
-          return isDarkMode() ? "#8B0000" : "#ffcccc";
-        }
-      }
-      return isDarkMode() ? "#8B0000" : "#ffcccc";
-    }
-
-    /************************************************
-     * Main Analysis Logic
-     ************************************************/
-    document.getElementById('analyzeBtn').addEventListener('click', function() {
-      const inputNiche = document.getElementById('niche').value.trim();
-      const copy = document.getElementById('copy').value.trim();
-      const resultsDiv = document.getElementById('results');
-      resultsDiv.innerHTML = "";
-
-      if (!inputNiche) {
-        resultsDiv.innerHTML = '<p style="color:red;">Please select your niche to proceed.</p>';
-        return;
-      }
-      if (!copy) {
-        resultsDiv.innerHTML = '<p>Please enter some copy to analyze.</p>';
-        return;
-      }
-
-      // 1) Highlight Overused SEO keywords
-      const overusedRegex = new RegExp('\\b(' + overusedWords.join('|') + ')\\b', 'gi');
-      const highlightedCopy = copy.replace(overusedRegex, match => {
-        return `<span class="highlight" title="Overused: consider synonyms.">${match}</span>`;
-      });
-
-      // 2) Advanced Keyword Extraction using Compromise
-      const doc = nlp(copy);
-      const freqMap = advancedExtractKeywords(copy);
-      totalWordsCount = doc.wordCount();
-
-      // 3) Build relevant vs. different niche arrays
-      const relevantKeywords = [];
-      const differentKeywords = [];
-      const inputNicheLower = inputNiche.toLowerCase();
-
-      for (const [word, occurrences] of Object.entries(freqMap)) {
-        // Check ignore list; if word is in ignoreWords, skip unless context saves it.
-        if (ignoreWords.includes(word)) {
-          if (!isContextuallyRelevant(word, inputNiche, doc)) continue;
-        }
-        if (knownKeywords[word]) {
-          const knownNiche = knownKeywords[word];
-          if (knownNiche.toLowerCase() === inputNicheLower) {
-            relevantKeywords.push({
-              niche: knownNiche,
-              keyword: word + " (known)",
-              occurrences,
-              certainty: 100
-            });
-          } else {
-            differentKeywords.push({
-              niche: knownNiche,
-              keyword: word + " (known)",
-              occurrences,
-              certainty: 100
-            });
-          }
-        } else {
-          const guess = guessNiche(word);
-          if (guess) {
-            if (guess.niche.toLowerCase() === inputNicheLower) {
-              relevantKeywords.push({
-                niche: "Guessed: " + guess.niche,
-                keyword: word + " (guessed)",
-                occurrences,
-                certainty: guess.confidence
-              });
-            } else {
-              differentKeywords.push({
-                niche: "Guessed: " + guess.niche,
-                keyword: word + " (guessed)",
-                occurrences,
-                certainty: guess.confidence
-              });
-            }
-          }
-        }
-      }
-
-      // 4) Sort the arrays
-      relevantKeywords.sort((a, b) => {
-        if (a.niche < b.niche) return -1;
-        if (a.niche > b.niche) return 1;
-        return a.keyword.localeCompare(b.keyword);
-      });
-      differentKeywords.sort((a, b) => {
-        if (a.niche < b.niche) return -1;
-        if (a.niche > b.niche) return 1;
-        return a.keyword.localeCompare(b.keyword);
-      });
-
-      // 5) Compute average occurrences for relevant keywords
-      let avgOccurrence = 0;
-      if (relevantKeywords.length > 0) {
-        const sumOccurrences = relevantKeywords.reduce((sum, item) => sum + item.occurrences, 0);
-        avgOccurrence = sumOccurrences / relevantKeywords.length;
-      }
-
-      // 6) Overused SEO Keywords Analysis
-      const overusedCounts = {};
-      overusedWords.forEach(ow => {
-        const regex = new RegExp('\\b' + ow + '\\b', 'gi');
-        const matches = copy.match(regex);
-        overusedCounts[ow] = matches ? matches.length : 0;
-      });
-      let overusedHTML = '<div class="result-section"><h2>Overused SEO Keywords Analysis</h2><ul>';
-      let foundOverused = false;
-      for (const [oword, count] of Object.entries(overusedCounts)) {
-        if (count > 0) {
-          foundOverused = true;
-          overusedHTML += `<li><strong>${oword}</strong>: ${count} occurrence${count > 1 ? 's' : ''}</li>`;
-        }
-      }
-      overusedHTML += '</ul>';
-      if (!foundOverused) {
-        overusedHTML += '<p>No overused SEO keywords were detected in your copy!</p>';
-      } else {
-        overusedHTML += '<p>Review the highlighted terms above; consider using synonyms for a more natural language flow.</p>';
-      }
-      overusedHTML += '</div>';
-
-      // 7) Copy Analysis Section
-      let analysisHTML = '<div class="result-section"><h2>Copy Analysis</h2>';
-      analysisHTML += `<p>Total word count: ${totalWordsCount}</p>`;
-      analysisHTML += '<p>Highlighted copy with potential overused terms:</p>';
-      analysisHTML += `<div class="results-box">${highlightedCopy}</div>`;
-      analysisHTML += '</div>';
-
-      // 8) Build the Relevant Keywords Table (Main Table)
-      let nicheAnalysisHTML = '<div class="result-section"><h2>Niche Keywords Analysis</h2>';
-      if (relevantKeywords.length === 0) {
-        nicheAnalysisHTML += '<p>No relevant keywords for your niche were detected.</p>';
-      } else {
-        nicheAnalysisHTML += '<table><tr><th>Niche</th><th>Keyword</th><th>Occurrences</th><th>Certainty</th></tr>';
-        relevantKeywords.forEach(item => {
-          const rawNiche = item.niche.toLowerCase().replace(/^guessed:\s*/, "");
-          const nicheColor = getColorForNiche(rawNiche);
-          const occColor = getOccurrencesColor(item.occurrences, avgOccurrence);
-          const certColor = getCertaintyColor(item.certainty);
-          nicheAnalysisHTML += `
-            <tr>
-              <td style="background-color:${nicheColor};">${item.niche}</td>
-              <td>${item.keyword}</td>
-              <td style="background-color:${occColor};">${item.occurrences}</td>
-              <td style="background-color:${certColor};">${item.certainty}%</td>
-            </tr>`;
-        });
-        nicheAnalysisHTML += '</table>';
-      }
-
-      // 9) Build the Different Niche Keywords Table (Grouped by Niche)
-      if (differentKeywords.length > 0) {
-        const groupMap = {};
-        differentKeywords.forEach(item => {
-          const key = item.niche;
-          if (!groupMap[key]) { groupMap[key] = []; }
-          groupMap[key].push(item);
-        });
-        nicheAnalysisHTML += `<button class="toggle-btn" onclick="toggleDifferent()">Show Other Niches (${differentKeywords.length})</button>`;
-        nicheAnalysisHTML += '<div id="differentSection" style="display:none; margin-top:15px;">';
-        for (const group in groupMap) {
-          nicheAnalysisHTML += `<h3>${group}</h3>`;
-          nicheAnalysisHTML += '<table><tr><th>Keyword</th><th>Occurrences</th><th>Certainty</th></tr>';
-          groupMap[group].forEach(item => {
-            const occColor = getOccurrencesColor(item.occurrences, avgOccurrence);
-            const certColor = getCertaintyColor(item.certainty);
-            nicheAnalysisHTML += `
-              <tr>
-                <td>${item.keyword}</td>
-                <td style="background-color:${occColor};">${item.occurrences}</td>
-                <td style="background-color:${certColor};">${item.certainty}%</td>
-              </tr>`;
-          });
-          nicheAnalysisHTML += '</table>';
-        }
-        nicheAnalysisHTML += '</div>';
-      }
-      nicheAnalysisHTML += '</div>';
-
-      // 10) Combine and Display All Results
-      resultsDiv.innerHTML = analysisHTML + nicheAnalysisHTML + overusedHTML;
-    });
-
-    // Toggle function for the different niche keywords table
-    function toggleDifferent() {
-      const section = document.getElementById("differentSection");
-      section.style.display = (section.style.display === "none") ? "block" : "none";
-    }
-
-    /************************************************
-     * Guess Niche Function
+     *    Refined Guess Niche for Unknown Keyword   *
      ************************************************/
     function guessNiche(word) {
       const wLower = word.toLowerCase();
+      // Manual overrides
       if (wLower === "blockchain") { return { niche: "tech", confidence: 100 }; }
       if (wLower === "networking") { return { niche: "business", confidence: 100 }; }
       let bestScore = 0;
@@ -735,17 +582,267 @@ truly recommendation recommendations access appeal appeals approach even maintai
       const confidence = Math.floor(bestScore * 100);
       return { niche: bestNiche, confidence };
     }
-
-    /************************************************
-     * Basic Similarity Function
-     ************************************************/
+    
     function similarity(a, b) {
       let matches = 0;
       const len = Math.min(a.length, b.length);
       for (let i = 0; i < len; i++) {
-        if (a[i] === b[i]) matches++;
+        if (a[i] === b[i]) {
+          matches++;
+        }
       }
       return matches / Math.max(a.length, b.length);
+    }
+    
+    /************************************************
+     *   Color Helpers for Occurrences and Certainty *
+     ************************************************/
+    let totalWordsCount = 0;
+    
+    function isDarkMode() {
+      return document.body.classList.contains("dark-mode");
+    }
+    
+    function getColorForNiche(niche) {
+      if (!niche) return "#ffffff";
+      const nicheLower = niche.toLowerCase();
+      if (isDarkMode() && darkNicheColors[nicheLower]) {
+        return darkNicheColors[nicheLower];
+      }
+      return nicheColors[nicheLower] || "#ffffff";
+    }
+    
+    // Occurrence coloring: if occurrences are ≥ 3× average, red; if ≥2×, yellow; else default.
+    function getOccurrencesColor(occurrences, avg) {
+      let baseRatio = occurrences / totalWordsCount;
+      if (avg > 0) {
+        if (occurrences >= 3 * avg) {
+          return isDarkMode() ? "#8B0000" : "#ffcccc";
+        } else if (occurrences >= 2 * avg) {
+          return isDarkMode() ? "#B8860B" : "#fff5cc";
+        }
+      }
+      if (baseRatio > 0.1) {
+        return isDarkMode() ? "#8B0000" : "#ffcccc";
+      } else if (baseRatio > 0.05) {
+        return isDarkMode() ? "#B8860B" : "#fff5cc";
+      } else {
+        return isDarkMode() ? "#006400" : "#ccffcc";
+      }
+    }
+    
+    // Certainty coloring: 70-100 = green, 40-70 = yellow, below 40 = red.
+    function getCertaintyColor(certainty) {
+      if (typeof certainty === "number") {
+        if (certainty >= 70) {
+          return isDarkMode() ? "#006400" : "#ccffcc";
+        } else if (certainty >= 40) {
+          return isDarkMode() ? "#B8860B" : "#fff5cc";
+        } else {
+          return isDarkMode() ? "#8B0000" : "#ffcccc";
+        }
+      }
+      return isDarkMode() ? "#8B0000" : "#ffcccc";
+    }
+    
+    /************************************************
+     *           Main Analysis Logic                *
+     ************************************************/
+    document.getElementById('analyzeBtn').addEventListener('click', function() {
+      const inputNiche = document.getElementById('niche').value.trim();
+      const copy = document.getElementById('copy').value;
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = "";
+      
+      if (!inputNiche) {
+        resultsDiv.innerHTML = '<p style="color:red;">Please select your niche to proceed.</p>';
+        return;
+      }
+      if (!copy) {
+        resultsDiv.innerHTML = '<p>Please enter some copy to analyze.</p>';
+        return;
+      }
+      
+      // 1) Highlight overused SEO keywords
+      const overusedRegex = new RegExp('\\b(' + overusedWords.join('|') + ')\\b', 'gi');
+      const highlightedCopy = copy.replace(overusedRegex, function(match) {
+        return '<span class="highlight" title="This term may be overused. Consider using synonyms.">' + match + '</span>';
+      });
+      
+      // 2) Build word frequency
+      const freqMap = getWordFrequencies(copy);
+      totalWordsCount = Object.values(freqMap).reduce((a, b) => a + b, 0);
+      
+      // 3) Analyze keywords: separate into relevant and different
+      const relevantKeywords = [];
+      const differentKeywords = [];
+      const inputNicheLower = inputNiche.toLowerCase();
+      
+      for (const word in freqMap) {
+        const occurrences = freqMap[word];
+        if (ignoreWords.includes(word)) {
+          continue;
+        }
+        
+        if (knownKeywords[word]) {
+          const knownNiche = knownKeywords[word];
+          if (knownNiche.toLowerCase() === inputNicheLower) {
+            relevantKeywords.push({
+              niche: knownNiche,
+              keyword: word + " (known)",
+              occurrences,
+              certainty: 100,
+              guessed: false
+            });
+          } else {
+            differentKeywords.push({
+              niche: knownNiche,
+              keyword: word + " (known)",
+              occurrences,
+              certainty: 100,
+              guessed: false
+            });
+          }
+        } else {
+          const guess = guessNiche(word);
+          if (guess) {
+            if (guess.niche.toLowerCase() === inputNicheLower) {
+              relevantKeywords.push({
+                niche: "Guessed: " + guess.niche,
+                keyword: word + " (guessed)",
+                occurrences,
+                certainty: guess.confidence,
+                guessed: true
+              });
+            } else {
+              differentKeywords.push({
+                niche: "Guessed: " + guess.niche,
+                keyword: word + " (guessed)",
+                occurrences,
+                certainty: guess.confidence,
+                guessed: true
+              });
+            }
+          }
+        }
+      }
+      
+      // 4) Compute average occurrences for relevant keywords
+      let avgOccurrence = 0;
+      if (relevantKeywords.length > 0) {
+        const sumOccurrences = relevantKeywords.reduce((sum, item) => sum + item.occurrences, 0);
+        avgOccurrence = sumOccurrences / relevantKeywords.length;
+      }
+      
+      // 5) Sort tables: relevant keywords sorted by niche then keyword; different keywords sorted by niche then keyword.
+      relevantKeywords.sort((a, b) => {
+        if (a.niche < b.niche) return -1;
+        if (a.niche > b.niche) return 1;
+        return a.keyword.localeCompare(b.keyword);
+      });
+      
+      differentKeywords.sort((a, b) => {
+        if (a.niche < b.niche) return -1;
+        if (a.niche > b.niche) return 1;
+        return a.keyword.localeCompare(b.keyword);
+      });
+      
+      // 6) Overused keywords analysis
+      const overusedCounts = {};
+      overusedWords.forEach(word => {
+        const regex = new RegExp('\\b' + word + '\\b', 'gi');
+        const matches = copy.match(regex);
+        overusedCounts[word] = matches ? matches.length : 0;
+      });
+      let overusedHTML = '<div class="result-section"><h2>Overused SEO Keywords Analysis</h2><ul>';
+      let foundOverused = false;
+      for (const [word, count] of Object.entries(overusedCounts)) {
+        if (count > 0) {
+          foundOverused = true;
+          overusedHTML += '<li><strong>' + word + '</strong>: ' + count + ' occurrence' + (count > 1 ? 's' : '') + '</li>';
+        }
+      }
+      overusedHTML += '</ul>';
+      if (!foundOverused) {
+        overusedHTML += '<p>No overused SEO keywords were detected in your copy!</p>';
+      } else {
+        overusedHTML += '<p>Review the highlighted terms above; consider using synonyms for a more natural language flow.</p>';
+      }
+      overusedHTML += '</div>';
+      
+      // 7) Copy Analysis Section
+      let analysisHTML = '<div class="result-section"><h2>Copy Analysis</h2>';
+      analysisHTML += '<p>Total word count: ' + totalWordsCount + '</p>';
+      analysisHTML += '<p>Highlighted copy with potential overused terms:</p>';
+      analysisHTML += '<div class="results-box">' + highlightedCopy + '</div>';
+      analysisHTML += '</div>';
+      
+      // 8) Build the Relevant Keywords Table (Main Table)
+      let nicheAnalysisHTML = '<div class="result-section"><h2>Niche Keywords Analysis</h2>';
+      if (relevantKeywords.length === 0) {
+        nicheAnalysisHTML += '<p>No relevant keywords for your niche were detected.</p>';
+      } else {
+        nicheAnalysisHTML += '<table><tr><th>Niche</th><th>Keyword</th><th>Occurrences</th><th>Certainty</th></tr>';
+        relevantKeywords.forEach(item => {
+          let displayNiche = item.niche;
+          let rawNiche = displayNiche.toLowerCase();
+          if (displayNiche.toLowerCase().startsWith("guessed: ")) {
+            rawNiche = displayNiche.replace(/guessed:\s*/i, "").toLowerCase();
+          }
+          const nicheColor = getColorForNiche(rawNiche);
+          const occColor = getOccurrencesColor(item.occurrences, avgOccurrence);
+          const certColor = getCertaintyColor(item.certainty);
+          nicheAnalysisHTML += `
+            <tr>
+              <td style="background-color:${nicheColor};">${displayNiche}</td>
+              <td>${item.keyword}</td>
+              <td style="background-color:${occColor};">${item.occurrences}</td>
+              <td style="background-color:${certColor};">${item.certainty}%</td>
+            </tr>`;
+        });
+        nicheAnalysisHTML += '</table>';
+      }
+      
+      // 9) Build the Different Niche Keywords Table (Grouped by Niche)
+      if (differentKeywords.length > 0) {
+        const groupMap = {};
+        differentKeywords.forEach(item => {
+          const key = item.niche;
+          if (!groupMap[key]) {
+            groupMap[key] = [];
+          }
+          groupMap[key].push(item);
+        });
+        nicheAnalysisHTML += '<button class="toggle-btn" onclick="toggleDifferent()">Show Other Niches (' + differentKeywords.length + ')</button>';
+        nicheAnalysisHTML += '<div id="differentSection" style="display:none; margin-top:15px;">';
+        for (const group in groupMap) {
+          nicheAnalysisHTML += '<h3>' + group + '</h3>';
+          nicheAnalysisHTML += '<table><tr><th>Keyword</th><th>Occurrences</th><th>Certainty</th></tr>';
+          groupMap[group].forEach(item => {
+            const occColor = getOccurrencesColor(item.occurrences, avgOccurrence);
+            const certColor = getCertaintyColor(item.certainty);
+            nicheAnalysisHTML += `
+              <tr>
+                <td>${item.keyword}</td>
+                <td style="background-color:${occColor};">${item.occurrences}</td>
+                <td style="background-color:${certColor};">${item.certainty}%</td>
+              </tr>`;
+          });
+          nicheAnalysisHTML += '</table>';
+        }
+        nicheAnalysisHTML += '</div>';
+      }
+      
+      nicheAnalysisHTML += '</div>';
+      
+      // 10) Combine and Display All Results
+      resultsDiv.innerHTML = analysisHTML + nicheAnalysisHTML + overusedHTML;
+    });
+    
+    // Toggle function for showing/hiding the Different Niche keywords section
+    function toggleDifferent() {
+      const section = document.getElementById("differentSection");
+      section.style.display = (section.style.display === "none") ? "block" : "none";
     }
   </script>
 </body>
