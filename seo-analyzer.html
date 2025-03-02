@@ -2,92 +2,131 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Advanced SEO Analyzer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Advanced A.I. SEO Analyzer</title>
   <style>
-    /* Base styling */
+    /* Professional, modern styling for an A.I.-powered SEO analysis tool */
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 20px;
-      background-color: #f4f4f4;
-    }
-    .container {
-      max-width: 800px;
-      margin: auto;
-      background: #fff;
-      padding: 20px 30px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    h1, h2 {
-      text-align: center;
+      padding: 0;
+      background-color: #f8f9fa;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       color: #333;
     }
+    header {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      padding: 20px;
+      text-align: center;
+      color: #fff;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+    header p {
+      margin-top: 5px;
+      font-size: 1.1em;
+      opacity: 0.9;
+    }
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
     .input-group {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
     .input-group label {
       display: block;
-      margin-bottom: 5px;
-      color: #555;
+      margin-bottom: 8px;
+      font-weight: bold;
     }
     .input-group input,
     .input-group textarea {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       border: 1px solid #ccc;
-      border-radius: 3px;
-      font-size: 1em;
+      border-radius: 4px;
+      font-size: 16px;
     }
     button {
-      display: block;
-      width: 100%;
-      background-color: #007BFF;
+      background-color: #1e3c72;
       color: #fff;
-      padding: 10px;
       border: none;
-      border-radius: 3px;
-      font-size: 1em;
+      padding: 15px;
+      width: 100%;
+      border-radius: 4px;
+      font-size: 18px;
       cursor: pointer;
+      transition: background 0.3s ease;
     }
     button:hover {
-      background-color: #0056b3;
+      background-color: #16335c;
     }
     .analysis {
-      margin-top: 25px;
+      margin-top: 30px;
     }
     .result-section {
-      margin-bottom: 25px;
+      margin-bottom: 30px;
+    }
+    .result-section h2 {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
     }
     .result-section p,
     .result-section li {
       line-height: 1.6;
-      color: #444;
     }
     .highlight {
       background-color: #ffeb3b;
-      font-weight: bold;
+      padding: 2px 4px;
+      border-radius: 3px;
       cursor: help;
     }
     .results-box {
-      padding: 10px;
-      background: #f9f9f9;
+      background: #f1f1f1;
+      padding: 15px;
       border: 1px solid #ddd;
-      border-radius: 3px;
+      border-radius: 4px;
+      margin-top: 10px;
+      font-family: Consolas, monospace;
+      white-space: pre-wrap;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f9f9f9;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>Advanced A.I. SEO Analyzer</h1>
+    <p>Professional analysis for cutting-edge SEO performance</p>
+  </header>
+  
   <div class="container">
-    <h1>Advanced SEO Analyzer</h1>
-    
-    <!-- Input for niche -->
+    <!-- Optional manual niche input -->
     <div class="input-group">
-      <label for="niche">Your Niche:</label>
+      <label for="niche">Your Niche (optional):</label>
       <input type="text" id="niche" placeholder="e.g. Digital Marketing, Health & Fitness, etc.">
     </div>
     
-    <!-- Input for copy -->
+    <!-- Main copy input -->
     <div class="input-group">
       <label for="copy">Your Copy:</label>
       <textarea id="copy" rows="10" placeholder="Paste your text here..."></textarea>
@@ -101,83 +140,122 @@
   </div>
   
   <script>
-    // Wait for the analyze button click
     document.getElementById('analyzeBtn').addEventListener('click', function() {
-      const niche = document.getElementById('niche').value.trim();
+      const nicheInput = document.getElementById('niche').value.trim();
       const copy = document.getElementById('copy').value;
       const resultsDiv = document.getElementById('results');
-      resultsDiv.innerHTML = ""; // Clear previous results
+      resultsDiv.innerHTML = "";
       
       if (!copy) {
         resultsDiv.innerHTML = '<p>Please enter some copy to analyze.</p>';
         return;
       }
       
-      // List of overused SEO words
+      // Extended list of overused SEO words
       const overusedWords = [
-        "best", "top", "quality", "expert", "affordable", "solution", 
-        "unique", "leading", "powerful", "reliable", "trusted", "proven", 
-        "innovative", "cutting-edge", "state-of-the-art", "free", "guaranteed", "amazing"
+        "best", "top", "quality", "expert", "affordable", "solution", "unique", "leading", 
+        "powerful", "reliable", "trusted", "proven", "innovative", "cutting-edge", 
+        "state-of-the-art", "free", "guaranteed", "amazing", "ultimate", "essential", 
+        "premium", "efficient", "advanced", "strategic", "professional", "dynamic", 
+        "holistic", "comprehensive", "optimal", "incredible", "remarkable"
       ];
       
-      // Create regex to match overused words, using word boundaries and ignoring case
-      const regex = new RegExp('\\b(' + overusedWords.join('|') + ')\\b', 'gi');
+      // Regex to detect overused words (case-insensitive, whole words)
+      const overusedRegex = new RegExp('\\b(' + overusedWords.join('|') + ')\\b', 'gi');
       
-      // Highlight overused words in the copy by wrapping them in a span element
-      const highlightedCopy = copy.replace(regex, function(match) {
+      // Highlight overused words in the copy
+      const highlightedCopy = copy.replace(overusedRegex, function(match) {
         return '<span class="highlight" title="This term may be overused in SEO. Consider using synonyms.">' + match + '</span>';
       });
       
-      // Count total words in the copy
+      // Compute total word count
       const words = copy.match(/\w+/g) || [];
       const totalWords = words.length;
       
-      // Count occurrences of each overused word
+      // Count each overused word's occurrences
       const overusedCounts = {};
       overusedWords.forEach(word => {
-        const wordRegex = new RegExp('\\b' + word + '\\b', 'gi');
-        const matches = copy.match(wordRegex);
+        const regex = new RegExp('\\b' + word + '\\b', 'gi');
+        const matches = copy.match(regex);
         overusedCounts[word] = matches ? matches.length : 0;
       });
       
-      // Generate Copy Analysis Section
+      // Niche keyword mapping for automatic detection
+      const nicheMapping = {
+        "Tech": ["A\\.I", "machine learning", "technology", "tech", "robotics", "data science"],
+        "Sustainability": ["nature", "recycling", "reuse", "sustainable", "environment", "green", "eco"]
+        // Additional niches can be added here
+      };
+      
+      // Function to compute a simple certainty score (each occurrence = 25% up to a cap of 100%)
+      function computeCertainty(count) {
+        return Math.min(100, count * 25);
+      }
+      
+      // Generate Niche Keywords Analysis section (automatic detection)
+      let nicheAnalysisHTML = '<div class="result-section"><h2>Niche Keywords Analysis</h2>';
+      nicheAnalysisHTML += '<table><tr><th>Niche</th><th>Keyword</th><th>Occurrences</th><th>Certainty</th></tr>';
+      let anyNicheFound = false;
+      
+      // Loop over each niche and its keywords
+      for (const niche in nicheMapping) {
+        nicheMapping[niche].forEach(keywordPattern => {
+          // Create a regex for the keyword (the pattern may include regex escapes)
+          const regex = new RegExp('\\b' + keywordPattern + '\\b', 'gi');
+          const matches = copy.match(regex);
+          const count = matches ? matches.length : 0;
+          const certainty = computeCertainty(count);
+          if (count > 0) {
+            anyNicheFound = true;
+            // Clean the keyword display (remove extra escape characters)
+            const cleanKeyword = keywordPattern.replace(/\\\./g, ".");
+            nicheAnalysisHTML += '<tr><td>' + niche + '</td><td>' + cleanKeyword + '</td><td>' + count + '</td><td>' + certainty + '%</td></tr>';
+          }
+        });
+      }
+      if (!anyNicheFound) {
+        nicheAnalysisHTML += '<tr><td colspan="4">No niche-specific keywords were detected.</td></tr>';
+      }
+      nicheAnalysisHTML += '</table></div>';
+      
+      // Manual niche analysis if user provided an optional niche input
+      let manualNicheHTML = '';
+      if (nicheInput) {
+        const nicheKeywords = nicheInput.split(/[\s,]+/).filter(Boolean);
+        const nicheRegex = new RegExp('\\b(' + nicheKeywords.join('|') + ')\\b', 'gi');
+        const matches = copy.match(nicheRegex) || [];
+        manualNicheHTML += '<div class="result-section"><h2>Manual Niche Analysis</h2>';
+        manualNicheHTML += '<p>Your provided niche: <strong>' + nicheInput + '</strong></p>';
+        manualNicheHTML += '<p>Occurrences of your niche keywords in your copy: ' + matches.length + '</p>';
+        manualNicheHTML += '</div>';
+      }
+      
+      // Overused SEO Keywords Analysis Section
+      let overusedHTML = '<div class="result-section"><h2>Overused SEO Keywords Analysis</h2><ul>';
+      let foundOverused = false;
+      for (const [word, count] of Object.entries(overusedCounts)) {
+        if (count > 0) {
+          foundOverused = true;
+          overusedHTML += '<li><strong>' + word + '</strong>: ' + count + ' occurrence' + (count > 1 ? 's' : '') + '</li>';
+        }
+      }
+      overusedHTML += '</ul>';
+      if (!foundOverused) {
+        overusedHTML += '<p>No overused SEO keywords were detected in your copy!</p>';
+      } else {
+        overusedHTML += '<p>Review the highlighted terms above; consider using synonyms to improve natural language flow.</p>';
+      }
+      overusedHTML += '</div>';
+      
+      // Copy Analysis Section
       let analysisHTML = '<div class="result-section"><h2>Copy Analysis</h2>';
       analysisHTML += '<p>Total word count: ' + totalWords + '</p>';
       analysisHTML += '<p>Highlighted copy with potential overused terms:</p>';
       analysisHTML += '<div class="results-box">' + highlightedCopy + '</div>';
       analysisHTML += '</div>';
       
-      // Niche relevance analysis (simple keyword matching)
-      if (niche) {
-        // Split niche into keywords and create regex
-        const nicheKeywords = niche.split(/\s+/).filter(Boolean);
-        const nicheRegex = new RegExp('\\b(' + nicheKeywords.join('|') + ')\\b', 'gi');
-        const nicheMatches = copy.match(nicheRegex) || [];
-        analysisHTML += '<div class="result-section"><h2>Niche Relevance</h2>';
-        analysisHTML += '<p>Your niche: <strong>' + niche + '</strong></p>';
-        analysisHTML += '<p>Occurrences of niche keywords in your copy: ' + nicheMatches.length + '</p>';
-        analysisHTML += '</div>';
-      }
-      
-      // Overused Words Analysis Section
-      analysisHTML += '<div class="result-section"><h2>Overused Words Analysis</h2><ul>';
-      let foundOverused = false;
-      for (const [word, count] of Object.entries(overusedCounts)) {
-        if (count > 0) {
-          foundOverused = true;
-          analysisHTML += '<li><strong>' + word + '</strong>: ' + count + ' occurrence' + (count > 1 ? 's' : '') + '</li>';
-        }
-      }
-      analysisHTML += '</ul>';
-      if (!foundOverused) {
-        analysisHTML += '<p>No overused SEO words were detected in your copy!</p>';
-      } else {
-        analysisHTML += '<p>The highlighted terms above may be overused. Consider using synonyms for a more natural language and improved SEO.</p>';
-      }
-      analysisHTML += '</div>';
-      
-      // Display the final analysis
-      resultsDiv.innerHTML = analysisHTML;
+      // Combine all analysis sections
+      resultsDiv.innerHTML = analysisHTML + nicheAnalysisHTML + manualNicheHTML + overusedHTML;
     });
   </script>
 </body>
