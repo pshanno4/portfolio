@@ -234,9 +234,16 @@
     .dark-mode .toggle-dark button:hover {
       background-color: #444;
     }
-    .dark-mode .highlight {
-      background-color: #cc9900;
+    /* Dark mode: Darken table cell colors for easier reading */
+    function getDarkOccurrenceColor(base) {
+      // For dark mode, we use darker shades
+      if (base === "high") return "#6f0000";   // high occurrences
+      if (base === "medium") return "#8a6b09";   // medium occurrences
+      if (base === "low") return "#004d00";      // low occurrences
+      return "#004d00";
     }
+    /* Note: We'll adjust our JS functions below accordingly */
+    
   </style>
 </head>
 <body>
@@ -304,7 +311,8 @@
         Remaining words are checked against industry–specific mappings. Exact matches are marked as “known” (100% certainty); others are
         processed by a similarity algorithm to “guess” their niche and assign a confidence score. Keywords matching your selected niche appear
         in the main table (with occurrence and certainty color–coding), while those from other niches are grouped in a secondary table (expandable
-        via a toggle). Dark Mode turns the entire page (including all whitespace) dark for a high-contrast, professional view.
+        via a toggle). Finally, an overall CONTENT SCORE is computed based on factors like relevant keyword count, total word count, and overused words.
+        Dark Mode turns the entire page (including all whitespace) dark for a high-contrast, professional view.
       </p>
     </div>
   </div>
@@ -598,34 +606,36 @@ truly recommendation recommendations access appeal appeals approach even maintai
       return nicheColors[nicheLower] || "#ffffff";
     }
     
+    // For occurrences: adjust dark mode colors to be darker for easier reading
     function getOccurrencesColor(occurrences, avg) {
       const baseRatio = occurrences / totalWordsCount;
       if (avg > 0) {
         if (occurrences >= 3 * avg) {
-          return isDarkMode() ? "#8B0000" : "#ffcccc";
+          return isDarkMode() ? "#6f0000" : "#ffcccc";
         } else if (occurrences >= 2 * avg) {
-          return isDarkMode() ? "#B8860B" : "#fff5cc";
+          return isDarkMode() ? "#8a6b09" : "#fff5cc";
         }
       }
       if (baseRatio > 0.1) {
-        return isDarkMode() ? "#8B0000" : "#ffcccc";
+        return isDarkMode() ? "#6f0000" : "#ffcccc";
       } else if (baseRatio > 0.05) {
-        return isDarkMode() ? "#B8860B" : "#fff5cc";
+        return isDarkMode() ? "#8a6b09" : "#fff5cc";
       }
-      return isDarkMode() ? "#006400" : "#ccffcc";
+      return isDarkMode() ? "#004d00" : "#ccffcc";
     }
     
+    // For certainty: use darker shades in dark mode
     function getCertaintyColor(certainty) {
       if (typeof certainty === "number") {
         if (certainty >= 70) {
-          return isDarkMode() ? "#006400" : "#ccffcc";
+          return isDarkMode() ? "#004d00" : "#ccffcc";
         } else if (certainty >= 40) {
-          return isDarkMode() ? "#B8860B" : "#fff5cc";
+          return isDarkMode() ? "#8a6b09" : "#fff5cc";
         } else {
-          return isDarkMode() ? "#8B0000" : "#ffcccc";
+          return isDarkMode() ? "#6f0000" : "#ffcccc";
         }
       }
-      return isDarkMode() ? "#8B0000" : "#ffcccc";
+      return isDarkMode() ? "#6f0000" : "#ffcccc";
     }
     
     /************************************************
@@ -811,8 +821,32 @@ truly recommendation recommendations access appeal appeals approach even maintai
       }
       nicheAnalysisHTML += '</div>';
       
-      // 10) Combine and Display All Results
-      resultsDiv.innerHTML = analysisHTML + nicheAnalysisHTML + overusedHTML;
+      // 10) Compute Overall Content Score
+      // Define: Score = (10 * number of relevant keywords) + (totalWordsCount/20) - (total overused occurrences)
+      let totalOverused = 0;
+      for (const count of Object.values(overusedCounts)) {
+        totalOverused += count;
+      }
+      let contentScore = Math.floor(relevantKeywords.length * 10 + totalWordsCount / 20 - totalOverused);
+      // Clamp score to between 0 and 100:
+      if (contentScore < 0) contentScore = 0;
+      if (contentScore > 100) contentScore = 100;
+      
+      let scoreMessage = "";
+      if (contentScore >= 80) {
+        scoreMessage = `Your copy looks great! However, this analysis is not exhaustive. If you'd like to refine your content further, feel free to <a href="#contact">contact Paul</a> for a detailed review.`;
+      } else if (contentScore >= 50) {
+        scoreMessage = `Your copy could use some improvements. Consider refining your content further. For a detailed review, please <a href="#contact">contact Paul</a>.`;
+      } else {
+        scoreMessage = `Your copy needs significant improvement. Reach out to <a href="#contact">Paul</a> to refine your content and boost its SEO potential.`;
+      }
+      
+      let contentScoreHTML = `<div class="result-section"><h2>Overall Content Score</h2>
+      <p>Your content score is <strong>${contentScore}</strong> out of 100.</p>
+      <p>${scoreMessage}</p></div>`;
+      
+      // 11) Combine and Display All Results
+      resultsDiv.innerHTML = analysisHTML + nicheAnalysisHTML + overusedHTML + contentScoreHTML;
     });
     
     // Toggle function for showing/hiding the Different Niche keywords section
