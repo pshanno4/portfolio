@@ -153,13 +153,10 @@
       border-collapse: collapse;
       margin-top: 10px;
     }
-    table,
-    th,
-    td {
+    table, th, td {
       border: 1px solid #ddd;
     }
-    th,
-    td {
+    th, td {
       padding: 10px;
       text-align: left;
       font-size: 0.95em;
@@ -214,9 +211,7 @@
       background: #2a2a2a;
       border: 1px solid #444;
     }
-    .dark-mode table,
-    .dark-mode th,
-    .dark-mode td {
+    .dark-mode table, .dark-mode th, .dark-mode td {
       border: 1px solid #444;
     }
     .dark-mode th {
@@ -234,16 +229,11 @@
     .dark-mode .toggle-dark button:hover {
       background-color: #444;
     }
-    /* Dark mode: Darken table cell colors for easier reading */
-    function getDarkOccurrenceColor(base) {
-      // For dark mode, we use darker shades
-      if (base === "high") return "#6f0000";   // high occurrences
-      if (base === "medium") return "#8a6b09";   // medium occurrences
-      if (base === "low") return "#004d00";      // low occurrences
-      return "#004d00";
-    }
-    /* Note: We'll adjust our JS functions below accordingly */
     
+    /* We'll add classes and data attributes to occurrence and certainty cells for live updating */
+    .occurrence-cell, .certainty-cell {
+      transition: background 0.3s;
+    }
   </style>
 </head>
 <body>
@@ -311,8 +301,8 @@
         Remaining words are checked against industry–specific mappings. Exact matches are marked as “known” (100% certainty); others are
         processed by a similarity algorithm to “guess” their niche and assign a confidence score. Keywords matching your selected niche appear
         in the main table (with occurrence and certainty color–coding), while those from other niches are grouped in a secondary table (expandable
-        via a toggle). Finally, an overall CONTENT SCORE is computed based on factors like relevant keyword count, total word count, and overused words.
-        Dark Mode turns the entire page (including all whitespace) dark for a high-contrast, professional view.
+        via a toggle). Finally, an overall CONTENT SCORE is computed based on relevant keyword count, total word count, and overused words.
+        Dark Mode turns the entire page dark—and if you toggle modes after analysis, table cell colors update in real time.
       </p>
     </div>
   </div>
@@ -323,6 +313,8 @@
     darkModeBtn.addEventListener("click", function() {
       document.documentElement.classList.toggle("dark-mode");
       document.body.classList.toggle("dark-mode");
+      // After toggling, update table cell colors if results exist
+      updateTableColors();
       if (document.body.classList.contains("dark-mode")) {
         darkModeBtn.textContent = "Activate Light Mode";
       } else {
@@ -472,7 +464,7 @@ truly recommendation recommendations access appeal appeals approach even maintai
     };
     
     /************************************************
-     *            Niche Colors for Table            *
+     * Niche Colors for Table
      ************************************************/
     const nicheColors = {
       "tech": "#d1ecf1",
@@ -526,7 +518,7 @@ truly recommendation recommendations access appeal appeals approach even maintai
     };
     
     /************************************************
-     *    Build a Quick-Look Dictionary (lowercase) *
+     * Build a Quick-Look Dictionary (lowercase)
      ************************************************/
     const knownKeywords = {};
     for (const niche in nicheMapping) {
@@ -539,7 +531,7 @@ truly recommendation recommendations access appeal appeals approach even maintai
     }
     
     /************************************************
-     *    Text Normalization / Word Frequency       *
+     * Text Normalization / Word Frequency
      ************************************************/
     function normalizeWord(word) {
       return word.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
@@ -558,7 +550,7 @@ truly recommendation recommendations access appeal appeals approach even maintai
     }
     
     /************************************************
-     *    Refined Guess Niche for Unknown Keyword   *
+     * Refined Guess Niche for Unknown Keyword
      ************************************************/
     function guessNiche(word) {
       const wLower = word.toLowerCase();
@@ -593,7 +585,7 @@ truly recommendation recommendations access appeal appeals approach even maintai
     }
     
     /************************************************
-     *   Color Helpers for Occurrences and Certainty *
+     * Color Helpers for Occurrences and Certainty
      ************************************************/
     let totalWordsCount = 0;
     
@@ -606,7 +598,7 @@ truly recommendation recommendations access appeal appeals approach even maintai
       return nicheColors[nicheLower] || "#ffffff";
     }
     
-    // For occurrences: adjust dark mode colors to be darker for easier reading
+    // For occurrences, use darker shades in dark mode
     function getOccurrencesColor(occurrences, avg) {
       const baseRatio = occurrences / totalWordsCount;
       if (avg > 0) {
@@ -624,7 +616,7 @@ truly recommendation recommendations access appeal appeals approach even maintai
       return isDarkMode() ? "#004d00" : "#ccffcc";
     }
     
-    // For certainty: use darker shades in dark mode
+    // For certainty, use darker shades in dark mode
     function getCertaintyColor(certainty) {
       if (typeof certainty === "number") {
         if (certainty >= 70) {
@@ -639,7 +631,24 @@ truly recommendation recommendations access appeal appeals approach even maintai
     }
     
     /************************************************
-     *           Main Analysis Logic                *
+     * Update Table Colors in Real Time
+     ************************************************/
+    function updateTableColors() {
+      const occCells = document.querySelectorAll('.occurrence-cell');
+      occCells.forEach(cell => {
+        const occ = parseFloat(cell.dataset.occurrences);
+        const avg = parseFloat(cell.dataset.average);
+        cell.style.backgroundColor = getOccurrencesColor(occ, avg);
+      });
+      const certCells = document.querySelectorAll('.certainty-cell');
+      certCells.forEach(cell => {
+        const cert = parseFloat(cell.dataset.certainty);
+        cell.style.backgroundColor = getCertaintyColor(cert);
+      });
+    }
+    
+    /************************************************
+     * Main Analysis Logic
      ************************************************/
     document.getElementById('analyzeBtn').addEventListener('click', function() {
       const inputNiche = document.getElementById('niche').value.trim();
@@ -783,8 +792,8 @@ truly recommendation recommendations access appeal appeals approach even maintai
             <tr>
               <td style="background-color:${nicheColor};">${item.niche}</td>
               <td>${item.keyword}</td>
-              <td style="background-color:${occColor};">${item.occurrences}</td>
-              <td style="background-color:${certColor};">${item.certainty}%</td>
+              <td class="occurrence-cell" data-occurrences="${item.occurrences}" data-average="${avgOccurrence}" style="background-color:${occColor};">${item.occurrences}</td>
+              <td class="certainty-cell" data-certainty="${item.certainty}" style="background-color:${certColor};">${item.certainty}%</td>
             </tr>`;
         });
         nicheAnalysisHTML += '</table>';
@@ -811,8 +820,8 @@ truly recommendation recommendations access appeal appeals approach even maintai
             nicheAnalysisHTML += `
               <tr>
                 <td>${item.keyword}</td>
-                <td style="background-color:${occColor};">${item.occurrences}</td>
-                <td style="background-color:${certColor};">${item.certainty}%</td>
+                <td class="occurrence-cell" data-occurrences="${item.occurrences}" data-average="${avgOccurrence}" style="background-color:${occColor};">${item.occurrences}</td>
+                <td class="certainty-cell" data-certainty="${item.certainty}" style="background-color:${certColor};">${item.certainty}%</td>
               </tr>`;
           });
           nicheAnalysisHTML += '</table>';
@@ -822,23 +831,21 @@ truly recommendation recommendations access appeal appeals approach even maintai
       nicheAnalysisHTML += '</div>';
       
       // 10) Compute Overall Content Score
-      // Define: Score = (10 * number of relevant keywords) + (totalWordsCount/20) - (total overused occurrences)
       let totalOverused = 0;
       for (const count of Object.values(overusedCounts)) {
         totalOverused += count;
       }
       let contentScore = Math.floor(relevantKeywords.length * 10 + totalWordsCount / 20 - totalOverused);
-      // Clamp score to between 0 and 100:
       if (contentScore < 0) contentScore = 0;
       if (contentScore > 100) contentScore = 100;
       
       let scoreMessage = "";
       if (contentScore >= 80) {
-        scoreMessage = `Your copy looks great! However, this analysis is not exhaustive. If you'd like to refine your content further, feel free to <a href="#contact">contact Paul</a> for a detailed review.`;
+        scoreMessage = `Your copy looks great! However, this analysis is not exhaustive. If you'd like to refine your content further, please <a href="index.html#contact">contact Paul</a> for a detailed review.`;
       } else if (contentScore >= 50) {
-        scoreMessage = `Your copy could use some improvements. Consider refining your content further. For a detailed review, please <a href="#contact">contact Paul</a>.`;
+        scoreMessage = `Your copy could use some improvements. Consider refining your content further. For a detailed review, please <a href="index.html#contact">contact Paul</a>.`;
       } else {
-        scoreMessage = `Your copy needs significant improvement. Reach out to <a href="#contact">Paul</a> to refine your content and boost its SEO potential.`;
+        scoreMessage = `Your copy needs significant improvement. Reach out to <a href="index.html#contact">Paul</a> to refine your content and boost its SEO potential.`;
       }
       
       let contentScoreHTML = `<div class="result-section"><h2>Overall Content Score</h2>
@@ -891,6 +898,23 @@ truly recommendation recommendations access appeal appeals approach even maintai
         }
       }
       return matches / Math.max(a.length, b.length);
+    }
+    
+    /************************************************
+     * Update Table Colors in Real Time
+     ************************************************/
+    function updateTableColors() {
+      const occCells = document.querySelectorAll('.occurrence-cell');
+      occCells.forEach(cell => {
+        const occ = parseFloat(cell.dataset.occurrences);
+        const avg = parseFloat(cell.dataset.average);
+        cell.style.backgroundColor = getOccurrencesColor(occ, avg);
+      });
+      const certCells = document.querySelectorAll('.certainty-cell');
+      certCells.forEach(cell => {
+        const cert = parseFloat(cell.dataset.certainty);
+        cell.style.backgroundColor = getCertaintyColor(cert);
+      });
     }
   </script>
 </body>
