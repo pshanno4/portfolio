@@ -35,22 +35,27 @@ body {
     padding: 20px 0;
 }
 
-/* Header */
+/* Updated Navbar & Header Styles */
 header {
-    background-color: var(--header-bg);
-    color: #fff;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 100;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  background: transparent; /* Let the inner container show its rounded style */
 }
+
 .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: var(--header-bg); /* Dark background for consistency */
+  border-radius: 8px; /* Rounded corners for the entire navbar */
+  margin: 10px auto; /* Centered with some vertical spacing */
+  max-width: 1200px;
 }
-/* Ensure the logo is clickable */
+
+/* Logo Styles */
 .logo {
   display: flex;
   align-items: center;
@@ -65,7 +70,6 @@ header {
   color: var(--secondary-color);
 }
 
-/* Ensure image inside the logo doesn't break */
 .logo-icon {
   width: 30px;
   height: 30px;
@@ -73,24 +77,68 @@ header {
   border-radius: 50%;
   object-fit: cover;
 }
+
+/* Navigation Links */
 .nav-links {
-    list-style: none;
-    display: flex;
-}
-.nav-links li {
-    margin-left: 25px;
-}
-.nav-links a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-.nav-links a:hover {
-    color: var(--secondary-color);
+  list-style: none;
+  display: flex;
+  margin: 0;
 }
 
-/* hero Section */
+.nav-links li {
+  margin-left: 25px;
+  position: relative;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--secondary-color);
+}
+
+/* Dropdown Menu Styles */
+.nav-links li.dropdown > a {
+  color: #fff; /* Keep parent link text white */
+}
+
+.nav-links li.dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 5px); /* Small gap below the nav item */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #2e2e2e; /* A slightly different dark shade */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 5px; /* Rounded corners to match the navbar */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
+  z-index: 101;
+}
+
+.nav-links li.dropdown .dropdown-menu li a {
+  display: block;
+  padding: 10px 15px;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.nav-links li.dropdown .dropdown-menu li a:hover {
+  background-color: var(--secondary-color);
+}
+
+.nav-links li.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Hero Section */
 #hero {
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://i.imgur.com/DXM7zt2.jpeg') center/cover no-repeat;
     height: 100vh;
@@ -307,6 +355,7 @@ footer {
       font-size: 1.1rem;
     }
 }
+
 /* Mobile Menu */
 .menu-toggle {
   display: none;
@@ -396,46 +445,3 @@ footer {
   font-weight: 600;
   color: var(--primary-color);
 }
-
-/* Updated Dropdown Menu Styles */
-.nav-links li.dropdown {
-    position: relative;
-}
-
-.nav-links li.dropdown > a {
-    color: #fff; /* Ensures the parent link stays white */
-}
-
-.nav-links li.dropdown .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: calc(100% + 5px); /* Adds a small gap below the nav item */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #2e2e2e; /* A dark gray that's distinct from the navbar */
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border: none;
-    border-radius: 5px; /* Rounded corners for a smoother appearance */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    min-width: 150px;
-    z-index: 101;
-}
-
-.nav-links li.dropdown .dropdown-menu li a {
-    display: block;
-    padding: 10px 15px;
-    color: #fff; /* White text for dropdown items */
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.nav-links li.dropdown .dropdown-menu li a:hover {
-    background-color: var(--secondary-color); /* Uses your theme's secondary color for hover */
-}
-
-.nav-links li.dropdown:hover .dropdown-menu {
-    display: block;
-}
-
