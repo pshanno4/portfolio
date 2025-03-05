@@ -403,19 +403,21 @@ footer {
 }
 
 .nav-links li.dropdown > a {
-    color: #fff; /* Keeps the parent link white */
+    color: #fff; /* Ensures the parent link stays white */
 }
 
 .nav-links li.dropdown .dropdown-menu {
     display: none;
     position: absolute;
-    top: 100%;
+    top: calc(100% + 5px); /* Adds a small gap below the nav item */
     left: 50%;
     transform: translateX(-50%);
-    background-color: var(--header-bg); /* Consistent dark background */
+    background-color: #2e2e2e; /* A dark gray that's distinct from the navbar */
     list-style: none;
     padding: 0;
     margin: 0;
+    border: none;
+    border-radius: 5px; /* Rounded corners for a smoother appearance */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     min-width: 150px;
     z-index: 101;
@@ -430,7 +432,7 @@ footer {
 }
 
 .nav-links li.dropdown .dropdown-menu li a:hover {
-    background-color: var(--secondary-color); /* Hover color from your theme */
+    background-color: var(--secondary-color); /* Uses your theme's secondary color for hover */
 }
 
 .nav-links li.dropdown:hover .dropdown-menu {
