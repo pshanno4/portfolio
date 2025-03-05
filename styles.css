@@ -35,13 +35,15 @@ body {
     padding: 20px 0;
 }
 
-/* Updated Navbar & Header Styles */
+/* Header & Navbar */
 header {
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 100;
-  background: transparent; /* Let the inner container show its rounded style */
+  background-color: var(--header-bg);
+  /* Round bottom corners of the entire navbar; change to 0 if you want no rounding */
+  border-radius: 0 0 8px 8px;
 }
 
 .header-container {
@@ -49,10 +51,9 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
-  background-color: var(--header-bg); /* Dark background for consistency */
-  border-radius: 8px; /* Rounded corners for the entire navbar */
-  margin: 10px auto; /* Centered with some vertical spacing */
+  /* The content is centered, but the navbar background stretches 100% */
   max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Logo Styles */
@@ -116,7 +117,7 @@ header {
   list-style: none;
   padding: 0;
   margin: 0;
-  border-radius: 5px; /* Rounded corners to match the navbar */
+  border-radius: 5px; /* Rounded corners for the dropdown */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   min-width: 150px;
   z-index: 101;
