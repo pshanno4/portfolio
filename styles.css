@@ -397,21 +397,22 @@ footer {
   color: var(--primary-color);
 }
 
-/* Dropdown Menu Styles */
+/* Updated Dropdown Menu Styles */
 .nav-links li.dropdown {
     position: relative;
 }
 
 .nav-links li.dropdown > a {
-    color: #fff; /* Ensures the parent link remains white */
+    color: #fff; /* Keeps the parent link white */
 }
 
 .nav-links li.dropdown .dropdown-menu {
     display: none;
     position: absolute;
     top: 100%;
-    left: 0;
-    background-color: var(--header-bg); /* Matches the header background */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--header-bg); /* Consistent dark background */
     list-style: none;
     padding: 0;
     margin: 0;
@@ -429,9 +430,10 @@ footer {
 }
 
 .nav-links li.dropdown .dropdown-menu li a:hover {
-    background-color: var(--secondary-color); /* Hover state from your theme */
+    background-color: var(--secondary-color); /* Hover color from your theme */
 }
 
 .nav-links li.dropdown:hover .dropdown-menu {
     display: block;
 }
+
