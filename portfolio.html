@@ -43,6 +43,28 @@
     .dropdown:hover .dropdown-menu {
       display: block;
     }
+    /* Pagination styles (basic example; customize as needed) */
+    .pagination {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .pagination button {
+      background-color: var(--secondary-color);
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      margin: 0 5px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .pagination button:hover {
+      background-color: #e05555;
+    }
+    .pagination span {
+      font-size: 1rem;
+      color: var(--primary-color);
+    }
   </style>
 </head>
 <body>
@@ -72,13 +94,15 @@
     </div>
   </header>
 
-  <!-- Blog Section -->
+  <!-- Portfolio Section -->
   <section id="portfolio">
     <div class="container portfolio-container">
       <h2>Portfolio Blog: Between the Lines</h2>
       <div id="posts" class="portfolio-grid">
         <!-- Blog posts will be injected here by blog.js -->
       </div>
+      <!-- Pagination Controls -->
+      <div id="pagination" class="pagination"></div>
     </div>
   </section>
 
