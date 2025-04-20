@@ -1,40 +1,63 @@
+// blog.js
 document.addEventListener('DOMContentLoaded', function() {
   fetch('posts.json')
     .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not OK');
-      }
+      if (!response.ok) throw new Error('Network response was not OK');
       return response.json();
     })
     .then(data => {
-      // Sort posts so that the newest posts (by date) come first.
+      // Sort newest first
       data.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-      const postsPerPage = 6; // Changed from 9 to 6 articles per page
-      const totalPages = Math.ceil(data.length / postsPerPage);
+      // Populate tag filter dropdown
+      const tagFilter = document.getElementById('tagFilter');
+      const allTags = new Set();
+      data.forEach(post => {
+        if (post.tags) post.tags.forEach(tag => allTags.add(tag));
+      });
+      allTags.forEach(tag => {
+        const opt = document.createElement('option');
+        opt.value = tag;
+        opt.textContent = tag;
+        tagFilter.appendChild(opt);
+      });
+
+      let selectedTag = 'all';
+      tagFilter.addEventListener('change', () => {
+        selectedTag = tagFilter.value;
+        currentPage = 1;
+        displayPosts(currentPage);
+        updatePagination();
+      });
+
+      const postsPerPage = 6;
       let currentPage = 1;
       const postsContainer = document.getElementById('posts');
       const paginationContainer = document.getElementById('pagination');
 
-      // Function to display posts for a given page
-      function displayPosts(page) {
-        postsContainer.innerHTML = ''; // Clear current posts
-        const startIndex = (page - 1) * postsPerPage;
-        const endIndex = Math.min(startIndex + postsPerPage, data.length);
+      function getFiltered() {
+        return selectedTag === 'all'
+          ? data
+          : data.filter(post => post.tags && post.tags.includes(selectedTag));
+      }
 
-        for (let i = startIndex; i < endIndex; i++) {
-          const post = data[i];
-          // Create the card container
+      function displayPosts(page) {
+        postsContainer.innerHTML = '';
+        const filtered = getFiltered();
+        const start = (page - 1) * postsPerPage;
+        const end = Math.min(start + postsPerPage, filtered.length);
+
+        filtered.slice(start, end).forEach(post => {
           const card = document.createElement('div');
           card.className = 'project-card';
 
-          // Create and append the image element
+          // Image
           const img = document.createElement('img');
           img.src = post.image;
           img.alt = post.title;
           card.appendChild(img);
 
-          // Create and append the title (wrapped in an anchor)
+          // Title & link
           const h3 = document.createElement('h3');
           const a = document.createElement('a');
           a.href = post.link;
@@ -44,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
           h3.appendChild(a);
           card.appendChild(h3);
 
-          // Append date element (if exists)
+          // Date
           if (post.date) {
             const dateEl = document.createElement('p');
             dateEl.className = 'post-date';
@@ -52,25 +75,37 @@ document.addEventListener('DOMContentLoaded', function() {
             card.appendChild(dateEl);
           }
 
-          // Create and append the description element
+          // Description
           const p = document.createElement('p');
           p.innerHTML = post.description;
           card.appendChild(p);
 
-          // Append the card to the posts container
+          // Tags
+          if (post.tags) {
+            const tagsContainer = document.createElement('div');
+            tagsContainer.className = 'tags-container';
+            post.tags.forEach(tag => {
+              const tagEl = document.createElement('span');
+              tagEl.className = 'tag';
+              tagEl.textContent = tag;
+              tagsContainer.appendChild(tagEl);
+            });
+            card.appendChild(tagsContainer);
+          }
+
           postsContainer.appendChild(card);
-        }
+        });
       }
 
-      // Function to update pagination controls
       function updatePagination() {
-        paginationContainer.innerHTML = ''; // Clear any existing controls
+        paginationContainer.innerHTML = '';
+        const filtered = getFiltered();
+        const totalPages = Math.ceil(filtered.length / postsPerPage);
 
-        // Create Previous Button if not on the first page
         if (currentPage > 1) {
           const prevBtn = document.createElement('button');
           prevBtn.textContent = 'Previous';
-          prevBtn.addEventListener('click', function() {
+          prevBtn.addEventListener('click', () => {
             currentPage--;
             displayPosts(currentPage);
             updatePagination();
@@ -78,16 +113,14 @@ document.addEventListener('DOMContentLoaded', function() {
           paginationContainer.appendChild(prevBtn);
         }
 
-        // Display page information
         const pageInfo = document.createElement('span');
         pageInfo.textContent = ` Page ${currentPage} of ${totalPages} `;
         paginationContainer.appendChild(pageInfo);
 
-        // Create Next Button if not on the last page
         if (currentPage < totalPages) {
           const nextBtn = document.createElement('button');
           nextBtn.textContent = 'Next';
-          nextBtn.addEventListener('click', function() {
+          nextBtn.addEventListener('click', () => {
             currentPage++;
             displayPosts(currentPage);
             updatePagination();
@@ -96,11 +129,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
 
-      // Initial display of posts and pagination setup
+      // Initialize display
       displayPosts(currentPage);
       updatePagination();
     })
-    .catch(error => {
-      console.error('Error fetching blog posts:', error);
-    });
+    .catch(error => console.error('Error fetching blog posts:', error));
 });
