@@ -1,4 +1,3 @@
-<!-- portfolio.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,34 +12,60 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* Nav & dropdown (unchanged) */
-    .nav-links { list-style: none; display: flex; gap: 1rem; }
-    .nav-links li { position: relative; }
-    .nav-links a { text-decoration: none; padding: 0.5rem; display: block; }
-    .dropdown-menu { display: none; position: absolute; top:100%; left:0; background:white; list-style:none; padding:0; margin:0; box-shadow:0 4px 6px rgba(0,0,0,0.1); }
-    .dropdown-menu li a { white-space: nowrap; }
-    .dropdown:hover .dropdown-menu { display:block; }
+    /* --- Navigation & Dropdown --- */
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links li {
+      position: relative;
+    }
+    .nav-links a {
+      text-decoration: none;
+      padding: 0.5rem;
+      display: block;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .dropdown-menu li a {
+      white-space: nowrap;
+    }
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
 
-    /* Plant icon container */
+    /* --- Plant Icon Styles --- */
     .latest-icon-container {
       text-align: center;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
     #latest-article-icon {
-      width: 60px;
-      height: 60px;
-      stroke: #000;
-      stroke-width: 2;
+      width: 120px;
+      height: 120px;
+      stroke: #333;
+      stroke-width: 2.5;
       fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
       cursor: pointer;
       transition: stroke 0.3s, fill 0.3s;
     }
     #latest-article-icon:hover {
-      stroke: #0073b1;
+      stroke: var(--primary-color);
       fill: rgba(0,115,177,0.1);
     }
 
-    /* Clean Tag Filter UI */
+    /* --- Tag Filter UI --- */
     .filter-container {
       display: inline-flex;
       align-items: center;
@@ -75,7 +100,7 @@
       box-shadow: 0 0 0 2px rgba(63,81,181,0.2);
     }
 
-    /* Grid & Cards */
+    /* --- Grid & Cards --- */
     .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -125,7 +150,7 @@
       border-radius: 4px;
     }
 
-    /* Pagination */
+    /* --- Pagination --- */
     .pagination {
       margin-top: 20px;
       text-align: center;
@@ -150,7 +175,7 @@
   </style>
 </head>
 <body>
-  <!-- Header (unchanged) -->
+  <!-- Header -->
   <header>
     <div class="container header-container">
       <h1 class="logo">
@@ -179,18 +204,23 @@
   <!-- Portfolio Section -->
   <section id="portfolio">
     <div class="container portfolio-container">
-
-      <!-- Clickable Plant Icon -->
+      <!-- Professional Plant Icon -->
       <div class="latest-icon-container">
         <svg id="latest-article-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-          <!-- Pot -->
-          <path d="M20,44 L20,54 L44,54 L44,44 Z" />
+          <!-- Pot shadow -->
+          <ellipse cx="32" cy="54" rx="18" ry="4"/>
+          <!-- Pot body -->
+          <rect x="14" y="40" width="36" height="14" rx="3"/>
           <!-- Stem -->
-          <path d="M32,44 L32,26" />
-          <!-- Left leaf -->
-          <path d="M32,30 C28,26 22,28 20,34" />
-          <!-- Right leaf -->
-          <path d="M32,30 C36,26 42,28 44,34" />
+          <path d="M32 40 L32 20"/>
+          <!-- Leaf 1 -->
+          <path d="M32 28 C24 24 18 32 24 36"/>
+          <!-- Leaf 2 -->
+          <path d="M32 24 C40 20 46 28 40 32"/>
+          <!-- Leaf 3 -->
+          <path d="M32 20 C26 16 18 20 22 26"/>
+          <!-- Leaf 4 -->
+          <path d="M32 16 C38 12 46 16 42 22"/>
         </svg>
       </div>
 
@@ -214,7 +244,7 @@
     </div>
   </section>
 
-  <!-- Footer (unchanged) -->
+  <!-- Footer -->
   <footer>
     <div class="container footer-container">
       <p>&copy; 2025 Paul Shannon. All rights reserved.</p>
@@ -226,7 +256,7 @@
     </div>
   </footer>
 
-  <!-- Blog JS -->
+  <!-- Blog JavaScript -->
   <script src="blog.js"></script>
 </body>
 </html>
