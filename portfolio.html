@@ -44,17 +44,52 @@
       display: block;
     }
 
+    /* --- Clean Tag Filter UI --- */
+    .filter-container {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      padding: 0.75rem 1rem;
+      background: #f9f9f9;
+      border: 1px solid #ececec;
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .filter-container label {
+      font-weight: 600;
+      color: var(--primary-color);
+      margin: 0;
+    }
+    .filter-container select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      padding: 8px 12px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: #fff url('data:image/svg+xml;utf8,<svg fill="%23666" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center;
+      background-size: 12px;
+      cursor: pointer;
+    }
+    .filter-container select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(63,81,181,0.2);
+    }
+
     /* --- Grid & Cards --- */
     .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
-      align-items: start;            /* ensure all grid items line up at the top */
+      align-items: start;
     }
     .project-card {
       display: flex;
       flex-direction: column;
-      height: 100%;                  /* stretch each card to full row height */
+      height: 100%;
       background: #fff;
       border-radius: 8px;
       padding: 1.5rem;
@@ -67,8 +102,6 @@
       margin-bottom: 1rem;
       flex-shrink: 0;
     }
-
-    /* --- Content Spacing & Alignment --- */
     .project-card h3 {
       margin: 0.5rem 0;
       flex-shrink: 0;
@@ -81,22 +114,19 @@
     .project-card p {
       margin: 0 0 1rem;
       line-height: 1.5;
-      flex-grow: 1;                  /* let description fill available space */
+      flex-grow: 1;
     }
-
-    /* ensure tags container sits at the bottom */
     .tags-container {
       margin-top: auto;
       flex-shrink: 0;
     }
-
-    /* --- Filter --- */
-    .filter-container {
-      margin-bottom: 1.5rem;
-      font-size: 0.95rem;
-    }
-    .filter-container label {
-      margin-right: 0.5rem;
+    .tag {
+      display: inline-block;
+      padding: 2px 6px;
+      margin-right: 4px;
+      font-size: 0.8rem;
+      background-color: #e0e0e0;
+      border-radius: 4px;
     }
 
     /* --- Pagination --- */
@@ -120,16 +150,6 @@
     .pagination span {
       font-size: 1rem;
       color: var(--primary-color);
-    }
-
-    /* --- Tag Labels --- */
-    .tag {
-      display: inline-block;
-      padding: 2px 6px;
-      margin-right: 4px;
-      font-size: 0.8rem;
-      background-color: #e0e0e0;
-      border-radius: 4px;
     }
   </style>
 </head>
@@ -195,7 +215,7 @@
     </div>
   </footer>
 
-  <!-- Blog JavaScript -->
+  <!-- Blog JavaScript file: Loads posts from posts.json -->
   <script src="blog.js"></script>
 </body>
 </html>
