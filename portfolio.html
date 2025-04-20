@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* Minimal styles for dropdown functionality */
+    /* --- Navigation & Dropdown --- */
     .nav-links {
       list-style: none;
       display: flex;
@@ -44,27 +44,62 @@
       display: block;
     }
 
-    /* Tag filter + tags styles */
-    .filter-container {
+    /* --- Grid & Cards --- */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      align-items: start;            /* ensure all grid items line up at the top */
+    }
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;                  /* stretch each card to full row height */
+      background: #fff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    .project-card img {
+      width: 100%;
+      border-radius: 4px;
+      object-fit: cover;
       margin-bottom: 1rem;
-      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    /* --- Content Spacing & Alignment --- */
+    .project-card h3 {
+      margin: 0.5rem 0;
+      flex-shrink: 0;
+    }
+    .project-card .post-date {
+      margin: 0.25rem 0 1rem;
+      color: #666;
+      flex-shrink: 0;
+    }
+    .project-card p {
+      margin: 0 0 1rem;
+      line-height: 1.5;
+      flex-grow: 1;                  /* let description fill available space */
+    }
+
+    /* ensure tags container sits at the bottom */
+    .tags-container {
+      margin-top: auto;
+      flex-shrink: 0;
+    }
+
+    /* --- Filter --- */
+    .filter-container {
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
     }
     .filter-container label {
       margin-right: 0.5rem;
     }
-    .tags-container {
-      margin-top: 8px;
-    }
-    .tag {
-      display: inline-block;
-      padding: 2px 6px;
-      margin-right: 4px;
-      font-size: 0.8rem;
-      background-color: #e0e0e0;
-      border-radius: 4px;
-    }
 
-    /* Pagination styles */
+    /* --- Pagination --- */
     .pagination {
       margin-top: 20px;
       text-align: center;
@@ -86,10 +121,20 @@
       font-size: 1rem;
       color: var(--primary-color);
     }
+
+    /* --- Tag Labels --- */
+    .tag {
+      display: inline-block;
+      padding: 2px 6px;
+      margin-right: 4px;
+      font-size: 0.8rem;
+      background-color: #e0e0e0;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
-  <!-- Header (Same as your main site) -->
+  <!-- Header -->
   <header>
     <div class="container header-container">
       <h1 class="logo">
@@ -128,8 +173,9 @@
         </select>
       </div>
 
+      <!-- Posts Grid -->
       <div id="posts" class="portfolio-grid">
-        <!-- Blog posts will be injected here by blog.js -->
+        <!-- Injected by blog.js -->
       </div>
 
       <!-- Pagination Controls -->
@@ -137,7 +183,7 @@
     </div>
   </section>
 
-  <!-- Footer (Same as your main site) -->
+  <!-- Footer -->
   <footer>
     <div class="container footer-container">
       <p>&copy; 2025 Paul Shannon. All rights reserved.</p>
@@ -149,7 +195,7 @@
     </div>
   </footer>
 
-  <!-- Blog JavaScript file: Loads posts from posts.json -->
+  <!-- Blog JavaScript -->
   <script src="blog.js"></script>
 </body>
 </html>
