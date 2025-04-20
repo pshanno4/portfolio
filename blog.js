@@ -1,19 +1,29 @@
 // blog.js
+
 document.addEventListener('DOMContentLoaded', function() {
   fetch('posts.json')
     .then(response => {
-      if (!response.ok) throw new Error('Network response was not OK');
+      if (!response.ok) {
+        throw new Error('Network response was not OK');
+      }
       return response.json();
     })
     .then(data => {
-      // Sort newest first
+      // Sort posts so the newest come first
       data.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-      // Populate tag filter dropdown
+      // Cache DOM elements
       const tagFilter = document.getElementById('tagFilter');
+      const postsContainer = document.getElementById('posts');
+      const paginationContainer = document.getElementById('pagination');
+      const portfolioSection = document.getElementById('portfolio');
+
+      // Build tag filter options
       const allTags = new Set();
       data.forEach(post => {
-        if (post.tags) post.tags.forEach(tag => allTags.add(tag));
+        if (post.tags) {
+          post.tags.forEach(tag => allTags.add(tag));
+        }
       });
       allTags.forEach(tag => {
         const opt = document.createElement('option');
@@ -26,28 +36,30 @@ document.addEventListener('DOMContentLoaded', function() {
       tagFilter.addEventListener('change', () => {
         selectedTag = tagFilter.value;
         currentPage = 1;
-        displayPosts(currentPage);
-        updatePagination();
+        renderPage(currentPage);
       });
 
       const postsPerPage = 6;
       let currentPage = 1;
-      const postsContainer = document.getElementById('posts');
-      const paginationContainer = document.getElementById('pagination');
 
+      // Helper: get posts matching current tag
       function getFiltered() {
-        return selectedTag === 'all'
-          ? data
-          : data.filter(post => post.tags && post.tags.includes(selectedTag));
+        if (selectedTag === 'all') {
+          return data;
+        }
+        return data.filter(post => post.tags && post.tags.includes(selectedTag));
       }
 
-      function displayPosts(page) {
-        postsContainer.innerHTML = '';
+      // Render posts + pagination for a given page
+      function renderPage(page) {
         const filtered = getFiltered();
-        const start = (page - 1) * postsPerPage;
-        const end = Math.min(start + postsPerPage, filtered.length);
+        const totalPages = Math.ceil(filtered.length / postsPerPage);
+        const startIndex = (page - 1) * postsPerPage;
+        const slice = filtered.slice(startIndex, startIndex + postsPerPage);
 
-        filtered.slice(start, end).forEach(post => {
+        // Clear and render posts
+        postsContainer.innerHTML = '';
+        slice.forEach(post => {
           const card = document.createElement('div');
           card.className = 'project-card';
 
@@ -57,12 +69,11 @@ document.addEventListener('DOMContentLoaded', function() {
           img.alt = post.title;
           card.appendChild(img);
 
-          // Title & link
+          // Title + link
           const h3 = document.createElement('h3');
           const a = document.createElement('a');
           a.href = post.link;
           a.target = '_blank';
-          a.className = 'post-link';
           a.textContent = post.title;
           h3.appendChild(a);
           card.appendChild(h3);
@@ -76,62 +87,60 @@ document.addEventListener('DOMContentLoaded', function() {
           }
 
           // Description
-          const p = document.createElement('p');
-          p.innerHTML = post.description;
-          card.appendChild(p);
+          const desc = document.createElement('p');
+          desc.innerHTML = post.description;
+          card.appendChild(desc);
 
           // Tags
           if (post.tags) {
             const tagsContainer = document.createElement('div');
             tagsContainer.className = 'tags-container';
             post.tags.forEach(tag => {
-              const tagEl = document.createElement('span');
-              tagEl.className = 'tag';
-              tagEl.textContent = tag;
-              tagsContainer.appendChild(tagEl);
+              const span = document.createElement('span');
+              span.className = 'tag';
+              span.textContent = tag;
+              tagsContainer.appendChild(span);
             });
             card.appendChild(tagsContainer);
           }
 
           postsContainer.appendChild(card);
         });
-      }
 
-      function updatePagination() {
+        // Clear and render pagination controls
         paginationContainer.innerHTML = '';
-        const filtered = getFiltered();
-        const totalPages = Math.ceil(filtered.length / postsPerPage);
 
-        if (currentPage > 1) {
+        if (page > 1) {
           const prevBtn = document.createElement('button');
           prevBtn.textContent = 'Previous';
           prevBtn.addEventListener('click', () => {
             currentPage--;
-            displayPosts(currentPage);
-            updatePagination();
+            renderPage(currentPage);
+            portfolioSection.scrollIntoView({ behavior: 'smooth' });
           });
           paginationContainer.appendChild(prevBtn);
         }
 
         const pageInfo = document.createElement('span');
-        pageInfo.textContent = ` Page ${currentPage} of ${totalPages} `;
+        pageInfo.textContent = ` Page ${page} of ${totalPages} `;
         paginationContainer.appendChild(pageInfo);
 
-        if (currentPage < totalPages) {
+        if (page < totalPages) {
           const nextBtn = document.createElement('button');
           nextBtn.textContent = 'Next';
           nextBtn.addEventListener('click', () => {
             currentPage++;
-            displayPosts(currentPage);
-            updatePagination();
+            renderPage(currentPage);
+            portfolioSection.scrollIntoView({ behavior: 'smooth' });
           });
           paginationContainer.appendChild(nextBtn);
         }
       }
 
-      // Initialize display
-      displayPosts(currentPage);
-      updatePagination();
+      // Initial render
+      renderPage(currentPage);
     })
-    .catch(error => console.error('Error fetching blog posts:', error));
+    .catch(error => {
+      console.error('Error fetching blog posts:', error);
+    });
 });
