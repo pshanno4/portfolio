@@ -13,184 +13,51 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Paul Shannon - Tools">
-  <meta name="keywords" content="Paul Shannon, SEO Analyzer, ChatGPT Resource Tracker, tools">
-  <meta name="author" content="Paul Shannon">
   <title>Tools – Paul Shannon</title>
-
-  <!-- Favicon -->
   <link rel="icon" href="favicon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <script defer src="blog.js"></script>
 
-  <!-- Page-specific styling -->
   <style>
-    /* Reset & Layout */
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-    }
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      background-color: #f9f9f9;
-    }
-    main {
-      flex: 1;
-    }
+    /* Base Reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; }
+    body { display: flex; flex-direction: column; font-family: 'Poppins', sans-serif; color: #1e263b; background-color: #f9f9f9; }
+    main { flex: 1; }
+
+    /* Header */
+    header { background: #181a1f; color: #edf2f7; padding: 1rem 0; }
+    .header-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 1rem; }
+    .nav-links { list-style: none; display: flex; gap: 1.5rem; margin: 0; }
+    .nav-links a { color: #edf2f7; text-decoration: none; font-weight: 500; }
+    .nav-links a.active, .nav-links a:hover { color: #2c7be5; }
 
     /* Tools Section */
-    #tools {
-      padding: 4rem 0 2rem;
-      background: repeating-linear-gradient(45deg, #f9f9f9, #f9f9f9 20px, #ffffff 20px, #ffffff 40px);
-    }
-    .tools-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-    .tools-container h2 {
-      position: relative;
-      font-size: 2.5rem;
-      text-align: center;
-      margin-bottom: 1rem;
-      color: #1e263b;
-    }
-    .tools-container h2::after {
-      content: "";
-      display: block;
-      width: 60px;
-      height: 4px;
-      background-color: #2c7be5;
-      margin: 0.5rem auto;
-      border-radius: 2px;
-    }
-    .banner {
-      background-color: #eef4ff;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      text-align: center;
-      color: #1e263b;
-      font-size: 1rem;
-      margin-bottom: 2rem;
-    }
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-    }
-    .project-card {
-      position: relative;
-      background: #ffffff;
-      border-radius: 1rem;
-      padding: 2rem;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-      overflow: hidden;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    }
+    #tools { padding: 4rem 1rem; background-color: #ffffff; }
+    .tools-container { max-width: 1200px; margin: 0 auto; }
+    .tools-container h2 { font-size: 2.25rem; text-align: center; margin-bottom: 1rem; position: relative; }
+    .tools-container h2::after { content: ''; display: block; width: 50px; height: 3px; background: #2c7be5; margin: 0.5rem auto 0; }
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
+    .project-card { background: #f9f9f9; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 2rem; transition: border-color 0.2s ease, transform 0.2s ease; }
+    .project-card:hover { border-color: #2c7be5; transform: translateY(-4px); }
+    .project-card h3 { margin-top: 0; font-size: 1.5rem; color: #2c7be5; }
+    .project-card p { margin: 0.5rem 0 1.5rem; line-height: 1.6; }
+    .project-card a.btn { display: inline-block; padding: 0.5rem 1rem; background: #2c7be5; color: #ffffff; text-decoration: none; border-radius: 0.5rem; font-weight: 500; }
 
-    /* Icons */
-    .icon {
-      width: 2rem;
-      height: 2rem;
-      margin-bottom: 1rem;
-      stroke: #2c7be5;
-    }
-
-    .project-card h3 {
-      font-size: 1.6rem;
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #1e263b;
-    }
-    .project-card h3 a {
-      text-decoration: none;
-      color: inherit;
-    }
-    .project-card p {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #4a5568;
-    }
-
-    /* Reveal Button on Hover */
-    .btn {
-      position: absolute;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      background: #2c7be5;
-      color: #ffffff;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      text-decoration: none;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.2s ease, transform 0.2s ease;
-      font-size: 0.9rem;
-    }
-    .project-card:hover .btn {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Decorative Divider */
-    .divider {
-      width: 100%;
-      height: 20px;
-      background: repeating-linear-gradient(-45deg, #181a1f 0, #181a1f 5px, #f9f9f9 5px, #f9f9f9 10px);
-    }
-
-    /* Footer Full-Width Background */
-    footer {
-      background-color: #181a1f;
-      padding: 2rem 0;
-      margin-top: auto;
-    }
-    .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-      text-align: center;
-      color: #edf2f7;
-    }
-    .footer-container p {
-      margin-bottom: 1rem;
-    }
-    .footer-container .social-links a {
-      margin: 0 0.75rem;
-    }
+    /* Footer */
+    footer { background: #181a1f; color: #edf2f7; padding: 2rem 1rem; }
+    .footer-container { max-width: 1200px; margin: 0 auto; text-align: center; }
+    .social-links { margin-top: 0.5rem; display: flex; justify-content: center; gap: 1rem; }
+    .social-links a { color: #edf2f7; text-decoration: none; }
+    .social-links a:hover { color: #2c7be5; }
   </style>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPT3L22Z"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
   <!-- Header -->
   <header>
-    <div class="container header-container">
-      <a class="logo" href="/">
-        <img src="https://i.imgur.com/Q1eDIaa.png" alt="Logo Icon" class="logo-icon">
-        Paul Shannon
-      </a>
+    <div class="header-container">
+      <a href="/" style="color: #edf2f7; font-size: 1.25rem; font-weight: 600; text-decoration: none;">Paul Shannon</a>
       <nav>
-        <div class="menu-toggle" id="mobile-menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
         <ul class="nav-links">
           <li><a href="#hero">Home</a></li>
           <li><a href="#about">About</a></li>
@@ -207,29 +74,19 @@
     <section id="tools">
       <div class="tools-container">
         <h2>Tools</h2>
-        <div class="banner">All your site‑boosting and ChatGPT tracking tools in one spot.</div>
         <div class="tools-grid">
-          <div class="project-card fade-in">
-            <!-- SEO Icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z" />
-            </svg>
-            <h3><a href="seo-analyzer.html">SEO Analyzer</a></h3>
-            <p>Deep‑dive into your site’s SEO health with keyword insights, on‑page audits, and performance metrics.</p>
+          <div class="project-card">
+            <h3>SEO Analyzer</h3>
+            <p>Deep-dive into your site’s SEO health with keyword insights, on-page audits, and performance metrics.</p>
             <a href="seo-analyzer.html" class="btn">Try it →</a>
           </div>
-          <div class="project-card fade-in" style="transition-delay: 0.1s;">
-            <!-- Chat Icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.961 9.961 0 0 1-4.546-1.024L3 20l1.024-4.454A9.961 9.961 0 0 1 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-            </svg>
-            <h3><a href="chatgpt-tracker.html">ChatGPT Resource Tracker</a></h3>
+          <div class="project-card">
+            <h3>ChatGPT Resource Tracker</h3>
             <p>Keep track of your ChatGPT prompts, tokens used, and session history—all in one place.</p>
             <a href="chatgpt-tracker.html" class="btn">Try it →</a>
           </div>
         </div>
       </div>
-      <div class="divider"></div>
     </section>
   </main>
 
@@ -244,26 +101,5 @@
       </div>
     </div>
   </footer>
-
-  <!-- Scroll-Fade Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const mobileMenu = document.getElementById('mobile-menu');
-      const navLinks = document.querySelector('.nav-links');
-      mobileMenu.addEventListener('click', () => navLinks.classList.toggle('active'));
-
-      const faders = document.querySelectorAll('.fade-in');
-      const options = { threshold: 0.2 };
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, options);
-      faders.forEach(fader => observer.observe(fader));
-    });
-  </script>
 </body>
 </html>
