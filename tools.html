@@ -1,1 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TPT3L22Z');
+  </script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Paul Shannon - Tools">
+  <meta name="keywords" content="Paul Shannon, SEO Analyzer, ChatGPT Resource Tracker, tools">
+  <meta name="author" content="Paul Shannon">
+  <title>Tools – Paul Shannon</title>
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="blog.js"></script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPT3L22Z"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <a class="logo" href="/">
+        <img src="https://i.imgur.com/Q1eDIaa.png" alt="Logo Icon" class="logo-icon">
+        Paul Shannon
+      </a>
+      <nav>
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="/portfolio">Portfolio</a></li>
+          <li><a href="/tools" class="active">Tools</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Tools Section -->
+  <section id="tools">
+    <div class="container tools-container">
+      <h2>Tools</h2>
+      <div class="portfolio-grid tools-grid">
+        <div class="project-card">
+          <h3><a href="seo-analyzer.html">SEO Analyzer</a></h3>
+          <p>Deep-dive into your site’s SEO health with keyword insights, on-page audits, and performance metrics.</p>
+        </div>
+        <div class="project-card">
+          <h3><a href="chatgpt-tracker.html">ChatGPT Resource Tracker</a></h3>
+          <p>Keep track of your ChatGPT prompts, tokens used, and session history—all in one place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-container">
+      <p>&copy; 2025 Paul Shannon. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/paul-shannon-/">LinkedIn</a>
+        <a href="https://x.com/ProseByP">Twitter</a>
+        <a href="https://www.instagram.com/swalwrites">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      const navLinks = document.querySelector('.nav-links');
+
+      mobileMenu.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
 
