@@ -1,211 +1,44 @@
-!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
 <head>
-  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TPT3L22Z');</script>
-<!-- End Google Tag Manager -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Paul Shannon - Freelance Writer specializing in environmentalism, research projects, and diverse niche topics. Based in Rochester, NY.">
-  <meta name="keywords" content="Paul Shannon, freelance writer, environmental writing, research, content writing, Rochester NY">
-  <meta name="author" content="Paul Shannon">
-  <title>Paul Shannon - Freelance Writer & Researcher</title>
-  <!-- Favicon -->
-<link rel="icon" href="favicon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="blog.js"></script> <!-- Keeping blog.js as the only script -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatGPT Resource Footprint</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+    rel="stylesheet"
+  />
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPT3L22Z"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-  <!-- Header -->
-  <header>
-  <div class="container header-container">
-    <a href="index.html" class="logo">
-      <img src="https://i.imgur.com/Q1eDIaa.png" alt="Logo Icon" class="logo-icon">
-      Paul Shannon
-    </a>
-    <nav>
-      <div class="menu-toggle" id="mobile-menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header-bg"></div>
+      <div class="header-content">
+        <h1>ChatGPT Resource Footprint</h1>
+        <p>See how much water & energy power your AI queries in real time</p>
       </div>
-      <ul class="nav-links">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="tools.html">Tools</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    </header>
+
+    <main>
+      <section class="cards">
+        <div class="card">
+          <h2>Water Usage</h2>
+          <div class="value" id="water-counter">0</div>
+          <div class="unit">(L)</div>
+          <p class="card-note">Includes cooling & electricity footprint</p>
+        </div>
+
+        <div class="card">
+          <h2>Electricity Usage</h2>
+          <div class="value" id="elec-counter">0</div>
+          <div class="unit">(kWh)</div>
+          <p class="card-note">Based on daily server consumption</p>
+        </div>
+      </section>
+    </main>
   </div>
-</header>
 
-  <!-- Hero Section -->
-  <section id="hero">
-    <div class="container hero-container">
-      <h2>Freelance Writer & Researcher</h2>
-      <p>Copywriting <b>tailored to your niche.</b></p>
-      <a href="#portfolio" class="cta-button">Explore My Work</a>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about">
-    <div class="container about-container">
-      <h2>About Me</h2>
-      <p>I’m Paul Shannon, a Rochester-based freelance writer and researcher with expertise in environmentalism, technology, AI, activism, and self-help, among <b>many other niches.</b></p>
-      <p>Whether you need SEO-optimized content, in-depth research, landing pages, product descriptions, or manuscripts, I provide clear, compelling writing tailored to your needs.</p>
-      <h2>Featured Services</h2>
-      <p><b>✅ Environmental & Sustainability Writing – </b>Research-backed articles, whitepapers, and policy-driven content.</p> 
-      <p><b>✅ Technology & AI Content –</b> Thought leadership, cybersecurity insights, and innovation breakdowns.</p>
-      <p><b>✅ Activism & Social Impact – </b>Nonprofit messaging, outreach materials, and advocacy-focused content.</p>
-      <p><b>✅ Personal Development & Self-Help –</b> Engaging, value-driven storytelling that connects with readers.</p>
-      <br>
-      <h2>Why Work With Me?</h2>
-      <p>I started my journey with a passion for research and writing—a passion that grew into a freelance career spanning four years across multiple industries. My background in environmental research, combined with my ability to craft compelling narratives, allows me to create content that is both insightful and engaging.</p>
-
-      <p><b>What You Can Expect:</b></p>
-      <p><b>✅ Thorough Research & Credibility – </b>Every piece is well-researched and backed by authoritative sources.</p>
-      <p><b>✅ SEO-Driven Approach –</b> Optimized content designed to rank on search engines and attract your target audience.</p>
-      <p><b>✅ Tailored to Your Brand –</b> Your unique voice and business goals shape every piece I write.</p>
-      <p><b>✅ Clear, Concise, & Impactful –</b> I create content that informs, persuades, and, most importantly, drives action.</p>
-      <br>
-      <p><b>Curious? Let's Talk!</b> Schedule a FREE consultation today, and let’s explore how my writing can bring your vision to life.</p>
-      <p>📍<strong>Location:</strong> Rochester, NY | Serving Clients Locally & Nationwide</p>
-      <!-- Testimonial Section -->
-<section id="testimonials">
-  <div class="container testimonials-container">
-    <h2>What Clients Say</h2>
-    <div class="testimonial-grid">
-      <div class="testimonial">
-        <p>"I've worked with Paul on personal finance for a long time and he has constantly done great writing work."</p>
-        <h4>- David K., Clarity Learning</h4>
-      </div>
-      <div class="testimonial">
-        <p>"Paul is very talented, his passion truly resonates in his high-quality SEO work he has done."</p>
-        <h4>- Josh P., Powers Solutions, LLC</h4>
-      </div>
-    </div>
-  </div>
-</section>
-      <!-- Google Maps Pin for Rochester, NY -->
-      <iframe
-        class="rochester-map"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11904.534337264047!2d-77.6206323974524!3d43.1561683142377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8814b0c6dff55859%3A0x50fca094af8a82f6!2sRochester%2C%20NY!5e0!3m2!1sen!2sus!4v1685562163352!5m2!1sen!2sus"
-        width="600"
-        height="450"
-        style="border:0;"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-    </div>
-  </section>
-
-  <!-- Portfolio Section -->
-  <section id="portfolio">
-    <div class="container portfolio-container">
-      <h2>Featured Works</h2>
-      <div class="portfolio-grid">
-        <!-- First Project Card: Can A.I. Hack? -->
-        <div class="project-card">
-          <img src="https://www.harvardmagazine.com/sites/default/files/img/article/0223/hm_ma23_art_page_04_image_0007.jpg" alt="Researchers Found That ChatGPT Can Hack">
-          <h3>
-            <a
-              href="https://medium.com/@pshannon.2021/can-ai-really-hack-gpt-4s-87-success-rate-in-zero-day-vulnerabilities-fcce633066c5"
-              target="_blank"
-              class="hack-link"
-            >
-              Can A.I. Hack?
-            </a>
-          </h3>
-          <p>An exploration of <b>ChatGPT's</b> potential to be used in cybercrime, including <b>Zero-Day Exploits</b>.</p>
-        </div>
-        <!-- Second Project Card: Algal Research Report -->
-        <div class="project-card">
-          <img src="https://cdn11.bigcommerce.com/s-79f6e/product_images/uploaded_images/water-hyacinth-flower-nature-989005.jpg" alt="Remediation of Harmful Algal Bloom, Microcystis, with Water Hyacinth">
-          <h3>
-            <a
-              href="https://www.linkedin.com/in/paul-shannon-/details/projects/1950386286/multiple-media-viewer/?profileId=ACoAAEAty_sBagGxGtRvd1dDB9oHS3z21NhzIII&treasuryMediaId=1732211445330&type=DOCUMENT"
-              target="_blank"
-              class="report-link"
-            >
-              Algal Research Report
-            </a>
-          </h3>
-          <p>A comprehensive study on the phytoremediation of <b>toxin-bearing harmful algae.</b></p>
-        </div>
-        <!-- Third Project Card: Feature Story -->
-        <div class="project-card">
-          <img src="https://13wham.com/resources/media2/16x9/1248/648/31x0/90/1bf89041-7665-48c2-8159-9e39adc3da3a-2409271837Climatemarch_frame_101524.jpeg" alt="Feature Story">
-          <h3>
-            <a
-              href="https://www.linkedin.com/pulse/rochesters-climate-movement-people-turning-talk-action-paul-shannon-8lvwc/"
-              target="_blank"
-              class="feature-link"
-            >
-              Featured Story
-            </a>
-          </h3>
-          <p>Local Rochesterian non-profits are <b>taking the environmental scene by storm.</b> Learn more here.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact">
-    <div class="container contact-container">
-      <h2>Schedule a FREE Consultation</h2>
-      <!-- Using mailto: opens the user's email client with pre-populated fields -->
-<form action="https://formspree.io/f/mwpvgolv" method="POST" class="contact-form">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" placeholder="Your Name" required>
-
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" placeholder="Your Email" required>
-
-    <label for="message">Message</label>
-    <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-
-    <!-- Redirect to Thank You Page after Submission -->
-    <input type="hidden" name="_next" value="thankyou.html">
-
-    <button type="submit">Send Message</button>
-</form>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container footer-container">
-      <p>&copy; 2025 Paul Shannon. All rights reserved.</p>
-      <div class="social-links">
-        <a href="https://www.linkedin.com/in/paul-shannon-/">LinkedIn</a>
-        <a href="https://x.com/ProseByP">Twitter</a>
-        <a href="https://www.instagram.com/swalwrites">Instagram</a>
-      </div>
-    </div>
-  </footer>
-  <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const mobileMenu = document.getElementById('mobile-menu');
-  const navLinks = document.querySelector('.nav-links');
-  
-  mobileMenu.addEventListener('click', function() {
-    navLinks.classList.toggle('active');
-  });
-});
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,130 @@
+:root {
+    --blue: #2c7be5;
+    --blue-light: #4dabf7;
+    --gray-light: #f4f6f8;
+    --gray: #90a3b8;
+    --text-dark: #1e263b;
+    --bg: #ffffff;
+  }
+  
+  [data-theme="dark"] {
+    --blue: #4dabf7;
+    --blue-light: #2c7be5;
+    --gray-light: #1f2937;
+    --gray: #4a5568;
+    --text-dark: #edf2f7;
+    --bg: #1e2637;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  body {
+    background: var(--gray-light);
+    color: var(--text-dark);
+  }
+  
+  .wrapper {
+    max-width: 900px;
+    margin: auto;
+    padding: 0 1rem 2rem;
+  }
+  
+  .header {
+    position: relative;
+    height: 220px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .header-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--blue), var(--blue-light));
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+  }
+  
+  .header-content {
+    position: relative;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+  }
+  
+  .header-content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  
+  .header-content p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+  
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .card {
+    position: relative;
+    background: var(--bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    text-align: center;
+    padding: 2.5rem 1rem 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+  
+  .card h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .value {
+    font-size: 2.75rem;
+    font-weight: 600;
+    color: var(--blue);
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-note {
+    font-size: 0.9rem;
+    color: var(--gray);
+    margin-bottom: 0.5rem;
+  }
+  
+  .unit {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--blue);
+    font-weight: 700;
+    font-style: italic;
+    font-size: 0.9rem;
+  }
+  
+  /* Responsive tweak */
+  @media (max-width: 480px) {
+    .header-content h1 {
+      font-size: 2rem;
+    }
+    .value {
+      font-size: 2rem;
+    }
+  }
+  
