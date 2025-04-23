@@ -32,7 +32,23 @@
       background-color: #1a5bb8;
     }
 
-    /* (keep the rest of your existing CSS in style.css) */
+    /* Sources citation styling */
+    .sources {
+      max-width: 800px;
+      margin: 2rem auto 1rem;
+      text-align: center;
+      font-style: italic;
+      font-size: 0.8rem;
+      color: #4a5568;
+      line-height: 1.4;
+    }
+    .sources a {
+      color: #2c7be5;
+      text-decoration: none;
+    }
+    .sources a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -46,7 +62,7 @@
       </div>
     </header>
 
-    <!-- RETURN BUTTON (under the “Paul Shannon” header area) -->
+    <!-- RETURN BUTTON (aligned under main header) -->
     <div class="return-wrapper">
       <a href="tools.html" class="return-button">← Return to Tools</a>
     </div>
@@ -69,6 +85,14 @@
         </div>
       </section>
     </main>
+
+    <!-- Sources (bottom-centered, italic) -->
+    <p class="sources">
+      1. <a href="https://arxiv.org/pdf/2304.03271" target="_blank">Making AI Less “Thirsty”: Uncovering and Addressing the Secret Water Footprint of AI Models</a>; Pengfei Li (UC Riverside), Jianyi Yang (UC Riverside), Mohammad A. Islam (UT Arlington), Shaolei Ren (UC Riverside)<br>
+      2. <a href="https://www.reuters.com/technology/artificial-intelligence/openais-weekly-active-users-surpass-400-million-2025-02-20/" target="_blank">OpenAI’s weekly active users surpass 400 million</a><br>
+      3. WUE of water in average datacenter: 1.8 kWh/L; <a href="https://www.sunbirddcim.com/glossary/water-usage-effectiveness-wue" target="_blank">Sunbird DCIM</a><br>
+      4. <a href="https://www.euronews.com/my-europe/2025/03/17/chatgpt-deepseek-co-how-much-energy-do-ai-powered-chatbots-consume" target="_blank">How much energy do AI-powered chatbots consume?</a> (Euronews)
+    </p>
   </div>
 
   <script src="script.js"></script>
