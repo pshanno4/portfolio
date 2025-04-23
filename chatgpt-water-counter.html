@@ -10,15 +10,20 @@
     rel="stylesheet"
   />
   <style>
-    /* Return button styling */
+    /* Return button wrapper & styling */
+    .return-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.75rem 1rem;
+      background-color: #ffffff;
+    }
     .return-button {
       display: inline-block;
-      margin: 1rem;
       padding: 0.5rem 1rem;
       background-color: #2c7be5;
-      color: #fff;
+      color: #ffffff;
       text-decoration: none;
-      border-radius: 4px;
+      border-radius: 0.4rem;
       font-family: 'Inter', sans-serif;
       font-weight: 600;
       transition: background-color 0.2s ease;
@@ -27,19 +32,12 @@
       background-color: #1a5bb8;
     }
 
-    /* clearfix so header doesn’t overlap */
-    .return-container {
-      clear: both;
-    }
+    /* (keep the rest of your existing CSS in style.css) */
   </style>
 </head>
 <body>
-  <!-- Return Button -->
-  <div class="return-container">
-    <a href="tools.html" class="return-button">← Return to Tools</a>
-  </div>
-
   <div class="wrapper">
+    <!-- Main Site Header -->
     <header class="header">
       <div class="header-bg"></div>
       <div class="header-content">
@@ -48,6 +46,12 @@
       </div>
     </header>
 
+    <!-- RETURN BUTTON (under the “Paul Shannon” header area) -->
+    <div class="return-wrapper">
+      <a href="tools.html" class="return-button">← Return to Tools</a>
+    </div>
+
+    <!-- Page Content -->
     <main>
       <section class="cards">
         <div class="card">
