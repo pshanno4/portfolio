@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatGPT Resource Footprint</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header-bg"></div>
+      <div class="header-content">
+        <h1>ChatGPT Resource Footprint</h1>
+        <p>See how much water & energy power your AI queries in real time</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="cards">
+        <div class="card">
+          <h2>Water Usage</h2>
+          <div class="value" id="water-counter">0</div>
+          <div class="unit">(L)</div>
+          <p class="card-note">Includes cooling & electricity footprint</p>
+        </div>
+
+        <div class="card">
+          <h2>Electricity Usage</h2>
+          <div class="value" id="elec-counter">0</div>
+          <div class="unit">(kWh)</div>
+          <p class="card-note">Based on daily server consumption</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
