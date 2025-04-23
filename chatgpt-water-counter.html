@@ -16,9 +16,9 @@
       margin: 1rem;
       padding: 0.5rem 1rem;
       background-color: #2c7be5;
-      color: #ffffff;
+      color: #fff;
       text-decoration: none;
-      border-radius: 0.4rem;
+      border-radius: 4px;
       font-family: 'Inter', sans-serif;
       font-weight: 600;
       transition: background-color 0.2s ease;
@@ -26,13 +26,20 @@
     .return-button:hover {
       background-color: #1a5bb8;
     }
+
+    /* clearfix so header doesn’t overlap */
+    .return-container {
+      clear: both;
+    }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <!-- Return Button -->
+  <!-- Return Button -->
+  <div class="return-container">
     <a href="tools.html" class="return-button">← Return to Tools</a>
+  </div>
 
+  <div class="wrapper">
     <header class="header">
       <div class="header-bg"></div>
       <div class="header-content">
