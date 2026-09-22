@@ -121,6 +121,7 @@
   };
 
   const makeItem = (item, priorityImage = false) => {
+    const localUrl = `work/${item.id}/index.html`;
     const article = document.createElement("article");
     article.className = "portfolio-item";
     article.id = item.id;
@@ -134,10 +135,8 @@
 
     const visual = document.createElement("a");
     visual.className = "portfolio-image-link";
-    visual.href = item.url;
-    visual.target = "_blank";
+    visual.href = localUrl;
     visual.setAttribute("aria-label", `Read ${item.title}`);
-    if (/^https?:/.test(item.url)) visual.rel = "noopener";
     const image = document.createElement("img");
     image.className = "portfolio-image";
     image.src = item.image;
@@ -158,10 +157,8 @@
 
     const heading = document.createElement("h2");
     const titleLink = document.createElement("a");
-    titleLink.href = item.url;
+    titleLink.href = localUrl;
     titleLink.textContent = item.title;
-    titleLink.target = "_blank";
-    if (/^https?:/.test(item.url)) titleLink.rel = "noopener";
     heading.append(titleLink);
 
     const summary = document.createElement("p");
@@ -178,20 +175,18 @@
 
     const workLink = document.createElement("a");
     workLink.className = "work-link";
-    workLink.href = item.url;
-    workLink.target = "_blank";
-    if (/^https?:/.test(item.url)) workLink.rel = "noopener";
-    workLink.setAttribute("aria-label", `${item.linkLabel || "Read work"}: ${item.title}`);
+    workLink.href = localUrl;
+    workLink.setAttribute("aria-label", `Read ${item.title} on PaulWrites.net`);
     workLink.append(document.createTextNode("Read "));
     const arrow = document.createElement("span");
     arrow.setAttribute("aria-hidden", "true");
-    arrow.textContent = "↗";
+    arrow.textContent = "→";
     workLink.append(arrow);
 
     const notesToggle = document.createElement("button");
     notesToggle.type = "button";
     notesToggle.className = "notes-toggle";
-    notesToggle.textContent = "Project notes";
+    notesToggle.textContent = "Project details";
     notesToggle.setAttribute("aria-expanded", "false");
     const panelId = `${item.id}-notes`;
     notesToggle.setAttribute("aria-controls", panelId);
@@ -206,12 +201,22 @@
       const willOpen = notesCopy.hidden;
       notesCopy.hidden = !willOpen;
       notesToggle.setAttribute("aria-expanded", String(willOpen));
-      notesToggle.textContent = willOpen ? "Hide project notes" : "Project notes";
+      notesToggle.textContent = willOpen ? "Hide project details" : "Project details";
     });
+
+    const originalLink = document.createElement("a");
+    originalLink.className = "original-link";
+    originalLink.href = item.url;
+    originalLink.textContent = /\.pdf(?:$|[?#])/i.test(item.url) ? "View source PDF ↗" : "View original ↗";
+    originalLink.setAttribute("aria-label", `${originalLink.textContent.replace(" ↗", "")}: ${item.title}`);
+    if (/^https?:/.test(item.url)) {
+      originalLink.target = "_blank";
+      originalLink.rel = "noopener noreferrer";
+    }
 
     const actions = document.createElement("div");
     actions.className = "work-actions";
-    actions.append(workLink, notesToggle);
+    actions.append(workLink, notesToggle, originalLink);
 
     copy.append(meta, heading, summary, tagList, actions, notesCopy);
     article.append(dateBox, visual, copy);

@@ -1,70 +1,69 @@
-# Quality assurance record
+# PaulWrites release QA
 
 Release checked on September 22, 2026.
 
-## Automated checks
+## Automated crawl and build
 
-- The production copy builds successfully from the root HTML/CSS/JS files.
-- `posts.js` contains 28 unique records: 7 Workinman pieces, 3 research papers, and 18 additional published articles.
-- Every record has a valid ID, date, summary, direct link, tag list, local image, descriptive alt text, reading-time estimate, and expandable project context.
-- All 20 local WebP files exist; every one of the 28 records resolves to one of them.
+`pnpm run build && pnpm run check` completed without errors.
+
+- 38 canonical/indexable HTML pages validated.
+- 28 of 28 portfolio records have a permanent `/work/[slug]/` page.
+- 28 of 28 portfolio records use a distinct featured-image file.
+- All seven Workinman entries have different, assignment-specific project notes.
 - All three research PDFs exist and have valid PDF headers.
-- Every public HTML page has one H1, a unique title, a description where appropriate, a skip link, a main landmark, and the intended robots/canonical behavior.
-- Every local `href` and `src` in the public HTML resolves to a real source file.
-- Homepage and portfolio JSON-LD parse as valid JSON.
-- The current `pshannon@paulwrites.net` address is present, and retired launch-only wording is absent.
-- The Formspree endpoint, honeypot, timing field, and eight problem-based inquiry choices are present.
-- `sitemap.xml`, `robots.txt`, redirects, reduced-motion CSS, print CSS, image credits, SEO audit, and deployment output are present.
+- Every canonical page has one H1, a unique title, a unique meta description, a self-referencing canonical, Open Graph data, Twitter/X data, a skip link, and a main landmark.
+- Every JSON-LD block parses successfully.
+- All generated pages connect to the same Paul Shannon Person `@id`.
+- Every work page includes visible and structured breadcrumbs, an author box, a publication/source note, relevant service link, and three related works.
+- Every local HTML `href` and `src` resolves to a real source target.
+- The sitemap contains all 38 canonical URLs; robots.txt allows crawling and references it.
+- Canonical redirect rules exist for legacy `.html`, `/about`, `/work`, `/articles`, and information-page routes.
+- No retired `inquirewithps@gmail.com`, placeholder wording, lorem ipsum, hardcoded view totals, or fake like totals remain.
 
-Run the same checks with:
+## Browser and interaction checks
 
-```bash
-npm run build
-npm run check
-```
-
-Node is optional and is not needed to open or use the source site.
-
-## Browser checks
-
-- Rendered and inspected the homepage, portfolio, privacy statement, accessibility statement, image-credit page, and 404 page.
-- Confirmed one visible H1 on every page.
-- Confirmed the portfolio initially shows 8 of 28 records and automatically creates 4 pages.
-- Tested the Research filter: it returns exactly 3 records and updates the address to `?tag=Research`.
-- Tested portfolio page 2: it shows records 9–16 and updates the address to `?page=2`.
-- Tested the Project notes control: it changes to “Hide project notes,” reports `aria-expanded="true"`, and reveals the correct Workinman studio context.
-- Tested the SEO inquiry route: its help text, question label, and Formspree subject update correctly.
-- Confirmed all seven Workinman article URLs and all LinkedIn article URLs return successfully. Medium rejects automated HTTP checks, but the ENGin article and exact URL were independently verified in search.
-- Did not submit the external contact form, so no test message or personal data was sent.
-- No site-origin console warnings or errors were found. Browser-extension and sign-in-page diagnostics were unrelated and excluded.
+- Opened the homepage, portfolio, two work pages, a service page, and the author page by direct URL.
+- Verified primary images load at their declared 1200×750 dimensions.
+- Verified article pages have one H1, parsed schema, three relevant recommendations, and no document overflow.
+- Portfolio enhancement shows 8 records per page and generates four pages for the 28-item library.
+- The Research filter returns the correct three projects and updates the URL state.
+- Project details expand in place and expose the correct project-specific context.
+- The inquiry-type selector updates its guidance and project-detail prompt.
+- Confirmed the Formspree endpoint and current contact email in rendered markup.
+- Confirmed the skip link is the first keyboard focus target and navigates to `#main`.
+- No site-origin console warning or error was found. Browser-extension diagnostics were unrelated to the site.
+- The live form was not submitted, so no test message or visitor data was sent.
 
 ## Responsive checks
 
-The homepage and portfolio were rendered at 320, 375, 390, 430, 768, 1024, and 1440 CSS pixels.
+The homepage, portfolio, and a long research page were rendered inside true nested browser viewports at 320, 375, 390, 430, 768, 1024, and 1440 CSS pixels.
 
-- Document `scrollWidth` equaled `clientWidth` at every tested width: no horizontal document overflow.
-- The 320px homepage and portfolio were visually inspected.
-- The image-led hero remains readable at narrow and wide widths with adequate overlay contrast.
-- Every portfolio thumbnail keeps its intended 8:5 crop without stretching.
-- Topic buttons become one compact topic selector at tablet and phone widths.
-- Read and Project notes controls measure 44px high at every tested portfolio width.
-- Navigation remains available without a mobile-menu script.
-- Long titles, date rows, tags, form fields, and calls to action wrap without clipping.
-- The form stacks into one column on narrow screens and remains within the viewport at every tested width.
-- Reduced-motion and print behavior are included.
+- `scrollWidth` never exceeded `clientWidth` on any tested page or width.
+- All 21 page/width combinations contained exactly one H1.
+- Header links and primary controls measured at least 44px high.
+- The homepage hero and research-page header collapse to one column below the intended breakpoint and return to two columns on desktop.
+- The 320px homepage and research article were visually inspected.
+- Long scientific titles, breadcrumbs, publication metadata, images, filters, buttons, and footer/navigation content wrap without clipping.
 
-## Content and implementation safeguards
+## Content and rights safeguards
 
-- Workinman and third-party articles are summarized and linked; their complete text is not republished.
-- Workinman thumbnails remain credited to the publisher/rights holders.
-- Other portfolio images are public domain or Creative Commons; source pages and licenses are published in `image-credits.html` and recorded in `IMAGE_CREDITS.md`.
-- Research summaries do not invent new findings, credentials, clients, testimonials, permissions, or results.
-- Important positioning, services, experience, identity, and portfolio links exist in the initial HTML.
-- Portfolio filtering is an enhancement: the initial 28-item HTML list remains useful without JavaScript.
-- All runtime assets use relative paths so `index.html` can be opened directly from the filesystem.
+- Workinman and other third-party publications use original case-study pages and source links rather than unauthorized full-text copies.
+- The three research pages summarize the actual supplied papers and link the complete PDFs.
+- Research findings include stated scope and limitations and do not invent new outcomes.
+- Every non-client featured image is recorded with its source/license; the Workinman images identify their corresponding publisher pages.
+- Image files are local WebP assets with explicit dimensions and descriptive alt text.
 
-## Deployment boundary
+## Performance checks
 
-- A private Sites deployment was created and completed successfully.
-- PaulWrites.net DNS was not changed.
-- Canonicals intentionally point to `https://paulwrites.net/`; recheck HTTP status, redirects, canonicals, Search Console, and field Core Web Vitals after the custom domain is connected.
+- The site has no framework runtime, database client, analytics script, webfont request, animation library, or third-party JavaScript bundle.
+- Runtime JavaScript is limited to the portfolio enhancement and contact-form behavior.
+- Featured images have fixed dimensions; below-the-fold images lazy-load; the homepage hero is preloaded; layouts reserve image space.
+- The largest current work image is below 400 KB, with most considerably smaller.
+- A local Lighthouse score could not be produced because the build environment does not expose a Lighthouse-compatible Chrome executable, and the verified preview is private. This is recorded as a post-launch check rather than replaced by a fabricated score.
+
+## Deliberately not implemented
+
+- **Article views:** not implemented. This static architecture has no persistent shared datastore.
+- **Article likes:** not implemented. A one-browser-only counter would not meet the requirement and was not added.
+
+A future implementation needs a serverless/API endpoint plus persistent storage, bot/rate controls, and an anonymous-identity/privacy policy before either count should appear publicly.

@@ -67,7 +67,11 @@
     detailsLabel.firstChild.textContent = `${prompt.label} `;
     detailsHelp.textContent = prompt.details;
     const selectedText = type.options[type.selectedIndex].text;
-    subject.value = `PaulWrites inquiry — ${selectedText}`;
+    if (subject) {
+      const subjectLine = `PaulWrites inquiry — ${selectedText}`;
+      subject.value = subjectLine;
+      subject.setAttribute("value", subjectLine);
+    }
   };
 
   type.addEventListener("change", updatePrompt);

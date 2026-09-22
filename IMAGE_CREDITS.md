@@ -31,5 +31,20 @@ The seven Workinman thumbnails come from the corresponding published article pag
 | `fashion.webp` | Steffen Mokosch | CC BY-SA 4.0 | [Clothing store](https://commons.wikimedia.org/wiki/File:Clothing_store_interior_Son_Moro_Cala_Millor.jpg) |
 | `rocket.webp` | NASA | Public domain | [Space Shuttle Columbia launch](https://commons.wikimedia.org/wiki/File:Space_Shuttle_Columbia_launching.jpg) |
 | `ukraine.webp` | Cpl. Christopher Brecht/U.S. Army | Public domain | [Ukrainian Independence Day](https://commons.wikimedia.org/wiki/File:Ukrainian_Independence_Day_(6799736).jpg) |
+| `lake-erie-hab.webp` | NASA Earth Observatory/NOAA | Public domain | [Lake Erie harmful algal bloom](https://commons.wikimedia.org/wiki/File:Blue-gree_algae_bloom_Lake_Erie.png) |
+| `high-water-flood.webp` | Steve Morgan | CC BY-SA 3.0 | [High water near Portland’s Steel Bridge](https://commons.wikimedia.org/wiki/File:Flood_in_Portland_Feb_1996_-_area_NW_of_Steel_Bridge.jpg) |
+
+## Unsplash sources
+
+The following photographs are used under the [Unsplash License](https://unsplash.com/license).
+
+| Local file | Creator | Source page |
+| --- | --- | --- |
+| `freelance-persistence.webp` | Nik | [Independent work and persistence](https://unsplash.com/photos/7I4u37HwA08) |
+| `freelance-systems.webp` | Keenan Beasley | [Freelance systems and planning](https://unsplash.com/photos/7g5gW-j62E8) |
+| `portfolio-process.webp` | Daria Mamont | [Portfolio process and presentation](https://unsplash.com/photos/qzdHPRTnawg) |
+| `spring-seedlings.webp` | Eyoel Kahssay | [Spring seedlings](https://unsplash.com/photos/FyCjvyPG9Pg) |
+| `community-tree-planting.webp` | George Bakos | [Community tree planting](https://unsplash.com/photos/SEFaaIjrjZA) |
+| `reforestation-seedling.webp` | Phil Desforges | [Reforestation seedling](https://unsplash.com/photos/kGmz87qVQBM) |
 
 Adapted Creative Commons images retain their stated licenses.

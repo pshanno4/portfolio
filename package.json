@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "vite . --config vite.static.config.js",
+    "generate": "node scripts/generate.mjs",
     "build": "node scripts/build.mjs",
     "check": "node scripts/check.mjs"
   },

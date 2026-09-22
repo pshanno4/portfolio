@@ -1,123 +1,109 @@
 # PaulWrites.net SEO and AI-search audit
 
 Audit date: September 22, 2026  
-Scope: finished static site source, production build, private preview, portfolio data, metadata, structured data, internal links, images, mobile behavior, and deployment files.
+Scope: finished static source and production build, 28 work pages, services, author entity, portfolio, internal linking, metadata, structured data, images, mobile behavior, robots, sitemap, redirects, and deployment configuration.
 
-## Unbiased score: 7.8/10
+## Unbiased implementation score: 8.8/10
 
-This is a launch-readiness score, not a promise of rankings. The site has strong technical fundamentals for a small static portfolio, unusually clear positioning, and credible first-party evidence. It loses points because most portfolio evidence still lives on one filterable page or on third-party publications, there is no dedicated Paul Shannon entity page, and no Search Console or field-performance data is available yet.
+This is a technical and content-readiness score, not a promise of rankings. PaulWrites now has a strong small-publication architecture, clear subject expertise, original research, and a crawlable page for every current project. Remaining points depend mostly on post-launch indexing evidence, real-user performance data, verified identity links, external authority, and deeper full-text publication where rights and source files permit it.
 
-| Area | Score | What the score means |
+| Area | Score | Assessment |
 | --- | ---: | --- |
-| Crawlability and technical foundations | 1.9 / 2.0 | Static HTML, robots.txt, XML sitemap, canonicals, redirects, 404 handling, and crawlable fallback links are present. Final production status/header behavior still needs verification on PaulWrites.net. |
-| Titles, descriptions, headings, and semantics | 1.4 / 1.5 | Pages have unique titles/descriptions, one H1, useful headings, landmarks, and descriptive links. The site has only a small number of independently indexable pages. |
-| Portfolio content and information architecture | 1.2 / 2.0 | Twenty-eight records are well organized, dated, tagged, illustrated, summarized, and linked. Individual projects do not yet have owned HTML URLs, so Google cannot rank most pieces as distinct PaulWrites pages. |
-| Entity clarity and AI-search readiness | 1.0 / 1.5 | The homepage clearly establishes Paul, location, expertise, education, and experience; Person references use one stable `@id`. A canonical author/ProfilePage and verified `sameAs` links are still missing. |
-| Images, performance, and mobile | 1.15 / 1.25 | Local WebP images, explicit dimensions, alt text, lazy loading, an eager first portfolio image, and a preloaded hero image are implemented. Real-user Core Web Vitals are not available before public launch. |
-| Accessibility and conversion UX | 0.95 / 1.0 | Keyboard-visible controls, skip links, semantic form labels, 44px primary portfolio controls, reduced motion, clear project routes, and a direct-email fallback are present. |
-| Measurement and external authority | 0.2 / 0.75 | There is credible work and original research, but no verified Search Console data, index coverage, query data, or documented backlink/citation baseline yet. |
+| Crawlability and technical foundations | 1.9 / 2.0 | Static server-visible HTML, clean canonical URLs, robots.txt, a 38-URL sitemap, legacy redirects, direct-entry pages, and a real 404 file are present. Production response headers and redirects still require a final check on the custom domain. |
+| Titles, descriptions, headings, and semantics | 1.45 / 1.5 | Canonical pages have unique titles and descriptions, one H1, semantic landmarks, useful headings, social metadata, descriptive links, and visible breadcrumbs where appropriate. |
+| Portfolio content and information architecture | 1.75 / 2.0 | Every current item has an owned URL, unique image, project context, source attribution, related work, author connection, and service route. Third-party pieces are substantial case pages rather than full articles where republication evidence is uncertain. |
+| Entity clarity and AI-search readiness | 1.35 / 1.5 | A stable Paul Shannon ProfilePage/Person entity, consistent author IDs, expertise passages, first-party research, nearby evidence, and strong internal relationships are implemented. Verified `sameAs` identity links have not been supplied. |
+| Images, performance, and mobile | 1.15 / 1.25 | Local WebP files, unique article imagery, dimensions, lazy loading, hero preload, minimal JavaScript, and zero overflow across the seven required widths are verified. Field Core Web Vitals and a public Lighthouse run are not yet available. |
+| Accessibility and conversion UX | 0.95 / 1.0 | Skip navigation, keyboard focus, semantic controls, 44px controls, reduced motion, readable article widths, direct email, and a problem-based Formspree inquiry route are present. A formal third-party WCAG audit remains worthwhile. |
+| Measurement and external authority | 0.25 / 0.75 | The content provides credible first-party evidence, but Search Console coverage, query data, backlinks/citations, and field performance cannot exist until the revised public site is launched and measured. |
 
-## What is already strong
+## Implemented strengths
 
-### Crawlability and ordinary SEO
+### Crawlability and indexable page inventory
 
-- Important positioning, services, experience, and portfolio links are rendered as ordinary HTML.
-- The portfolio has a complete 28-item fallback list before JavaScript enhancement. Filters and pagination do not gate access to the source links.
-- `robots.txt` allows crawling and points to `sitemap.xml`.
-- Five indexable site pages have self-referencing canonicals; the 404 is `noindex,follow`.
-- Route aliases such as `/work`, `/articles`, `/services`, `/about`, and `/contact` have redirects.
-- Page titles and meta descriptions are specific rather than slogan-led.
+- All important content is present in the initial HTML; JavaScript is not required to discover or read the work pages.
+- Every current portfolio record has a permanent `/work/[slug]/` URL.
+- The portfolio’s full 28-item library remains in server-visible HTML before filters and pagination enhance it.
+- The sitemap contains the homepage, portfolio, services index, three service pages, author page, all 28 work pages, and public information pages.
+- robots.txt permits crawling and names the sitemap.
+- Self-referencing canonicals consistently use the non-www HTTPS origin.
+- Legacy `.html`, `/about`, `/articles`, and portfolio-index routes consolidate through redirects where the hosting layer supports the included rules.
 
-### Portfolio evidence
+### Portfolio and research evidence
 
-- Every item has a title, date, publisher, type, summary, tags, image, descriptive alt text, estimated reading time, direct source, and expandable project context.
-- Workinman pieces explain the multidisciplinary studio process without inventing metrics or outcomes.
-- Research items identify the actual setting: Hudson Falls High School through UAlbany’s Science Research in the High School program, the Climate Solutions Accelerator, and Nazareth University.
-- Research PDFs are local and remain directly accessible.
-- Third-party articles are summarized and linked rather than copied in full.
+- Work pages state the subject, publication context, Paul’s role, editorial or research approach, and source-publication relationship.
+- Workinman notes are individually written around each assignment’s audience, subject, workflow, and studio collaboration.
+- Research pages turn PDFs into readable HTML covering the question, methods, findings, interpretation, limitations, setting, Paul’s role, and access to the source paper.
+- Regional HAB work accurately names the nine-county scope and the NYSDEC, NOAA, and USDA NRCS data sources.
+- Rhizofiltration work identifies Hudson Falls High School and the University at Albany Science Research in the High School program.
+- The phytoremediation review identifies its Nazareth University context and compares the actual macrophytes and feasibility constraints in the supplied paper.
 
-### Images and rights handling
+### Service intent and internal linking
 
-- The seven Workinman records use the corresponding publisher thumbnail.
-- Other records use public-domain or Creative Commons images, stored locally as compressed WebP files.
-- A public image-credit page records creators, source pages, and licenses.
-- Images have explicit width and height attributes, useful alt text, and below-the-fold lazy loading.
+- `/environmental-science-writer/`, `/technical-writer/`, and `/seo-content-writer/` each have distinct intent, expertise, deliverables, process, portfolio proof, FAQs, schema, and CTAs.
+- Environmental pages connect to HAB, freshwater, remediation, and research work.
+- Technical pages connect to relevant interactive-media and B2B client projects.
+- SEO pages connect to research-led editorial examples rather than generic keyword claims.
+- Every work page links to one relevant service and three genuinely related works.
+- Homepage, services, portfolio, author profile, research, and inquiry routes form a connected architecture with no important orphan pages.
 
-### Entity and structured data
+### Metadata and structured data
 
-- The homepage includes `WebSite`, `Person`, and `ProfessionalService` JSON-LD.
-- The portfolio includes `CollectionPage` and refers to the same Paul Shannon `Person` identifier.
-- Visible content and structured data agree on Paul’s role, location, education, and areas of expertise.
-- No ratings, testimonials, prices, awards, or outcomes are fabricated in schema.
+- All 38 canonical pages have unique titles, unique meta descriptions, canonical tags, Open Graph data, and Twitter/X card data.
+- `WebSite`, `ProfessionalService`, `Person`, `ProfilePage`, `CollectionPage`, `Service`, `FAQPage`, `Article`, `ScholarlyArticle`, and `BreadcrumbList` appear only where the visible page supports them.
+- Every article/research page points to one canonical Paul Shannon Person `@id`.
+- No reviews, ratings, prices, testimonials, outcomes, or credentials are invented in structured data.
 
 ### AI-search fundamentals
 
-- The site uses concrete passages and clear headings instead of keyword-stuffed copy.
-- Claims about work sit near supporting project summaries, source links, dates, and publishers.
-- Original environmental research gives the site evidence that generic portfolio copy cannot reproduce.
-- The architecture does not rely on `llms.txt`, fake “AI schema,” mass-generated articles, or doorway pages.
+- Important claims are stated in clear passages with nearby methods, limitations, source links, authorship, and project context.
+- Original research and client-process evidence give retrieval systems specific material that generic service copy does not.
+- Content relationships are explicit: work → author, work → related work, work → service, service → proof.
+- The implementation uses conventional crawlability and entity clarity rather than fake AI schema, mass-generated articles, or `llms.txt` claims.
 
-## Material limitations
+## Remaining limitations
 
-1. **Most work does not have an owned, indexable detail page.** Hash links such as `portfolio.html#games-for-brands` point into one document; they are not separate search results. This is the largest SEO and AI-retrieval limitation.
-2. **The richest project context is JavaScript-enhanced.** Google can render JavaScript, but owned static project pages would make the evidence easier for more crawlers and answer systems to retrieve reliably.
-3. **There is no canonical author page.** The homepage identifies Paul well, but `/authors/paul-shannon/` with visible biography and `ProfilePage` + `Person` data would create a stronger stable entity node.
-4. **No verified identity links are available.** A real LinkedIn profile, ORCID, institutional profile, or other verified identity URL should be added only after Paul confirms it.
-5. **No production search data exists yet.** The audit cannot verify index coverage, query impressions, click-through rate, backlinks, or real Core Web Vitals before public launch and Search Console verification.
-6. **The sitemap covers site pages, not portfolio detail URLs.** That is appropriate for the current architecture but limits the number of owned pages that can rank.
-7. **Preview and canonical origins differ by design.** The private preview uses a ChatGPT Site URL while canonicals point to `https://paulwrites.net/`. After domain launch, the custom-domain response, redirects, and canonical consistency must be rechecked.
+1. **Post-launch index evidence is unavailable.** Search Console has not yet confirmed discovery, canonical selection, or index coverage for the new URLs.
+2. **Most third-party articles remain case studies.** This is the correct rights-safe choice, but PaulWrites will gain more long-tail value if Paul supplies owned source manuscripts or confirms republication rights for full on-site reading.
+3. **No verified identity links were supplied.** A confirmed LinkedIn profile, institutional profile, ORCID, or other authoritative identity page could strengthen the Person entity through truthful `sameAs` links.
+4. **No field Core Web Vitals exist for the new page set.** The implementation is lean, but CrUX/real-user data requires public traffic.
+5. **External authority cannot be built in code.** Relevant client author credits, university/research profiles, partner references, and editorial links would strengthen trust and discovery.
+6. **Views and likes are absent by design.** Accurate shared totals need a persistent backend; fake client-only counts would weaken credibility.
 
-## Action plan for the next go
+## Action plan after launch
 
-### Priority 1 — highest search impact
+### First 48 hours
 
-| Action | Impact | Effort | Done when |
-| --- | --- | --- | --- |
-| Generate owned static pages at `/work/[slug]/` from `posts.js` for the three research projects and seven Workinman pieces first | Very high | Medium | Each page has unique visible context, title, description, canonical, image, role, source link, related work, and appropriate CreativeWork/Article schema. |
-| Add `/authors/paul-shannon/` | High | Low–medium | The page visibly contains Paul’s role, location, expertise, education, experience, representative work, contact details, and `ProfilePage` + `Person` JSON-LD using the existing Person `@id`. |
-| Put every new work URL in the sitemap and link it from the portfolio, services, homepage, and author page where relevant | High | Low | No important project page is orphaned; internal anchors describe the destination. |
-| Render project context in the initial HTML of each owned work page | High | Medium | The useful passage is available without client-side JavaScript and can be retrieved as a standalone answer source. |
+1. Verify a Google Search Console Domain property for `paulwrites.net` through DNS if one is not already active.
+2. Submit `https://paulwrites.net/sitemap.xml`.
+3. Inspect the homepage, portfolio, author page, all three service pages, one Workinman page, and all three research pages with URL Inspection.
+4. Confirm the public server returns 200 for canonical pages, 301 for legacy variants, and 404 for a nonexistent URL.
+5. Verify HTTP → HTTPS and www → non-www behavior after deployment.
+6. Run PageSpeed Insights on the homepage, portfolio, one image-heavy article, and the longest research page; record mobile LCP, CLS, and INP/field availability.
 
-Do not create 28 thin pages automatically. A page should exist only when there is enough distinct context, proof, and reader value to justify it.
+### First month
 
-### Priority 2 — launch measurement and validation
+1. Review index coverage weekly and investigate pages marked duplicate, crawled-not-indexed, or discovered-not-indexed.
+2. Use query/impression data to refine titles and openings only when the actual search intent is clear; do not manufacture near-duplicate service pages.
+3. Add complete owned article text where Paul has the manuscript and republication rights, preserving the original-publication link and date.
+4. Add verified identity URLs to the Person node only after Paul confirms them.
+5. Ask relevant clients, research partners, and institutional profiles to link to the most useful owned page where editorially appropriate.
+6. Monitor source links and keep the PaulWrites case page useful if an external publication moves or disappears.
 
-1. Verify a **Domain property** for `paulwrites.net` in Google Search Console, preferably through DNS.
-2. Submit `https://paulwrites.net/sitemap.xml` and confirm that Google can fetch it.
-3. Inspect the homepage, portfolio, author page, and two representative work pages with URL Inspection after launch.
-4. Validate JSON-LD with Google’s Rich Results Test and Schema.org’s validator; fix errors, but do not add irrelevant properties merely to eliminate optional warnings.
-5. Record a baseline for indexed pages, impressions, clicks, click-through rate, and the queries that reach the site.
-6. Run PageSpeed Insights on mobile and desktop after the public domain has stable caching. Check LCP, INP, and CLS using field data when it becomes available.
+### Optional future platform work
 
-### Priority 3 — deepen evidence and conversion
-
-- Add permission-safe excerpts, research questions, methods, editorial decisions, limitations, and deliverable context to owned work pages.
-- Add concrete outcomes only when documented. Do not invent traffic, conversion, ranking, readership, or revenue figures.
-- Cross-link services to the strongest relevant work and each work page back to one relevant service route.
-- Add verified identity URLs to the Person entity after Paul supplies them.
-- Seek legitimate links from client author pages, institutional research profiles, project partners, or publications where editorially appropriate. Do not manufacture mentions.
-- Create a lightweight “selected work” configuration in `posts.js` only; do not turn every record into homepage content.
-
-### Priority 4 — technical refinement
-
-- Consider extensionless canonical URLs only if the deployment can support consistent 301 redirects and there is no risk of creating duplicate `.html` and extensionless versions.
-- Generate sitemap `<lastmod>` values from the content records once work pages exist.
-- Add page-specific Open Graph images and Article/CreativeWork metadata to owned detail pages.
-- Consider an `ItemList` on the portfolio page after detail pages have stable owned URLs.
-- Re-test at 320, 375, 390, 430, 768, 1024, and 1440 pixels after any template change.
-- Monitor broken external publication links periodically; keep the owned context useful if a third-party URL disappears.
+- If public view totals are strategically useful, add a small edge/serverless endpoint and persistent datastore with page-load deduplication, crawler filtering, and rate limits.
+- Likes need the same persistent layer plus an anonymous cookie/device token, privacy disclosure, and server-side uniqueness enforcement. Describe it accurately as one like per browser identity, not one guaranteed human.
+- A future CMS should write into the same content schema and preserve the generated URLs, metadata, and relationships rather than replacing the frontend architecture.
 
 ## Research basis
 
 - [Google SEO Starter Guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide)
 - [Google: AI features and your website](https://developers.google.com/search/docs/appearance/ai-features)
-- [Google: Optimizing for generative AI features](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide)
-- [Google Image SEO best practices](https://developers.google.com/search/docs/appearance/google-images)
-- [Google SEO guide for web developers](https://developers.google.com/search/docs/fundamentals/get-started-developers)
-- [Google ProfilePage structured-data guidance](https://developers.google.com/search/docs/appearance/structured-data/profile-page)
-- [Google structured-data introduction and guidelines](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data)
+- [Google structured-data guidelines](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data)
+- [Google ProfilePage structured data](https://developers.google.com/search/docs/appearance/structured-data/profile-page)
 - [Google sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview)
-- [Google Search Console getting-started guidance](https://developers.google.com/search/docs/monitor-debug/search-console-start)
-- [web.dev Core Web Vitals guidance](https://web.dev/articles/vitals)
+- [Google Image SEO best practices](https://developers.google.com/search/docs/appearance/google-images)
+- [web.dev Core Web Vitals](https://web.dev/articles/vitals)
 
-The research supports a conventional conclusion: strong AI-search visibility starts with crawlable, useful, well-linked content and a stable entity—not a separate collection of “GEO hacks.”
+The practical conclusion remains conventional: useful indexable pages, stable identity, original evidence, descriptive internal links, and accurate claims create the best foundation for both ordinary search and AI-assisted retrieval.
