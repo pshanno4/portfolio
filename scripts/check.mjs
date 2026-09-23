@@ -268,7 +268,8 @@ for (const file of allSourceHtml) {
     .replace(/<h[1-6]\b[\s\S]*?<\/h[1-6]>/gi, " ")
     .replace(/<i\b[^>]*>[\s\S]*?<\/i>/gi, " ")
     .replace(/<script\b[\s\S]*?<\/script>/gi, " ")
-    .replace(/<[^>]+>/g, " ");
+    .replace(/<[^>]+>/g, " ")
+    .replace(/https?:\/\/\S+/g, " ");
   for (const scientificName of [
     "Microcystis aeruginosa", "Eichhornia crassipes", "Pontederia crassipes",
     "Lemna trisulca", "Lemna minor", "Myriophyllum aquaticum",
@@ -276,8 +277,14 @@ for (const file of allSourceHtml) {
     "Paucibacter toxinivorans", "Pistia stratiotes", "Spirodela polyrhiza",
     "Ceratophyllum demersum", "Chrysopogon zizanioides", "Karenia brevis",
     "Sedum plumbizincicola", "Pteris vittata", "Synechococcus elongatus",
-    "Neochetina bruchi", "Neochetina eichhorniae", "M. aeruginosa", "E. crassipes",
-    "L. trisulca", "L. minor", "M. aquaticum", "R. raciborskii", "D. flos-aquae"
+    "Danio rerio", "Moorea producens", "Neochetina bruchi", "Neochetina eichhorniae",
+    "M. aeruginosa", "E. crassipes", "L. trisulca", "L. minor", "M. aquaticum",
+    "R. raciborskii", "D. flos-aquae", "Microcystis", "Eichhornia", "Pontederia",
+    "Lemna", "Myriophyllum", "Raphidiopsis", "Dolichospermum", "Anabaena",
+    "Paucibacter", "Pistia", "Spirodela", "Ceratophyllum", "Chrysopogon",
+    "Oscillatoria", "Acinetobacter", "Agrobacterium", "Azospirillum", "Burkholderia",
+    "Caulobacter", "Methylibium", "Pseudomonas", "Sphingomonas", "Karenia", "Sedum",
+    "Pteris", "Synechococcus", "Danio", "Moorea", "Pseudanabaena", "Neochetina"
   ]) {
     assert(!visibleBody.includes(scientificName), `Unitalicized scientific name “${scientificName}” found in ${path.relative(root, file)}.`);
   }

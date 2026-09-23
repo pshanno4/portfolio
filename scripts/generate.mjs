@@ -276,7 +276,7 @@ const footer = (prefix) => `
 
 const breadcrumbs = (links) => `
     <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <ol>${links.map((link, index) => `<li>${index === links.length - 1 ? `<span aria-current="page">${esc(link.label)}</span>` : `<a href="${link.href}">${esc(link.label)}</a>`}</li>`).join("")}</ol>
+      <ol>${links.map((link, index) => `<li>${index === links.length - 1 ? `<span aria-current="page">${scientificText(link.label)}</span>` : `<a href="${link.href}">${scientificText(link.label)}</a>`}</li>`).join("")}</ol>
     </nav>`;
 
 const breadcrumbSchema = (links) => ({
@@ -341,6 +341,8 @@ const scientificNames = [
   "Sedum plumbizincicola",
   "Pteris vittata",
   "Synechococcus elongatus",
+  "Danio rerio",
+  "Moorea producens",
   "Neochetina bruchi",
   "Neochetina eichhorniae",
   "M. aeruginosa",
@@ -377,6 +379,9 @@ const scientificNames = [
   "Sedum",
   "Pteris",
   "Synechococcus",
+  "Danio",
+  "Moorea",
+  "Pseudanabaena",
   "Neochetina"
 ].sort((a, b) => b.length - a.length);
 
@@ -472,7 +477,7 @@ const snapshotFor = (item) => {
 const renderSnapshot = (item) => {
   const snapshot = snapshotFor(item);
   if (!snapshot.length) return "";
-  return `<aside class="finding-strip" aria-label="Selected findings">${snapshot.map(([value, label]) => `<div><strong>${esc(value)}</strong><span>${esc(label)}</span></div>`).join("")}</aside>`;
+  return `<aside class="finding-strip" aria-label="Selected findings">${snapshot.map(([value, label]) => `<div><strong>${esc(value)}</strong><span>${scientificText(label)}</span></div>`).join("")}</aside>`;
 };
 
 const climateTable = `
