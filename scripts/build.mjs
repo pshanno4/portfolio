@@ -1,4 +1,4 @@
-import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 // Regenerate every derived page from posts.js before creating the deployable copy.
@@ -8,10 +8,6 @@ const root = process.cwd();
 const output = path.join(root, "dist");
 const files = [
   "index.html",
-  "portfolio.html",
-  "privacy.html",
-  "accessibility.html",
-  "image-credits.html",
   "404.html",
   "styles.css",
   "site.js",
@@ -60,6 +56,22 @@ for (const [source, route] of cleanRouteAliases) {
   const html = await readFile(path.join(root, source), "utf8");
   await writeFile(path.join(destination, "index.html"), aliasHtml(html));
 }
+
+// Keep editable source files usable over file://, while published pages link
+// directly to the canonical directory routes rather than removed .html copies.
+const rewritePublishedLinks = async (directory) => {
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const filename = path.join(directory, entry.name);
+    if (entry.isDirectory()) { await rewritePublishedLinks(filename); continue; }
+    if (!entry.name.endsWith(".html")) continue;
+    const html = await readFile(filename, "utf8");
+    await writeFile(filename, html.replace(
+      /href="(?:\.\.\/)*(portfolio|privacy|accessibility|image-credits)\.html(#[^"]*)?"/g,
+      (_, route, fragment = "") => `href="/${route}/${fragment}"`
+    ));
+  }
+};
+await rewritePublishedLinks(output);
 
 await cp(path.join(root, "public"), path.join(output, "public"), { recursive: true });
 await cp(path.join(root, ".openai"), path.join(output, ".openai"), { recursive: true });

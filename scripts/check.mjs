@@ -219,9 +219,14 @@ for (const [id, filenames] of Object.entries(researchFigureExpectations)) {
 const portfolio = await readFile(path.join(root, "portfolio.html"), "utf8");
 assert((portfolio.match(/<article class="portfolio-item"/g) || []).length === items.length, "The static portfolio must contain all 28 items.");
 for (const item of items) {
-  assert(portfolio.includes(`work/${item.id}/index.html`), `Portfolio is missing the owned Read URL for ${item.id}.`);
+  assert(portfolio.includes(`work/${item.id}/`), `Portfolio is missing the canonical Read URL for ${item.id}.`);
   assert(portfolio.includes(item.image), `Portfolio is missing the featured image for ${item.id}.`);
 }
+assert(!await exists(path.join(dist, "portfolio.html")), "The deployable archive should have only one canonical /portfolio/ HTML file.");
+const authorPage = await readFile(path.join(dist, "authors", "paul-shannon", "index.html"), "utf8");
+assert(!authorPage.includes(`${origin}/authors/\"`), "The author breadcrumb points to a nonexistent /authors/ page.");
+const climateReport = await readFile(path.join(dist, "work", "climate-change-harmful-algal-blooms-genesee-finger-lakes", "report", "index.html"), "utf8");
+assert(climateReport.includes("harmful-algal-blooms-contributing-factors-and-impacts.html"), "The CDC citation was truncated in the published research report.");
 
 const ownedArticleFiles = (await readdir(path.join(root, "content", "articles"))).filter((file) => file.endsWith(".json"));
 assert(ownedArticleFiles.length === 24, `Expected 24 complete article records; found ${ownedArticleFiles.length}.`);
@@ -307,7 +312,7 @@ assert(/User-agent:\s*\*/.test(robots) && /Allow:\s*\//.test(robots), "robots.tx
 assert(robots.includes("Sitemap: https://paulwrites.net/sitemap.xml"), "robots.txt does not reference the sitemap.");
 
 const redirects = await readFile(path.join(root, "_redirects"), "utf8");
-for (const route of ["/portfolio.html /portfolio/ 301", "/about /authors/paul-shannon/ 301", "/privacy.html /privacy/ 301"]) {
+for (const route of ["/portfolio.html /portfolio/ 301!", "/about /authors/paul-shannon/ 301", "/privacy.html /privacy/ 301!"]) {
   assert(redirects.includes(route), `Missing redirect: ${route}`);
 }
 

@@ -123,7 +123,14 @@ const chunksFrom = (raw, config) => {
     markedLines.push(inputLines[index]);
   }
 
+  // pdftotext wraps long reference URLs at arbitrary character boundaries.
+  // Rejoin continuations before linkifying; leave complete URLs and the next
+  // numbered reference alone so we do not manufacture a different citation.
   const cleaned = markedLines.join("\n")
+    .replace(/(https?:\/\/[^\s]+)\n([a-z0-9][\w./~-]*)/g, (match, url, continuation) => {
+      if (/^\d{1,3}\./.test(continuation) || /\.(?:pdf|html?|aspx)$|\/$/i.test(url)) return match;
+      return `${url}${continuation}`;
+    })
     .replace(/\n[ \t]+\n/g, "\n\n")
     .replace(/\n{3,}/g, "\n\n");
 

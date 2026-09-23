@@ -224,6 +224,7 @@ const head = ({ title, description, canonical, image, imageAlt, type = "website"
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}">
   <meta name="author" content="Paul Shannon">
+  <meta name="robots" content="max-image-preview:large">
   <meta name="theme-color" content="#166534">
   <link rel="canonical" href="${esc(canonical)}">
   <link rel="alternate" type="application/rss+xml" title="PaulWrites published work" href="${origin}/feed.xml">
@@ -498,7 +499,7 @@ const climateTable = `
         </tbody>
       </table>
     </div>
-    <figcaption id="lake-severity-caption">Selected recurring water bodies from the report’s 2020–2024 NYSDEC analysis. The report’s classifications are comparative research categories, not official risk designations. Source: Shannon (2025), using NYSDEC and USDA Web Soil Survey data. <a href="../../../public/downloads/climate-change-habs-genesee-finger-lakes.pdf">Source PDF</a>.</figcaption>
+    <figcaption id="lake-severity-caption">I grouped these water bodies using NYSDEC reports from 2020–2024 and USDA Web Soil Survey data. These comparative research categories are not official risk designations. <a href="../../../public/downloads/climate-change-habs-genesee-finger-lakes.pdf">My full report (PDF)</a>.</figcaption>
   </figure>`;
 
 const macrophyteTable = `
@@ -513,39 +514,39 @@ const macrophyteTable = `
         </tbody>
       </table>
     </div>
-    <figcaption id="macrophyte-caption">Table 1. The review’s feasibility framework combines mechanism, regional restrictions, management burden, and adverse-effect pathways. Source: Shannon (2026). <a href="../../../public/downloads/phytoremediation-habs-literature-review.pdf">Source PDF</a>.</figcaption>
+    <figcaption id="macrophyte-caption">Table 1. I compared each plant’s proposed mechanism with regional restrictions, management demands, and potential adverse effects. <a href="../../../public/downloads/phytoremediation-habs-literature-review.pdf">My full review (PDF)</a>.</figcaption>
   </figure>`;
 
 const renderResearchMedia = (item) => {
   if (item.id === "rhizofiltration-microcystis-water-hyacinth") return `
     <section class="research-figures" aria-labelledby="rhizo-figures"><h2 id="rhizo-figures">Figures and research visuals</h2>
-      <p class="figure-intro">Every non-decorative visual from the source paper is reproduced below, including the study’s reference images, field photograph, and result charts.</p>
+      <p class="figure-intro">I include the reference images, field photograph, and result charts from my paper below. Images from other creators retain their source credits.</p>
       <div class="figure-grid">
-        <figure class="figure-compact"><img src="../../../public/images/research/rhizofiltration-abbreviations.webp" alt="Abbreviation key defining HAB, microcystin-LR, microcystins, total suspended solids, biological oxygen demand, electrical conductivity, and phosphate" width="322" height="232" loading="lazy" decoding="async"><figcaption>Abbreviation key used in the paper. Source: Shannon (2023), reproduced in Shannon’s research report. <a href="../../../public/downloads/rhizofiltration-microcystis-water-hyacinth.pdf">Source PDF</a>.</figcaption></figure>
-        <figure><img src="../../../public/images/research/rhizofiltration-baltic-hab.webp" alt="Satellite view of a swirling green harmful algal bloom surrounding an island in the Baltic Sea" width="478" height="371" loading="lazy" decoding="async"><figcaption>Satellite image illustrating the scale and visible structure of a large algal bloom. Source: European Space Agency (2019), as credited in Shannon’s report. <a href="../../../public/downloads/rhizofiltration-microcystis-water-hyacinth.pdf">Source PDF</a>.</figcaption></figure>
-        <figure class="figure-wide"><img src="../../../public/images/research/rhizofiltration-mechanical-removal.webp" alt="A harvesting boat mechanically removing dense water hyacinth from the Euphrates River" width="1200" height="720" loading="lazy" decoding="async"><figcaption>A boat physically removes water hyacinth from the Euphrates River, illustrating the management burden created by dense mats. Source: AFP (2020), as credited in Shannon’s report. <a href="../../../public/downloads/rhizofiltration-microcystis-water-hyacinth.pdf">Source PDF</a>.</figcaption></figure>
-        <figure><img src="../../../public/images/research/rhizofiltration-field-site.webp" alt="A duckweed-covered pond near the Empire State Trail used as a source for model soil" width="341" height="355" loading="lazy" decoding="async"><figcaption>Field site used to source soil for the constructed wetland models. Photograph: Paul Shannon (2023). <a href="../../../public/downloads/rhizofiltration-microcystis-water-hyacinth.pdf">Source PDF</a>.</figcaption></figure>
-        <figure><img src="../../../public/images/research/rhizofiltration-secchi-depth.webp" alt="Line chart comparing Secchi depth in two water-hyacinth groups and a control after water hyacinth introduction" width="517" height="374" loading="lazy" decoding="async"><figcaption>Figure 1. Secchi depth decreased in the water-hyacinth groups while increasing in the control, an unexpected result that limits turbidity as a stand-alone proxy for cyanobacterial biomass. Source: Shannon (2024). <a href="../../../public/downloads/rhizofiltration-microcystis-water-hyacinth.pdf">Source PDF</a>.</figcaption></figure>
-        <figure><img src="../../../public/images/research/rhizofiltration-tds.webp" alt="Line chart comparing total dissolved solids in two water-hyacinth groups and a control across the experiment" width="387" height="321" loading="lazy" decoding="async"><figcaption>Figure 2. Total dissolved solids declined more quickly in the water-hyacinth groups than in the control. Source: Shannon (2024). <a href="../../../public/downloads/rhizofiltration-microcystis-water-hyacinth.pdf">Source PDF</a>.</figcaption></figure>
+        <figure class="figure-compact"><img src="../../../public/images/research/rhizofiltration-abbreviations.webp" alt="Abbreviation key defining HAB, microcystin-LR, microcystins, total suspended solids, biological oxygen demand, electrical conductivity, and phosphate" width="322" height="232" loading="lazy" decoding="async"><figcaption>Abbreviations I used throughout the experiment and report. <a href="../../../public/downloads/rhizofiltration-microcystis-water-hyacinth.pdf">My full paper (PDF)</a>.</figcaption></figure>
+        <figure><img src="../../../public/images/research/rhizofiltration-baltic-hab.webp" alt="Satellite view of a swirling green harmful algal bloom surrounding an island in the Baltic Sea" width="478" height="371" loading="lazy" decoding="async"><figcaption>A Baltic Sea bloom illustrates the visible structure of a large algal event; it is not the site of my experiment. Image credit: European Space Agency (2019). <a href="../../../public/downloads/rhizofiltration-microcystis-water-hyacinth.pdf">My full paper (PDF)</a>.</figcaption></figure>
+        <figure class="figure-wide"><img src="../../../public/images/research/rhizofiltration-mechanical-removal.webp" alt="A harvesting boat mechanically removing dense water hyacinth from the Euphrates River" width="1200" height="720" loading="lazy" decoding="async"><figcaption>Mechanical removal of water hyacinth from the Euphrates River shows a management burden that I discuss in the paper. Image credit: AFP (2020). <a href="../../../public/downloads/rhizofiltration-microcystis-water-hyacinth.pdf">My full paper (PDF)</a>.</figcaption></figure>
+        <figure><img src="../../../public/images/research/rhizofiltration-field-site.webp" alt="A duckweed-covered pond near the Empire State Trail used as a source for model soil" width="341" height="355" loading="lazy" decoding="async"><figcaption>I collected soil for the constructed wetland models at this field site near the Empire State Trail. My photograph, 2023. <a href="../../../public/downloads/rhizofiltration-microcystis-water-hyacinth.pdf">Full paper (PDF)</a>.</figcaption></figure>
+        <figure><img src="../../../public/images/research/rhizofiltration-secchi-depth.webp" alt="Line chart comparing Secchi depth in two water-hyacinth groups and a control after water hyacinth introduction" width="517" height="374" loading="lazy" decoding="async"><figcaption>Figure 1. I measured lower Secchi depth in the water-hyacinth groups than in the control; that unexpected result limits how I interpret turbidity as a proxy for cyanobacterial biomass. <a href="../../../public/downloads/rhizofiltration-microcystis-water-hyacinth.pdf">My full paper (PDF)</a>.</figcaption></figure>
+        <figure><img src="../../../public/images/research/rhizofiltration-tds.webp" alt="Line chart comparing total dissolved solids in two water-hyacinth groups and a control across the experiment" width="387" height="321" loading="lazy" decoding="async"><figcaption>Figure 2. I observed a faster decline in total dissolved solids in the water-hyacinth groups than in the control. <a href="../../../public/downloads/rhizofiltration-microcystis-water-hyacinth.pdf">My full paper (PDF)</a>.</figcaption></figure>
       </div>
     </section>`;
   if (item.id === "climate-change-harmful-algal-blooms-genesee-finger-lakes") return `
     <section class="research-figures" aria-labelledby="climate-figures"><h2 id="climate-figures">Regional data and figures</h2>
       ${climateTable}
       <div class="figure-grid">
-        <figure><img src="../../../public/images/research/climate-watershed-soils.webp" alt="Web Soil Survey map showing hydrologic soil groups around Conesus Lake" width="532" height="593" loading="lazy" decoding="async"><figcaption>Figure 1. Representative USDA Web Soil Survey analysis for the Conesus Lake watershed. Source: USDA Natural Resources Conservation Service Web Soil Survey, reproduced in Shannon (2025). <a href="../../../public/downloads/climate-change-habs-genesee-finger-lakes.pdf">Source PDF</a>.</figcaption></figure>
-        <figure class="figure-wide"><img src="../../../public/images/research/climate-hab-report-trend.webp" alt="Line chart comparing harmful algal bloom reports in hotspot and non-hotspot counties from 2020 through 2024" width="1200" height="742" loading="lazy" decoding="async"><figcaption>Figure 2. Reported HAB submissions rose sharply in the three counties categorized as hotspots. Source: Paul Shannon’s analysis of NYSDEC report data (2020–2024). <a href="../../../public/downloads/climate-change-habs-genesee-finger-lakes.pdf">Source PDF</a>.</figcaption></figure>
-        <figure class="figure-wide"><img src="../../../public/images/research/climate-reported-waterbodies.webp" alt="Line chart comparing the number of affected water bodies in hotspot and non-hotspot counties" width="1244" height="770" loading="lazy" decoding="async"><figcaption>Figure 3. The number of affected water bodies remained higher in the hotspot group. Source: Paul Shannon’s analysis of NYSDEC report data (2020–2024). <a href="../../../public/downloads/climate-change-habs-genesee-finger-lakes.pdf">Source PDF</a>.</figcaption></figure>
+        <figure><img src="../../../public/images/research/climate-watershed-soils.webp" alt="Web Soil Survey map showing hydrologic soil groups around Conesus Lake" width="532" height="593" loading="lazy" decoding="async"><figcaption>Figure 1. I used USDA Web Soil Survey data to examine hydrologic soil groups around Conesus Lake. Map source: USDA Natural Resources Conservation Service. <a href="../../../public/downloads/climate-change-habs-genesee-finger-lakes.pdf">My full report (PDF)</a>.</figcaption></figure>
+        <figure class="figure-wide"><img src="../../../public/images/research/climate-hab-report-trend.webp" alt="Line chart comparing harmful algal bloom reports in hotspot and non-hotspot counties from 2020 through 2024" width="1200" height="742" loading="lazy" decoding="async"><figcaption>Figure 2. I found a sharp rise in reported HAB submissions across the three hotspot counties from 2020 to 2024. Reporting intensity may have changed, so this chart alone does not establish a rise in actual bloom incidence. Data: NYSDEC. <a href="../../../public/downloads/climate-change-habs-genesee-finger-lakes.pdf">My full report (PDF)</a>.</figcaption></figure>
+        <figure class="figure-wide"><img src="../../../public/images/research/climate-reported-waterbodies.webp" alt="Line chart comparing the number of affected water bodies in hotspot and non-hotspot counties" width="1244" height="770" loading="lazy" decoding="async"><figcaption>Figure 3. I counted more water bodies with reported blooms in the hotspot group than in the comparison group. Data: NYSDEC, 2020–2024. <a href="../../../public/downloads/climate-change-habs-genesee-finger-lakes.pdf">My full report (PDF)</a>.</figcaption></figure>
       </div>
     </section>`;
   if (item.id === "phytoremediation-habs-feasibility-review") return `
     <section class="research-figures" aria-labelledby="comparison-heading">
       <h2 id="comparison-heading">Feasibility framework and source figures</h2>
-      <p class="figure-intro">The web table preserves the review’s comparison framework in an accessible format. The two embedded visuals below reproduce every additional table or figure contained in the source PDF.</p>
+      <p class="figure-intro">I present my comparison framework as an accessible web table. The two study visuals below come from the published sources cited in my review.</p>
       ${macrophyteTable}
       <div class="figure-grid figure-grid-stacked">
-        <figure><img src="../../../public/images/research/phytoremediation-rootzone-diversity.webp" alt="Table comparing Shannon, Simpson, and Chao-1 alpha-diversity indices across the water-hyacinth root zone and its lower and upper quartiles" width="616" height="218" loading="lazy" decoding="async"><figcaption>Table 2. Alpha-diversity indices for the <i>E. crassipes</i> root zone and its lower and upper quartiles. Source: Singh, Sodhi, and Singh (2024), reproduced in Shannon’s review. <a href="../../../public/downloads/phytoremediation-habs-literature-review.pdf">Source PDF</a>.</figcaption></figure>
-        <figure><img src="../../../public/images/research/phytoremediation-duckweed-microbiome.webp" alt="Stacked bar charts comparing bacterial abundance in duckweed samples and a Venn diagram comparing bacterial communities" width="604" height="472" loading="lazy" decoding="async"><figcaption>Figure 1. Relative abundance and overlap of bacterial communities associated with duckweed samples. Source: Acosta et al. (2020), reproduced in Shannon’s review. <a href="https://doi.org/10.1371/journal.pone.0228560">Original study</a> · <a href="../../../public/downloads/phytoremediation-habs-literature-review.pdf">Source PDF</a>.</figcaption></figure>
+        <figure><img src="../../../public/images/research/phytoremediation-rootzone-diversity.webp" alt="Table comparing Shannon, Simpson, and Chao-1 alpha-diversity indices across the water-hyacinth root zone and its lower and upper quartiles" width="616" height="218" loading="lazy" decoding="async"><figcaption>Table 2. I use these alpha-diversity indices for the <i>E. crassipes</i> root zone to discuss microbial communities. Original table: Singh, Sodhi, and Singh (2024). <a href="../../../public/downloads/phytoremediation-habs-literature-review.pdf">My full review (PDF)</a>.</figcaption></figure>
+        <figure><img src="../../../public/images/research/phytoremediation-duckweed-microbiome.webp" alt="Stacked bar charts comparing bacterial abundance in duckweed samples and a Venn diagram comparing bacterial communities" width="604" height="472" loading="lazy" decoding="async"><figcaption>Figure 1. I discuss bacterial abundance and community overlap associated with duckweed using this figure from <a href="https://doi.org/10.1371/journal.pone.0228560">Acosta et al. (2020)</a>. <a href="../../../public/downloads/phytoremediation-habs-literature-review.pdf">My full review (PDF)</a>.</figcaption></figure>
       </div>
     </section>`;
   return "";
@@ -609,6 +610,16 @@ const renderRelated = (item, content, { rootPrefix = "../../", relatedPrefix = "
         </div>
       </section>`;
 
+const heroCaption = (item) => {
+  if (item.id === "climate-change-harmful-algal-blooms-genesee-finger-lakes") {
+    return "Illustrative Lake Erie bloom photo; my regional analysis concerns the Genesee–Finger Lakes, not this pictured site.";
+  }
+  if (item.id === "katy-perry-spaceflight-climate") {
+    return "Illustrative launch photo of Space Shuttle Columbia; the article discusses a separate New Shepard flight.";
+  }
+  return item.imageAlt;
+};
+
 const renderWorkPage = (item) => {
   const content = pageContentFor(item);
   const reader = readerFor(item);
@@ -616,7 +627,8 @@ const renderWorkPage = (item) => {
   const original = cleanLink(item.url || item.link);
   const originalHref = original ? (isExternal(original) ? original : `../../${original}`) : "";
   const sourceLabel = isPdf(original) ? "View original PDF" : "View original publisher";
-  const description = truncateAtWord(`Project overview: ${item.summary}`, 158);
+  const summarySentence = item.summary.match(/^[^.!?]+[.!?]/)?.[0] || item.summary;
+  const description = `${summarySentence} See Paul’s role, research process, and ${reader.report ? "full report" : reader.guide ? "editorial guide" : "full article"}.`;
   const titleBase = (SEO_TITLES[item.id] || `${item.title} | Paul Shannon`).replace(/\s*\|\s*Paul Shannon$/, "");
   const crumbs = [
     { label: "Home", href: "../../index.html", canonical: `${origin}/` },
@@ -684,7 +696,7 @@ ${header("../../", "portfolio")}
           <ul class="publication-meta" aria-label="Project details">
             <li><strong>By</strong> <a href="../../authors/paul-shannon/index.html" rel="author">Paul Shannon</a></li>
             <li><strong>Context</strong> ${esc(item.publisher)}</li>
-            <li><strong>Date</strong> <time datetime="${esc(item.date)}">${esc(formatDate(item))}</time></li>
+            <li><strong>Date</strong> <time datetime="${esc(schemaDate(item))}">${esc(formatDate(item))}</time></li>
             <li><strong>Full ${reader.report ? "report" : reader.guide ? "guide" : "article"}</strong> ${reader.minutes} min read</li>
           </ul>
           <div class="actions publication-actions">
@@ -694,7 +706,7 @@ ${header("../../", "portfolio")}
         </div>
         <figure class="publication-figure">
           <img src="../../${esc(item.image)}" alt="${esc(item.imageAlt)}" width="1200" height="750" fetchpriority="high" decoding="async">
-          <figcaption>${esc(item.imageAlt)} <a href="../../image-credits.html">Image source and license</a>.</figcaption>
+          <figcaption>${esc(heroCaption(item))} <a href="../../image-credits.html">Image source and license</a>.</figcaption>
         </figure>
       </header>
 
@@ -758,11 +770,11 @@ const renderReadingPage = (item) => {
   const originalHref = original ? (isExternal(original) ? original : `../../../${original}`) : "";
   const sourceLabel = isPdf(original) ? "View original PDF" : "View original publisher";
   const articleLabel = reader.report ? "Full research report" : reader.guide ? "Editorial portfolio guide" : "Full article";
-  const description = truncateAtWord(reader.report
-    ? `Read Paul Shannon’s complete research report: ${item.summary}`
+  const description = reader.report
+    ? `Read Paul Shannon’s ${item.type.toLowerCase()} on ${item.title.toLowerCase()}, with methods, findings, limitations, figures, and references.`
     : reader.guide
-      ? `Read Paul Shannon’s portfolio guide to ${item.title}, including the subject, editorial approach, and project context.`
-      : `Read the complete article by Paul Shannon: ${item.summary}`, 158);
+      ? `Explore Paul Shannon’s editorial guide to ${item.title}, with the subject, process, and project context.`
+      : `Read ${item.title} by Paul Shannon, with the full article, publication context, and related work.`;
   const crumbs = [
     { label: "Home", href: "../../../index.html", canonical: `${origin}/` },
     { label: "Portfolio", href: "../../../portfolio.html", canonical: `${origin}/portfolio/` },
@@ -824,9 +836,9 @@ ${header("../../../", "portfolio")}
         <p class="kicker">${esc(articleLabel)} · ${esc(item.publisher)}</p>
         <h1${item.title.length > 76 ? ' class="long-title"' : ""}>${esc(item.title)}</h1>
         <p class="reading-dek">${scientificText(item.summary)}</p>
-        <ul class="publication-meta" aria-label="Article details"><li><strong>Author</strong> <a href="../../../authors/paul-shannon/index.html" rel="author">Paul Shannon</a></li>${reader.authorizedClient ? '<li><strong>Original publisher</strong> <a href="https://workinman.com/" target="_blank" rel="noopener noreferrer">Workinman Interactive</a></li>' : ""}<li><strong>Published</strong> <time datetime="${esc(item.date)}">${esc(formatDate(item))}</time></li><li><strong>Reading time</strong> ${reader.minutes} min</li><li><strong>Words</strong> ${reader.wordCount.toLocaleString("en-US")}</li></ul>
+        <ul class="publication-meta" aria-label="Article details"><li><strong>Author</strong> <a href="../../../authors/paul-shannon/index.html" rel="author">Paul Shannon</a></li>${reader.authorizedClient ? '<li><strong>Original publisher</strong> <a href="https://workinman.com/" target="_blank" rel="noopener noreferrer">Workinman Interactive</a></li>' : ""}<li><strong>Published</strong> <time datetime="${esc(schemaDate(item))}">${esc(formatDate(item))}</time></li><li><strong>Reading time</strong> ${reader.minutes} min</li><li><strong>Words</strong> ${reader.wordCount.toLocaleString("en-US")}</li></ul>
         <div class="reading-context-links"><a href="../index.html">About this project</a>${sourceAction}</div>
-        <figure class="reading-hero"><img src="../../../${esc(item.image)}" alt="${esc(item.imageAlt)}" width="1200" height="750" fetchpriority="high" decoding="async"><figcaption>${esc(item.imageAlt)} <a href="../../../image-credits.html">Image source and license</a>.</figcaption></figure>
+        <figure class="reading-hero"><img src="../../../${esc(item.image)}" alt="${esc(item.imageAlt)}" width="1200" height="750" fetchpriority="high" decoding="async"><figcaption>${esc(heroCaption(item))} <a href="../../../image-credits.html">Image source and license</a>.</figcaption></figure>
       </header>
 
       <div class="reading-shell container">
@@ -855,17 +867,17 @@ const portfolioStaticCard = (item, index) => {
   const originalLabel = isPdf(original) ? "View source PDF" : "View original";
   return `
         <article class="portfolio-item" id="${esc(item.id)}">
-          <div class="portfolio-date"><time datetime="${esc(item.date)}">${esc(formatDate(item))}</time></div>
-          <a class="portfolio-image-link" href="work/${esc(item.id)}/index.html" aria-label="Read ${esc(item.title)}">
+          <div class="portfolio-date"><time datetime="${esc(schemaDate(item))}">${esc(formatDate(item))}</time></div>
+          <a class="portfolio-image-link" href="work/${esc(item.id)}/" aria-label="Read ${esc(item.title)}">
             <img class="portfolio-image" src="${esc(item.image)}" alt="${esc(item.imageAlt)}" width="1200" height="750" loading="${index < 2 ? "eager" : "lazy"}"${index < 2 ? ' fetchpriority="high"' : ""} decoding="async">
           </a>
           <div class="portfolio-copy">
             <p class="item-meta">${esc(item.type)} · ${esc(item.publisher)} · Est. ${readingMinutesFor(item)} min read</p>
-            <h2><a href="work/${esc(item.id)}/index.html">${esc(item.title)}</a></h2>
+            <h2><a href="work/${esc(item.id)}/">${esc(item.title)}</a></h2>
             <p>${scientificText(item.summary)}</p>
             <ul class="tag-list" aria-label="Topics">${item.tags.map((tag) => `<li>${esc(tag)}</li>`).join("")}</ul>
             <div class="work-actions">
-              <a class="work-link" href="work/${esc(item.id)}/index.html">Read <span aria-hidden="true">→</span></a>
+              <a class="work-link" href="work/${esc(item.id)}/">Read <span aria-hidden="true">→</span></a>
               <details class="project-notes-native"><summary>Project details</summary><div class="project-notes-copy"><p>${scientificText(item.projectContext)}</p></div></details>
               ${original ? `<a class="original-link" href="${esc(original)}"${isExternal(original) ? ' target="_blank" rel="noopener noreferrer"' : ""}>${esc(originalLabel)} <span aria-hidden="true">↗</span></a>` : ""}
             </div>
@@ -1107,7 +1119,6 @@ const renderAuthor = () => {
   ].map((id) => items.find((item) => item.id === id)).filter(Boolean);
   const crumbs = [
     { label: "Home", href: "../../index.html", canonical: `${origin}/` },
-    { label: "Authors", href: "", canonical: `${origin}/authors/` },
     { label: "Paul Shannon", href: "", canonical }
   ];
   const schema = {
@@ -1174,23 +1185,23 @@ ${footer("../../")}
 };
 
 const sitemapRoutes = [
-  { path: "/", priority: "1.0", lastmod: today },
+  { path: "/", priority: "1.0" },
   { path: "/portfolio/", priority: "0.9", lastmod: today },
-  { path: "/services/", priority: "0.8", lastmod: today },
-  ...SERVICE_PAGES.map((service) => ({ path: `/${service.slug}/`, priority: "0.8", lastmod: today })),
-  { path: "/authors/paul-shannon/", priority: "0.7", lastmod: today },
+  { path: "/services/", priority: "0.8" },
+  ...SERVICE_PAGES.map((service) => ({ path: `/${service.slug}/`, priority: "0.8" })),
+  { path: "/authors/paul-shannon/", priority: "0.7" },
   ...items.flatMap((item) => [
-    { path: `/work/${item.id}/`, priority: isResearch(item) ? "0.8" : "0.7", lastmod: item.date },
-    { path: `/work/${item.id}/${readerFor(item).segment}/`, priority: readerFor(item).complete ? "0.8" : "0.6", lastmod: item.date }
+    { path: `/work/${item.id}/`, priority: isResearch(item) ? "0.8" : "0.7", ...(isResearch(item) ? { lastmod: today } : {}) },
+    { path: `/work/${item.id}/${readerFor(item).segment}/`, priority: readerFor(item).complete ? "0.8" : "0.6", ...(isResearch(item) ? { lastmod: today } : {}) }
   ]),
-  { path: "/privacy/", priority: "0.2", lastmod: today },
-  { path: "/accessibility/", priority: "0.3", lastmod: today },
-  { path: "/image-credits/", priority: "0.2", lastmod: today }
+  { path: "/privacy/", priority: "0.2" },
+  { path: "/accessibility/", priority: "0.3" },
+  { path: "/image-credits/", priority: "0.2" }
 ];
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${sitemapRoutes.map((route) => `  <url><loc>${origin}${route.path}</loc><lastmod>${route.lastmod}</lastmod><priority>${route.priority}</priority></url>`).join("\n")}
+${sitemapRoutes.map((route) => `  <url><loc>${origin}${route.path}</loc>${route.lastmod ? `<lastmod>${route.lastmod}</lastmod>` : ""}<priority>${route.priority}</priority></url>`).join("\n")}
 </urlset>\n`;
 
 const feed = `<?xml version="1.0" encoding="UTF-8"?>
@@ -1204,7 +1215,7 @@ const feed = `<?xml version="1.0" encoding="UTF-8"?>
     <atom:link href="${origin}/feed.xml" rel="self" type="application/rss+xml" />
 ${[...items].sort((a, b) => b.date.localeCompare(a.date)).map((item) => {
   const reader = readerFor(item);
-  return `    <item><title>${esc(reader.guide ? `${item.title}: article guide` : item.title)}</title><link>${reader.canonical}</link><guid isPermaLink="true">${reader.canonical}</guid><pubDate>${new Date(`${item.date}T12:00:00Z`).toUTCString()}</pubDate><description>${esc(item.summary)}</description><author>pshannon@paulwrites.net (Paul Shannon)</author></item>`;
+  return `    <item><title>${esc(reader.guide ? `${item.title}: article guide` : item.title)}</title><link>${reader.canonical}</link><guid isPermaLink="true">${reader.canonical}</guid>${item.datePrecision === "year" ? "" : `<pubDate>${new Date(`${item.date}T12:00:00Z`).toUTCString()}</pubDate>`}<description>${esc(item.summary)}</description><author>pshannon@paulwrites.net (Paul Shannon)</author></item>`;
 }).join("\n")}
   </channel>
 </rss>\n`;
@@ -1212,21 +1223,22 @@ ${[...items].sort((a, b) => b.date.localeCompare(a.date)).map((item) => {
 const readingTimesScript = `window.PAULWRITES_READING_TIMES = ${JSON.stringify(Object.fromEntries(items.map((item) => [item.id, readingMinutesFor(item)])), null, 2)};\n`;
 
 const redirects = [
-  "/index.html / 301",
+  "/index.html / 301!",
   "/portfolio /portfolio/ 301",
-  "/portfolio.html /portfolio/ 301",
+  "/portfolio.html /portfolio/ 301!",
   "/services /services/ 301",
+  "/services/index.html /services/ 301!",
   ...SERVICE_PAGES.flatMap((service) => [
     `/${service.slug} /${service.slug}/ 301`,
-    `/${service.slug}/index.html /${service.slug}/ 301`
+    `/${service.slug}/index.html /${service.slug}/ 301!`
   ]),
   "/authors/paul-shannon /authors/paul-shannon/ 301",
-  "/authors/paul-shannon/index.html /authors/paul-shannon/ 301",
+  "/authors/paul-shannon/index.html /authors/paul-shannon/ 301!",
   ...items.flatMap((item) => [
     `/work/${item.id} /work/${item.id}/ 301`,
-    `/work/${item.id}/index.html /work/${item.id}/ 301`,
+    `/work/${item.id}/index.html /work/${item.id}/ 301!`,
     `/work/${item.id}/${readerFor(item).segment} /work/${item.id}/${readerFor(item).segment}/ 301`,
-    `/work/${item.id}/${readerFor(item).segment}/index.html /work/${item.id}/${readerFor(item).segment}/ 301`
+    `/work/${item.id}/${readerFor(item).segment}/index.html /work/${item.id}/${readerFor(item).segment}/ 301!`
   ]),
   "/work /portfolio/ 301",
   "/work/ /portfolio/ 301",
@@ -1237,11 +1249,11 @@ const redirects = [
   "/contact /#contact 301",
   "/contact/ /#contact 301",
   "/privacy /privacy/ 301",
-  "/privacy.html /privacy/ 301",
+  "/privacy.html /privacy/ 301!",
   "/accessibility /accessibility/ 301",
-  "/accessibility.html /accessibility/ 301",
+  "/accessibility.html /accessibility/ 301!",
   "/image-credits /image-credits/ 301",
-  "/image-credits.html /image-credits/ 301"
+  "/image-credits.html /image-credits/ 301!"
 ].join("\n") + "\n";
 
 for (const directory of ["work", "services", "authors", ...SERVICE_PAGES.map((service) => service.slug)]) {

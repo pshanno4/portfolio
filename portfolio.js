@@ -97,7 +97,7 @@
       url,
       linkLabel: item.linkLabel || (/\.pdf(?:$|[?#])/i.test(url) ? "Read the research paper" : `Read on ${publisher}`)
     };
-  }).filter((item) => item.url);
+  });
 
   const PAGE_SIZE = 8;
   const preferredTags = [
@@ -155,7 +155,9 @@
   };
 
   const makeItem = (item, priorityImage = false) => {
-    const localUrl = `work/${item.id}/index.html`;
+    const localUrl = window.location.protocol === "file:"
+      ? `work/${item.id}/index.html`
+      : `/work/${encodeURIComponent(item.id)}/`;
     const article = document.createElement("article");
     article.className = "portfolio-item";
     article.id = item.id;
@@ -163,7 +165,7 @@
     const dateBox = document.createElement("div");
     dateBox.className = "portfolio-date";
     const time = document.createElement("time");
-    time.dateTime = item.date;
+    time.dateTime = item.datePrecision === "year" ? item.date.slice(0, 4) : item.date;
     time.textContent = formatDate(item);
     dateBox.append(time);
 
@@ -240,17 +242,20 @@
 
     const originalLink = document.createElement("a");
     originalLink.className = "original-link";
-    originalLink.href = item.url;
-    originalLink.textContent = /\.pdf(?:$|[?#])/i.test(item.url) ? "View source PDF ↗" : "View original ↗";
-    originalLink.setAttribute("aria-label", `${originalLink.textContent.replace(" ↗", "")}: ${item.title}`);
-    if (/^https?:/.test(item.url)) {
-      originalLink.target = "_blank";
-      originalLink.rel = "noopener noreferrer";
+    if (item.url) {
+      originalLink.href = item.url;
+      originalLink.textContent = /\.pdf(?:$|[?#])/i.test(item.url) ? "View source PDF ↗" : "View original ↗";
+      originalLink.setAttribute("aria-label", `${originalLink.textContent.replace(" ↗", "")}: ${item.title}`);
+      if (/^https?:/.test(item.url)) {
+        originalLink.target = "_blank";
+        originalLink.rel = "noopener noreferrer";
+      }
     }
 
     const actions = document.createElement("div");
     actions.className = "work-actions";
-    actions.append(workLink, notesToggle, originalLink);
+    actions.append(workLink, notesToggle);
+    if (item.url) actions.append(originalLink);
 
     copy.append(meta, heading, summary, tagList, actions, notesCopy);
     article.append(dateBox, visual, copy);
