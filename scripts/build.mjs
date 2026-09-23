@@ -1,4 +1,4 @@
-import { cp, mkdir, rm } from "node:fs/promises";
+import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 // Regenerate every derived page from posts.js before creating the deployable copy.
@@ -16,7 +16,9 @@ const files = [
   "styles.css",
   "site.js",
   "posts.js",
+  "reading-times.js",
   "portfolio.js",
+  "feed.xml",
   "robots.txt",
   "sitemap.xml",
   "_redirects"
@@ -36,6 +38,11 @@ const cleanRouteAliases = new Map([
   ["image-credits.html", "image-credits"]
 ]);
 
+const aliasHtml = (html) => html.replace(/\b(href|src)="([^"]+)"/g, (match, attribute, value) => {
+  if (/^(?:[a-z][a-z0-9+.-]*:|#|\/)/i.test(value)) return match;
+  return `${attribute}="../${value}"`;
+});
+
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
 
@@ -50,7 +57,8 @@ for (const directory of generatedDirectories) {
 for (const [source, route] of cleanRouteAliases) {
   const destination = path.join(output, route);
   await mkdir(destination, { recursive: true });
-  await cp(path.join(root, source), path.join(destination, "index.html"));
+  const html = await readFile(path.join(root, source), "utf8");
+  await writeFile(path.join(destination, "index.html"), aliasHtml(html));
 }
 
 await cp(path.join(root, "public"), path.join(output, "public"), { recursive: true });

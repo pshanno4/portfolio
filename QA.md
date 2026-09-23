@@ -1,22 +1,37 @@
 # PaulWrites release QA
 
-Release checked on September 22, 2026.
+Release checked on September 23, 2026.
 
 ## Automated crawl and build
 
 `pnpm run build && pnpm run check` completed without errors.
 
-- 38 canonical/indexable HTML pages validated.
-- 28 of 28 portfolio records have a permanent `/work/[slug]/` page.
+### September 23 corrective pass
+
+- The homepage hero now uses one consistent display weight, including the words “and” and “for,” while retaining selective color emphasis.
+- Overview summary grids size to their content instead of stretching into empty gray panels; summary cards provide short information scent and the sections below expand on that material rather than repeating it verbatim.
+- The phytoremediation overview contains the full Interpretation and Limitations text and no orphaned numeric paragraph after Management & Adverse Effects.
+- Every non-decorative figure embedded in the three supplied research PDFs is represented on its respective HTML report: three climate/HAB figures, six rhizofiltration figures, and the phytoremediation paper's two embedded figures alongside its accessible HTML reconstruction of Table 1.
+- Every research visual has a descriptive caption, a visible source/citation, and a source-document link; the new raster extracts are local WebP assets.
+- Scientific binomials and supported abbreviated forms are italicized in body copy, summaries, metadata, tables of contents, project notes, and dynamically rendered portfolio text, while bold display titles retain their intended title styling.
+- The freelance-writer article image caption now correctly identifies hardcover books rather than notebooks.
+- Automated regressions now reject clipped summary text, missing expected research figures, loose numeric paragraphs, the incorrect caption, inconsistent hero weight, and unitalicized scientific names outside title contexts.
+
+- 66 canonical/indexable HTML pages validated.
+- 28 of 28 portfolio records have a permanent `/work/[slug]/` overview and a separate `/article/` or `/report/` reading page.
+- 24 complete article editions are rendered from structured content, including all seven authorized Workinman articles.
+- All three supplied research papers are rendered as complete semantic HTML reports, with their PDFs retained as secondary source documents.
 - 28 of 28 portfolio records use a distinct featured-image file.
 - All seven Workinman entries have different, assignment-specific project notes.
 - All three research PDFs exist and have valid PDF headers.
 - Every canonical page has one H1, a unique title, a unique meta description, a self-referencing canonical, Open Graph data, Twitter/X data, a skip link, and a main landmark.
+- Current canonical title tags are 20–78 characters and meta descriptions are 66–158 characters; none rely on duplicate boilerplate.
 - Every JSON-LD block parses successfully.
 - All generated pages connect to the same Paul Shannon Person `@id`.
 - Every work page includes visible and structured breadcrumbs, an author box, a publication/source note, relevant service link, and three related works.
 - Every local HTML `href` and `src` resolves to a real source target.
-- The sitemap contains all 38 canonical URLs; robots.txt allows crawling and references it.
+- The deployable `dist/` tree is crawled separately, including clean-route aliases; `/portfolio/`, `/privacy/`, `/accessibility/`, and `/image-credits/` retain working relative CSS, scripts, images, and navigation.
+- The sitemap contains all 66 canonical URLs; robots.txt allows crawling and references it.
 - Canonical redirect rules exist for legacy `.html`, `/about`, `/work`, `/articles`, and information-page routes.
 - No retired `inquirewithps@gmail.com`, placeholder wording, lorem ipsum, hardcoded view totals, or fake like totals remain.
 
@@ -47,8 +62,9 @@ The homepage, portfolio, and a long research page were rendered inside true nest
 
 ## Content and rights safeguards
 
-- Workinman and other third-party publications use original case-study pages and source links rather than unauthorized full-text copies.
-- The three research pages summarize the actual supplied papers and link the complete PDFs.
+- All seven Workinman pages reproduce their complete public-facing article text under Paul’s stated portfolio permission. Visible metadata and JSON-LD identify Paul Shannon as author and Workinman Interactive as original publisher.
+- Sustainable585 Issue #2 remains an original guide because its supplied URL resolves to a different issue; it makes no false full-text claim and exposes no incorrect original link.
+- The three research overview pages summarize the actual supplied papers; their reading pages contain the full semantic reports and link the complete PDFs.
 - Research findings include stated scope and limitations and do not invent new outcomes.
 - Every non-client featured image is recorded with its source/license; the Workinman images identify their corresponding publisher pages.
 - Image files are local WebP assets with explicit dimensions and descriptive alt text.

@@ -1,41 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://paulwrites.net/</loc><lastmod>2026-09-22</lastmod><priority>1.0</priority></url>
-  <url><loc>https://paulwrites.net/portfolio/</loc><lastmod>2026-09-22</lastmod><priority>0.9</priority></url>
-  <url><loc>https://paulwrites.net/services/</loc><lastmod>2026-09-22</lastmod><priority>0.8</priority></url>
-  <url><loc>https://paulwrites.net/environmental-science-writer/</loc><lastmod>2026-09-22</lastmod><priority>0.8</priority></url>
-  <url><loc>https://paulwrites.net/technical-writer/</loc><lastmod>2026-09-22</lastmod><priority>0.8</priority></url>
-  <url><loc>https://paulwrites.net/seo-content-writer/</loc><lastmod>2026-09-22</lastmod><priority>0.8</priority></url>
-  <url><loc>https://paulwrites.net/authors/paul-shannon/</loc><lastmod>2026-09-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/</loc><lastmod>2026-09-23</lastmod><priority>1.0</priority></url>
+  <url><loc>https://paulwrites.net/portfolio/</loc><lastmod>2026-09-23</lastmod><priority>0.9</priority></url>
+  <url><loc>https://paulwrites.net/services/</loc><lastmod>2026-09-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://paulwrites.net/environmental-science-writer/</loc><lastmod>2026-09-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://paulwrites.net/technical-writer/</loc><lastmod>2026-09-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://paulwrites.net/seo-content-writer/</loc><lastmod>2026-09-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://paulwrites.net/authors/paul-shannon/</loc><lastmod>2026-09-23</lastmod><priority>0.7</priority></url>
   <url><loc>https://paulwrites.net/work/phytoremediation-habs-feasibility-review/</loc><lastmod>2026-01-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://paulwrites.net/work/phytoremediation-habs-feasibility-review/report/</loc><lastmod>2026-01-01</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/noovie-trivia-levels-up/</loc><lastmod>2026-01-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/noovie-trivia-levels-up/article/</loc><lastmod>2026-01-01</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/trade-show-booth-gamification/</loc><lastmod>2025-12-03</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/trade-show-booth-gamification/article/</loc><lastmod>2025-12-03</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/why-entrepreneurship-became-a-trend/</loc><lastmod>2025-06-26</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/why-entrepreneurship-became-a-trend/article/</loc><lastmod>2025-06-26</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/bonn-2025-climate-negotiations/</loc><lastmod>2025-06-17</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/bonn-2025-climate-negotiations/article/</loc><lastmod>2025-06-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/games-for-brands/</loc><lastmod>2025-06-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/games-for-brands/article/</loc><lastmod>2025-06-16</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/clean-water-climate-change-habs/</loc><lastmod>2025-06-12</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/clean-water-climate-change-habs/article/</loc><lastmod>2025-06-12</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/digital-board-games/</loc><lastmod>2025-06-11</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/digital-board-games/article/</loc><lastmod>2025-06-11</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/why-freelance-writers-quit/</loc><lastmod>2025-06-05</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/why-freelance-writers-quit/article/</loc><lastmod>2025-06-05</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/sustainable585-issue-5/</loc><lastmod>2025-06-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/sustainable585-issue-5/article/</loc><lastmod>2025-06-01</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/freelancers-stay-broke-after-clients/</loc><lastmod>2025-05-29</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/freelancers-stay-broke-after-clients/article/</loc><lastmod>2025-05-29</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/elon-musk-mars/</loc><lastmod>2025-05-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/elon-musk-mars/article/</loc><lastmod>2025-05-22</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/sustainable585-issue-4/</loc><lastmod>2025-05-18</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/sustainable585-issue-4/article/</loc><lastmod>2025-05-18</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/carbon-offsets-insetting/</loc><lastmod>2025-05-15</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/carbon-offsets-insetting/article/</loc><lastmod>2025-05-15</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/what-makes-a-good-portfolio/</loc><lastmod>2025-05-08</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/what-makes-a-good-portfolio/article/</loc><lastmod>2025-05-08</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/sustainable585-issue-3/</loc><lastmod>2025-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/sustainable585-issue-3/article/</loc><lastmod>2025-05-04</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/ai-corporate-sustainability/</loc><lastmod>2025-05-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/ai-corporate-sustainability/article/</loc><lastmod>2025-05-01</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/smart-thermostat-wont-save-you/</loc><lastmod>2025-04-24</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/smart-thermostat-wont-save-you/article/</loc><lastmod>2025-04-24</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/rochester-sustainable-fashion-brands/</loc><lastmod>2025-04-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/rochester-sustainable-fashion-brands/article/</loc><lastmod>2025-04-22</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/sustainable585-issue-2/</loc><lastmod>2025-04-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/sustainable585-issue-2/article/</loc><lastmod>2025-04-20</lastmod><priority>0.6</priority></url>
   <url><loc>https://paulwrites.net/work/katy-perry-spaceflight-climate/</loc><lastmod>2025-04-17</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/katy-perry-spaceflight-climate/article/</loc><lastmod>2025-04-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/sustainable585-issue-1/</loc><lastmod>2025-04-13</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/sustainable585-issue-1/article/</loc><lastmod>2025-04-13</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/climate-change-harmful-algal-blooms-genesee-finger-lakes/</loc><lastmod>2025-01-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://paulwrites.net/work/climate-change-harmful-algal-blooms-genesee-finger-lakes/report/</loc><lastmod>2025-01-01</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/5-tips-for-gamifying-boring-apps/</loc><lastmod>2025-01-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/5-tips-for-gamifying-boring-apps/article/</loc><lastmod>2025-01-01</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/noovie-trivia-app/</loc><lastmod>2025-01-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/noovie-trivia-app/article/</loc><lastmod>2025-01-01</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/museums-relevant-with-digital-exhibits/</loc><lastmod>2025-01-01</lastmod><priority>0.7</priority></url>
+  <url><loc>https://paulwrites.net/work/museums-relevant-with-digital-exhibits/article/</loc><lastmod>2025-01-01</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/rhizofiltration-microcystis-water-hyacinth/</loc><lastmod>2024-01-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://paulwrites.net/work/rhizofiltration-microcystis-water-hyacinth/report/</loc><lastmod>2024-01-01</lastmod><priority>0.8</priority></url>
   <url><loc>https://paulwrites.net/work/engin-ukraine-connections/</loc><lastmod>2023-01-02</lastmod><priority>0.7</priority></url>
-  <url><loc>https://paulwrites.net/privacy/</loc><lastmod>2026-09-22</lastmod><priority>0.2</priority></url>
-  <url><loc>https://paulwrites.net/accessibility/</loc><lastmod>2026-09-22</lastmod><priority>0.3</priority></url>
-  <url><loc>https://paulwrites.net/image-credits/</loc><lastmod>2026-09-22</lastmod><priority>0.2</priority></url>
+  <url><loc>https://paulwrites.net/work/engin-ukraine-connections/article/</loc><lastmod>2023-01-02</lastmod><priority>0.8</priority></url>
+  <url><loc>https://paulwrites.net/privacy/</loc><lastmod>2026-09-23</lastmod><priority>0.2</priority></url>
+  <url><loc>https://paulwrites.net/accessibility/</loc><lastmod>2026-09-23</lastmod><priority>0.3</priority></url>
+  <url><loc>https://paulwrites.net/image-credits/</loc><lastmod>2026-09-23</lastmod><priority>0.2</priority></url>
 </urlset>

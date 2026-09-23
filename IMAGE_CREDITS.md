@@ -48,3 +48,19 @@ The following photographs are used under the [Unsplash License](https://unsplash
 | `reforestation-seedling.webp` | Phil Desforges | [Reforestation seedling](https://unsplash.com/photos/kGmz87qVQBM) |
 
 Adapted Creative Commons images retain their stated licenses.
+
+## Research figures
+
+The following figures were extracted from Paul Shannon's supplied research papers and converted to WebP for the semantic HTML editions. Copyright remains with Paul Shannon unless the source paper states otherwise.
+
+- `climate-watershed-soils.webp` — USDA Web Soil Survey figure reproduced in *The Impact of Climate Change on Harmful Algal Blooms in the Genesee–Finger Lakes Region*.
+- `climate-hab-report-trend.webp` — analysis figure by Paul Shannon based on NYSDEC harmful algal bloom reports.
+- `climate-reported-waterbodies.webp` — analysis figure by Paul Shannon based on NYSDEC harmful algal bloom reports.
+- `rhizofiltration-field-site.webp` — field photograph by Paul Shannon (2023).
+- `rhizofiltration-secchi-depth.webp` — experimental analysis figure by Paul Shannon.
+- `rhizofiltration-tds.webp` — experimental analysis figure by Paul Shannon.
+- `rhizofiltration-abbreviations.webp` — abbreviation key credited to Shannon (2023) in the source report.
+- `rhizofiltration-baltic-hab.webp` — European Space Agency (2019), as credited in the source report.
+- `rhizofiltration-mechanical-removal.webp` — AFP (2020), as credited in the source report.
+- `phytoremediation-rootzone-diversity.webp` — alpha-diversity data from Singh, Sodhi, and Singh (2024), reproduced in Paul Shannon’s review.
+- `phytoremediation-duckweed-microbiome.webp` — figure from Acosta et al. (2020), reproduced in Paul Shannon’s review.

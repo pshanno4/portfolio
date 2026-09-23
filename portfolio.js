@@ -15,6 +15,40 @@
     return markdown ? markdown[1] : text;
   };
 
+  const scientificNames = [
+    "Microcystis aeruginosa", "Eichhornia crassipes", "Pontederia crassipes",
+    "Lemna trisulca", "Lemna minor", "Myriophyllum aquaticum",
+    "Raphidiopsis raciborskii", "Dolichospermum flos-aquae", "Anabaena flos-aquae",
+    "Paucibacter toxinivorans", "Pistia stratiotes", "Spirodela polyrhiza",
+    "Ceratophyllum demersum", "Chrysopogon zizanioides", "Karenia brevis",
+    "Sedum plumbizincicola", "Pteris vittata", "Synechococcus elongatus",
+    "Neochetina bruchi", "Neochetina eichhorniae",
+    "M. aeruginosa", "E. crassipes", "P. crassipes", "L. trisulca", "L. minor",
+    "M. aquaticum", "R. raciborskii", "D. flos-aquae",
+    "Microcystis", "Eichhornia", "Pontederia", "Lemna", "Myriophyllum",
+    "Raphidiopsis", "Dolichospermum", "Anabaena", "Paucibacter", "Pistia",
+    "Spirodela", "Ceratophyllum", "Chrysopogon", "Oscillatoria", "Acinetobacter",
+    "Agrobacterium", "Azospirillum", "Burkholderia", "Caulobacter", "Methylibium",
+    "Pseudomonas", "Sphingomonas", "Karenia", "Sedum", "Pteris",
+    "Synechococcus", "Neochetina"
+  ].sort((a, b) => b.length - a.length);
+  const scientificNamePattern = new RegExp(
+    `\\b(?:${scientificNames.map((name) => name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})\\b`,
+    "g"
+  );
+  const appendScientificText = (element, value = "") => {
+    const text = String(value);
+    let cursor = 0;
+    for (const match of text.matchAll(scientificNamePattern)) {
+      if (match.index > cursor) element.append(document.createTextNode(text.slice(cursor, match.index)));
+      const italic = document.createElement("i");
+      italic.textContent = match[0];
+      element.append(italic);
+      cursor = match.index + match[0].length;
+    }
+    if (cursor < text.length) element.append(document.createTextNode(text.slice(cursor)));
+  };
+
   const slugify = (value = "") => String(value)
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
@@ -56,7 +90,7 @@
       publisher,
       summary: item.summary || item.description || "",
       projectContext: item.projectContext || "This piece shows how Paul turns source material and a defined editorial goal into a clear finished work.",
-      readingMinutes: Math.max(1, Number.parseInt(item.readingMinutes, 10) || 4),
+      readingMinutes: Math.max(1, Number.parseInt(window.PAULWRITES_READING_TIMES?.[id] ?? item.readingMinutes, 10) || 4),
       image: cleanLink(item.image),
       imageAlt: String(item.imageAlt || ""),
       tags: Array.isArray(item.tags) ? item.tags : [],
@@ -162,7 +196,7 @@
     heading.append(titleLink);
 
     const summary = document.createElement("p");
-    summary.textContent = item.summary;
+    appendScientificText(summary, item.summary);
 
     const tagList = document.createElement("ul");
     tagList.className = "tag-list";
@@ -195,7 +229,7 @@
     notesCopy.id = panelId;
     notesCopy.hidden = true;
     const notesText = document.createElement("p");
-    notesText.textContent = item.projectContext;
+    appendScientificText(notesText, item.projectContext);
     notesCopy.append(notesText);
     notesToggle.addEventListener("click", () => {
       const willOpen = notesCopy.hidden;

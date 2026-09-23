@@ -328,7 +328,7 @@ export const WORK_PAGE_CONTENT = {
   "rhizofiltration-microcystis-water-hyacinth": {
     eyebrow: "Experimental research · Freshwater remediation",
     overview: [
-      "This experiment tested whether the common water hyacinth, Eichhornia crassipes, could reduce bloom-supporting nutrients in a constructed wetland model containing Microcystis aeruginosa. The project was conducted at Hudson Falls High School through the University at Albany Science Research in the High School program, with mentorship from Dr. Jason Dexter of Cyanoworks and Sarah G. Zetterholm of the U.S. Army Engineer Research and Development Center.",
+      "This experiment tested whether the common water hyacinth, Eichhornia crassipes, could reduce bloom-supporting nutrients in a constructed wetland model containing Microcystis aeruginosa. Paul constructed the controlled wetland model, monitored temperature, day–light conditions, humidity and vapor-pressure deficit (VPD), and measured turbidity and nutrient dynamics throughout the experiment. The project was conducted at Hudson Falls High School through the University at Albany Science Research in the High School program, with mentorship from Dr. Jason Dexter of Cyanoworks and Sarah G. Zetterholm of the U.S. Army Engineer Research and Development Center.",
       "The study was designed as an early controlled model, not a recommendation to release water hyacinth into natural New York waters. Because the plant can become invasive and form harmful mats, handling, disposal, and the limitations of scale remained part of the scientific question."
     ],
     sections: [
@@ -337,7 +337,7 @@ export const WORK_PAGE_CONTENT = {
         bullets: [
           "Clear 71-ounce glass vessels with a soil base were used as constructed wetland models.",
           "Microcystis aeruginosa culture and a defined nutrient source were used to induce bloom conditions.",
-          "A temperature-controlled grow tent maintained conditions near 24°C.",
+          "A grow tent controlled and monitored temperature, day–light conditions, humidity, light intensity, and vapor-pressure deficit (VPD), with temperature maintained near 24°C.",
           "Water hyacinth was introduced during the remediation stage and compared with a non-hyacinth control.",
           "Phosphate, total dissolved solids, electrical conductivity, pH, and Secchi depth were tracked; plants were desiccated before disposal to prevent release."
         ]
@@ -355,7 +355,7 @@ export const WORK_PAGE_CONTENT = {
         paragraphs: ["The study partially supported the hypothesis but exposed important measurement limits. A follow-up should quantify water-hyacinth growth and matting, measure dissolved oxygen, increase replication, and use spectrophotometry to track cyanobacterial growth directly. Field application would also require a controlled deployment and removal system that prevents the remediation plant from becoming a separate ecological problem."]
       }
     ],
-    role: "Paul designed and documented the model, conducted the measurements and analysis, reviewed the literature, and communicated the findings through the UAlbany Science Research in the High School program.",
+    role: "Paul constructed, designed, and documented the controlled wetland model; managed bloom induction and rhizofiltration; monitored environmental conditions; measured turbidity and nutrient dynamics; analyzed the results; reviewed the literature; and communicated the findings through the UAlbany Science Research in the High School program.",
     relatedIds: ["phytoremediation-habs-feasibility-review", "climate-change-harmful-algal-blooms-genesee-finger-lakes", "clean-water-climate-change-habs"]
   },
   "engin-ukraine-connections": {

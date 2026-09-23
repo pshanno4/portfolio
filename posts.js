@@ -149,7 +149,7 @@ window.PAULWRITES_ITEMS = [
     projectContext: "Independent professional commentary grounded in Paul’s freelance writing experience. The article reframes persistence as a set of business systems and working habits rather than a motivational slogan.",
     readingMinutes: 5,
     image: "public/images/work/freelance-persistence.webp",
-    imageAlt: "Laptop, books, glasses, and notebooks arranged on a freelance writer’s desk",
+    imageAlt: "Laptop, hardcover books, and glasses arranged on a freelance writer’s desk",
     tags: ["Freelancing", "Article"],
     url: "https://www.linkedin.com/pulse/why-90-freelance-writers-quitand-how-10-who-dont-paul-shannon-fluxc/",
     linkLabel: "Read on LinkedIn",
@@ -327,8 +327,9 @@ window.PAULWRITES_ITEMS = [
     image: "public/images/work/spring-seedlings.webp",
     imageAlt: "Volunteers tending young seedlings in a community planting area",
     tags: ["Sustainability", "Rochester", "Article"],
-    url: "https://www.linkedin.com/pulse/issue-1-april-13-2025-where-spring-begins-paul-shannon-jtxmc/",
-    linkLabel: "Read on LinkedIn",
+    url: "",
+    sourceUnavailable: true,
+    linkLabel: "Original issue not linked",
     featured: false
   },
   {
