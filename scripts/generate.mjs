@@ -1115,7 +1115,7 @@ ${header("../", "services")}
     ])}</div>
     <section class="service-hero container service-hero-grid">
       <div><p class="kicker">Writing and SEO services</p>
-      <h1>Make complex work clear. Make your website useful.</h1>
+      <h1>Research-driven writing and SEO services.</h1>
       <p class="service-lede">Research-driven writing for environmental and technical subjects. SEO content and website audits that connect useful information to the next step.</p><div class="actions"><a class="button button-primary" href="#services">Find your service</a><a class="button button-secondary" href="../portfolio.html">Browse the portfolio</a></div></div>
       <aside class="service-summary service-start-guide" aria-label="Where to start"><p class="small-label">Where should you start?</p><a href="../seo-audits/index.html"><strong>Review an existing website</strong><span>Find the issues and plan the repairs. <span aria-hidden="true">→</span></span></a><a href="../index.html#contact"><strong>Discuss a writing project</strong><span>Turn your brief and sources into a clear scope. <span aria-hidden="true">→</span></span></a></aside>
     </section>
