@@ -3,7 +3,7 @@
   "source": "LinkedIn",
   "sourceUrl": "https://www.linkedin.com/pulse/why-90-freelance-writers-quitand-how-10-who-dont-paul-shannon-fluxc/",
   "reproduction": "complete-owned-web-edition",
-  "wordCount": 966,
+  "wordCount": 869,
   "blocks": [
     {
       "type": "p",
@@ -15,7 +15,7 @@
     },
     {
       "type": "p",
-      "text": "Rough estimates suggest the majority of new freelancers exit within the first 12 to 24 months. While the often-quoted “90% quit” figure isn’t pinned to a single study, it tracks with broader patterns in creative labor. The number of freelance writers entering the field each year far outpaces the number building sustainable businesses. According to Upwork’s Freelance Forward 2023 report, 64 million Americans freelanced last year—an increase of four million from the year before."
+      "text": "Freelance careers can be difficult to sustain. This article examines recurring pressures and practical business habits; it does not establish a population-wide quitting rate."
     },
     {
       "type": "p",
@@ -23,7 +23,7 @@
     },
     {
       "type": "p",
-      "text": "So why do most freelance writers quit? And more importantly—what do the ones who stay actually do differently?"
+      "text": "So why do freelance writers quit? And more importantly—what do the ones who stay actually do differently?"
     },
     {
       "type": "h2",
@@ -71,7 +71,7 @@
     },
     {
       "type": "h2",
-      "text": "Who Stays? What the 10% Do Differently"
+      "text": "Habits That Support a Sustainable Practice"
     },
     {
       "type": "p",
@@ -83,7 +83,7 @@
     },
     {
       "type": "p",
-      "text": "They treat outreach like a system. The 10% don’t pitch when they’re desperate. They pitch every week, every quarter, regardless of how full their calendar looks. Most track their outreach in CRMs or spreadsheets, refining what works. Client acquisition is not an emergency measure—it’s an operating habit."
+      "text": "They treat outreach like a system. Consistent freelancers don’t pitch when they’re desperate. They pitch every week, every quarter, regardless of how full their calendar looks. Most track their outreach in CRMs or spreadsheets, refining what works. Client acquisition is not an emergency measure—it’s an operating habit."
     },
     {
       "type": "p",
@@ -99,7 +99,7 @@
     },
     {
       "type": "p",
-      "text": "They set real boundaries. The 10% block off weekends. They take time off. They use email signatures with office hours. They turn Slack off after 6. A healthy freelance career is not built on endless hustle—it’s built on permission to rest."
+      "text": "They set real boundaries. Sustainable freelancers protect time away from work. They take time off. They use email signatures with office hours. They turn Slack off after 6. A healthy freelance career is not built on endless hustle—it’s built on permission to rest."
     },
     {
       "type": "h3",
@@ -135,11 +135,13 @@
     },
     {
       "type": "p",
-      "text": "You don’t have to be part of the 90%. But you do have to work like the 10%."
+      "text": "You can build a practice around deliberate systems, realistic scope and time to recover."
     },
     {
       "type": "p",
       "text": "Because the ones who stay? They’re not just surviving. They’re running businesses. They’re growing. And they’re writing on their own terms."
     }
-  ]
+  ],
+  "correctionNote": "October 2, 2026: This edition removes the unsupported 90/10 quitting-rate framing from its title and argument. It remains commentary on freelance practice, not a population study.",
+  "dateModified": "2026-10-02"
 }

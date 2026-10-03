@@ -117,7 +117,7 @@ export const WORK_PAGE_CONTENT = {
     eyebrow: "Independent article · Freelance practice",
     overview: ["This article reframes freelance attrition as an operating problem rather than a shortage of motivation. It considers the habits, expectations, business systems, and tolerance for uncertainty that determine whether writing work becomes repeatable."],
     sections: [
-      { heading: "From slogan to system", paragraphs: ["The familiar claim that most freelancers quit is useful only if the reasons are examined. The piece shifts attention from a dramatic percentage to the controllable work behind prospecting, delivery, revision, client communication, and persistence."] },
+      { heading: "From slogan to system", paragraphs: ["The owned edition removes unsupported quitting-rate language and focuses on the controllable work behind prospecting, delivery, revision, client communication, and persistence."] },
       { heading: "Experience-led commentary", paragraphs: ["Paul wrote from his own early freelance experience while keeping the article directed toward readers building their own practice. The value lies in translating hard-won working habits into concrete professional guidance."] }
     ],
     role: "Paul developed and wrote the article independently from his experience operating PaulWrites.",
@@ -373,14 +373,16 @@ export const WORK_PAGE_CONTENT = {
 export const SERVICE_PAGES = [
   {
     slug: "environmental-science-writer",
+    projectType: "environmental",
     title: "Environmental Science Writer | Paul Shannon",
     description: "Environmental science and sustainability writing grounded in research, with experience in harmful algal blooms, water, climate, and scientific communication.",
-    h1: "Environmental science writing grounded in the research.",
+    h1: "Environmental science writing for organizations with complex evidence.",
     eyebrow: "Environmental science writer",
     lede: "For environmental organizations, research teams, agencies, and businesses that need accurate work to become clear, useful communication.",
     opening: [
       "Environmental writing is strongest when the writer can enter the source material, recognize what the evidence does and does not support, and still produce something a non-specialist wants to read. Paul combines professional writing with formal study in Environmental Science & Sustainability and research experience focused on harmful algal blooms, freshwater systems, climate patterns, and remediation.",
-      "That background is useful whether the source is a scientific paper, a set of monitoring data, an expert interview, a technical report, or a complicated environmental claim that needs careful qualification."
+      "That background is useful whether the source is a scientific paper, a set of monitoring data, an expert interview, a technical report, or a complicated environmental claim that needs careful qualification.",
+      "In the regional harmful algal bloom review, the central communication task was to connect monitoring reports with watershed and climate conditions while keeping reporting changes and correlation limits visible. That same care applies when a business needs to explain a promising treatment without implying that laboratory findings prove field performance."
     ],
     deliverables: ["Research-led articles and explainers", "Sustainability and climate content", "Environmental case studies and reports", "Plain-language research summaries", "Technical web and landing-page copy", "Editing and source review"],
     sourceMaterial: "Paul can work from peer-reviewed literature, environmental datasets, agency reports, technical documentation, subject-matter expert interviews, existing drafts, or a defined research question.",
@@ -389,16 +391,19 @@ export const SERVICE_PAGES = [
     faqs: [
       ["What environmental subjects does Paul cover?", "Paul’s strongest direct research background is in harmful algal blooms, freshwater systems, climate-related water risk, phytoremediation, sustainability, and scientific communication. He also works from supplied research and experts on adjacent environmental subjects."],
       ["Can you write for a general audience without oversimplifying?", "Yes. The process begins by identifying which distinctions and limitations must survive translation, then building the explanation around the reader’s existing knowledge."],
-      ["Can you work with datasets and scientific papers?", "Yes. Paul has experience analyzing environmental datasets and synthesizing scientific literature. Statistical or scientific claims remain tied to the source and are not inflated for marketing effect."]
+      ["Can you work with datasets and scientific papers?", "Yes. Paul has experience analyzing environmental datasets and synthesizing scientific literature. Statistical or scientific claims remain tied to the source and are not inflated for marketing effect."],
+      ["What happens when the evidence is incomplete?", "I identify what is supported, what needs qualification and what needs an expert answer. A scoped source-review assignment can include linked references and a record of unresolved claims. Your technical reviewers remain responsible for product validation and final approval."],
+      ["How are scope and revisions agreed?", "We define the deliverable, audience, source inputs and reviewers before work begins. The proposal specifies the review process and revision scope; research or testing beyond that scope is discussed separately."]
     ]
   },
   {
     slug: "technical-writer",
+    projectType: "technical",
     title: "Technical Writer for Complex B2B Content | Paul Shannon",
     description: "Technical and B2B writing for complex products, services, interactive media, and research-heavy subjects—from articles and case studies to clear web copy.",
-    h1: "Technical writing that makes complex work useful.",
+    h1: "Technical and B2B content writing for complex products and services.",
     eyebrow: "Technical and B2B writer",
-    lede: "For teams whose subject cannot be explained accurately by generic copy or a surface-level interview.",
+    lede: "Articles, case studies, product stories, web copy and interview-led thought leadership for teams that need their expertise to become useful business content.",
     opening: [
       "Technical content has two jobs: understand the work correctly and help the intended reader do something with that understanding. Paul works with product briefs, internal documentation, expert input, research, project histories, and editorial direction to produce clear articles, case studies, thought leadership, and web copy.",
       "His Workinman Interactive portfolio spans game design, app engagement, branded experiences, digital exhibits, product updates, and trade-show technology. Those assignments required coordination with editors, executives, artists, developers, strategists, and stakeholders—not simply rewriting a feature list."
@@ -410,11 +415,14 @@ export const SERVICE_PAGES = [
     faqs: [
       ["Can Paul work with subject-matter experts?", "Yes. Paul can prepare focused questions, work from interviews or written responses, and return technical points for review without making the expert rewrite the article."],
       ["What kinds of technical subjects fit best?", "The strongest fit is a complex product, process, research area, or service that requires source review and careful translation. Current portfolio evidence includes interactive media, gaming, exhibits, environmental research, and scientific communication."],
-      ["Can the work follow an existing editorial process?", "Yes. Paul has worked from outlines, defined tone and scope, stakeholder feedback, and multi-stage review within a studio team."]
+      ["Can the work follow an existing editorial process?", "Yes. Paul has worked from outlines, defined tone and scope, stakeholder feedback, and multi-stage review within a studio team."],
+      ["Is this a software documentation service?", "The offer here focuses on technical marketing and editorial content. For manuals, API references or regulated documentation, share the requirements so we can assess fit before agreeing a scope."],
+      ["Can a project begin with an incomplete brief?", "Yes. Share the intended audience, business goal and available material. We can scope the questions and expert input needed before drafting. Review responsibilities and revisions are agreed in the proposal."]
     ]
   },
   {
     slug: "seo-content-writer",
+    projectType: "seo",
     title: "Research-Driven SEO Content Writer | Paul Shannon",
     description: "Research-intensive SEO articles and web content built around search intent, subject depth, useful structure, and accurate claims—not keyword stuffing.",
     h1: "SEO content with enough depth to deserve the visit.",
@@ -422,7 +430,8 @@ export const SERVICE_PAGES = [
     lede: "For organizations that need organic-search content to answer the real question, support the claim, and connect naturally to the next useful page.",
     opening: [
       "Search visibility begins with crawlable pages, clear information architecture, and content that satisfies a reader’s intent. Paul writes long-form articles and service content by first understanding the topic and the decision behind the query—not by repeating a target phrase until the page sounds mechanical.",
-      "The approach is especially useful for scientific, technical, sustainability, education, interactive-media, and other research-heavy subjects where shallow content can create reputational as well as ranking risk."
+      "The approach is especially useful for scientific, technical, sustainability, education, interactive-media, and other research-heavy subjects where shallow content can create reputational as well as ranking risk.",
+      "A content engagement can supply the draft, title and description copy, heading structure, source links and internal-link recommendations. Publishing, server changes and ongoing SEO management are separate scope decisions. If you first need to understand what is wrong with an existing website, start with the SEO audit service."
     ],
     deliverables: ["Search-intent-led long-form articles", "Topic and content-gap research", "Service and landing-page copy", "Content refreshes and structural rewrites", "Internal-linking and content-relationship planning", "Source review and on-page editorial optimization"],
     sourceMaterial: "Projects can begin with a keyword or topic brief, an existing page, competitor research, product documentation, expert input, first-party data, or a source library that needs to become an organized content asset.",
@@ -432,6 +441,33 @@ export const SERVICE_PAGES = [
       ["Does Paul guarantee rankings?", "No ethical writer can guarantee a ranking. Paul can build a technically clear, well-researched page around search intent and sound on-page practices; indexing, competition, authority, and search-system changes remain outside any writer’s control."],
       ["Is this only keyword-based writing?", "No. Keywords help identify language and intent, but the work also requires subject research, useful structure, evidence, internal links, and an accurate relationship to the organization’s offer."],
       ["Can Paul refresh existing content?", "Yes. A refresh can address outdated sources, weak structure, duplicated intent, thin explanations, unclear conversion paths, and missing internal relationships without discarding sections that already work."]
+    ]
+  },
+  {
+    slug: "seo-audits",
+    projectType: "audit",
+    title: "SEO Audits for Complex Websites | PaulWrites",
+    description: "Review your website’s search foundations, content evidence and inquiry path with a prioritized SEO audit and a practical implementation plan.",
+    h1: "SEO audits that turn website problems into a usable implementation plan.",
+    eyebrow: "SEO audits",
+    lede: "For technical, environmental and research-heavy businesses that need to know what is getting in the way—and which repairs deserve attention first.",
+    openingHeading: "Start with the problem behind the page",
+    opening: [
+      "I review how your website is reached, what its pages actually explain, whether its claims have usable support, and how a visitor moves toward an inquiry or other meaningful action. The goal is a practical order for fixing problems, with page-specific evidence and clear checks for completion.",
+      "The review can cover crawl and index signals, URL and metadata consistency, internal links, search intent, content evidence, performance, accessibility-related usability and the inquiry path. We agree which pages and checks belong in the scope before work begins.",
+      "An audit diagnoses and prioritizes. Implementation can be scoped afterward, whether you want revised copy from me, a handoff to your developer, or support checking the completed work. A public-site review cannot establish private traffic, Google-selected canonicals or conversion performance without the relevant account data."
+    ],
+    deliverables: ["Page-specific findings with supporting evidence", "A URL and content action inventory", "Priorities with reasons and dependencies", "Copy recommendations where agreed", "Implementation acceptance checks", "A staged repair and measurement plan"],
+    sourceMaterial: "Start with your website URL, what you sell, your intended customers and the action you want visitors to take. Search Console, analytics, repository or hosting access may be needed for deeper checks; the proposal specifies the access required. Credentials should not be sent through the inquiry form.",
+    process: ["Agree the business goal, pages, scope and access.", "Record the available baseline and inspect the evidence.", "Separate observed issues from checks requiring more data.", "Prioritize repairs and define acceptance checks.", "Review the handoff and scope implementation separately."],
+    portfolioIds: [],
+    showAuditExample: true,
+    faqs: [
+      ["What is the difference between an overview and a comprehensive audit?", "A limited complimentary overview highlights selected public issues when offered. A comprehensive paid audit covers the agreed scope in depth and provides a prioritized report and implementation plan. An overview is not a complete examination of every issue."],
+      ["Are the fixes included?", "Audit delivery and implementation are separate unless the proposal explicitly includes both. I can scope copy repairs and implementation support, or provide a developer handoff with acceptance checks."],
+      ["Do you need access to my accounts?", "A public-site review can begin without account access. Indexing decisions, historical search performance, conversion data and hosting behavior require the appropriate data or access. We agree the needed access before work begins."],
+      ["Can you guarantee rankings or AI search citations?", "No. The audit can identify verifiable issues and useful opportunities. Search systems, competition and citation selection remain outside my control; measured business outcomes require implementation and an appropriate baseline."],
+      ["How is an audit priced?", "Pricing depends on the website, review scope, available data and deliverables. Send the URL and business goal, and I’ll propose a defined scope and quote before starting."]
     ]
   }
 ];

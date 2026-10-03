@@ -32,6 +32,11 @@
       label: "What should the right reader find and understand?",
       details: "Include the target reader, topic, current page or content gap, and what a useful visit should accomplish."
     },
+    audit: {
+      help: "For a scoped review of search foundations, content evidence and the path to an inquiry.",
+      label: "What should the website help your business achieve?",
+      details: "Include the URL, what you sell, your intended customers and any known issues. We’ll agree the audit scope and access before work begins."
+    },
     web: {
       help: "For service pages, landing pages, and website copy that is difficult to follow.",
       label: "What is unclear about the current page or offer?",
@@ -75,6 +80,12 @@
   };
 
   type.addEventListener("change", updatePrompt);
+
+  const requestedProject = new URLSearchParams(window.location.search).get("project");
+  if (Object.hasOwn(prompts, requestedProject)) {
+    type.value = requestedProject;
+  }
+  updatePrompt();
 
   document.querySelectorAll("[data-project-choice]").forEach((link) => {
     link.addEventListener("click", () => {

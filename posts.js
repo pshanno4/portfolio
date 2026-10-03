@@ -141,7 +141,7 @@ window.PAULWRITES_ITEMS = [
   },
   {
     id: "why-freelance-writers-quit",
-    title: "Why 90% of Freelance Writers Quit—And How to Be the 10% Who Don’t",
+    title: "Why Freelance Writers Quit and How to Build a Sustainable Practice",
     date: "2025-06-05",
     type: "Article",
     publisher: "LinkedIn",

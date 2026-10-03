@@ -80,8 +80,10 @@ const readerCanonical = (item) => `${origin}/work/${item.id}/${readerSegment(ite
 
 const canonicalPages = [
   ["index.html", `${origin}/`],
-  ["portfolio/index.html", `${origin}/portfolio/`],
+  ["portfolio/index.html", `${origin}/portfolio`],
   ["services/index.html", `${origin}/services/`],
+  ["services/seo-content-audit-example/index.html", `${origin}/services/seo-content-audit-example/`],
+  ["seo-audits/index.html", `${origin}/seo-audits/`],
   ["environmental-science-writer/index.html", `${origin}/environmental-science-writer/`],
   ["technical-writer/index.html", `${origin}/technical-writer/`],
   ["seo-content-writer/index.html", `${origin}/seo-content-writer/`],
@@ -90,9 +92,9 @@ const canonicalPages = [
     [`work/${item.id}/index.html`, `${origin}/work/${item.id}/`],
     [`work/${item.id}/${readerSegment(item)}/index.html`, readerCanonical(item)]
   ]),
-  ["privacy/index.html", `${origin}/privacy/`],
-  ["accessibility/index.html", `${origin}/accessibility/`],
-  ["image-credits/index.html", `${origin}/image-credits/`]
+  ["privacy/index.html", `${origin}/privacy`],
+  ["accessibility/index.html", `${origin}/accessibility`],
+  ["image-credits/index.html", `${origin}/image-credits`]
 ];
 
 const titles = new Set();
@@ -120,7 +122,9 @@ for (const [filename, expectedCanonical] of canonicalPages) {
   assert(/<html lang="en">/.test(html), `${filename} is missing lang=en.`);
   assert(/class="skip-link"/.test(html), `${filename} is missing a skip link.`);
   assert(/<main(?:\s|>)/.test(html), `${filename} is missing a main landmark.`);
-  for (const marker of ["og:title", "og:description", "og:image", "twitter:card", "twitter:title", "twitter:description", "twitter:image"]) {
+  const socialMarkers = ["og:title", "og:description", "twitter:card", "twitter:title", "twitter:description"];
+  if (filename !== "services/seo-content-audit-example/index.html") socialMarkers.push("og:image", "twitter:image");
+  for (const marker of socialMarkers) {
     assert(html.includes(marker), `${filename} is missing ${marker} metadata.`);
   }
   for (const match of html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) JSON.parse(match[1]);
@@ -312,7 +316,7 @@ assert(/User-agent:\s*\*/.test(robots) && /Allow:\s*\//.test(robots), "robots.tx
 assert(robots.includes("Sitemap: https://paulwrites.net/sitemap.xml"), "robots.txt does not reference the sitemap.");
 
 const redirects = await readFile(path.join(root, "_redirects"), "utf8");
-for (const route of ["/portfolio.html /portfolio/ 301!", "/about /authors/paul-shannon/ 301", "/privacy.html /privacy/ 301!"]) {
+for (const route of ["/portfolio.html /portfolio 301!", "/about /authors/paul-shannon/ 301", "/privacy.html /privacy 301!"]) {
   assert(redirects.includes(route), `Missing redirect: ${route}`);
 }
 

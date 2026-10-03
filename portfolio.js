@@ -148,6 +148,9 @@
   const updateAddress = () => {
     if (!/^https?:$/.test(window.location.protocol)) return;
     const params = new URLSearchParams();
+    for (const [key, value] of new URLSearchParams(window.location.search)) {
+      if (/^utm_(source|medium|campaign|content|term)$/.test(key)) params.set(key, value);
+    }
     if (activeTag !== "All") params.set("tag", activeTag);
     if (currentPage > 1) params.set("page", String(currentPage));
     const next = `${window.location.pathname}${params.size ? `?${params}` : ""}`;

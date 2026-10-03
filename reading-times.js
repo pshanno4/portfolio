@@ -7,7 +7,7 @@ window.PAULWRITES_READING_TIMES = {
   "games-for-brands": 5,
   "clean-water-climate-change-habs": 4,
   "digital-board-games": 6,
-  "why-freelance-writers-quit": 5,
+  "why-freelance-writers-quit": 4,
   "sustainable585-issue-5": 5,
   "freelancers-stay-broke-after-clients": 4,
   "elon-musk-mars": 3,

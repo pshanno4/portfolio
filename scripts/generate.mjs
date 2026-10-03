@@ -2,6 +2,7 @@ import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import vm from "node:vm";
 import { AUTHOR_COPY, SERVICE_PAGES, WORK_PAGE_CONTENT } from "./site-content.mjs";
+import { AUDIT_EXAMPLE_PATH, renderAuditExample, auditPreview } from "./audit-example.mjs";
 import { loadResearchReport, isResearchReport } from "./research-parser.mjs";
 
 const root = process.cwd();
@@ -233,13 +234,11 @@ const head = ({ title, description, canonical, image, imageAlt, type = "website"
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(description)}">
   <meta property="og:url" content="${esc(canonical)}">
-  <meta property="og:image" content="${esc(image)}">
-  <meta property="og:image:alt" content="${esc(imageAlt)}">
-  <meta name="twitter:card" content="summary_large_image">
+  ${image ? `<meta property="og:image" content="${esc(image)}"><meta property="og:image:alt" content="${esc(imageAlt)}">` : ""}
+  <meta name="twitter:card" content="${image ? "summary_large_image" : "summary"}">
   <meta name="twitter:title" content="${esc(title)}">
   <meta name="twitter:description" content="${esc(description)}">
-  <meta name="twitter:image" content="${esc(image)}">
-  <meta name="twitter:image:alt" content="${esc(imageAlt)}">
+  ${image ? `<meta name="twitter:image" content="${esc(image)}"><meta name="twitter:image:alt" content="${esc(imageAlt)}">` : ""}
   <link rel="icon" type="image/svg+xml" href="${favicon}">
   <link rel="stylesheet" href="${prefix}styles.css">
   <script type="application/ld+json">${jsonLd(schema)}</script>
@@ -552,9 +551,20 @@ const renderResearchMedia = (item) => {
   return "";
 };
 
+const withHeadingIds = (blocks) => {
+  const counts = new Map();
+  return blocks.map((block) => {
+    if (!["h2", "h3"].includes(block.type)) return block;
+    const base = anchorFor(block.text);
+    const count = (counts.get(base) || 0) + 1;
+    counts.set(base, count);
+    return { ...block, anchor: count === 1 ? base : `${base}-${count}` };
+  });
+};
+
 const renderReaderBlock = (block) => {
-  if (block.type === "h2") return `<h2 id="${anchorFor(block.text)}">${esc(block.text)}</h2>`;
-  if (block.type === "h3") return `<h3 id="${anchorFor(block.text)}">${esc(block.text)}</h3>`;
+  if (block.type === "h2") return `<h2 id="${block.anchor || anchorFor(block.text)}">${esc(block.text)}</h2>`;
+  if (block.type === "h3") return `<h3 id="${block.anchor || anchorFor(block.text)}">${esc(block.text)}</h3>`;
   if (block.type === "blockquote") return `<blockquote><p>${scientificText(block.text)}</p></blockquote>`;
   if (block.type === "reference") return `<p class="reference-entry">${scientificText(block.text)}</p>`;
   if (block.type === "note") return `<aside class="article-note"><strong>Original publication image credit</strong><span>${scientificText(block.text.replace(/^Image\s+courtesy\s*(?:of\s*)?/i, ""))}</span></aside>`;
@@ -567,12 +577,13 @@ const renderReaderBody = (reader, item) => {
   const output = [];
   let listItems = [];
   let mediaInserted = false;
+  const headingBlocks = withHeadingIds(reader.blocks);
   const flushList = () => {
     if (!listItems.length) return;
     output.push(`<ul class="reader-list">${listItems.map(renderReaderBlock).join("")}</ul>`);
     listItems = [];
   };
-  for (const block of reader.blocks) {
+  for (const block of headingBlocks) {
     const insertionPoint = reader.report && (
       (item.id === "phytoremediation-habs-feasibility-review" && block.type === "h2" && block.text === "Eichhornia crassipes")
       || (item.id !== "phytoremediation-habs-feasibility-review" && block.type === "h2" && block.text === "References")
@@ -632,7 +643,7 @@ const renderWorkPage = (item) => {
   const titleBase = (SEO_TITLES[item.id] || `${item.title} | Paul Shannon`).replace(/\s*\|\s*Paul Shannon$/, "");
   const crumbs = [
     { label: "Home", href: "../../index.html", canonical: `${origin}/` },
-    { label: "Portfolio", href: "../../portfolio.html", canonical: `${origin}/portfolio/` },
+    { label: "Portfolio", href: "../../portfolio.html", canonical: `${origin}/portfolio` },
     { label: item.title, href: "", canonical }
   ];
   const schema = {
@@ -777,7 +788,7 @@ const renderReadingPage = (item) => {
       : `Read ${item.title} by Paul Shannon, with the full article, publication context, and related work.`;
   const crumbs = [
     { label: "Home", href: "../../../index.html", canonical: `${origin}/` },
-    { label: "Portfolio", href: "../../../portfolio.html", canonical: `${origin}/portfolio/` },
+    { label: "Portfolio", href: "../../../portfolio.html", canonical: `${origin}/portfolio` },
     { label: item.title, href: "../index.html", canonical: `${origin}/work/${item.id}/` },
     { label: reader.report ? "Full report" : reader.guide ? "Article guide" : "Full article", href: "", canonical: reader.canonical }
   ];
@@ -795,7 +806,8 @@ const renderReadingPage = (item) => {
         description,
         url: reader.canonical,
         mainEntityOfPage: reader.canonical,
-        datePublished: schemaDate(item),
+        ...(item.datePrecision === "year" ? {} : { datePublished: item.date }),
+        ...(reader.dateModified ? { dateModified: reader.dateModified } : {}),
         author: { "@id": authorId },
         publisher: publisherNode,
         image: `${origin}/${item.image}`,
@@ -812,7 +824,7 @@ const renderReadingPage = (item) => {
     ]
   };
   const service = serviceFor(item);
-  const headings = reader.blocks.filter((block) => block.type === "h2").map((block) => block.text);
+  const headings = withHeadingIds(reader.blocks).filter((block) => block.type === "h2");
   const body = renderReaderBody(reader, item);
   const sourceAction = originalHref ? `<a href="${esc(originalHref)}"${isExternal(original) ? ' target="_blank" rel="noopener noreferrer"' : ""}>${esc(sourceLabel)} <span aria-hidden="true">↗</span></a>` : "";
 
@@ -843,10 +855,11 @@ ${header("../../../", "portfolio")}
 
       <div class="reading-shell container">
         <div class="reading-main">
+          ${reader.correctionNote ? `<aside class="edition-note"><p class="small-label">Editorial correction</p><p>${esc(reader.correctionNote)}</p></aside>` : ""}
           ${reader.authorizedClient ? `<aside class="edition-note"><p class="small-label">Authorized portfolio edition</p><p>Written by Paul Shannon and originally published by Workinman Interactive. This complete, public-facing article is reproduced here with permission; Workinman Interactive remains the publisher.</p>${sourceAction}</aside>` : ""}
           ${reader.guide ? `<aside class="rights-note"><p class="small-label">Publisher-protected work</p><p>This page is an original portfolio guide to the assignment. It does not reproduce the client publication’s protected text. ${originalHref ? "The official publisher link provides the complete published article." : "The supplied source did not provide a verified matching article URL, so no external reading link is shown."}</p>${sourceAction}</aside>` : ""}
           ${renderSnapshot(item)}
-          ${headings.length > 2 ? `<nav class="reader-toc" aria-label="On this page"><p class="small-label">On this page</p><ol>${headings.map((heading) => `<li><a href="#${anchorFor(heading)}">${scientificText(heading)}</a></li>`).join("")}</ol></nav>` : ""}
+          ${headings.length > 2 ? `<nav class="reader-toc" aria-label="On this page"><p class="small-label">On this page</p><ol>${headings.map((heading) => `<li><a href="#${heading.anchor}">${scientificText(heading.text)}</a></li>`).join("")}</ol></nav>` : ""}
           <div class="reading-copy">${body}</div>
         </div>
         <aside class="reader-context" aria-label="Article context"><p class="small-label">Portfolio context</p><p>${scientificText(item.summary)}</p><a class="text-link" href="../index.html">Project overview and Paul’s role</a><a class="text-link" href="${service.href.replace("../../", "../../../")}">${esc(service.label)}</a>${originalHref ? sourceAction : ""}</aside>
@@ -887,7 +900,7 @@ const portfolioStaticCard = (item, index) => {
 
 const renderPortfolio = () => {
   const sorted = [...items].sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
-  const canonical = `${origin}/portfolio/`;
+  const canonical = `${origin}/portfolio`;
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -1018,14 +1031,14 @@ ${header("../", "services")}
       <p class="kicker">${esc(service.eyebrow)}</p>
       <h1>${esc(service.h1)}</h1>
       <p class="service-lede">${scientificText(service.lede)}</p>
-      <div class="actions"><a class="button button-primary" href="../index.html#contact">Discuss this kind of project</a><a class="button button-secondary" href="#proof">See relevant work</a></div>
+      <div class="actions"><a class="button button-primary" href="../index.html?project=${service.projectType}#contact">Discuss this kind of project</a><a class="button button-secondary" href="${service.showAuditExample ? "../services/seo-content-audit-example/index.html" : "#proof"}">${service.showAuditExample ? "Read the audit example" : "See relevant work"}</a></div>
     </section>
 
     <section class="service-copy container">
       <div class="article-body">
-        <h2>When the subject needs more than surface-level copy</h2>
+        <h2>${esc(service.openingHeading || "When the subject needs more than surface-level copy")}</h2>
         ${service.opening.map((paragraph) => `<p>${scientificText(paragraph)}</p>`).join("")}
-        <h2>What Paul can produce</h2>
+        <h2>${service.projectType === "audit" ? "What you receive" : "What Paul can produce"}</h2>
         <ul class="deliverable-list">${service.deliverables.map((deliverable) => `<li>${esc(deliverable)}</li>`).join("")}</ul>
         <h2>Source material</h2>
         <p>${scientificText(service.sourceMaterial)}</p>
@@ -1037,19 +1050,22 @@ ${header("../", "services")}
       </aside>
     </section>
 
-    <section class="section section-muted" id="proof" aria-labelledby="proof-heading">
+    ${proof.length ? `<section class="section section-muted" id="proof" aria-labelledby="proof-heading">
       <div class="container">
         <div class="section-heading compact-heading"><div><p class="small-label">Relevant evidence</p><h2 id="proof-heading">Work connected to this service.</h2></div><a href="../portfolio.html">View the complete portfolio</a></div>
         <div class="proof-grid">${proof.map((item) => serviceProofCard(item)).join("")}</div>
       </div>
     </section>
 
+    ` : ""}
+    ${["seo-audits", "seo-content-writer", "technical-writer"].includes(service.slug) ? auditPreview("../") : ""}
+    ${service.slug === "seo-content-writer" ? `<div class="container audit-intro"><p>Need a diagnosis before new content? <a href="../seo-audits/index.html">Explore the SEO audit service</a>.</p></div>` : ""}
     <section class="section container faq-section" aria-labelledby="faq-heading">
       <p class="small-label">Questions</p><h2 id="faq-heading">Useful before an inquiry.</h2>
       <div class="faq-list">${service.faqs.map(([question, answer]) => `<details><summary>${esc(question)}</summary><p>${scientificText(answer)}</p></details>`).join("")}</div>
     </section>
 
-    <section class="article-cta"><div class="container simple-cta"><div><p class="small-label">Next step</p><h2>Share the subject, audience, and source material.</h2></div><a class="button button-primary" href="../index.html#contact">Discuss a project</a></div></section>
+    <section class="article-cta"><div class="container simple-cta"><div><p class="small-label">Next step</p><h2>${service.projectType === "audit" ? "Share your website and business goal." : "Share the subject, audience, and source material."}</h2></div><a class="button button-primary" href="../index.html?project=${service.projectType}#contact">Discuss a project</a></div></section>
   </main>
 ${footer("../")}
 </body>
@@ -1079,8 +1095,8 @@ const renderServicesIndex = () => {
   };
   return `<!doctype html>
 <html lang="en">${head({
-    title: "Writing Services for Complex Subjects | Paul Shannon",
-    description: "Environmental science writing, technical and B2B content, research-driven SEO articles, web copy, thought leadership, and substantive editing by Paul Shannon.",
+    title: "Research-Driven Writing and SEO Services | PaulWrites",
+    description: "Compare environmental writing, technical B2B content, SEO articles, website audits and editorial support. See the inputs, deliverables and how a project starts.",
     canonical,
     image: `${origin}/public/images/work/digital-board-games.webp`,
     imageAlt: "Board-game pieces beside an article title about making digital board games feel real",
@@ -1095,14 +1111,17 @@ ${header("../", "services")}
       { label: "Services", href: "" }
     ])}</div>
     <section class="page-intro container services-intro">
-      <p class="kicker">Writing services</p>
-      <h1>Research-driven writing for subjects that take time to understand.</h1>
-      <p>Paul works with environmental organizations, technical and creative teams, agencies, and research-heavy businesses that need accurate source material turned into clear published content.</p>
+      <p class="kicker">Writing and SEO services</p>
+      <h1>Writing and SEO services for research-heavy work.</h1>
+      <p>Paul works with environmental organizations, technical and creative teams, agencies, and research-heavy businesses that need accurate source material turned into clear published content. If the problem is your existing website, an audit can establish what needs attention before you commission new pages.</p>
     </section>
     <section class="section container service-route-grid" aria-label="Primary writing services">
       ${SERVICE_PAGES.map((service, index) => `<article><span class="route-number" aria-hidden="true">0${index + 1}</span><h2><a href="../${service.slug}/index.html">${esc(service.eyebrow)}</a></h2><p>${scientificText(service.description)}</p><a class="text-link" href="../${service.slug}/index.html">Explore this service</a></article>`).join("")}
     </section>
+    ${auditPreview("../")}
+    <section class="section container"><div class="section-heading compact-heading"><div><p class="small-label">Choose the engagement</p><h2>Match the work to the decision.</h2></div></div><div class="table-scroll" role="region" aria-label="Service comparison" tabindex="0"><table class="service-comparison"><thead><tr><th scope="col">Need</th><th scope="col">Useful inputs</th><th scope="col">Typical deliverable</th></tr></thead><tbody><tr><th scope="row"><a href="../environmental-science-writer/index.html">Explain scientific evidence</a></th><td>Studies, agency data and expert review</td><td>Article, report, summary or evidence-led web copy</td></tr><tr><th scope="row"><a href="../technical-writer/index.html">Explain a technical offer</a></th><td>Product brief, documentation and expert input</td><td>B2B article, case study, product story or page copy</td></tr><tr><th scope="row"><a href="../seo-content-writer/index.html">Answer a search question</a></th><td>Reader intent, existing pages and credible sources</td><td>New or refreshed content with metadata and link recommendations</td></tr><tr><th scope="row"><a href="../seo-audits/index.html">Diagnose a website</a></th><td>URL, business goal and agreed account data</td><td>Prioritized findings, repair plan and acceptance checks</td></tr><tr><th scope="row"><a href="../index.html?project=agency#contact">Support an editorial team</a></th><td>Briefs, voice guidance and review workflow</td><td>Scoped writing, source review or substantive editing</td></tr></tbody></table></div></section>
     <section class="section section-muted"><div class="container service-support"><div><p class="small-label">Additional support</p><h2>Web copy, thought leadership, editing, and agency capacity.</h2></div><p>Projects can also include landing pages, interview-led thought leadership, source review, substantive editing, fact-checking support, and dependable overflow work inside an established editorial process.</p></div></section>
+    <section class="section container service-support"><div><p class="small-label">How projects start</p><h2>A defined first assignment.</h2><p>Send the subject or URL, intended reader, business goal and available material. I’ll recommend a scope. Deliverables, price, review responsibilities and revisions are agreed before work begins.</p></div><div><h2>What I need from you</h2><p>An existing draft, product brief, source library or a clear description of the problem is enough to start the discussion. Let me know who will review the work and when you need it. Writing, diagnosis and implementation can be scoped separately.</p></div></section>
     <section class="article-cta"><div class="container simple-cta"><div><p class="small-label">Project inquiry</p><h2>Start with what needs to become clear.</h2></div><a class="button button-primary" href="../index.html#contact">Discuss a project</a></div></section>
   </main>
 ${footer("../")}
@@ -1186,17 +1205,18 @@ ${footer("../../")}
 
 const sitemapRoutes = [
   { path: "/", priority: "1.0" },
-  { path: "/portfolio/", priority: "0.9", lastmod: today },
+  { path: "/portfolio", priority: "0.9", lastmod: today },
   { path: "/services/", priority: "0.8" },
+  { path: AUDIT_EXAMPLE_PATH, priority: "0.7", lastmod: "2026-10-02" },
   ...SERVICE_PAGES.map((service) => ({ path: `/${service.slug}/`, priority: "0.8" })),
   { path: "/authors/paul-shannon/", priority: "0.7" },
   ...items.flatMap((item) => [
     { path: `/work/${item.id}/`, priority: isResearch(item) ? "0.8" : "0.7", ...(isResearch(item) ? { lastmod: today } : {}) },
     { path: `/work/${item.id}/${readerFor(item).segment}/`, priority: readerFor(item).complete ? "0.8" : "0.6", ...(isResearch(item) ? { lastmod: today } : {}) }
   ]),
-  { path: "/privacy/", priority: "0.2" },
-  { path: "/accessibility/", priority: "0.3" },
-  { path: "/image-credits/", priority: "0.2" }
+  { path: "/privacy", priority: "0.2" },
+  { path: "/accessibility", priority: "0.3" },
+  { path: "/image-credits", priority: "0.2" }
 ];
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -1224,10 +1244,12 @@ const readingTimesScript = `window.PAULWRITES_READING_TIMES = ${JSON.stringify(O
 
 const redirects = [
   "/index.html / 301!",
-  "/portfolio /portfolio/ 301",
-  "/portfolio.html /portfolio/ 301!",
+  "/portfolio/ /portfolio 301",
+  "/portfolio.html /portfolio 301!",
   "/services /services/ 301",
   "/services/index.html /services/ 301!",
+  `${AUDIT_EXAMPLE_PATH.slice(0, -1)} ${AUDIT_EXAMPLE_PATH} 301`,
+  `${AUDIT_EXAMPLE_PATH}index.html ${AUDIT_EXAMPLE_PATH} 301!`,
   ...SERVICE_PAGES.flatMap((service) => [
     `/${service.slug} /${service.slug}/ 301`,
     `/${service.slug}/index.html /${service.slug}/ 301!`
@@ -1240,19 +1262,19 @@ const redirects = [
     `/work/${item.id}/${readerFor(item).segment} /work/${item.id}/${readerFor(item).segment}/ 301`,
     `/work/${item.id}/${readerFor(item).segment}/index.html /work/${item.id}/${readerFor(item).segment}/ 301!`
   ]),
-  "/work /portfolio/ 301",
-  "/work/ /portfolio/ 301",
-  "/articles /portfolio/ 301",
-  "/articles/ /portfolio/ 301",
+  "/work /portfolio 301",
+  "/work/ /portfolio 301",
+  "/articles /portfolio 301",
+  "/articles/ /portfolio 301",
   "/about /authors/paul-shannon/ 301",
   "/about/ /authors/paul-shannon/ 301",
   "/contact /#contact 301",
   "/contact/ /#contact 301",
-  "/privacy /privacy/ 301",
-  "/privacy.html /privacy/ 301!",
-  "/accessibility /accessibility/ 301",
-  "/accessibility.html /accessibility/ 301!",
-  "/image-credits /image-credits/ 301",
+  "/privacy/ /privacy 301",
+  "/privacy.html /privacy 301!",
+  "/accessibility/ /accessibility 301",
+  "/accessibility.html /accessibility 301!",
+  "/image-credits/ /image-credits 301",
   "/image-credits.html /image-credits/ 301!"
 ].join("\n") + "\n";
 
@@ -1278,6 +1300,9 @@ for (const service of SERVICE_PAGES) {
 
 await mkdir(path.join(root, "services"), { recursive: true });
 await writeGenerated(path.join(root, "services", "index.html"), renderServicesIndex());
+
+await mkdir(path.join(root, "services", "seo-content-audit-example"), { recursive: true });
+await writeGenerated(path.join(root, "services", "seo-content-audit-example", "index.html"), renderAuditExample({ head, header, footer, breadcrumbs, breadcrumbSchema, personNode, origin }));
 
 await mkdir(path.join(root, "authors", "paul-shannon"), { recursive: true });
 await writeGenerated(path.join(root, "authors", "paul-shannon", "index.html"), renderAuthor());

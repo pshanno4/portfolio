@@ -25,7 +25,8 @@ const generatedDirectories = [
   "authors",
   "environmental-science-writer",
   "technical-writer",
-  "seo-content-writer"
+  "seo-content-writer",
+  "seo-audits"
 ];
 const cleanRouteAliases = new Map([
   ["portfolio.html", "portfolio"],
@@ -67,7 +68,7 @@ const rewritePublishedLinks = async (directory) => {
     const html = await readFile(filename, "utf8");
     await writeFile(filename, html.replace(
       /href="(?:\.\.\/)*(portfolio|privacy|accessibility|image-credits)\.html(#[^"]*)?"/g,
-      (_, route, fragment = "") => `href="/${route}/${fragment}"`
+      (_, route, fragment = "") => `href="/${route}${fragment}"`
     ));
   }
 };
