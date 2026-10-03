@@ -2,7 +2,7 @@ import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import vm from "node:vm";
 import { AUTHOR_COPY, SERVICE_PAGES, WORK_PAGE_CONTENT } from "./site-content.mjs";
-import { AUDIT_EXAMPLE_PATH, renderAuditExample, auditPreview } from "./audit-example.mjs";
+import { AUDIT_EXAMPLE_PATH, renderAuditExample, auditPreview, sectionNavigation } from "./audit-example.mjs";
 import { loadResearchReport, isResearchReport } from "./research-parser.mjs";
 
 const root = process.cwd();
@@ -1027,27 +1027,30 @@ const renderServicePage = (service) => {
 ${header("../", "services")}
   <main id="main" tabindex="-1">
     <div class="container">${breadcrumbs(crumbs)}</div>
-    <section class="service-hero container">
-      <p class="kicker">${esc(service.eyebrow)}</p>
+    <section class="service-hero container service-hero-grid">
+      <div><p class="kicker">${esc(service.eyebrow)}</p>
       <h1>${esc(service.h1)}</h1>
       <p class="service-lede">${scientificText(service.lede)}</p>
-      <div class="actions"><a class="button button-primary" href="../index.html?project=${service.projectType}#contact">Discuss this kind of project</a><a class="button button-secondary" href="${service.showAuditExample ? "../services/seo-content-audit-example/index.html" : "#proof"}">${service.showAuditExample ? "Read the audit example" : "See relevant work"}</a></div>
+      <div class="actions"><a class="button button-primary" href="../index.html?project=${service.projectType}#contact">${service.projectType === "audit" ? "Discuss your website" : "Discuss your project"}</a><a class="button button-secondary" href="${service.showAuditExample ? "../services/seo-content-audit-example/index.html" : "#proof"}">${service.showAuditExample ? "Explore the audit example" : "See relevant work"}</a></div></div>
+      <aside class="service-summary" aria-label="Service at a glance"><p class="small-label">At a glance</p><dl><div><dt>Best for</dt><dd>${esc(service.bestFor)}</dd></div><div><dt>Typical output</dt><dd>${esc(service.typicalOutput)}</dd></div><div><dt>Start with</dt><dd>${esc(service.startingInput)}</dd></div></dl><a class="text-link" href="../services/index.html">Compare all services</a></aside>
     </section>
+    ${sectionNavigation([["overview", "Overview"], ["deliverables", "Deliverables"], ["process", "Process"], [service.showAuditExample ? "audit-preview" : "proof", service.showAuditExample ? "Example" : "Work"], ["questions", "Questions"], ["start", "Next step"]])}
 
-    <section class="service-copy container">
+    <section class="service-copy container" id="overview" aria-labelledby="overview-heading">
       <div class="article-body">
-        <h2>${esc(service.openingHeading || "When the subject needs more than surface-level copy")}</h2>
+        <p class="small-label">The right fit</p><h2 id="overview-heading">${esc(service.openingHeading || "Clear writing starts with understanding the subject.")}</h2>
         ${service.opening.map((paragraph) => `<p>${scientificText(paragraph)}</p>`).join("")}
-        <h2>${service.projectType === "audit" ? "What you receive" : "What Paul can produce"}</h2>
-        <ul class="deliverable-list">${service.deliverables.map((deliverable) => `<li>${esc(deliverable)}</li>`).join("")}</ul>
-        <h2>Source material</h2>
-        <p>${scientificText(service.sourceMaterial)}</p>
       </div>
-      <aside class="project-facts" aria-label="Working process">
-        <p class="small-label">Working process</p>
-        <ol class="process-list">${service.process.map((step) => `<li>${esc(step)}</li>`).join("")}</ol>
-        <a class="text-link" href="../authors/paul-shannon/index.html">About Paul’s research background</a>
-      </aside>
+      <aside class="source-panel"><h3>Useful source material</h3><p>${scientificText(service.sourceMaterial)}</p><a class="text-link" href="../authors/paul-shannon/index.html">About Paul’s research background</a></aside>
+    </section>
+    <section class="section section-muted" id="deliverables" aria-labelledby="deliverables-heading"><div class="container">
+      <p class="small-label">The deliverables</p><h2 id="deliverables-heading">${service.projectType === "audit" ? "A plan you can put to work." : "Choose the format your audience needs."}</h2>
+      <ul class="deliverable-cards">${service.deliverables.map((deliverable, index) => `<li><span aria-hidden="true">0${index + 1}</span><p>${esc(deliverable)}</p></li>`).join("")}</ul>
+      <p class="section-note">The proposal defines which deliverables, review responsibilities and revisions are included.</p>
+    </div></section>
+    <section class="section container process-section" id="process" aria-labelledby="process-heading">
+      <div><p class="small-label">Working together</p><h2 id="process-heading">A clear process, from brief to handoff.</h2><p>We agree the scope before work begins. Each stage connects the source material to a useful result for your reader.</p></div>
+      <ol class="steps-list">${service.process.map((step) => `<li>${esc(step)}</li>`).join("")}</ol>
     </section>
 
     ${proof.length ? `<section class="section section-muted" id="proof" aria-labelledby="proof-heading">
@@ -1060,12 +1063,12 @@ ${header("../", "services")}
     ` : ""}
     ${["seo-audits", "seo-content-writer", "technical-writer"].includes(service.slug) ? auditPreview("../") : ""}
     ${service.slug === "seo-content-writer" ? `<div class="container audit-intro"><p>Need a diagnosis before new content? <a href="../seo-audits/index.html">Explore the SEO audit service</a>.</p></div>` : ""}
-    <section class="section container faq-section" aria-labelledby="faq-heading">
-      <p class="small-label">Questions</p><h2 id="faq-heading">Useful before an inquiry.</h2>
+    <section class="section container faq-section" id="questions" aria-labelledby="faq-heading">
+      <p class="small-label">Before you get in touch</p><h2 id="faq-heading">Your questions, answered.</h2>
       <div class="faq-list">${service.faqs.map(([question, answer]) => `<details><summary>${esc(question)}</summary><p>${scientificText(answer)}</p></details>`).join("")}</div>
     </section>
 
-    <section class="article-cta"><div class="container simple-cta"><div><p class="small-label">Next step</p><h2>${service.projectType === "audit" ? "Share your website and business goal." : "Share the subject, audience, and source material."}</h2></div><a class="button button-primary" href="../index.html?project=${service.projectType}#contact">Discuss a project</a></div></section>
+    <section class="article-cta" id="start"><div class="container simple-cta"><div><p class="small-label">Next step</p><h2>${service.projectType === "audit" ? "Share your website and business goal." : "Share the subject, audience, and source material."}</h2><p>Tell me your goal, available material and timing. I’ll recommend a defined scope before work begins.</p></div><div class="cta-actions"><a class="button button-primary" href="../index.html?project=${service.projectType}#contact">${service.projectType === "audit" ? "Discuss your website" : "Discuss your project"}</a><a class="text-link" href="../services/index.html">Compare all services</a></div></div></section>
   </main>
 ${footer("../")}
 </body>
@@ -1103,26 +1106,28 @@ const renderServicesIndex = () => {
     prefix: "../",
     schema
   })}
-<body>
+<body class="services-page">
 ${header("../", "services")}
   <main id="main" tabindex="-1">
     <div class="container">${breadcrumbs([
       { label: "Home", href: "../index.html" },
       { label: "Services", href: "" }
     ])}</div>
-    <section class="page-intro container services-intro">
-      <p class="kicker">Writing and SEO services</p>
-      <h1>Writing and SEO services for research-heavy work.</h1>
-      <p>Paul works with environmental organizations, technical and creative teams, agencies, and research-heavy businesses that need accurate source material turned into clear published content. If the problem is your existing website, an audit can establish what needs attention before you commission new pages.</p>
+    <section class="service-hero container service-hero-grid">
+      <div><p class="kicker">Writing and SEO services</p>
+      <h1>Make complex work clear. Make your website useful.</h1>
+      <p class="service-lede">Research-driven writing for environmental and technical subjects. SEO content and website audits that connect useful information to the next step.</p><div class="actions"><a class="button button-primary" href="#services">Find your service</a><a class="button button-secondary" href="../portfolio.html">Browse the portfolio</a></div></div>
+      <aside class="service-summary service-start-guide" aria-label="Where to start"><p class="small-label">Where should you start?</p><a href="../seo-audits/index.html"><strong>Review an existing website</strong><span>Find the issues and plan the repairs. <span aria-hidden="true">→</span></span></a><a href="../index.html#contact"><strong>Discuss a writing project</strong><span>Turn your brief and sources into a clear scope. <span aria-hidden="true">→</span></span></a></aside>
     </section>
-    <section class="section container service-route-grid" aria-label="Primary writing services">
-      ${SERVICE_PAGES.map((service, index) => `<article><span class="route-number" aria-hidden="true">0${index + 1}</span><h2><a href="../${service.slug}/index.html">${esc(service.eyebrow)}</a></h2><p>${scientificText(service.description)}</p><a class="text-link" href="../${service.slug}/index.html">Explore this service</a></article>`).join("")}
+    ${sectionNavigation([["services", "Services"], ["audit-preview", "Audit example"], ["compare", "Compare"], ["process", "How it works"], ["start", "Next step"]])}
+    <section class="section container" id="services" aria-labelledby="services-heading">
+      <div class="section-heading compact-heading"><div><p class="small-label">Choose your starting point</p><h2 id="services-heading">What do you need to make clear?</h2></div></div>
+      <div class="service-route-grid">${[...SERVICE_PAGES].sort((a, b) => Number(b.projectType === "audit") - Number(a.projectType === "audit")).map((service, index) => `<article class="${service.projectType === "audit" ? "service-card-featured" : ""}"><span class="route-number" aria-hidden="true">0${index + 1}</span><p class="card-purpose">${esc(service.bestFor)}</p><h3><a href="../${service.slug}/index.html">${esc(service.eyebrow)}</a></h3><p>${scientificText(service.description)}</p><dl><div><dt>Typical output</dt><dd>${esc(service.typicalOutput)}</dd></div></dl><a class="text-link" href="../${service.slug}/index.html">${esc(service.linkLabel)} <span aria-hidden="true">→</span></a></article>`).join("")}</div>
     </section>
     ${auditPreview("../")}
-    <section class="section container"><div class="section-heading compact-heading"><div><p class="small-label">Choose the engagement</p><h2>Match the work to the decision.</h2></div></div><div class="table-scroll" role="region" aria-label="Service comparison" tabindex="0"><table class="service-comparison"><thead><tr><th scope="col">Need</th><th scope="col">Useful inputs</th><th scope="col">Typical deliverable</th></tr></thead><tbody><tr><th scope="row"><a href="../environmental-science-writer/index.html">Explain scientific evidence</a></th><td>Studies, agency data and expert review</td><td>Article, report, summary or evidence-led web copy</td></tr><tr><th scope="row"><a href="../technical-writer/index.html">Explain a technical offer</a></th><td>Product brief, documentation and expert input</td><td>B2B article, case study, product story or page copy</td></tr><tr><th scope="row"><a href="../seo-content-writer/index.html">Answer a search question</a></th><td>Reader intent, existing pages and credible sources</td><td>New or refreshed content with metadata and link recommendations</td></tr><tr><th scope="row"><a href="../seo-audits/index.html">Diagnose a website</a></th><td>URL, business goal and agreed account data</td><td>Prioritized findings, repair plan and acceptance checks</td></tr><tr><th scope="row"><a href="../index.html?project=agency#contact">Support an editorial team</a></th><td>Briefs, voice guidance and review workflow</td><td>Scoped writing, source review or substantive editing</td></tr></tbody></table></div></section>
-    <section class="section section-muted"><div class="container service-support"><div><p class="small-label">Additional support</p><h2>Web copy, thought leadership, editing, and agency capacity.</h2></div><p>Projects can also include landing pages, interview-led thought leadership, source review, substantive editing, fact-checking support, and dependable overflow work inside an established editorial process.</p></div></section>
-    <section class="section container service-support"><div><p class="small-label">How projects start</p><h2>A defined first assignment.</h2><p>Send the subject or URL, intended reader, business goal and available material. I’ll recommend a scope. Deliverables, price, review responsibilities and revisions are agreed before work begins.</p></div><div><h2>What I need from you</h2><p>An existing draft, product brief, source library or a clear description of the problem is enough to start the discussion. Let me know who will review the work and when you need it. Writing, diagnosis and implementation can be scoped separately.</p></div></section>
-    <section class="article-cta"><div class="container simple-cta"><div><p class="small-label">Project inquiry</p><h2>Start with what needs to become clear.</h2></div><a class="button button-primary" href="../index.html#contact">Discuss a project</a></div></section>
+    <section class="section container" id="compare" aria-labelledby="compare-heading"><p class="small-label">Compare the options</p><h2 id="compare-heading">Match the work to your goal.</h2><details class="service-comparison-disclosure"><summary>Compare inputs and deliverables for each service</summary><div class="comparison-list">${SERVICE_PAGES.map((service) => `<article><h3><a href="../${service.slug}/index.html">${esc(service.eyebrow)}</a></h3><dl><div><dt>Useful starting input</dt><dd>${esc(service.startingInput)}</dd></div><div><dt>Typical deliverable</dt><dd>${esc(service.typicalOutput)}</dd></div></dl></article>`).join("")}<article><h3>Editorial and agency support</h3><dl><div><dt>Useful starting input</dt><dd>Briefs, voice guidance and a review workflow</dd></div><div><dt>Typical deliverable</dt><dd>Scoped writing, source review or substantive editing</dd></div></dl><a class="text-link" href="../index.html?project=agency#contact">Discuss editorial support</a></article></div></details></section>
+    <section class="section section-muted" id="process" aria-labelledby="process-heading"><div class="container process-section"><div><p class="small-label">How projects start</p><h2 id="process-heading">One defined first assignment.</h2><p>Projects can include web copy, interview-led thought leadership, source review, substantive editing, fact-checking support and overflow work within your editorial process.</p></div><ol class="steps-list"><li><strong>Share the goal.</strong><span>Send the subject or URL, intended reader, available material and timing.</span></li><li><strong>Agree the scope.</strong><span>We define deliverables, price, reviewers and revisions before work begins.</span></li><li><strong>Build from the evidence.</strong><span>Research, source review and a clear structure guide the work.</span></li><li><strong>Review and hand off.</strong><span>Writing, diagnosis and implementation can be scoped separately.</span></li></ol></div></section>
+    <section class="article-cta" id="start"><div class="container simple-cta"><div><p class="small-label">Your next step</p><h2>Start with what needs to become clear.</h2><p>A draft, brief, source library or description of the problem is enough to begin.</p></div><div class="cta-actions"><a class="button button-primary" href="../index.html#contact">Discuss your project</a><a class="text-link" href="../authors/paul-shannon/index.html">Meet Paul Shannon</a></div></div></section>
   </main>
 ${footer("../")}
 </body>
