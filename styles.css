@@ -1,14 +1,15 @@
 :root {
   --text: #17201c;
   --muted: #5d6862;
-  --line: #dce2de;
-  --surface: #f4f6f5;
-  --surface-strong: #e9efec;
+  --line: #d2ded5;
+  --surface: #eaf0e9;
+  --surface-strong: #dce8de;
   --white: #ffffff;
-  --paper: #fbfcfb;
+  --paper: #f8f8f3;
+  --hero-wash: #e6efe6;
   --accent: #166534;
   --accent-dark: #104c29;
-  --accent-soft: #eaf4ed;
+  --accent-soft: #e2eee5;
   --danger: #a32929;
   --max-width: 68rem;
   --reading-width: 44rem;
@@ -67,7 +68,7 @@ a { color: var(--accent-dark); text-underline-offset: 0.18em; }
 
 .site-header {
   border-bottom: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.97);
+  background: #f6f9f5;
 }
 
 .header-row {
@@ -79,7 +80,7 @@ a { color: var(--accent-dark); text-underline-offset: 0.18em; }
 }
 
 .brand {
-  color: var(--text);
+  color: var(--accent-dark);
   font-size: 1.08rem;
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -111,7 +112,7 @@ a { color: var(--accent-dark); text-underline-offset: 0.18em; }
 .site-header nav .nav-contact {
   margin-left: 0.35rem;
   border-radius: var(--radius);
-  background: var(--text);
+  background: var(--accent-dark);
   color: var(--white);
 }
 
@@ -201,8 +202,8 @@ a { color: var(--accent-dark); text-underline-offset: 0.18em; }
   transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
 }
 
-.button-primary { background: var(--text); color: var(--white); }
-.button-primary:hover { border-color: var(--accent-dark); background: var(--accent-dark); }
+.button-primary { border-color: var(--accent-dark); background: var(--accent-dark); color: var(--white); }
+.button-primary:hover { border-color: var(--accent); background: var(--accent); }
 .button-secondary { background: var(--white); color: var(--text); }
 .button-secondary:hover { background: var(--surface); }
 .button-tertiary { border-color: #aeb8b2; background: transparent; color: var(--muted); }
@@ -337,11 +338,11 @@ a { color: var(--accent-dark); text-underline-offset: 0.18em; }
 .form-feedback { margin: 0; padding: 0.8rem; border-left: 3px solid var(--danger); background: #fff2f2; color: #741d1d; }
 .trap { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-.site-footer { border-top: 1px solid var(--line); background: var(--white); }
-.footer-row { min-height: 8rem; display: grid; grid-template-columns: 1.25fr auto auto; align-items: center; gap: 2rem; color: var(--muted); font-size: 0.82rem; }
+.site-footer { border-top: 1px solid var(--accent-dark); background: var(--accent-dark); }
+.footer-row { min-height: 8rem; display: grid; grid-template-columns: 1.25fr auto auto; align-items: center; gap: 2rem; color: #d4e3d8; font-size: 0.82rem; }
 .footer-row > div { display: flex; flex-direction: column; }
-.footer-row strong { color: var(--text); font-size: 0.95rem; }
-.site-footer nav a { min-height: 2.75rem; display: inline-flex; align-items: center; padding-inline: 0.45rem; color: var(--muted); }
+.footer-row strong { color: var(--white); font-size: 0.95rem; }
+.site-footer nav a { min-height: 2.75rem; display: inline-flex; align-items: center; padding-inline: 0.45rem; color: #d4e3d8; }
 
 .page-intro { max-width: var(--max-width); padding-block: clamp(3.5rem, 7vw, 5.5rem) 2.5rem; }
 .page-intro p:last-child { max-width: 45rem; margin: 1rem 0 0; color: var(--muted); font-size: 1.08rem; }
@@ -1027,6 +1028,17 @@ a { color: var(--accent-dark); text-underline-offset: 0.18em; }
   .service-hero-grid, .service-page .service-copy, .process-section, .audit-example-page .finding-row { display: block; }
   .service-summary { margin-top: 1rem; }
   .service-comparison-disclosure:not([open]) .comparison-list { display: block !important; }
+}
+
+/* A restrained green palette separates sections while keeping reading areas calm. */
+main { background: linear-gradient(180deg, var(--hero-wash), var(--paper) 42rem); }
+.section-nav { background: #e8efe7; }
+.service-summary { background: var(--accent-soft); }
+.source-panel { background: var(--surface); border-left-color: #a6c1ac; }
+.site-footer nav a:hover, .site-footer nav a:focus-visible { color: var(--white); }
+.site-footer a:focus-visible { outline-color: #c9ead3; }
+@media print {
+  main { background: transparent; }
 }
 
 @media (prefers-reduced-motion: reduce) {
