@@ -64,3 +64,7 @@ The following figures were extracted from Paul Shannon's supplied research paper
 - `rhizofiltration-mechanical-removal.webp` — AFP (2020), as credited in the source report.
 - `phytoremediation-rootzone-diversity.webp` — alpha-diversity data from Singh, Sodhi, and Singh (2024), reproduced in Paul Shannon’s review.
 - `phytoremediation-duckweed-microbiome.webp` — figure from Acosta et al. (2020), reproduced in Paul Shannon’s review.
+
+## Environmental technology website review (September 30, 2026)
+
+Cover: PaulWrites artwork from Paul Shannon’s published LinkedIn article. Four inline images are reproduced from that same article at the author’s request, with the exact published captions and source image URLs recorded in `content/articles/environmental-tech-website-science-claims.json`. The captions identify Joerss & Menger (2023), Flickr, Little Green Myths, and The-14. Copyright remains with the respective rights holders; this ledger does not assert an unverified public-domain or Creative Commons license. Local assets retain the complete image and are converted to WebP.

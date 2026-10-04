@@ -1,4 +1,18 @@
 export const WORK_PAGE_CONTENT = {
+  "environmental-tech-website-science-claims": {
+    eyebrow: "Independent article · Environmental science communication",
+    overview: [
+      "This article examines the public technology and product pages of 20 companies: five working on PFAS treatment, five on carbon capture, removal, or lower-carbon materials, five on water treatment or water-risk tools, and five on environmental monitoring. Paul followed available case studies, technical pages, and FAQs to understand how the sites explained their claims.",
+      "The review focuses on communication rather than testing the technologies or estimating industry-wide prevalence. It explains how treatment pathways, denominators, life-cycle boundaries, and monitoring limits change the meaning of a claim—and why essential qualifications belong near the headline that readers see first."
+    ],
+    sections: [
+      { heading: "The distinctions behind the headline", bullets: ["PFAS removal versus destruction, including analytical limits and fluorine accounting", "Water-reuse percentages and model metrics with explicit denominators", "Captured carbon, avoided emissions, and net atmospheric removal", "Observation schedules, detection thresholds, and alert delivery in environmental monitoring"] },
+      { heading: "Research and editorial approach", paragraphs: ["Paul compared each site's prominent wording with its more detailed supporting material. The article uses specific examples to show when a qualification survives the marketing copy and when distance between a claim and its context makes the reader reconstruct the evidence."] },
+      { heading: "Scope and publication", paragraphs: ["This is a purposive review of website communication, not a representative industry survey, technology performance assessment, or finding that the companies made false claims. The complete September 30, 2026 LinkedIn article is reproduced verbatim on the reading page, including its images, captions, emphasis, and published links."] }
+    ],
+    role: "Paul selected the review framework, examined the companies' public pages and supporting sources, and wrote and published the article independently.",
+    relatedIds: ["clean-water-climate-change-habs", "carbon-offsets-insetting", "ai-corporate-sustainability"]
+  },
   "phytoremediation-habs-feasibility-review": {
     eyebrow: "Literature review · Environmental remediation",
     overview: [

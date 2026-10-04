@@ -126,7 +126,7 @@ const normalizeImportedArticle = (article) => {
     .filter((block) => !/^(?:\+ Follow|\+ Subscribe|Like|Celebrate|Support|Love|Insightful|Funny|Comment|Share)$/i.test(String(block.text || "").trim()))
     .map((block) => {
       if (/^[-*]\s+/.test(block.text || "")) return { ...block, type: "li", text: block.text.replace(/^[-*]\s+/, "") };
-      if (/^Image\s+courtesy/i.test(block.text || "")) return { ...block, type: "note" };
+      if (block.type !== "figure" && /^Image\s+courtesy/i.test(block.text || "")) return { ...block, type: "note" };
       return block;
     });
 
@@ -562,15 +562,27 @@ const withHeadingIds = (blocks) => {
   });
 };
 
+// Structured inline runs retain the source publication's emphasis and links.
+// Text and URLs are escaped, and only ordinary web links are rendered.
+const readerInline = (block) => block.inline ? block.inline.map((run) => {
+  if (run.break) return "<br>";
+  let text = esc(run.text);
+  if (run.em) text = `<em>${text}</em>`;
+  if (run.strong) text = `<strong>${text}</strong>`;
+  if (run.href && /^https?:\/\//i.test(run.href)) text = `<a href="${esc(run.href)}">${text}</a>`;
+  return text;
+}).join("") : scientificText(block.text);
+
 const renderReaderBlock = (block) => {
   if (block.type === "h2") return `<h2 id="${block.anchor || anchorFor(block.text)}">${esc(block.text)}</h2>`;
   if (block.type === "h3") return `<h3 id="${block.anchor || anchorFor(block.text)}">${esc(block.text)}</h3>`;
-  if (block.type === "blockquote") return `<blockquote><p>${scientificText(block.text)}</p></blockquote>`;
+  if (block.type === "figure") return `<figure class="article-figure"><img src="../../../${esc(block.src)}" alt="${esc(block.alt)}" width="${esc(block.width)}" height="${esc(block.height)}" loading="lazy" decoding="async"><figcaption>${esc(block.text)}</figcaption></figure>`;
+  if (block.type === "blockquote") return `<blockquote><p>${readerInline(block)}</p></blockquote>`;
   if (block.type === "reference") return `<p class="reference-entry">${scientificText(block.text)}</p>`;
   if (block.type === "note") return `<aside class="article-note"><strong>Original publication image credit</strong><span>${scientificText(block.text.replace(/^Image\s+courtesy\s*(?:of\s*)?/i, ""))}</span></aside>`;
   if (block.type === "pre") return `<pre class="research-data"><code>${esc(block.text)}</code></pre>`;
   if (block.type === "li") return `<li>${scientificText(block.text)}</li>`;
-  return `<p>${scientificText(block.text)}</p>`;
+  return `<p>${readerInline(block)}</p>`;
 };
 
 const renderReaderBody = (reader, item) => {

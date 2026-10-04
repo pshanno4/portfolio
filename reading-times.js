@@ -1,4 +1,5 @@
 window.PAULWRITES_READING_TIMES = {
+  "environmental-tech-website-science-claims": 8,
   "phytoremediation-habs-feasibility-review": 34,
   "noovie-trivia-levels-up": 2,
   "trade-show-booth-gamification": 5,

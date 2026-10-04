@@ -1,0 +1,579 @@
+{
+  "id": "environmental-tech-website-science-claims",
+  "source": "LinkedIn",
+  "sourceUrl": "https://www.linkedin.com/pulse/i-reviewed-20-environmental-tech-websites-heres-what-got-paul-shannon-6jenc",
+  "reproduction": "complete-owned-web-edition",
+  "wordCount": 1556,
+  "blocks": [
+    {
+      "type": "blockquote",
+      "text": "“Non-detect.” “Carbon removal.” “Up to 95%.” “Real-time.”",
+      "inline": [
+        {
+          "text": "“Non-detect.” “Carbon removal.” “Up to 95%.” “Real-time.”",
+          "em": true
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "I kept finding phrases like these while reading environmental technology websites. Each can describe a real result. Each can also leave out the one detail that tells a reader what the result actually means.",
+      "inline": [
+        {
+          "text": "I kept finding phrases like these while reading environmental technology websites. Each can describe a real result. Each can also leave out the one detail that tells a reader "
+        },
+        {
+          "text": "what the result actually means",
+          "strong": true
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Non-detect for which chemicals, using which method? Ninety-five percent of what? Was the carbon removed from the atmosphere, or was an emission avoided? Does real-time mean a camera is collecting images continuously, or that a satellite can see a particular place whenever someone needs an answer?",
+      "inline": [
+        {
+          "text": "Non-detect for which chemicals, using which method? Ninety-five percent of what? Was the carbon removed from the atmosphere, or was an emission avoided? Does real-time mean a camera is collecting images continuously, or that a satellite can see a particular place whenever someone needs an answer?"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Those questions do not fit easily into a homepage headline. They still matter. If a buyer, regulator, or community member has to reconstruct the limits of a claim from a FAQ and a buried PDF, the website has made the science harder to trust than it needs to be.",
+      "inline": [
+        {
+          "text": "Those questions do not fit easily into a homepage headline. "
+        },
+        {
+          "text": "They still matter",
+          "strong": true
+        },
+        {
+          "text": ". If a buyer, regulator, or community member has to reconstruct the limits of a claim from a FAQ and a buried PDF, the website has made the science harder to trust than it needs to be."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "I reviewed the public technology and product pages of 20 companies: five working on PFAS treatment, five on carbon capture, removal, or lower-carbon materials, five on water treatment or water-risk tools, and five on environmental monitoring. I followed relevant case studies, technical pages, and FAQs where they were available. This was a purposive review of website communication - not a conclusive test of the technologies, a representative industry survey, or a finding that all (or any) of the 20 companies made false claims. In fact, many explained important limits unusually well.",
+      "inline": [
+        {
+          "text": "I reviewed the public technology and product pages of 20 companies: five working on PFAS treatment, five on carbon capture, removal, or lower-carbon materials, five on water treatment or water-risk tools, and five on environmental monitoring. I followed relevant case studies, technical pages, and FAQs where they were available. This was a purposive review of website communication - not a conclusive test of the technologies, a representative industry survey, or a finding that all (or any) of the 20 companies made false claims. In fact, many explained important limits unusually well."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "None of us, however, are impervious to mistakes. And in these industries, an otherwise small mistake can cost you quite a lot of profit.",
+      "inline": [
+        {
+          "text": "None ",
+          "em": true
+        },
+        {
+          "text": "of us, however, are impervious to mistakes. And in these industries, an otherwise small mistake can cost you "
+        },
+        {
+          "text": "quite ",
+          "em": true
+        },
+        {
+          "text": "a lot of profit."
+        }
+      ]
+    },
+    {
+      "type": "figure",
+      "text": "(Joerss & Menger, 2023) - \"The complex ‘PFAS world’ - How recent discoveries and novel screening tools reinforce existing concerns\"",
+      "src": "public/images/articles/environmental-tech-website-science-claims/figure-1.webp",
+      "alt": "Article content",
+      "sourceImageUrl": "https://media.licdn.com/dms/image/v2/D5612AQFf7viB7SEjJA/article-inline_image-shrink_400_744/B56aDWoHE8IUAM-/0/1790307235058?e=2147483647&v=beta&t=5e3P7ZrbocB4za4D4Hs6jbeJAfgeztSpZSrl05C30F4",
+      "width": 744,
+      "height": 310
+    },
+    {
+      "type": "h3",
+      "text": "PFAS removal is not PFAS destruction",
+      "inline": [
+        {
+          "text": "PFAS removal is not PFAS destruction"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "If a filter removes PFAS from drinking water, the chemicals have gone somewhere. They may be held on a medium or concentrated in a smaller waste stream. That can be valuable treatment. It does not, by itself, mean the PFAS molecules were destroyed.",
+      "inline": [
+        {
+          "text": "If a filter removes PFAS from drinking water, the chemicals have gone "
+        },
+        {
+          "text": "somewhere",
+          "em": true
+        },
+        {
+          "text": ". They may be held on a medium or concentrated in a smaller waste stream. That can be valuable treatment. It does not, by itself, mean the PFAS molecules were destroyed."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "This distinction was clear on Cyclopure’s DEXSORB page. The company describes a material that captures PFAS, then separates and concentrates the waste so it can be processed for destruction elsewhere. The page gives the reader the next step in the material’s journey instead of making removal sound like disappearance.",
+      "inline": [
+        {
+          "text": "This distinction was clear on "
+        },
+        {
+          "text": "Cyclopure’s ",
+          "em": true
+        },
+        {
+          "text": "DEXSORB page",
+          "href": "https://cyclopure.com/pages/dexsorb?trk=article-ssr-frontend-pulse_little-text-block"
+        },
+        {
+          "text": ". The company describes a material that captures PFAS, then separates and concentrates the waste so it can be processed for destruction elsewhere. The page gives the reader the next step in the material’s journey instead of making removal sound like disappearance."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Destruction claims need their own boundaries. If a site says its process reached “non-detect,” I want to know the named compounds, sample matrix, analytical method, reporting limits, and what happened to possible byproducts and other outputs. A non-detect result means a substance was not detected under a particular test’s conditions. It is not proof that every PFAS compound is absent.",
+      "inline": [
+        {
+          "text": "Destruction claims need their own boundaries. If a site says its process reached “non-detect,” I want to know the named compounds, sample matrix, analytical method, reporting limits, and what happened to possible byproducts and other outputs. A non-detect result means a substance was not detected under a particular test’s conditions. It is not proof that every PFAS compound is absent."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "The EPA’s 2026 interim guidance on PFAS destruction and disposal, issued for public comment, asks evaluators about process inputs and outputs, destruction efficiency, possible products of incomplete destruction, and fluorine mass balance. That is a useful way to read a website claim, even though the guidance is not a scorecard for these companies. EPA also explains that Method 1633A measures 40 specific PFAS. A result for a defined list of analytes cannot stand in for all possible PFAS.",
+      "inline": [
+        {
+          "text": "The EPA’s 2026 "
+        },
+        {
+          "text": "interim guidance on PFAS destruction and disposal",
+          "href": "https://www.epa.gov/system/files/documents/2026-04/2026-interim-guidance-on-pfas-destruction-and-disposal.pdf?trk=article-ssr-frontend-pulse_little-text-block"
+        },
+        {
+          "text": ", issued for public comment, asks evaluators about process inputs and outputs, destruction efficiency, possible products of incomplete destruction, and fluorine mass balance. That is a useful way to read a website claim, even though the guidance is not a scorecard for these companies. EPA also explains that Method 1633A measures 40 specific PFAS. A result for a defined list of analytes cannot stand in for all possible PFAS."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Aquagga’s industrial pilot case study is more informative because it reports its claimed greater-than-99% PFAS destruction separately from greater-than-95% measured defluorination, and describes the fluorine mass-balance work and tested conditions. Those are the company’s reported results from a particular demonstration, not a performance guarantee for every waste stream. The distinction survives the marketing copy.",
+      "inline": [
+        {
+          "text": "Aquagga’s "
+        },
+        {
+          "text": "industrial pilot case study",
+          "href": "https://www.aquagga.com/case-study-real-world-industrial-pfas-destruction?trk=article-ssr-frontend-pulse_little-text-block"
+        },
+        {
+          "text": " is more informative because it reports its claimed greater-than-99% PFAS destruction separately from greater-than-95% measured defluorination, and describes the fluorine mass-balance work and tested conditions. Those are the company’s reported results from a particular demonstration, not a performance guarantee for every waste stream. The distinction survives the marketing copy."
+        }
+      ]
+    },
+    {
+      "type": "figure",
+      "text": "Image courtesy of Flickr - recycled greywater",
+      "src": "public/images/articles/environmental-tech-website-science-claims/figure-2.webp",
+      "alt": "Article content",
+      "sourceImageUrl": "https://media.licdn.com/dms/image/v2/D5612AQFrbUvUDTr0PA/article-inline_image-shrink_1500_2232/B56aDZUOY9JIAU-/0/1790352355318?e=2147483647&v=beta&t=-9i04ItZnhuHmUCrmo-L46m1AcDLL1LIULLAdYLf6a8",
+      "width": 1024,
+      "height": 685
+    },
+    {
+      "type": "h3",
+      "text": "A percentage without its denominator is a different claim",
+      "inline": [
+        {
+          "text": "A percentage without its denominator is a different claim"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "“Up to 95%” feels precise. Without the denominator, it is almost always empty.",
+      "inline": [
+        {
+          "text": "“Up to 95%” feels precise. Without the denominator, it is "
+        },
+        {
+          "text": "almost always ",
+          "em": true
+        },
+        {
+          "text": "empty."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "On its homepage, Hydraloop says its systems can recycle up to 95% of greywater. It separately says that reuse can cut fresh-water demand by up to 45%. Those numbers answer different questions. A reader who confuses the first with a 95% reduction in a building’s total water use would come away with the wrong expectation.",
+      "inline": [
+        {
+          "text": "On its homepage, "
+        },
+        {
+          "text": "Hydraloop",
+          "href": "https://www.hydraloop.com/?trk=article-ssr-frontend-pulse_little-text-block"
+        },
+        {
+          "text": " says its systems can recycle up to 95% of greywater. It separately says that reuse can cut fresh-water demand by up to 45%. Those numbers answer different questions. A reader who confuses the first with a 95% reduction in a building’s total water use would come away with the wrong expectation."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "The same problem appears outside water reuse. A model’s recall is the share of actual cases it finds. Its precision is the share of its positive predictions that turn out to be correct. BlueConduit’s lead service line page describes both measures and explains that representative field investigations help develop its predictions. Its reported performance is still context dependent, but the reader can at least see what is being counted.",
+      "inline": [
+        {
+          "text": "The same problem appears outside water reuse. A model’s recall is the share of actual cases it finds. Its "
+        },
+        {
+          "text": "precision",
+          "em": true
+        },
+        {
+          "text": " is the share of its positive predictions that turn out to be correct. "
+        },
+        {
+          "text": "BlueConduit’s",
+          "href": "https://www.hydraloop.com/?trk=article-ssr-frontend-pulse_little-text-block"
+        },
+        {
+          "text": " lead service line page describes both measures and explains that representative field investigations help develop its predictions. Its reported performance is still context dependent, but the reader can at least see what is being counted."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Every striking environmental percentage should carry a small piece of grammar: of what, compared with what, measured where, and under what conditions? A case study can hold the full methods. The first claim should carry enough context to prevent the obvious wrong reading.",
+      "inline": [
+        {
+          "text": "Every ",
+          "strong": true
+        },
+        {
+          "text": "striking environmental percentage should carry a small piece of grammar: of what, compared with what, measured where, and under what conditions? A case study can hold the full methods. The first claim should carry enough context to prevent the obvious wrong reading."
+        }
+      ]
+    },
+    {
+      "type": "figure",
+      "text": "Image courtesy of Little Green Myths - The Dark Side of Carbon Emsions; Corporate Carbon Washing",
+      "src": "public/images/articles/environmental-tech-website-science-claims/figure-3.webp",
+      "alt": "Article content",
+      "sourceImageUrl": "https://media.licdn.com/dms/image/v2/D5612AQEVDRQrSr2uRA/article-inline_image-shrink_1500_2232/B56aDZUd9mIQAQ-/0/1790352418779?e=2147483647&v=beta&t=GklhBE4O4eFtxOWSIFDbKy4Omjb1Vp1CD1UfXxFXPYI",
+      "width": 1200,
+      "height": 714
+    },
+    {
+      "type": "h3",
+      "text": "Captured carbon, avoided emissions, and removal are not interchangeable",
+      "inline": [
+        {
+          "text": "Captured carbon, avoided emissions, and removal are not interchangeable"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "This was the carbon section’s recurring trap: a ton of CO₂ captured at a facility is not automatically a ton removed from the atmosphere. A lower-carbon product can avoid emissions relative to a conventional product without becoming carbon removal. And gross capture is not the same as net climate benefit once energy, transport, materials, and storage are counted.",
+      "inline": [
+        {
+          "text": "This was the carbon section’s "
+        },
+        {
+          "text": "recurring trap",
+          "strong": true
+        },
+        {
+          "text": ": a ton of CO₂ captured at a facility is not automatically a ton removed from the atmosphere. A lower-carbon product can avoid emissions relative to a conventional product without becoming carbon removal. And gross capture is not the same as net climate benefit once energy, transport, materials, and storage are counted."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "The U.S. Department of Energy’s direct air capture life-cycle guidance separates CO₂ captured, atmospheric CO₂ captured and stored, and net CO₂e (carbon dioxide equivalent) removal. Those boundaries can produce different answers for the same system. The source of the carbon and its eventual fate matter as much as the capture equipment.",
+      "inline": [
+        {
+          "text": "The U.S. Department of Energy’s "
+        },
+        {
+          "text": "direct air capture life-cycle guidance",
+          "href": "https://www.netl.doe.gov/projects/files/CO2UtilizationLifeCycleAnalysisGuidancefortheUSDOEOfficeofFEandCarbonManagementVersion2_022322.pdf?trk=article-ssr-frontend-pulse_little-text-block"
+        },
+        {
+          "text": " separates CO₂ captured, atmospheric CO₂ captured and stored, and net CO₂e (carbon dioxide equivalent) removal. Those boundaries can produce different answers for the same system. The source of the carbon and its eventual fate matter as much as the capture equipment."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Charm Industrial’s FAQ gives a useful example of staying with the net result: it says one tonne of biomass entering its process corresponds to roughly 0.85 tonnes of net atmospheric CO₂e removal on a life-cycle basis, then points readers to analyses of individual deliveries. The number has a denominator and a boundary.",
+      "inline": [
+        {
+          "text": "Charm Industrial’s "
+        },
+        {
+          "text": "FAQ",
+          "href": "https://charmindustrial.com/faq?trk=article-ssr-frontend-pulse_little-text-block"
+        },
+        {
+          "text": " gives a useful example of staying with the net result: it says one tonne of biomass entering its process corresponds to roughly 0.85 tonnes of net atmospheric CO₂e removal on a life-cycle basis, then points readers to analyses of individual deliveries. The number has a denominator and a boundary."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "CarbonCure also separates CO₂ mineralized in concrete from additional emissions avoided by using less cement in an illustrative calculation. CarbonBuilt’s environmental benefits page goes a step further on accounting: it tells customers that certain CO₂-related attributes have already been sold and should not be claimed again. That is a detail a product page could easily skip. It prevents two parties from claiming the same benefit.",
+      "inline": [
+        {
+          "text": "CarbonCure",
+          "href": "https://www.carboncure.com/blog/concrete-corner/total-carbon-costs/?trk=article-ssr-frontend-pulse_little-text-block"
+        },
+        {
+          "text": " also separates CO₂ mineralized in concrete from additional emissions avoided by using less cement in an illustrative calculation. CarbonBuilt’s "
+        },
+        {
+          "text": "environmental benefits page",
+          "href": "https://www.carbonbuilt.com/environmental-benefits?trk=article-ssr-frontend-pulse_little-text-block"
+        },
+        {
+          "text": " goes a step further on accounting: it tells customers that certain CO₂-related attributes have already been sold and should not be claimed again. That is a detail a product page could easily skip. It prevents two parties from claiming the same benefit."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "These pages do not settle every life-cycle question. They show how to state the accounting boundary before a single impressive number starts doing several jobs.",
+      "inline": [
+        {
+          "text": "These pages do not settle every life-cycle question. They show how to state the accounting boundary before a single impressive number starts doing several jobs."
+        }
+      ]
+    },
+    {
+      "type": "figure",
+      "text": "Image courtesy of The-14; Pinpointing Carbon Emissions Like Never Before: World's First CO2 Monitoring Satelite Is Now in Orbit",
+      "src": "public/images/articles/environmental-tech-website-science-claims/figure-4.webp",
+      "alt": "Article content",
+      "sourceImageUrl": "https://media.licdn.com/dms/image/v2/D5612AQGNiNpM4d_Gog/article-inline_image-shrink_1000_1488/B56aDZVaFVGcAU-/0/1790352663160?e=2147483647&v=beta&t=_ZQd3YpKZa9pvtABxQJY166wXTgi2V9iS31t8sNaNmM",
+      "width": 920,
+      "height": 425
+    },
+    {
+      "type": "h3",
+      "text": "What environmental monitoring AI and satellites can miss",
+      "inline": [
+        {
+          "text": "What environmental monitoring AI and satellites can miss"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "An AI model can be useful without being all-seeing. So can a satellite. But “continuous,” “real-time,” and “accurate” can blur several different stages: observing a place, detecting an event, verifying it, and delivering an alert.",
+      "inline": [
+        {
+          "text": "An AI model can be useful without being all-seeing. So can a satellite. But “continuous,” “real-time,” and “accurate” can blur several different stages: observing a place, detecting an event, verifying it, and delivering an alert."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Some monitoring language in this review would have been clearer if its coverage limits appeared near the promise. The reader needs to know when a sensor has a view, what can block it, and what happens between a possible detection and an alert.",
+      "inline": [
+        {
+          "text": "Some monitoring language in this review would have been clearer if its coverage limits appeared near the promise. The reader needs to know when a sensor has a view, what can block it, and what happens between a possible detection and an alert."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Pano AI’s product page describes a network of cameras and human review of detections. GHGSat’s technology page states a satellite methane detection threshold of 100 kilograms per hour and says observations are delivered within 24 hours of an overpass. That is considerably more useful than an unsupported promise to detect every leak immediately. A threshold is not a guarantee at every site in every condition, and delivery after an overpass is not continuous observation.",
+      "inline": [
+        {
+          "text": "Pano "
+        },
+        {
+          "text": "AI’s product page",
+          "href": "https://www.pano.ai/solution?trk=article-ssr-frontend-pulse_little-text-block"
+        },
+        {
+          "text": " describes a network of cameras and human review of detections. GHGSat’s "
+        },
+        {
+          "text": "technology page",
+          "href": "https://www.ghgsat.com/technology/?trk=article-ssr-frontend-pulse_little-text-block"
+        },
+        {
+          "text": " states a satellite methane detection threshold of 100 kilograms per hour and says observations are delivered within 24 hours of an overpass. That is considerably more useful than an unsupported promise to detect every leak immediately. A threshold is not a guarantee at every site in every condition, and delivery after an overpass is not continuous observation."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "The same limits apply to imagery. Planet’s documentation identifies clouds, haze, shadow, and other conditions that affect whether an image is usable. “Near-daily imagery” can describe an acquisition schedule; it does not promise a clear, usable view of every location every day.",
+      "inline": [
+        {
+          "text": "The same limits apply to imagery. Planet’s documentation identifies clouds, haze, shadow, and other conditions that affect whether an image is usable. “Near-daily imagery” can describe an acquisition schedule; it does not promise a clear, usable view of every location every day."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "The useful question for an environmental monitoring site is simple: what can the system miss, and when will someone know? A candid answer helps a customer design around the gap. It also makes a good result more believable.",
+      "inline": [
+        {
+          "text": "The useful question for an environmental monitoring site is simple: what can the system miss, and when will someone know? A candid answer helps a customer design around the gap. It also makes a good result more believable."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Put the qualification where the claim is made",
+      "inline": [
+        {
+          "text": "Put the qualification where the claim is made"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Many of the details I wanted were somewhere on the companies’ sites. A product page described the relevant feedwater. A FAQ explained the test. A case study supplied the comparator. The weakness was often the distance between that context and the line most visitors would see first.",
+      "inline": [
+        {
+          "text": "Many of the details I wanted were somewhere on the companies’ sites. A product page described the relevant feedwater. A FAQ explained the test. A case study supplied the comparator. The weakness was often the distance between that context and the line most visitors would see first."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "I would not put a methods section in every hero banner. I would put the essential limit next to the claim and link the complete evidence from there. For a PFAS result, that might mean the tested matrix and analytes. For water reuse, the source water and end use. For a carbon claim, the source of CO₂ and the life-cycle boundary. For a model, the metric, test population, and conditions in which performance changes.",
+      "inline": [
+        {
+          "text": "I would not put a methods section in every hero banner. I would put the essential limit next to the claim and link the complete evidence from there. For a PFAS result, that might mean the tested matrix and analytes. For water reuse, the source water and end use. For a carbon claim, the source of CO₂ and the life-cycle boundary. For a model, the metric, test population, and conditions in which performance changes."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "A potential rewrite:",
+      "inline": [
+        {
+          "text": "A potential rewrite:",
+          "strong": true
+        }
+      ]
+    },
+    {
+      "type": "blockquote",
+      "text": "Broad: “Our process eliminates PFAS in any water.”",
+      "inline": [
+        {
+          "text": "Broad: “Our process eliminates PFAS in any water.”"
+        }
+      ]
+    },
+    {
+      "type": "blockquote",
+      "text": "Specific: “In a pilot using [defined waste stream], concentrations of [named PFAS] fell below [stated reporting limits] at [tested flow rate]. See the analytical method, fluorine balance, byproduct testing, and operating conditions.”",
+      "inline": [
+        {
+          "text": "Specific: “In a pilot using [defined waste stream], concentrations of [named PFAS] fell below [stated reporting limits] at [tested flow rate]. See the analytical method, fluorine balance, byproduct testing, and operating conditions.”"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "The second version has blanks because the evidence has to supply them. If it cannot, the first version should not make the promise.",
+      "inline": [
+        {
+          "text": "The second version has blanks because the evidence "
+        },
+        {
+          "text": "has ",
+          "em": true
+        },
+        {
+          "text": "to supply them. If it cannot, the first version "
+        },
+        {
+          "text": "should not ",
+          "strong": true
+        },
+        {
+          "text": "make the promise."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Environmental technology companies are being asked to explain complicated work quickly. I understand the pressure to simplify, believe me. But the strongest sites in this review did something more useful than just that: they made the limits easy to find. They told me what was measured, what was inferred, and what still depended on the site or operating conditions.",
+      "inline": [
+        {
+          "text": "Environmental technology companies are being asked to explain complicated work quickly. I understand the pressure to simplify, believe me. But the strongest sites in this review did something more useful than just that: they made the limits easy to find. They told me what was measured, what was inferred, and what still depended on the site or operating conditions."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "That is the sentence I would edit first on almost any environmental-tech homepage: the one that sounds clearest until you ask, “Under what conditions?”",
+      "inline": [
+        {
+          "text": "That is the sentence I would edit first on almost any environmental-tech homepage: the one that sounds clearest until you ask, “Under what conditions?”"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "If you've noticed that your website may be struggling with some of these same patterns, PaulWrites will offer you one free outline - just reach out!",
+      "inline": [
+        {
+          "text": "If you've noticed that "
+        },
+        {
+          "text": "your website ",
+          "strong": true
+        },
+        {
+          "text": "may be struggling with some of these same patterns, "
+        },
+        {
+          "text": "PaulWrites will offer you one",
+          "href": "https://paulwrites.net/#contact?trk=article-ssr-frontend-pulse_little-text-block"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "free",
+          "strong": true,
+          "em": true,
+          "href": "https://paulwrites.net/#contact?trk=article-ssr-frontend-pulse_little-text-block"
+        },
+        {
+          "text": " ",
+          "strong": true,
+          "em": true
+        },
+        {
+          "text": "outline",
+          "href": "https://paulwrites.net/#contact?trk=article-ssr-frontend-pulse_little-text-block"
+        },
+        {
+          "text": " - just reach out!"
+        }
+      ]
+    }
+  ]
+}

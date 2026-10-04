@@ -655,6 +655,9 @@ a { color: var(--accent-dark); text-underline-offset: 0.18em; }
 .article-cta { border-top: 1px solid var(--line); background: var(--accent-soft); }
 
 /* Project overviews and complete reading pages */
+.reading-copy .article-figure { margin: 2rem 0; }
+.reading-copy .article-figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); background: var(--white); }
+.reading-copy .article-figure figcaption { margin-top: 0.55rem; color: var(--muted); font: 0.875rem/1.5 Arial, Helvetica, sans-serif; }
 .overview-summary {
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
@@ -1072,3 +1075,7 @@ main { background: linear-gradient(180deg, var(--hero-wash), var(--paper) 42rem)
   .publication-figure { max-width: 32rem; margin-block: 1rem; }
   .project-facts { position: static; break-inside: avoid; }
 }
+
+/* Keep the published headline on this supplied cover fully visible. */
+.reading-hero img[src$="environmental-tech-website-science-claims.webp"],
+.publication-figure img[src$="environmental-tech-website-science-claims.webp"] { object-fit: contain; }

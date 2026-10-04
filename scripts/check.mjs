@@ -38,7 +38,7 @@ vm.runInContext(dataSource, context);
 const items = context.window.PAULWRITES_ITEMS;
 
 assert(Array.isArray(items), "posts.js must set window.PAULWRITES_ITEMS to an array.");
-assert(items.length === 28, `Expected 28 portfolio records; found ${items.length}.`);
+assert(items.length === 29, `Expected 29 portfolio records; found ${items.length}.`);
 
 const ids = new Set();
 const images = new Set();
@@ -221,7 +221,7 @@ for (const [id, filenames] of Object.entries(researchFigureExpectations)) {
 }
 
 const portfolio = await readFile(path.join(root, "portfolio.html"), "utf8");
-assert((portfolio.match(/<article class="portfolio-item"/g) || []).length === items.length, "The static portfolio must contain all 28 items.");
+assert((portfolio.match(/<article class="portfolio-item"/g) || []).length === items.length, "The static portfolio must contain all portfolio items.");
 for (const item of items) {
   assert(portfolio.includes(`work/${item.id}/`), `Portfolio is missing the canonical Read URL for ${item.id}.`);
   assert(portfolio.includes(item.image), `Portfolio is missing the featured image for ${item.id}.`);
@@ -233,7 +233,7 @@ const climateReport = await readFile(path.join(dist, "work", "climate-change-har
 assert(climateReport.includes("harmful-algal-blooms-contributing-factors-and-impacts.html"), "The CDC citation was truncated in the published research report.");
 
 const ownedArticleFiles = (await readdir(path.join(root, "content", "articles"))).filter((file) => file.endsWith(".json"));
-assert(ownedArticleFiles.length === 24, `Expected 24 complete article records; found ${ownedArticleFiles.length}.`);
+assert(ownedArticleFiles.length === 25, `Expected 25 complete article records; found ${ownedArticleFiles.length}.`);
 let authorizedClientArticles = 0;
 for (const filename of ownedArticleFiles) {
   const record = JSON.parse(await readFile(path.join(root, "content", "articles", filename), "utf8"));
@@ -334,4 +334,4 @@ const distFiles = await walk(dist);
 const publicCode = (await Promise.all(distFiles.filter((file) => /\.(?:html|js)$/.test(file)).map((file) => readFile(file, "utf8")))).join("\n");
 assert(!/\b(?:view|like)[-_ ]?count\b/i.test(publicCode), "A view/like-count UI was found without a persistent backend.");
 
-console.log(`Validated ${canonicalPages.length} canonical pages, ${items.length} unique portfolio images and work pages, 24 complete article editions (including 7 authorized Workinman articles), 7 distinct Workinman notes, 3 research papers, metadata/schema, sitemap, robots, redirects, internal links, accessibility markers, and the production build.`);
+console.log(`Validated ${canonicalPages.length} canonical pages, ${items.length} unique portfolio images and work pages, ${ownedArticleFiles.length} complete article editions (including 7 authorized Workinman articles), 7 distinct Workinman notes, 3 research papers, metadata/schema, sitemap, robots, redirects, internal links, accessibility markers, and the production build.`);

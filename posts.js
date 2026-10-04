@@ -10,6 +10,23 @@
 */
 window.PAULWRITES_ITEMS = [
   {
+    id: "environmental-tech-website-science-claims",
+    title: "I Reviewed 20 Environmental-Tech Websites. Here’s What They Got Wrong About Their Science.",
+    seoTitle: "Science Claims on 20 Environmental-Tech Websites | Paul Shannon",
+    date: "2026-09-30",
+    type: "Article",
+    publisher: "LinkedIn",
+    summary: "A review of 20 environmental technology websites examining how PFAS treatment, water reuse, carbon accounting, and monitoring claims communicate their evidence and limits.",
+    projectContext: "Paul reviewed public technology and product pages across four environmental technology sectors, following available case studies, technical pages, and FAQs. He wrote this independent article to explain the distinctions that make scientific claims useful to buyers and other readers.",
+    readingMinutes: 7,
+    image: "public/images/work/environmental-tech-website-science-claims.webp",
+    imageAlt: "Original PaulWrites cover for I Reviewed 20 Environmental-Tech Websites, showing industrial workers beneath the article headline",
+    tags: ["Environmental Science", "Scientific Communication", "Technology", "SEO & Content", "B2B"],
+    url: "https://www.linkedin.com/pulse/i-reviewed-20-environmental-tech-websites-heres-what-got-paul-shannon-6jenc",
+    linkLabel: "Read on LinkedIn",
+    featured: false
+  },
+  {
     id: "phytoremediation-habs-feasibility-review",
     title: "Phytoremediation of North American Harmful Algal Blooms Under Long-Term Feasibility Constraints",
     date: "2026-01-01",
