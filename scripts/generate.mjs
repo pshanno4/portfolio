@@ -566,7 +566,7 @@ const withHeadingIds = (blocks) => {
 // Text and URLs are escaped, and only ordinary web links are rendered.
 const readerInline = (block) => block.inline ? block.inline.map((run) => {
   if (run.break) return "<br>";
-  let text = esc(run.text);
+  let text = esc(run.text).replace(scientificNamePattern, (name) => `<i>${name}</i>`);
   if (run.em) text = `<em>${text}</em>`;
   if (run.strong) text = `<strong>${text}</strong>`;
   if (run.href && /^https?:\/\//i.test(run.href)) text = `<a href="${esc(run.href)}">${text}</a>`;
@@ -652,7 +652,7 @@ const renderWorkPage = (item) => {
   const sourceLabel = isPdf(original) ? "View original PDF" : "View original publisher";
   const summarySentence = item.summary.match(/^[^.!?]+[.!?]/)?.[0] || item.summary;
   const description = `${summarySentence} See Paul’s role, research process, and ${reader.report ? "full report" : reader.guide ? "editorial guide" : "full article"}.`;
-  const titleBase = (SEO_TITLES[item.id] || `${item.title} | Paul Shannon`).replace(/\s*\|\s*Paul Shannon$/, "");
+  const titleBase = (item.seoTitle || SEO_TITLES[item.id] || `${item.title} | Paul Shannon`).replace(/\s*\|\s*Paul Shannon$/, "");
   const crumbs = [
     { label: "Home", href: "../../index.html", canonical: `${origin}/` },
     { label: "Portfolio", href: "../../portfolio.html", canonical: `${origin}/portfolio` },
@@ -793,11 +793,11 @@ const renderReadingPage = (item) => {
   const originalHref = original ? (isExternal(original) ? original : `../../../${original}`) : "";
   const sourceLabel = isPdf(original) ? "View original PDF" : "View original publisher";
   const articleLabel = reader.report ? "Full research report" : reader.guide ? "Editorial portfolio guide" : "Full article";
-  const description = reader.report
+  const description = item.seoDescription || (reader.report
     ? `Read Paul Shannon’s ${item.type.toLowerCase()} on ${item.title.toLowerCase()}, with methods, findings, limitations, figures, and references.`
     : reader.guide
       ? `Explore Paul Shannon’s editorial guide to ${item.title}, with the subject, process, and project context.`
-      : `Read ${item.title} by Paul Shannon, with the full article, publication context, and related work.`;
+      : `Read ${item.title} by Paul Shannon, with the full article, publication context, and related work.`);
   const crumbs = [
     { label: "Home", href: "../../../index.html", canonical: `${origin}/` },
     { label: "Portfolio", href: "../../../portfolio.html", canonical: `${origin}/portfolio` },
@@ -911,7 +911,7 @@ const portfolioStaticCard = (item, index) => {
 };
 
 const renderPortfolio = () => {
-  const sorted = [...items].sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
+  const sorted = [...items].sort((a, b) => (b.portfolioSortDate || b.date).localeCompare(a.portfolioSortDate || a.date) || (a.portfolioSequence || 0) - (b.portfolioSequence || 0) || a.title.localeCompare(b.title));
   const canonical = `${origin}/portfolio`;
   const schema = {
     "@context": "https://schema.org",
@@ -1220,16 +1220,18 @@ ${footer("../../")}
 </html>`;
 };
 
+const portfolioUpdated = items.reduce((latest, item) => (item.dateModified || item.date) > latest ? (item.dateModified || item.date) : latest, today);
+
 const sitemapRoutes = [
   { path: "/", priority: "1.0" },
-  { path: "/portfolio", priority: "0.9", lastmod: today },
+  { path: "/portfolio", priority: "0.9", lastmod: portfolioUpdated },
   { path: "/services/", priority: "0.8" },
   { path: AUDIT_EXAMPLE_PATH, priority: "0.7", lastmod: "2026-10-02" },
   ...SERVICE_PAGES.map((service) => ({ path: `/${service.slug}/`, priority: "0.8" })),
   { path: "/authors/paul-shannon/", priority: "0.7" },
   ...items.flatMap((item) => [
-    { path: `/work/${item.id}/`, priority: isResearch(item) ? "0.8" : "0.7", ...(isResearch(item) ? { lastmod: today } : {}) },
-    { path: `/work/${item.id}/${readerFor(item).segment}/`, priority: readerFor(item).complete ? "0.8" : "0.6", ...(isResearch(item) ? { lastmod: today } : {}) }
+    { path: `/work/${item.id}/`, priority: isResearch(item) ? "0.8" : "0.7", ...(item.dateModified ? { lastmod: item.dateModified } : isResearch(item) ? { lastmod: today } : {}) },
+    { path: `/work/${item.id}/${readerFor(item).segment}/`, priority: readerFor(item).complete ? "0.8" : "0.6", ...(item.dateModified ? { lastmod: item.dateModified } : isResearch(item) ? { lastmod: today } : {}) }
   ]),
   { path: "/privacy", priority: "0.2" },
   { path: "/accessibility", priority: "0.3" },
@@ -1248,7 +1250,7 @@ const feed = `<?xml version="1.0" encoding="UTF-8"?>
     <link>${origin}/</link>
     <description>Environmental science, technical writing, research, and independent articles by Paul Shannon.</description>
     <language>en-us</language>
-    <lastBuildDate>${new Date(`${today}T12:00:00Z`).toUTCString()}</lastBuildDate>
+    <lastBuildDate>${new Date(`${portfolioUpdated}T12:00:00Z`).toUTCString()}</lastBuildDate>
     <atom:link href="${origin}/feed.xml" rel="self" type="application/rss+xml" />
 ${[...items].sort((a, b) => b.date.localeCompare(a.date)).map((item) => {
   const reader = readerFor(item);

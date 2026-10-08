@@ -1,4 +1,6 @@
 window.PAULWRITES_READING_TIMES = {
+  "backed-by-science-evidence-claims": 7,
+  "eu-greenwashing-rules-durability-repairability": 6,
   "environmental-tech-website-science-claims": 8,
   "phytoremediation-habs-feasibility-review": 34,
   "noovie-trivia-levels-up": 2,

@@ -23,7 +23,7 @@ The current build generates three distinct portfolio layers:
 2. `/work/[slug]/` is the project overview: subject, key findings or ideas, audience, Paul’s role, process, and source context.
 3. `/work/[slug]/article/` or `/work/[slug]/report/` is the dedicated reading experience.
 
-The build currently contains 29 overview pages and 29 reading pages, in addition to three dedicated service pages, a services index, and Paul’s author/entity page. It renders 25 complete article editions—18 independently published pieces and seven authorized Workinman client articles—plus three complete semantic research reports. The one record without a verified matching source, Sustainable585 Issue #2, deliberately remains an original guide.
+The build currently contains 31 overview pages and 31 reading pages, in addition to three dedicated service pages, a services index, and Paul’s author/entity page. It renders 27 complete article editions—20 independently published pieces and seven authorized Workinman client articles—plus three complete semantic research reports. The one record without a verified matching source, Sustainable585 Issue #2, deliberately remains an original guide.
 
 ## Add a portfolio item
 
@@ -73,7 +73,7 @@ pnpm run check
 
 `pnpm run build` already runs the generator. The explicit generate command is useful while editing content. `dist/` is the deployable static package.
 
-The automated audit verifies 70 canonical pages, 29 byte-distinct article images, every overview-to-reading path, complete research structure, rights disclosures, metadata, JSON-LD parsing, one H1 per page, local link integrity, PDFs, RSS and sitemap coverage, robots directives, redirects, and the absence of retired contact or placeholder language.
+The automated audit verifies 74 canonical pages, 31 byte-distinct article images, every overview-to-reading path, complete research structure, rights disclosures, metadata, JSON-LD parsing, one H1 per page, local link integrity, PDFs, RSS and sitemap coverage, robots directives, redirects, and the absence of retired contact or placeholder language.
 
 `scripts/import_workinman.py` is a development-only refresh utility for the seven authorized public Workinman articles. The generated JSON files are committed, so running the site or adding ordinary portfolio records does not require Python, lxml, curl, a package install, or a network request.
 

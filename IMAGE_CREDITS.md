@@ -68,3 +68,11 @@ The following figures were extracted from Paul Shannon's supplied research paper
 ## Environmental technology website review (September 30, 2026)
 
 Cover: PaulWrites artwork from Paul Shannon’s published LinkedIn article. Four inline images are reproduced from that same article at the author’s request, with the exact published captions and source image URLs recorded in `content/articles/environmental-tech-website-science-claims.json`. The captions identify Joerss & Menger (2023), Flickr, Little Green Myths, and The-14. Copyright remains with the respective rights holders; this ledger does not assert an unverified public-domain or Creative Commons license. Local assets retain the complete image and are converted to WebP.
+
+## EU greenwashing and product longevity (October 8, 2026)
+
+The cover is PaulWrites artwork supplied through Paul Shannon’s published LinkedIn article. The four inline photographs retain the article’s exact captions: Profpcde (CC0 1.0), Curtis Palmer (CC BY 2.0), RaMa2016 (CC BY-SA 4.0), and Karen Blakeman (CC0 1.0), via Wikimedia Commons. Local copies preserve the complete composition; only web-format conversion is applied. Original publication image URLs are retained in the article JSON.
+
+## Backed by Science (October 5, 2026)
+
+Cover: PaulWrites artwork; original cover caption “Image Created With Canva.” Inline photographs retain their exact published credits: CSIRO Textile and Fibre Technology and David McClenaghan (CC BY 3.0), Alexander Bogatyrev (CC BY 4.0), and Nenad Stojković / Shixart1985 (CC BY 2.0), via Wikimedia Commons. Local WebP copies preserve the full composition. Source image URLs are recorded in the article JSON.

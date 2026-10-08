@@ -1,0 +1,676 @@
+{
+  "id": "eu-greenwashing-rules-durability-repairability",
+  "source": "LinkedIn",
+  "sourceUrl": "https://www.linkedin.com/pulse/eus-greenwashing-crackdown-has-second-target-you-havent-paul-shannon-w2xie/",
+  "reproduction": "complete-owned-web-edition",
+  "dateModified": "2026-10-08",
+  "wordCount": 1320,
+  "blocks": [
+    {
+      "inline": [
+        {
+          "text": "A vacuum cleaner can come in recycled packaging and still be a terrible thing to own."
+        }
+      ],
+      "text": "A vacuum cleaner can come in recycled packaging and still be a terrible thing to own.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "Imagine that a small plastic clip breaks. The motor works. The rest of the machine works. But you cannot buy the clip separately, opening the housing is difficult, and the repair quote makes a replacement look sensible."
+        }
+      ],
+      "text": "Imagine that a small plastic clip breaks. The motor works. The rest of the machine works. But you cannot buy the clip separately, opening the housing is difficult, and the repair quote makes a replacement look sensible.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "The packaging claim might be perfectly true. You are still about to throw away a functioning motor because one small part failed."
+        }
+      ],
+      "text": "The packaging claim might be perfectly true. You are still about to throw away a functioning motor because one small part failed.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "That is where the EU’s latest greenwashing rules become more interesting than a list of buzzwords companies need to stop using."
+        }
+      ],
+      "text": "That is where the EU’s latest greenwashing rules become more interesting than a list of buzzwords companies need to stop using.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "We often discuss sustainability at the moment of purchase: the material, the label, the promise on the box, etc. The years that follow deserve just as much attention."
+        }
+      ],
+      "text": "We often discuss sustainability at the moment of purchase: the material, the label, the promise on the box, etc. The years that follow deserve just as much attention.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "A product’s environmental story continues long after the sale."
+        }
+      ],
+      "text": "A product’s environmental story continues long after the sale.",
+      "type": "h2"
+    },
+    {
+      "inline": [
+        {
+          "text": "What actually changed on September 27"
+        }
+      ],
+      "text": "What actually changed on September 27",
+      "type": "h3"
+    },
+    {
+      "alt": "The empty semicircular plenary chamber of the European Parliament in Brussels, photographed in 2024.",
+      "src": "public/images/work/eu-parliament-hemicycle.webp",
+      "type": "figure",
+      "sourceImageUrl": "https://media.licdn.com/dms/image/v2/D4E12AQHUY2vV0Vd_bg/article-inline_image-shrink_1000_1488/B4EaEXUqoHJ8AM-/0/1791392663379?e=1793232000&v=beta&t=5Ly17LsuLfhbzGdwEW-pwBfrqcjuK5FsnlmcfOXtWqQ",
+      "text": "European Parliament hemicycle, Brussels (2024). Photo: Profpcde / Wikimedia Commons. CC0 1.0 Universal Public Domain Dedication. Unmodified.",
+      "width": 1333,
+      "height": 1000
+    },
+    {
+      "inline": [
+        {
+          "text": "The relevant law is"
+        },
+        {
+          "text": " "
+        },
+        {
+          "em": true,
+          "text": "Directive (EU) 2024/825"
+        },
+        {
+          "text": ", usually called the"
+        },
+        {
+          "text": " "
+        },
+        {
+          "strong": true,
+          "text": "Empowering Consumers for the Green Transition"
+        },
+        {
+          "strong": true,
+          "text": " "
+        },
+        {
+          "text": "directive. It was adopted on February 28, 2024. Member States had until March 27, 2026 to transpose it, and the measures were due to apply from September 27, 2026. The Commission’s implementation Q&A was updated on September 22."
+        }
+      ],
+      "text": "The relevant law is Directive (EU) 2024/825, usually called the Empowering Consumers for the Green Transition directive. It was adopted on February 28, 2024. Member States had until March 27, 2026 to transpose it, and the measures were due to apply from September 27, 2026. The Commission’s implementation Q&A was updated on September 22.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "So this is a new application date for a law adopted more than"
+        },
+        {
+          "text": " "
+        },
+        {
+          "strong": true,
+          "text": "two years ago"
+        },
+        {
+          "text": ". The"
+        },
+        {
+          "text": " "
+        },
+        {
+          "href": "https://commission.europa.eu/topics/consumers/consumer-rights-and-complaints/sustainable-consumption_en",
+          "text": "Commission’s current overview"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "sets out that timeline."
+        }
+      ],
+      "text": "So this is a new application date for a law adopted more than two years ago. The Commission’s current overview sets out that timeline.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "Its consumer-protection framework covers commercial practices involving EU consumers; national implementation and enforcement matter. It should also be distinguished from the separately"
+        },
+        {
+          "text": " "
+        },
+        {
+          "href": "https://environment.ec.europa.eu/topics/circular-economy-topics/green-claims_en",
+          "text": "proposed Green Claims Directive"
+        },
+        {
+          "text": "."
+        }
+      ],
+      "text": "Its consumer-protection framework covers commercial practices involving EU consumers; national implementation and enforcement matter. It should also be distinguished from the separately proposed Green Claims Directive.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "The"
+        },
+        {
+          "text": " "
+        },
+        {
+          "href": "https://eur-lex.europa.eu/eli/dir/2024/825/oj/eng",
+          "text": "new restrictions"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "include"
+        },
+        {
+          "text": " "
+        },
+        {
+          "strong": true,
+          "text": "generic environmental claims"
+        },
+        {
+          "strong": true,
+          "text": " "
+        },
+        {
+          "text": "without relevant, recognized excellent environmental performance; sustainability labels lacking a qualifying certification scheme or a public-authority basis; and"
+        },
+        {
+          "text": " "
+        },
+        {
+          "strong": true,
+          "text": "whole-product claims"
+        },
+        {
+          "strong": true,
+          "text": " "
+        },
+        {
+          "text": "supported by only one aspect. They also prohibit claims that offsets give a product a neutral, reduced or positive greenhouse-gas impact."
+        }
+      ],
+      "text": "The new restrictions include generic environmental claims without relevant, recognized excellent environmental performance; sustainability labels lacking a qualifying certification scheme or a public-authority basis; and whole-product claims supported by only one aspect. They also prohibit claims that offsets give a product a neutral, reduced or positive greenhouse-gas impact.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "Those are substantial changes. A vague impression of environmental virtue can affect what people buy, and businesses doing the harder work should not have to compete with an invented badge."
+        }
+      ],
+      "text": "Those are substantial changes. A vague impression of environmental virtue can affect what people buy, and businesses doing the harder work should not have to compete with an invented badge.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "But read beyond the environmental claims and another subject keeps appearing: durability, repair, software updates and premature replacement."
+        }
+      ],
+      "text": "But read beyond the environmental claims and another subject keeps appearing: durability, repair, software updates and premature replacement.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "The law connects the information used to sell a product with what happens while someone owns it. That connection is the part I think deserves more attention."
+        }
+      ],
+      "text": "The law connects the information used to sell a product with what happens while someone owns it. That connection is the part I think deserves more attention.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "The less obvious target: products that stop being useful"
+        }
+      ],
+      "text": "The less obvious target: products that stop being useful",
+      "type": "h3"
+    },
+    {
+      "alt": "A pile of discarded electronic equipment in Birmingham, Alabama, photographed in 2007.",
+      "src": "public/images/work/eu-electronic-waste.webp",
+      "type": "figure",
+      "sourceImageUrl": "https://media.licdn.com/dms/image/v2/D4E12AQHwcYbQos4Irw/article-inline_image-shrink_1000_1488/B4EaEXUqHRIUAM-/0/1791392656973?e=1793232000&v=beta&t=OQOEHe28-2Ain_hR1KW6t0kljzQxW17l9tcAXG6sRrM",
+      "text": "Electronic waste, Birmingham, Alabama (2007). Photo: Curtis Palmer / Wikimedia Commons. Creative Commons Attribution 2.0 Generic (CC BY 2.0). Unmodified.",
+      "width": 1333,
+      "height": 1000
+    },
+    {
+      "inline": [
+        {
+          "text": "A product can improve one environmental attribute while remaining expensive, difficult or impractical to keep in use."
+        }
+      ],
+      "text": "A product can improve one environmental attribute while remaining expensive, difficult or impractical to keep in use.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "Recycled material matters. So do efficient operation and responsible production. Yet a benefit in one part of the product’s life cannot answer every question about the rest of it."
+        }
+      ],
+      "text": "Recycled material matters. So do efficient operation and responsible production. Yet a benefit in one part of the product’s life cannot answer every question about the rest of it.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "The"
+        },
+        {
+          "text": " "
+        },
+        {
+          "href": "https://www.itu.int/en/ITU-D/Environment/Pages/Publications/The-Global-E-Waste-Monitor-2024.aspx",
+          "text": "Global E-waste Monitor 2024"
+        },
+        {
+          "text": ", produced by ITU and UNITAR with Fondation Carmignac, estimated that the world generated 62 million tonnes of electronic waste in 2022 alone. Just"
+        },
+        {
+          "text": " "
+        },
+        {
+          "strong": true,
+          "text": "22.3%"
+        },
+        {
+          "strong": true,
+          "text": " "
+        },
+        {
+          "text": "of that mass was documented as formally collected and recycled in an"
+        },
+        {
+          "text": " "
+        },
+        {
+          "strong": true,
+          "text": "environmentally sound"
+        },
+        {
+          "strong": true,
+          "text": " "
+        },
+        {
+          "text": "way."
+        }
+      ],
+      "text": "The Global E-waste Monitor 2024, produced by ITU and UNITAR with Fondation Carmignac, estimated that the world generated 62 million tonnes of electronic waste in 2022 alone. Just 22.3% of that mass was documented as formally collected and recycled in an environmentally sound way.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "Those are historical global figures. They show the scale of the waste stream into which today’s purchasing and replacement decisions feed."
+        }
+      ],
+      "text": "Those are historical global figures. They show the scale of the waste stream into which today’s purchasing and replacement decisions feed.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "Keeping a useful product working can delay the demand for another one. That is why a replaceable battery, continued software support or an available spare part can have environmental significance even when none of them looks especially impressive on a shop shelf."
+        }
+      ],
+      "text": "Keeping a useful product working can delay the demand for another one. That is why a replaceable battery, continued software support or an available spare part can have environmental significance even when none of them looks especially impressive on a shop shelf.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "The consumer directive adds information duties for applicable repairability scores. When no such score applies, it requires information about parts, repair instructions and restrictions if the producer has supplied it to the seller. It also addresses false repairability and durability representations. The conditions in the legislation matter."
+        }
+      ],
+      "text": "The consumer directive adds information duties for applicable repairability scores. When no such score applies, it requires information about parts, repair instructions and restrictions if the producer has supplied it to the seller. It also addresses false repairability and durability representations. The conditions in the legislation matter.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "The new GARAN label identifies qualifying voluntary producer guarantees: free to the consumer, covering the whole product, and lasting longer than two years. It does not require every product to come with that extended guarantee. Nor does a guarantee establish that an item has the lowest overall environmental impact."
+        }
+      ],
+      "text": "The new GARAN label identifies qualifying voluntary producer guarantees: free to the consumer, covering the whole product, and lasting longer than two years. It does not require every product to come with that extended guarantee. Nor does a guarantee establish that an item has the lowest overall environmental impact.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "Still, a producer taking responsibility for durability is a useful signal. It gives the buyer something more concrete than a reassuring color scheme."
+        }
+      ],
+      "text": "Still, a producer taking responsibility for durability is a useful signal. It gives the buyer something more concrete than a reassuring color scheme.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "The environmental case also needs care. The"
+        },
+        {
+          "text": " "
+        },
+        {
+          "href": "https://www.eea.europa.eu/en/analysis/publications/europes-consumption-in-a-circular-economy-the-benefits-of-longer-lasting-electronics",
+          "text": "European Environment Agency’s lifecycle analysis"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "shows that the balance between manufacturing impacts and energy used during operation differs across products. Keeping every old appliance forever is no universal rule. The question is whether continued use, repair or replacement makes sense for that particular product."
+        }
+      ],
+      "text": "The environmental case also needs care. The European Environment Agency’s lifecycle analysis shows that the balance between manufacturing impacts and energy used during operation differs across products. Keeping every old appliance forever is no universal rule. The question is whether continued use, repair or replacement makes sense for that particular product.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "A label can explain repair. Someone still has to do it."
+        }
+      ],
+      "text": "A label can explain repair. Someone still has to do it.",
+      "type": "h3"
+    },
+    {
+      "alt": "Two people working together on an electrical device at Repair Café Trier in Germany in 2015.",
+      "src": "public/images/work/eu-repair-cafe-trier.webp",
+      "type": "figure",
+      "sourceImageUrl": "https://media.licdn.com/dms/image/v2/D4E12AQFKPKUqFKBMmw/article-inline_image-shrink_1000_1488/B4EaEXUpr9IUAI-/0/1791392658072?e=1793232000&v=beta&t=HQ31pkyjBPECdUCY8UHQ5Qgx0-V7CD-X5DJQMPeNhJ4",
+      "text": "Repair Café Trier (2015). Photo: RaMa2016 / Wikimedia Commons. Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0). Unmodified.",
+      "width": 1488,
+      "height": 991
+    },
+    {
+      "inline": [
+        {
+          "text": "Picture someone whose phone breaks during the working week. They need it for their job, banking and getting around. A high repairability score"
+        },
+        {
+          "text": " "
+        },
+        {
+          "strong": true,
+          "text": "does not"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "settle the decision if the nearest repairer is far away, the part takes weeks to arrive or the price approaches the cost of another phone."
+        }
+      ],
+      "text": "Picture someone whose phone breaks during the working week. They need it for their job, banking and getting around. A high repairability score does not settle the decision if the nearest repairer is far away, the part takes weeks to arrive or the price approaches the cost of another phone.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "That is a practical constraint. It should be treated as one."
+        }
+      ],
+      "text": "That is a practical constraint. It should be treated as one.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "The"
+        },
+        {
+          "text": " "
+        },
+        {
+          "href": "https://commission.europa.eu/system/files/2023-03/SWD_2023_59_1_EN_impact_assessment_part1_v5.pdf",
+          "text": "Commission’s 2023 repair impact assessment"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "identifies repair prices relative to replacement prices as a major factor. It also discusses inconvenience, delays and difficulty finding services. The evidence predates the latest application dates, but it helps explain why information alone is an incomplete solution."
+        }
+      ],
+      "text": "The Commission’s 2023 repair impact assessment identifies repair prices relative to replacement prices as a major factor. It also discusses inconvenience, delays and difficulty finding services. The evidence predates the latest application dates, but it helps explain why information alone is an incomplete solution.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "strong": true,
+          "text": "A repairability score becomes useful when repair is an option someone can afford to take."
+        }
+      ],
+      "text": "A repairability score becomes useful when repair is an option someone can afford to take.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "This is also why the wider policy context matters."
+        }
+      ],
+      "text": "This is also why the wider policy context matters.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "Separate"
+        },
+        {
+          "text": " "
+        },
+        {
+          "href": "https://single-market-economy.ec.europa.eu/news/new-eu-rules-durable-energy-efficient-and-repairable-smartphones-and-tablets-start-applying-2025-06-20_en",
+          "text": "EU smartphone and tablet rules"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "have applied to covered devices placed on the market since June 20, 2025. They bring repairability ratings and requirements concerning batteries, spare parts and software support. For covered smartphones and slate tablets, the battery standard includes at least 800 charging cycles with 80% of initial capacity remaining."
+        }
+      ],
+      "text": "Separate EU smartphone and tablet rules have applied to covered devices placed on the market since June 20, 2025. They bring repairability ratings and requirements concerning batteries, spare parts and software support. For covered smartphones and slate tablets, the battery standard includes at least 800 charging cycles with 80% of initial capacity remaining.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "The separate"
+        },
+        {
+          "text": " "
+        },
+        {
+          "href": "https://commission.europa.eu/law/law-topic/consumer-protection-law/directive-repair-goods_en",
+          "text": "repair-of-goods directive"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "had a national transposition and application deadline of July 31, 2026. Its manufacturer repair obligation applies to listed product categories subject to EU repairability requirements, with repairs at a reasonable price and within a reasonable time. It is not a promise of free repair for every damaged item."
+        }
+      ],
+      "text": "The separate repair-of-goods directive had a national transposition and application deadline of July 31, 2026. Its manufacturer repair obligation applies to listed product categories subject to EU repairability requirements, with repairs at a reasonable price and within a reasonable time. It is not a promise of free repair for every damaged item.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "Together, these measures work on different parts of the same problem: what buyers know, how products are designed, and what happens when they break."
+        }
+      ],
+      "text": "Together, these measures work on different parts of the same problem: what buyers know, how products are designed, and what happens when they break.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "A seller can communicate a repair score. A manufacturer can make a part available. A repair business needs the tools and skills to fit it. The person who owns the product needs a service they can reach and a bill they can manage."
+        }
+      ],
+      "text": "A seller can communicate a repair score. A manufacturer can make a part available. A repair business needs the tools and skills to fit it. The person who owns the product needs a service they can reach and a bill they can manage.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "The environmental benefit depends on that whole sequence working."
+        }
+      ],
+      "text": "The environmental benefit depends on that whole sequence working.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "The test comes after the purchase"
+        }
+      ],
+      "text": "The test comes after the purchase",
+      "type": "h3"
+    },
+    {
+      "alt": "People carrying out textile and sewing repairs at Reading Repair Cafe in England in October 2014.",
+      "src": "public/images/work/eu-reading-repair-cafe.webp",
+      "type": "figure",
+      "sourceImageUrl": "https://media.licdn.com/dms/image/v2/D4E12AQHG-UyLSuVKOw/article-inline_image-shrink_1000_1488/B4EaEXUqCMI4AI-/0/1791392663983?e=1793232000&v=beta&t=_IFs3Mr0Dv9KHBsn9sn1F3-93CQ2HzA1owlsAu-74Zw",
+      "text": "Textile and sewing repairs, Reading Repair Cafe (2014). Photo: Karen Blakeman / Wikimedia Commons. CC0 1.0 Universal Public Domain Dedication. Unmodified.",
+      "width": 1363,
+      "height": 1000
+    },
+    {
+      "inline": [
+        {
+          "text": "I would judge these rules by what happens to the product after the customer leaves the shop."
+        }
+      ],
+      "text": "I would judge these rules by what happens to the product after the customer leaves the shop.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "Are people keeping goods in active use for longer? Are repair costs and waiting times becoming manageable? Do repaired and reused products replace purchases of new ones? Are fewer materials being used and fewer useful components discarded?"
+        }
+      ],
+      "text": "Are people keeping goods in active use for longer? Are repair costs and waiting times becoming manageable? Do repaired and reused products replace purchases of new ones? Are fewer materials being used and fewer useful components discarded?",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "Counting corrected claims will help assess enforcement. Counting products that stay useful will help assess the environmental outcome."
+        }
+      ],
+      "text": "Counting corrected claims will help assess enforcement. Counting products that stay useful will help assess the environmental outcome.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "The"
+        },
+        {
+          "text": " "
+        },
+        {
+          "href": "https://www.eea.europa.eu/en/analysis/publications/product-lifespans-monitoring-trends",
+          "text": "EEA’s work on product lifespans"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "makes two points that complicate easy success stories. Data on lifespans remain scarce, and extending a product’s life does not necessarily displace a new purchase one for one. Spending the money saved on another product can also reduce the expected benefit."
+        }
+      ],
+      "text": "The EEA’s work on product lifespans makes two points that complicate easy success stories. Data on lifespans remain scarce, and extending a product’s life does not necessarily displace a new purchase one for one. Spending the money saved on another product can also reduce the expected benefit.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "We therefore need evidence about use and replacement, rather than assuming that a clearer label automatically reduces material demand."
+        }
+      ],
+      "text": "We therefore need evidence about use and replacement, rather than assuming that a clearer label automatically reduces material demand.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "There is a fairness question here as well. If the durable option costs more upfront, and repair involves time off work or long journeys, environmental policy cannot assume that everyone has the same freedom to choose it. Affordability and access belong in the evaluation."
+        }
+      ],
+      "text": "There is a fairness question here as well. If the durable option costs more upfront, and repair involves time off work or long journeys, environmental policy cannot assume that everyone has the same freedom to choose it. Affordability and access belong in the evaluation.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "The EU’s new rules give consumers stronger tools for questioning environmental promises and understanding product longevity. That is a useful foundation."
+        }
+      ],
+      "text": "The EU’s new rules give consumers stronger tools for questioning environmental promises and understanding product longevity. That is a useful foundation.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "Success means"
+        },
+        {
+          "text": " "
+        },
+        {
+          "strong": true,
+          "text": "fewer avoidable replacements"
+        },
+        {
+          "text": ". That would look like a working vacuum cleaner with a new clip, a phone with a replaced battery, or a repaired appliance that stays in the home."
+        }
+      ],
+      "text": "Success means fewer avoidable replacements. That would look like a working vacuum cleaner with a new clip, a phone with a replaced battery, or a repaired appliance that stays in the home.",
+      "type": "p"
+    },
+    {
+      "inline": [
+        {
+          "text": "A credible environmental claim helps someone decide what to buy. A workable repair system helps them decide whether they need to buy anything at all."
+        }
+      ],
+      "text": "A credible environmental claim helps someone decide what to buy. A workable repair system helps them decide whether they need to buy anything at all.",
+      "type": "p"
+    }
+  ]
+}

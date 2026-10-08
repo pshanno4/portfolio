@@ -38,7 +38,7 @@ vm.runInContext(dataSource, context);
 const items = context.window.PAULWRITES_ITEMS;
 
 assert(Array.isArray(items), "posts.js must set window.PAULWRITES_ITEMS to an array.");
-assert(items.length === 29, `Expected 29 portfolio records; found ${items.length}.`);
+assert(items.length === 31, `Expected 31 portfolio records; found ${items.length}.`);
 
 const ids = new Set();
 const images = new Set();
@@ -233,7 +233,7 @@ const climateReport = await readFile(path.join(dist, "work", "climate-change-har
 assert(climateReport.includes("harmful-algal-blooms-contributing-factors-and-impacts.html"), "The CDC citation was truncated in the published research report.");
 
 const ownedArticleFiles = (await readdir(path.join(root, "content", "articles"))).filter((file) => file.endsWith(".json"));
-assert(ownedArticleFiles.length === 25, `Expected 25 complete article records; found ${ownedArticleFiles.length}.`);
+assert(ownedArticleFiles.length === 27, `Expected 27 complete article records; found ${ownedArticleFiles.length}.`);
 let authorizedClientArticles = 0;
 for (const filename of ownedArticleFiles) {
   const record = JSON.parse(await readFile(path.join(root, "content", "articles", filename), "utf8"));

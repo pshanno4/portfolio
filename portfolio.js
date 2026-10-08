@@ -117,7 +117,7 @@
   ];
 
   const collator = new Intl.Collator("en", { sensitivity: "base" });
-  items.sort((a, b) => b.date.localeCompare(a.date) || collator.compare(a.title, b.title));
+  items.sort((a, b) => (b.portfolioSortDate || b.date).localeCompare(a.portfolioSortDate || a.date) || (a.portfolioSequence || 0) - (b.portfolioSequence || 0) || collator.compare(a.title, b.title));
 
   const availableTags = new Set(items.flatMap((item) => item.tags || []));
   const tags = preferredTags.filter((tag) => availableTags.has(tag));

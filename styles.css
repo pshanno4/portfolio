@@ -1079,3 +1079,12 @@ main { background: linear-gradient(180deg, var(--hero-wash), var(--paper) 42rem)
 /* Keep the published headline on this supplied cover fully visible. */
 .reading-hero img[src$="environmental-tech-website-science-claims.webp"],
 .publication-figure img[src$="environmental-tech-website-science-claims.webp"] { object-fit: contain; }
+
+/* Preserve complete supplied headline artwork in every portfolio placement. */
+img[src$="eu-greenwashing-rules-durability-repairability.webp"],
+img[src$="environmental-tech-website-science-claims.webp"] { object-fit: contain; }
+.portfolio-image-link:hover img[src$="eu-greenwashing-rules-durability-repairability.webp"],
+.portfolio-image-link:hover img[src$="environmental-tech-website-science-claims.webp"] { transform: none; }
+
+img[src$="backed-by-science-evidence-claims.webp"] { object-fit: contain; }
+.portfolio-image-link:hover img[src$="backed-by-science-evidence-claims.webp"] { transform: none; }

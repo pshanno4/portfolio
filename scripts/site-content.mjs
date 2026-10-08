@@ -1,4 +1,75 @@
 export const WORK_PAGE_CONTENT = {
+  "backed-by-science-evidence-claims": {
+  "eyebrow": "Independent article · Scientific evidence and technical claims",
+  "overview": [
+    "The article asks what a company actually communicates when it calls a product “backed by science.” Paul uses his own controlled water-hyacinth experiment to show why a real result still needs a defined outcome, comparison, setting and boundary.",
+    "The piece distinguishes mechanisms, laboratory results, pilots and commercial performance. It explains why contaminant removal is not necessarily destruction, why targeted analytical results cannot establish universal absence, and why citations must be accompanied by a clear explanation of what the evidence supports."
+  ],
+  "sections": [
+    {
+      "heading": "Evidence matched to the promise",
+      "bullets": [
+        "Identify the exact material, prototype or finished product tested",
+        "Name the measured outcome and meaningful comparison",
+        "Keep scale, duration, operating conditions and uncertainty visible"
+      ]
+    },
+    {
+      "heading": "Research and editorial approach",
+      "paragraphs": [
+        "Paul combines an example from his own constructed-wetland research with EPA treatment and analytical-method guidance, FTC advertising resources, and the National Academies’ discussion of reproducibility and replicability."
+      ]
+    },
+    {
+      "heading": "Practical claim writing",
+      "paragraphs": [
+        "The article closes with five questions technical teams can answer before publishing a claim. It shows how a narrower, specific statement gives a buyer more useful information than a broad appeal to scientific authority."
+      ]
+    }
+  ],
+  "role": "Paul developed the argument, researched the supporting sources, drew on his own experimental work, and wrote and published the article independently. The reading page preserves the October 5, 2026 LinkedIn edition, including images, captions, emphasis, quotations and source links.",
+  "relatedIds": [
+    "environmental-tech-website-science-claims",
+    "rhizofiltration-microcystis-water-hyacinth",
+    "eu-greenwashing-rules-durability-repairability"
+  ]
+},
+  "eu-greenwashing-rules-durability-repairability": {
+  "eyebrow": "Independent article · Environmental policy and product longevity",
+  "overview": [
+    "This article examines Directive (EU) 2024/825, the Empowering Consumers for the Green Transition directive, through a product’s life after purchase. It connects restrictions on misleading environmental claims with information about durability, repairability and software support.",
+    "Using a broken vacuum-cleaner clip as its starting point, the piece separates consumer information from the design, affordability and service access that make repair possible. It distinguishes this directive from the proposed Green Claims Directive, smartphone and tablet rules, and the repair-of-goods directive."
+  ],
+  "sections": [
+    {
+      "heading": "Beyond environmental claims",
+      "bullets": [
+        "How the September 27, 2026 application date relates to a law adopted in 2024",
+        "Durability guarantees, repairability information and software support",
+        "Why a true claim about one attribute does not describe the whole product"
+      ]
+    },
+    {
+      "heading": "Repair in practice",
+      "paragraphs": [
+        "The article draws on European Commission impact-assessment evidence and European Environment Agency analysis to explain repair costs, waiting times, spare-part access and product-specific lifecycle tradeoffs."
+      ]
+    },
+    {
+      "heading": "Evaluating the outcome",
+      "paragraphs": [
+        "Paul proposes examining active product use, repair affordability, replacement decisions and material demand. The piece keeps historical e-waste figures and evidence limitations explicit, including unequal access to durable products and repair services."
+      ]
+    }
+  ],
+  "role": "Paul selected the editorial angle, researched the legislation and environmental evidence, and wrote and published the article independently. The complete October 8, 2026 LinkedIn text, images, captions, emphasis and source links are preserved on the reading page.",
+  "relatedIds": [
+    "backed-by-science-evidence-claims",
+    "environmental-tech-website-science-claims",
+    "carbon-offsets-insetting",
+    "smart-thermostat-wont-save-you"
+  ]
+},
   "environmental-tech-website-science-claims": {
     eyebrow: "Independent article · Environmental science communication",
     overview: [

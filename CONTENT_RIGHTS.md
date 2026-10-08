@@ -5,7 +5,7 @@ This ledger separates a project’s portfolio value from permission to reproduce
 ## Complete semantic web editions
 
 - The three supplied research papers are converted in full from Paul Shannon’s source PDFs into `/report/` pages. The PDFs remain available as source documents.
-- Eighteen independently published LinkedIn or Medium articles are stored as structured article content in `content/articles/` and rendered in full at `/article/` routes.
+- Twenty independently published LinkedIn or Medium articles are stored as structured article content in `content/articles/` and rendered in full at `/article/` routes.
 - Seven Workinman Interactive articles are stored as complete authorized portfolio editions. Paul Shannon reports explicit permission from Matt at Workinman to include public-facing, non-confidential content in his portfolio. Each edition identifies Paul Shannon as the author and Workinman Interactive as the original publisher, and links to the original Workinman page.
 
 The Workinman records use `authorized-client-portfolio-edition`; independently published records use `complete-owned-web-edition`. Both statuses produce complete on-site reading pages, but the Workinman status preserves its separate publisher relationship in visible metadata and structured data.

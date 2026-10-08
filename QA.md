@@ -83,3 +83,11 @@ The homepage, portfolio, and a long research page were rendered inside true nest
 - **Article likes:** not implemented. A one-browser-only counter would not meet the requirement and was not added.
 
 A future implementation needs a serverless/API endpoint plus persistent storage, bot/rate controls, and an anonymous-identity/privacy policy before either count should appear publicly.
+
+## EU article — October 8, 2026
+
+Added the complete published EU greenwashing article with its original title, 49 blocks, all source hyperlinks, four inline photographs, captions and emphasis. The overview and reading page use the established portfolio format. Verified the generated text against the captured LinkedIn edition. Build and existing checks pass for 72 canonical pages and 30 portfolio records. SEO includes a descriptive search title and meta description, self-canonical URLs, BlogPosting and breadcrumb markup, linked author identity, related work, sitemap timestamps and RSS discovery. Cover artwork uses contain in portfolio, overview, reading and related-card placements; hover zoom is disabled for headline covers.
+
+## Backed by Science — October 8, 2026
+
+Added the October 5 published article, with 59 blocks, quotations, five checklist items, four images and their original captions and links. Both article bodies were compared against their published text. Per the requested list order, Backed by Science appears immediately before the EU article in both the static portfolio and its JavaScript rendering; displayed publication dates remain October 5 and October 8. The RSS feed remains chronological. All 74 canonical pages and 31 portfolio records pass the existing checks.
