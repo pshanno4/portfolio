@@ -10,35 +10,7 @@
 */
 window.PAULWRITES_ITEMS = [
   {
-    "id": "backed-by-science-evidence-claims",
-    "title": "Why ‘Backed by Science’ Is One of the Weakest Claims a Company Can Make",
-    "seoTitle": "Backed by Science: What Claims Need | Paul Shannon",
-    "seoDescription": "Why “backed by science” says little without the tested product, measured outcome, comparison and limits. A guide to credible scientific claims by Paul Shannon.",
-    "date": "2026-10-05",
-    "dateModified": "2026-10-08",
-    "portfolioSortDate": "2026-10-08",
-    "portfolioSequence": 0,
-    "type": "Article",
-    "publisher": "LinkedIn",
-    "summary": "A research-led explanation of why scientific claims need a measured outcome, comparison, setting, and boundary—not just a study or a reassuring phrase.",
-    "projectContext": "Paul uses his own constructed-wetland research alongside evidence from environmental treatment, advertising guidance, and scientific reproducibility to show how careful studies can be stretched into claims they do not support.",
-    "readingMinutes": 7,
-    "image": "public/images/work/backed-by-science-evidence-claims.webp",
-    "imageAlt": "PaulWrites cover showing a gloved hand using laboratory glassware with the complete Backed by Science article headline",
-    "tags": [
-      "Environmental Science",
-      "Scientific Communication",
-      "Technology",
-      "SEO & Content",
-      "B2B"
-    ],
-    "url": "https://www.linkedin.com/pulse/why-backed-science-one-weakest-claims-company-can-make-paul-shannon-skdfc/",
-    "linkLabel": "Read on LinkedIn",
-    "featured": false
-  },
-  {
     "id": "eu-greenwashing-rules-durability-repairability",
-    "portfolioSequence": 1,
     "title": "The EU’s Greenwashing Crackdown Has a Second Target You Haven't Heard Of",
     "seoTitle": "EU Greenwashing Rules: Durability & Repair | Paul Shannon",
     "seoDescription": "How EU greenwashing rules connect environmental claims with durability, repairability and software support—and why fewer avoidable replacements matter.",
@@ -58,6 +30,31 @@ window.PAULWRITES_ITEMS = [
       "Technology"
     ],
     "url": "https://www.linkedin.com/pulse/eus-greenwashing-crackdown-has-second-target-you-havent-paul-shannon-w2xie/",
+    "linkLabel": "Read on LinkedIn",
+    "featured": false
+  },
+  {
+    "id": "backed-by-science-evidence-claims",
+    "title": "Why ‘Backed by Science’ Is One of the Weakest Claims a Company Can Make",
+    "seoTitle": "Backed by Science: What Claims Need | Paul Shannon",
+    "seoDescription": "Why “backed by science” says little without the tested product, measured outcome, comparison and limits. A guide to credible scientific claims by Paul Shannon.",
+    "date": "2026-10-05",
+    "dateModified": "2026-10-08",
+    "type": "Article",
+    "publisher": "LinkedIn",
+    "summary": "A research-led explanation of why scientific claims need a measured outcome, comparison, setting, and boundary—not just a study or a reassuring phrase.",
+    "projectContext": "Paul uses his own constructed-wetland research alongside evidence from environmental treatment, advertising guidance, and scientific reproducibility to show how careful studies can be stretched into claims they do not support.",
+    "readingMinutes": 7,
+    "image": "public/images/work/backed-by-science-evidence-claims.webp",
+    "imageAlt": "PaulWrites cover showing a gloved hand using laboratory glassware with the complete Backed by Science article headline",
+    "tags": [
+      "Environmental Science",
+      "Scientific Communication",
+      "Technology",
+      "SEO & Content",
+      "B2B"
+    ],
+    "url": "https://www.linkedin.com/pulse/why-backed-science-one-weakest-claims-company-can-make-paul-shannon-skdfc/",
     "linkLabel": "Read on LinkedIn",
     "featured": false
   },

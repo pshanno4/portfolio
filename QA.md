@@ -90,4 +90,4 @@ Added the complete published EU greenwashing article with its original title, 49
 
 ## Backed by Science — October 8, 2026
 
-Added the October 5 published article, with 59 blocks, quotations, five checklist items, four images and their original captions and links. Both article bodies were compared against their published text. Per the requested list order, Backed by Science appears immediately before the EU article in both the static portfolio and its JavaScript rendering; displayed publication dates remain October 5 and October 8. The RSS feed remains chronological. All 74 canonical pages and 31 portfolio records pass the existing checks.
+Added the October 5 published article, with 59 blocks, quotations, five checklist items, four images and their original captions and links. Both article bodies were compared against their published text. The static portfolio, JavaScript rendering, and RSS feed use newest-first publication-date order: the EU article (October 8), Backed by Science (October 5), then the 20-website review (September 30). All 74 canonical pages and 31 portfolio records pass the existing checks.

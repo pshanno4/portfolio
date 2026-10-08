@@ -911,7 +911,7 @@ const portfolioStaticCard = (item, index) => {
 };
 
 const renderPortfolio = () => {
-  const sorted = [...items].sort((a, b) => (b.portfolioSortDate || b.date).localeCompare(a.portfolioSortDate || a.date) || (a.portfolioSequence || 0) - (b.portfolioSequence || 0) || a.title.localeCompare(b.title));
+  const sorted = [...items].sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
   const canonical = `${origin}/portfolio`;
   const schema = {
     "@context": "https://schema.org",
