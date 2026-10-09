@@ -1088,3 +1088,37 @@ img[src$="environmental-tech-website-science-claims.webp"] { object-fit: contain
 
 img[src$="backed-by-science-evidence-claims.webp"] { object-fit: contain; }
 .portfolio-image-link:hover img[src$="backed-by-science-evidence-claims.webp"] { transform: none; }
+
+/* Article recordings: native playback, with the same player docked while reading. */
+.audio-available { display: inline-flex; align-items: center; margin: 0 0 1rem; padding: .45rem .7rem; border: 1px solid #b3cbb9; border-radius: var(--radius); background: var(--accent-soft); color: var(--accent-dark); font-size: .88rem; font-weight: 800; text-decoration: none; }
+.audio-available:hover { background: var(--surface-strong); text-decoration: underline; }
+.audio-slot { margin-top: 1.6rem; scroll-margin-top: 1rem; }
+.article-audio { padding: 1.2rem 1.4rem; border: 2px solid var(--accent); border-radius: var(--radius); background: var(--accent-soft); }
+.audio-heading-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.audio-eyebrow { margin: 0 0 .25rem; color: var(--accent-dark); font-size: .78rem; font-weight: 800; letter-spacing: .035em; }
+.article-audio h2 { margin: 0; font-size: 1.4rem; line-height: 1.25; }
+.audio-help { margin: .6rem 0 .8rem; color: #39433e; font-size: .94rem; }
+.article-audio audio { display: block; width: 100%; min-width: 0; height: 54px; }
+.audio-tools { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .8rem; margin-top: .65rem; font-size: .82rem; }
+.audio-tools[hidden], .audio-stop[hidden], .audio-error[hidden] { display: none; }
+.audio-tools button, .audio-tools select, .audio-stop { min-height: 40px; border: 1px solid #9ab6a2; border-radius: var(--radius); background: var(--paper); color: var(--accent-dark); padding: .3rem .55rem; cursor: pointer; font-size: .82rem; font-weight: 700; }
+.audio-tools label { display: flex; align-items: center; gap: .4rem; }
+.audio-tools > a { margin-left: auto; }
+.audio-error { margin-bottom: 0; color: var(--danger); }
+.audio-docked { position: fixed; z-index: 40; bottom: max(.6rem, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); width: min(48rem, calc(100% - 1.2rem)); padding: .65rem 1rem; box-shadow: 0 2px 30px rgb(23 32 28 / 22%); }
+.audio-docked .audio-help, .audio-docked .audio-eyebrow { display: none; }
+.audio-docked h2 { font-size: 1rem; }
+.audio-docked .audio-heading-row { margin-bottom: .35rem; }
+.audio-docked .audio-tools { margin-top: .2rem; }
+.audio-dock-active { padding-bottom: var(--audio-dock-height, 190px); }
+@media (max-width: 40rem) {
+  .article-audio { padding: .9rem; }
+  .article-audio h2 { font-size: 1.15rem; }
+  .audio-heading-row { gap: .5rem; }
+  .audio-tools { gap: .35rem .5rem; }
+  .audio-tools > a { margin-left: 0; }
+  .audio-docked { padding: .55rem .65rem; }
+  .audio-docked h2 { font-size: .9rem; }
+  .audio-stop { padding-inline: .4rem; font-size: .75rem; }
+}
+@media print { .audio-slot, .audio-available { display: none !important; } .audio-dock-active { padding-bottom: 0; } }

@@ -260,7 +260,16 @@
     actions.append(workLink, notesToggle);
     if (item.url) actions.append(originalLink);
 
-    copy.append(meta, heading, summary, tagList, actions, notesCopy);
+    copy.append(meta, heading, summary);
+    if (item.audio) {
+      const audioLink = document.createElement("a");
+      audioLink.className = "audio-available";
+      audioLink.href = `work/${item.id}/article/#listen`;
+      audioLink.textContent = `▶ Audio available · Listen (${item.audio.label})`;
+      audioLink.setAttribute("aria-label", `Listen to ${item.title}`);
+      copy.append(audioLink);
+    }
+    copy.append(tagList, actions, notesCopy);
     article.append(dateBox, visual, copy);
     return article;
   };

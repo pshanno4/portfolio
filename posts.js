@@ -11,6 +11,7 @@
 window.PAULWRITES_ITEMS = [
   {
     "id": "eu-greenwashing-rules-durability-repairability",
+    "audio": { "src": "public/audio/eu-greenwashing-rules-durability-repairability.mp3", "durationSeconds": 555, "duration": "PT9M15S", "label": "9 min 15 sec" },
     "title": "The EU’s Greenwashing Crackdown Has a Second Target You Haven't Heard Of",
     "seoTitle": "EU Greenwashing Rules: Durability & Repair | Paul Shannon",
     "seoDescription": "How EU greenwashing rules connect environmental claims with durability, repairability and software support—and why fewer avoidable replacements matter.",
@@ -35,6 +36,7 @@ window.PAULWRITES_ITEMS = [
   },
   {
     "id": "backed-by-science-evidence-claims",
+    "audio": { "src": "public/audio/backed-by-science-evidence-claims.mp3", "durationSeconds": 593, "duration": "PT9M53S", "label": "9 min 53 sec" },
     "title": "Why ‘Backed by Science’ Is One of the Weakest Claims a Company Can Make",
     "seoTitle": "Backed by Science: What Claims Need | Paul Shannon",
     "seoDescription": "Why “backed by science” says little without the tested product, measured outcome, comparison and limits. A guide to credible scientific claims by Paul Shannon.",

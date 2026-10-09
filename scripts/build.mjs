@@ -1,6 +1,8 @@
 import { cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 
+await import("./materialize-audio.mjs");
+
 // Regenerate every derived page from posts.js before creating the deployable copy.
 await import("./generate.mjs");
 
@@ -11,6 +13,7 @@ const files = [
   "404.html",
   "styles.css",
   "site.js",
+  "audio-player.js",
   "posts.js",
   "reading-times.js",
   "portfolio.js",

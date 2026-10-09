@@ -723,7 +723,7 @@ ${header("../../", "portfolio")}
             <li><strong>Full ${reader.report ? "report" : reader.guide ? "guide" : "article"}</strong> ${reader.minutes} min read</li>
           </ul>
           <div class="actions publication-actions">
-            <a class="button button-primary" href="${reader.href}">${reader.label} <span aria-hidden="true">→</span><span class="button-time">${reader.minutes} min</span></a>
+            <a class="button button-primary" href="${reader.href}">${reader.label} <span aria-hidden="true">→</span><span class="button-time">${reader.minutes} min</span></a>${item.audio ? `\n            <a class="button button-secondary" href="${reader.href}#listen">Listen to article <span class="button-time">${esc(item.audio.label)}</span></a>` : ""}
             ${sourceAction}
           </div>
         </div>
@@ -786,6 +786,17 @@ ${footer("../../")}
 </html>`;
 };
 
+const renderAudioPlayer = (item) => `
+        <div class="audio-slot" id="listen">
+          <section class="article-audio" aria-labelledby="audio-heading" data-article-audio data-title="${esc(item.title)}" data-cover="/${esc(item.image)}">
+            <div class="audio-heading-row"><div><p class="audio-eyebrow">Audio version available · ${esc(item.audio.label)}</p><h2 id="audio-heading"><span aria-hidden="true">▶</span> Listen to this article</h2></div><button type="button" class="audio-stop" data-audio-stop hidden>Stop listening</button></div>
+            <p class="audio-help">Press play and read along. Your player stays with you as you scroll.</p>
+            <audio controls preload="none" aria-label="Audio version of ${esc(item.title)}"><source src="../../../${esc(item.audio.src)}" type="audio/mpeg">Your browser does not support audio playback. <a href="../../../${esc(item.audio.src)}">Open the audio recording</a>.</audio>
+            <div class="audio-tools" data-audio-tools hidden><button type="button" data-audio-skip="-15" aria-label="Rewind 15 seconds">↶ 15 sec</button><button type="button" data-audio-skip="15" aria-label="Forward 15 seconds">15 sec ↷</button><label>Speed <select data-audio-speed aria-label="Playback speed"><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></label><a href="../../../${esc(item.audio.src)}" download>Download audio</a></div>
+            <p class="audio-error" role="status" hidden>Audio could not load. <a href="../../../${esc(item.audio.src)}">Open the recording directly</a>.</p>
+          </section>
+        </div>`;
+
 const renderReadingPage = (item) => {
   const project = pageContentFor(item);
   const reader = readerFor(item);
@@ -825,6 +836,7 @@ const renderReadingPage = (item) => {
         image: `${origin}/${item.image}`,
         about: item.tags,
         articleSection: item.type,
+        ...(item.audio ? { associatedMedia: { "@type": "AudioObject", "@id": `${reader.canonical}#audio`, name: `Listen: ${item.title}`, contentUrl: `${origin}/${item.audio.src}`, encodingFormat: "audio/mpeg", duration: item.audio.duration, inLanguage: "en", uploadDate: "2026-10-08", isAccessibleForFree: true, about: { "@id": `${reader.canonical}#article` } } } : {}),
         wordCount: reader.wordCount,
         timeRequired: `PT${reader.minutes}M`,
         isPartOf: { "@id": `${origin}/work/${item.id}/#project` },
@@ -861,7 +873,7 @@ ${header("../../../", "portfolio")}
         <h1${item.title.length > 76 ? ' class="long-title"' : ""}>${esc(item.title)}</h1>
         <p class="reading-dek">${scientificText(item.summary)}</p>
         <ul class="publication-meta" aria-label="Article details"><li><strong>Author</strong> <a href="../../../authors/paul-shannon/index.html" rel="author">Paul Shannon</a></li>${reader.authorizedClient ? '<li><strong>Original publisher</strong> <a href="https://workinman.com/" target="_blank" rel="noopener noreferrer">Workinman Interactive</a></li>' : ""}<li><strong>Published</strong> <time datetime="${esc(schemaDate(item))}">${esc(formatDate(item))}</time></li><li><strong>Reading time</strong> ${reader.minutes} min</li><li><strong>Words</strong> ${reader.wordCount.toLocaleString("en-US")}</li></ul>
-        <div class="reading-context-links"><a href="../index.html">About this project</a>${sourceAction}</div>
+        <div class="reading-context-links"><a href="../index.html">About this project</a>${sourceAction}</div>${item.audio ? renderAudioPlayer(item) : ""}
         <figure class="reading-hero"><img src="../../../${esc(item.image)}" alt="${esc(item.imageAlt)}" width="1200" height="750" fetchpriority="high" decoding="async"><figcaption>${esc(heroCaption(item))} <a href="../../../image-credits.html">Image source and license</a>.</figcaption></figure>
       </header>
 
@@ -882,7 +894,7 @@ ${header("../../../", "portfolio")}
       <div class="container">${renderRelated(item, project, { rootPrefix: "../../../", relatedPrefix: "../../" })}</div>
     </article>
   </main>
-${footer("../../../")}
+${footer("../../../")}${item.audio ? '\n<script src="../../../audio-player.js" defer></script>' : ""}
 </body>
 </html>`;
 };
@@ -899,7 +911,7 @@ const portfolioStaticCard = (item, index) => {
           <div class="portfolio-copy">
             <p class="item-meta">${esc(item.type)} · ${esc(item.publisher)} · Est. ${readingMinutesFor(item)} min read</p>
             <h2><a href="work/${esc(item.id)}/">${esc(item.title)}</a></h2>
-            <p>${scientificText(item.summary)}</p>
+            <p>${scientificText(item.summary)}</p>${item.audio ? `\n            <a class="audio-available" href="work/${esc(item.id)}/article/#listen" aria-label="Listen to ${esc(item.title)}">▶ Audio available · Listen (${esc(item.audio.label)})</a>` : ""}
             <ul class="tag-list" aria-label="Topics">${item.tags.map((tag) => `<li>${esc(tag)}</li>`).join("")}</ul>
             <div class="work-actions">
               <a class="work-link" href="work/${esc(item.id)}/">Read <span aria-hidden="true">→</span></a>

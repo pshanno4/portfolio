@@ -86,3 +86,5 @@ Article views and likes are intentionally absent. A shared count that survives s
 `.openai/hosting.json` publishes `dist/`. The included redirect file consolidates legacy `.html`, `/about`, `/work`, and related routes onto their canonical destinations. Publishing this repository does not itself change PaulWrites.net DNS.
 
 See `QA.md`, `SEO_AUDIT.md`, `CONTENT_RIGHTS.md`, `IMAGE_CREDITS.md`, and `EASTER_EGGS.md` for release documentation.
+
+Article recordings are preserved without quality loss in `content/audio/`. The build reconstructs the MP3s and verifies their byte length and SHA-256 before publishing `public/audio/`.

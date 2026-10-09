@@ -1,0 +1,53 @@
+[
+  {
+    "filename": "backed-by-science-evidence-claims.mp3",
+    "size": 7116113,
+    "sha256": "bb0055e24fdcb9cf92ecaba2f9c8bcc91d6477f75f6d7b116e5083dee62e1f91",
+    "parts": [
+      "content/audio/backed-by-science-evidence-claims/000.b64",
+      "content/audio/backed-by-science-evidence-claims/001.b64",
+      "content/audio/backed-by-science-evidence-claims/002.b64",
+      "content/audio/backed-by-science-evidence-claims/003.b64",
+      "content/audio/backed-by-science-evidence-claims/004.b64",
+      "content/audio/backed-by-science-evidence-claims/005.b64",
+      "content/audio/backed-by-science-evidence-claims/006.b64",
+      "content/audio/backed-by-science-evidence-claims/007.b64",
+      "content/audio/backed-by-science-evidence-claims/008.b64",
+      "content/audio/backed-by-science-evidence-claims/009.b64",
+      "content/audio/backed-by-science-evidence-claims/010.b64",
+      "content/audio/backed-by-science-evidence-claims/011.b64",
+      "content/audio/backed-by-science-evidence-claims/012.b64",
+      "content/audio/backed-by-science-evidence-claims/013.b64",
+      "content/audio/backed-by-science-evidence-claims/014.b64",
+      "content/audio/backed-by-science-evidence-claims/015.b64",
+      "content/audio/backed-by-science-evidence-claims/016.b64",
+      "content/audio/backed-by-science-evidence-claims/017.b64",
+      "content/audio/backed-by-science-evidence-claims/018.b64"
+    ]
+  },
+  {
+    "filename": "eu-greenwashing-rules-durability-repairability.mp3",
+    "size": 6655313,
+    "sha256": "057e8f7ffd6ffcc2eb614281d40881160047320d8232ff84a3958c3b8273234c",
+    "parts": [
+      "content/audio/eu-greenwashing-rules-durability-repairability/000.b64",
+      "content/audio/eu-greenwashing-rules-durability-repairability/001.b64",
+      "content/audio/eu-greenwashing-rules-durability-repairability/002.b64",
+      "content/audio/eu-greenwashing-rules-durability-repairability/003.b64",
+      "content/audio/eu-greenwashing-rules-durability-repairability/004.b64",
+      "content/audio/eu-greenwashing-rules-durability-repairability/005.b64",
+      "content/audio/eu-greenwashing-rules-durability-repairability/006.b64",
+      "content/audio/eu-greenwashing-rules-durability-repairability/007.b64",
+      "content/audio/eu-greenwashing-rules-durability-repairability/008.b64",
+      "content/audio/eu-greenwashing-rules-durability-repairability/009.b64",
+      "content/audio/eu-greenwashing-rules-durability-repairability/010.b64",
+      "content/audio/eu-greenwashing-rules-durability-repairability/011.b64",
+      "content/audio/eu-greenwashing-rules-durability-repairability/012.b64",
+      "content/audio/eu-greenwashing-rules-durability-repairability/013.b64",
+      "content/audio/eu-greenwashing-rules-durability-repairability/014.b64",
+      "content/audio/eu-greenwashing-rules-durability-repairability/015.b64",
+      "content/audio/eu-greenwashing-rules-durability-repairability/016.b64",
+      "content/audio/eu-greenwashing-rules-durability-repairability/017.b64"
+    ]
+  }
+]

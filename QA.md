@@ -91,3 +91,8 @@ Added the complete published EU greenwashing article with its original title, 49
 ## Backed by Science — October 8, 2026
 
 Added the October 5 published article, with 59 blocks, quotations, five checklist items, four images and their original captions and links. Both article bodies were compared against their published text. The static portfolio, JavaScript rendering, and RSS feed use newest-first publication-date order: the EU article (October 8), Backed by Science (October 5), then the 20-website review (September 30). All 74 canonical pages and 31 portfolio records pass the existing checks.
+
+
+## Article audio — October 8, 2026
+
+Added supplied EU (9:15) and Backed by Science (9:53) recordings as compact, mono 96 kbps MP3s. Both articles have prominent native audio controls, optional playback speed and 15-second skip controls, and a single player that docks while scrolling after playback starts. Portfolio cards and project overviews link directly to the audio section. AudioObject metadata associates each recording with its article; article text and newest-first order remain unchanged. No autoplay or initial audio preload.

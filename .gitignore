@@ -46,3 +46,6 @@ next-env.d.ts
 /.codex/
 /outputs/
 # `/work/` is intentionally versioned: it contains public portfolio pages.
+
+# Audio is reconstructed from verified source parts during the build.
+/public/audio/
