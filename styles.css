@@ -1101,7 +1101,7 @@ img[src$="backed-by-science-evidence-claims.webp"] { object-fit: contain; }
 .article-audio audio { display: block; width: 100%; min-width: 0; height: 54px; }
 .audio-tools { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .8rem; margin-top: .65rem; font-size: .82rem; }
 .audio-tools[hidden], .audio-stop[hidden], .audio-error[hidden] { display: none; }
-.audio-tools button, .audio-tools select, .audio-stop { min-height: 40px; border: 1px solid #9ab6a2; border-radius: var(--radius); background: var(--paper); color: var(--accent-dark); padding: .3rem .55rem; cursor: pointer; font-size: .82rem; font-weight: 700; }
+.audio-tools button, .audio-tools select, .audio-stop { min-height: 44px; border: 1px solid #9ab6a2; border-radius: var(--radius); background: var(--paper); color: var(--accent-dark); padding: .3rem .55rem; cursor: pointer; font-size: .82rem; font-weight: 700; }
 .audio-tools label { display: flex; align-items: center; gap: .4rem; }
 .audio-tools > a { margin-left: auto; }
 .audio-error { margin-bottom: 0; color: var(--danger); }
@@ -1120,5 +1120,10 @@ img[src$="backed-by-science-evidence-claims.webp"] { object-fit: contain; }
   .audio-docked { padding: .55rem .65rem; }
   .audio-docked h2 { font-size: .9rem; }
   .audio-stop { padding-inline: .4rem; font-size: .75rem; }
+  .audio-tools > a { display: inline-flex; align-items: center; min-height: 44px; }
+  .audio-heading-row > div { min-width: 0; }
+  .audio-stop { flex-shrink: 0; }
+  .audio-available { min-height: 44px; max-width: 100%; }
+  .audio-tools select { font-size: 1rem; }
 }
 @media print { .audio-slot, .audio-available { display: none !important; } .audio-dock-active { padding-bottom: 0; } }

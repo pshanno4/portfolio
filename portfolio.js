@@ -158,6 +158,9 @@
   };
 
   const makeItem = (item, priorityImage = false) => {
+    const siteUrl = (value) => window.location.protocol === "file:"
+      ? value
+      : new URL(value, `${window.location.origin}/`).href;
     const localUrl = window.location.protocol === "file:"
       ? `work/${item.id}/index.html`
       : `/work/${encodeURIComponent(item.id)}/`;
@@ -178,7 +181,7 @@
     visual.setAttribute("aria-label", `Read ${item.title}`);
     const image = document.createElement("img");
     image.className = "portfolio-image";
-    image.src = item.image;
+    image.src = siteUrl(item.image);
     image.alt = item.imageAlt;
     image.width = 1200;
     image.height = 750;
@@ -246,7 +249,7 @@
     const originalLink = document.createElement("a");
     originalLink.className = "original-link";
     if (item.url) {
-      originalLink.href = item.url;
+      originalLink.href = siteUrl(item.url);
       originalLink.textContent = /\.pdf(?:$|[?#])/i.test(item.url) ? "View source PDF ↗" : "View original ↗";
       originalLink.setAttribute("aria-label", `${originalLink.textContent.replace(" ↗", "")}: ${item.title}`);
       if (/^https?:/.test(item.url)) {
@@ -264,7 +267,9 @@
     if (item.audio) {
       const audioLink = document.createElement("a");
       audioLink.className = "audio-available";
-      audioLink.href = `work/${item.id}/article/#listen`;
+      audioLink.href = window.location.protocol === "file:"
+        ? `work/${item.id}/article/index.html#listen`
+        : `/work/${encodeURIComponent(item.id)}/article/#listen`;
       audioLink.textContent = `▶ Audio available · Listen (${item.audio.label})`;
       audioLink.setAttribute("aria-label", `Listen to ${item.title}`);
       copy.append(audioLink);
