@@ -89,7 +89,7 @@
       type: item.type || "Article",
       publisher,
       summary: item.summary || item.description || "",
-      projectContext: item.projectContext || "This piece shows how Paul turns source material and a defined editorial goal into a clear finished work.",
+      projectContext: item.projectContext || "This piece shows how I turn source material and a defined editorial goal into a clear finished work.",
       readingMinutes: Math.max(1, Number.parseInt(window.PAULWRITES_READING_TIMES?.[id] ?? item.readingMinutes, 10) || 4),
       image: cleanLink(item.image),
       imageAlt: String(item.imageAlt || ""),

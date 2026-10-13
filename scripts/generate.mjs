@@ -103,7 +103,7 @@ const pageContentFor = (item) => WORK_PAGE_CONTENT[item.id] || {
     },
     {
       heading: "Editorial approach",
-      paragraphs: ["Paul organized the source material around the reader’s likely questions, built a clear progression, and revised the language for accuracy, rhythm, and practical value."]
+      paragraphs: ["I organized the source material around the reader’s likely questions, built a clear progression, and revised the language for accuracy, rhythm, and practical value."]
     }
   ],
   role: item.projectContext
@@ -126,6 +126,7 @@ const normalizeImportedArticle = (article) => {
   blocks = blocks
     .filter((block) => !/^(?:\+ Follow|\+ Subscribe|Like|Celebrate|Support|Love|Insightful|Funny|Comment|Share)$/i.test(String(block.text || "").trim()))
     .map((block) => {
+      if (block.inline) block = { ...block, inline: block.inline.map((part) => /^https:\/\/paulwrites\.net\/#contact\?trk=/.test(part.href || "") ? { ...part, href: `${origin}/#contact` } : part) };
       if (/^[-*]\s+/.test(block.text || "")) return { ...block, type: "li", text: block.text.replace(/^[-*]\s+/, "") };
       if (block.type !== "figure" && /^Image\s+courtesy/i.test(block.text || "")) return { ...block, type: "note" };
       return block;
@@ -153,7 +154,7 @@ const guideFor = (item) => {
       ...(section.paragraphs || []).map((text) => ({ type: "p", text })),
       ...(section.bullets || []).map((text) => ({ type: "li", text }))
     ]),
-    { type: "h2", text: "Paul’s contribution" },
+    { type: "h2", text: "My contribution" },
     { type: "p", text: project.role || item.projectContext }
   ];
   return {
@@ -652,11 +653,11 @@ const renderWorkPage = (item) => {
   const originalHref = original ? (isExternal(original) ? original : `../../${original}`) : "";
   const sourceLabel = isPdf(original) ? "View original PDF" : "View original publisher";
   const summarySentence = item.summary.match(/^[^.!?]+[.!?]/)?.[0] || item.summary;
-  const description = `${summarySentence} See Paul’s role, research process, and ${reader.report ? "full report" : reader.guide ? "editorial guide" : "full article"}.`;
+  const description = `${summarySentence} See my role, research process, and ${reader.report ? "full report" : reader.guide ? "editorial guide" : "full article"}.`;
   const titleBase = (item.seoTitle || SEO_TITLES[item.id] || `${item.title} | Paul Shannon`).replace(/\s*\|\s*Paul Shannon$/, "");
   const crumbs = [
     { label: "Home", href: "../../index.html", canonical: `${origin}/` },
-    { label: "Portfolio", href: "../../portfolio.html", canonical: `${origin}/portfolio` },
+    { label: "Portfolio", href: "../../portfolio.html", canonical: `${origin}/portfolio/` },
     { label: item.title, href: "", canonical }
   ];
   const schema = {
@@ -737,7 +738,7 @@ ${header("../../", "portfolio")}
       <section class="overview-summary container" aria-labelledby="summary-heading">
         <div class="overview-summary-intro">
           <p class="small-label">Project in 60 seconds</p>
-          <h2 id="summary-heading">What it covers—and what Paul contributed.</h2>
+          <h2 id="summary-heading">What it covers and what I contributed.</h2>
           ${(content.overview || [item.summary]).map((paragraph) => `<p>${scientificText(paragraph)}</p>`).join("\n")}
         </div>
         <div class="overview-summary-grid">${summaryCards}</div>
@@ -748,13 +749,13 @@ ${header("../../", "portfolio")}
       <div class="publication-grid container overview-details">
         <div class="article-body">
           ${(content.sections || []).map(renderSection).join("\n")}
-          <section><h2>Paul’s role</h2><p>${scientificText(content.role || item.projectContext)}</p></section>
+          <section><h2>My role</h2><p>${scientificText(content.role || item.projectContext)}</p></section>
           <aside class="source-note" aria-labelledby="source-note-heading">
             <p class="small-label" id="source-note-heading">Reading note</p>
             <p>${reader.report
               ? "The complete paper is available as a semantic, accessible report on PaulWrites. The original PDF remains available as a secondary source document."
               : reader.authorizedClient
-                ? "This authorized portfolio edition reproduces Paul’s complete public-facing article with permission. Paul Shannon is the author, and Workinman Interactive remains the original publisher."
+                ? "This authorized portfolio edition reproduces my complete public-facing article with permission. Workinman Interactive remains the original publisher."
               : reader.guide
                 ? "This internal reading guide documents the subject and assignment without reproducing publisher-controlled copy. The official publisher remains the source for the complete client article."
                 : "The complete independently published article is available as an owned PaulWrites web edition, with the original publication retained as a secondary source."}</p>
@@ -777,7 +778,7 @@ ${header("../../", "portfolio")}
 
       <section class="read-next-band"><div class="container"><div><p class="small-label">Continue to the work</p><h2>${reader.label} on PaulWrites.</h2><p>${reader.guide ? "Read the on-site editorial guide, then use the publisher link for the protected article text." : "Open the complete, indexable web edition."}</p></div><div class="actions"><a class="button button-primary" href="${reader.href}">${reader.label} · ${reader.minutes} min</a>${sourceAction}</div></div></section>
 
-      <section class="author-box container" aria-labelledby="author-heading"><div><p class="small-label">Author</p><h2 id="author-heading"><a href="../../authors/paul-shannon/index.html">Paul Shannon</a></h2></div><p>Paul is a Rochester-based professional writer studying Environmental Science &amp; Sustainability at Nazareth University. He specializes in research-heavy environmental, scientific, technical, and B2B subjects.</p></section>
+      <section class="author-box container" aria-labelledby="author-heading"><div><p class="small-label">Author</p><h2 id="author-heading"><a href="../../authors/paul-shannon/index.html">Paul Shannon</a></h2></div><p>I’m a Rochester-based professional writer studying Environmental Science &amp; Sustainability at Nazareth University. I specialize in research-heavy environmental, scientific, technical, and B2B subjects.</p></section>
       <div class="container">${renderRelated(item, content)}</div>
       <section class="article-cta"><div class="container simple-cta"><div><p class="small-label">Have a complex subject?</p><h2>Build the explanation around the evidence.</h2></div><a class="button button-primary" href="../../index.html#contact">Discuss a project</a></div></section>
     </article>
@@ -812,7 +813,7 @@ const renderReadingPage = (item) => {
       : `Read ${item.title} by Paul Shannon, with the full article, publication context, and related work.`);
   const crumbs = [
     { label: "Home", href: "../../../index.html", canonical: `${origin}/` },
-    { label: "Portfolio", href: "../../../portfolio.html", canonical: `${origin}/portfolio` },
+    { label: "Portfolio", href: "../../../portfolio.html", canonical: `${origin}/portfolio/` },
     { label: item.title, href: "../index.html", canonical: `${origin}/work/${item.id}/` },
     { label: reader.report ? "Full report" : reader.guide ? "Article guide" : "Full article", href: "", canonical: reader.canonical }
   ];
@@ -881,17 +882,17 @@ ${header("../../../", "portfolio")}
       <div class="reading-shell container">
         <div class="reading-main">
           ${reader.correctionNote ? `<aside class="edition-note"><p class="small-label">Editorial correction</p><p>${esc(reader.correctionNote)}</p></aside>` : ""}
-          ${reader.authorizedClient ? `<aside class="edition-note"><p class="small-label">Authorized portfolio edition</p><p>Written by Paul Shannon and originally published by Workinman Interactive. This complete, public-facing article is reproduced here with permission; Workinman Interactive remains the publisher.</p>${sourceAction}</aside>` : ""}
+          ${reader.authorizedClient ? `<aside class="edition-note"><p class="small-label">Authorized portfolio edition</p><p>I wrote this article for Workinman Interactive, its original publisher. This complete, public-facing article is reproduced here with permission; Workinman Interactive remains the publisher.</p>${sourceAction}</aside>` : ""}
           ${reader.guide ? `<aside class="rights-note"><p class="small-label">Publisher-protected work</p><p>This page is an original portfolio guide to the assignment. It does not reproduce the client publication’s protected text. ${originalHref ? "The official publisher link provides the complete published article." : "The supplied source did not provide a verified matching article URL, so no external reading link is shown."}</p>${sourceAction}</aside>` : ""}
           ${renderSnapshot(item)}
           ${headings.length > 2 ? `<nav class="reader-toc" aria-label="On this page"><p class="small-label">On this page</p><ol>${headings.map((heading) => `<li><a href="#${heading.anchor}">${scientificText(heading.text)}</a></li>`).join("")}</ol></nav>` : ""}
           <div class="reading-copy">${body}</div>
         </div>
-        <aside class="reader-context" aria-label="Article context"><p class="small-label">Portfolio context</p><p>${scientificText(item.summary)}</p><a class="text-link" href="../index.html">Project overview and Paul’s role</a><a class="text-link" href="${service.href.replace("../../", "../../../")}">${esc(service.label)}</a>${originalHref ? sourceAction : ""}</aside>
+        <aside class="reader-context" aria-label="Article context"><p class="small-label">Portfolio context</p><p>${scientificText(item.summary)}</p><a class="text-link" href="../index.html">Project overview and my role</a><a class="text-link" href="${service.href.replace("../../", "../../../")}">${esc(service.label)}</a>${originalHref ? sourceAction : ""}</aside>
       </div>
 
-      <section class="project-funnel"><div class="container"><div><p class="small-label">About this project</p><h2>See the assignment, process, and Paul’s contribution.</h2><p>${scientificText(project.role || item.projectContext)}</p></div><div class="funnel-links"><a class="button button-secondary" href="../index.html">Back to project overview</a><a class="button button-primary" href="../../../index.html#contact">Discuss a project</a></div></div></section>
-      <section class="author-box container" aria-labelledby="reader-author"><div><p class="small-label">Author</p><h2 id="reader-author"><a href="../../../authors/paul-shannon/index.html">Paul Shannon</a></h2></div><p>Paul is a Rochester-based environmental science student, researcher, and professional writer focused on scientific, technical, and research-heavy subjects. <a href="../../../authors/paul-shannon/index.html">Read his background and credentials.</a></p></section>
+      <section class="project-funnel"><div class="container"><div><p class="small-label">About this project</p><h2>See the assignment, process, and my contribution.</h2><p>${scientificText(project.role || item.projectContext)}</p></div><div class="funnel-links"><a class="button button-secondary" href="../index.html">Back to project overview</a><a class="button button-primary" href="../../../index.html#contact">Discuss a project</a></div></div></section>
+      <section class="author-box container" aria-labelledby="reader-author"><div><p class="small-label">Author</p><h2 id="reader-author"><a href="../../../authors/paul-shannon/index.html">Paul Shannon</a></h2></div><p>I’m a Rochester-based environmental science student, researcher, and professional writer focused on scientific, technical, and research-heavy subjects. <a href="../../../authors/paul-shannon/index.html">Read my background and credentials.</a></p></section>
       <div class="container">${renderRelated(item, project, { rootPrefix: "../../../", relatedPrefix: "../../" })}</div>
     </article>
   </main>
@@ -925,7 +926,7 @@ const portfolioStaticCard = (item, index) => {
 
 const renderPortfolio = () => {
   const sorted = [...items].sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
-  const canonical = `${origin}/portfolio`;
+  const canonical = `${origin}/portfolio/`;
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -1090,11 +1091,11 @@ ${header("../", "services")}
       { label: "Home", href: "../index.html" },
       { label: "Services", href: "" }
     ])}</div>
-    <section class="service-hero container service-hero-grid">
+    <section class="experience-hero service-hub-hero"><img class="experience-background" src="../public/images/work/rochester.webp" alt="" width="1200" height="750" fetchpriority="high" decoding="async"><div class="container service-hero-grid">
       <div><p class="kicker">Writing and SEO services</p>
       <h1>Research-driven writing and SEO services.</h1>
       <p class="service-lede">Research-driven writing for environmental and technical subjects. SEO content and website audits that connect useful information to the next step.</p><div class="actions"><a class="button button-primary" href="#find-service">Find your service</a><a class="button button-secondary" href="../portfolio.html">Browse the portfolio</a></div></div>
-      <aside class="service-summary service-start-guide" aria-label="Where to start"><p class="small-label">Where should you start?</p><a href="../seo-audits/index.html"><strong>Review an existing website</strong><span>Find the issues and plan the repairs. <span aria-hidden="true">→</span></span></a><a href="../index.html#contact"><strong>Discuss a writing project</strong><span>Turn your brief and sources into a clear scope. <span aria-hidden="true">→</span></span></a></aside>
+      <aside class="service-summary service-start-guide" aria-label="Where to start"><p class="small-label">Where should you start?</p><a href="../seo-audits/index.html"><strong>Review an existing website</strong><span>Find the issues and plan the repairs. <span aria-hidden="true">→</span></span></a><a href="../index.html#contact"><strong>Discuss a writing project</strong><span>Turn your brief and sources into a clear scope. <span aria-hidden="true">→</span></span></a></aside></div>
     </section>
     ${sectionNavigation([["find-service", "Choose a service"], ["services", "Services"], ["audit-preview", "Audit example"], ["compare", "Compare"], ["process", "How it works"], ["start", "Next step"]])}
     ${renderServiceRouter()}
@@ -1105,7 +1106,7 @@ ${header("../", "services")}
     ${auditPreview("../")}
     <section class="section container" id="compare" aria-labelledby="compare-heading"><p class="small-label">Compare the options</p><h2 id="compare-heading">Match the work to your goal.</h2><details class="service-comparison-disclosure"><summary>Compare inputs and deliverables for each service</summary><div class="comparison-list">${SERVICE_PAGES.map((service) => `<article><h3><a href="../${service.slug}/index.html">${esc(service.eyebrow)}</a></h3><dl><div><dt>Useful starting input</dt><dd>${esc(service.startingInput)}</dd></div><div><dt>Typical deliverable</dt><dd>${esc(service.typicalOutput)}</dd></div></dl></article>`).join("")}<article><h3>Editorial and agency support</h3><dl><div><dt>Useful starting input</dt><dd>Briefs, voice guidance and a review workflow</dd></div><div><dt>Typical deliverable</dt><dd>Scoped writing, source review or substantive editing</dd></div></dl><a class="text-link" href="../index.html?project=agency#contact">Discuss editorial support</a></article></div></details></section>
     <section class="section section-muted" id="process" aria-labelledby="process-heading"><div class="container process-section"><div><p class="small-label">How projects start</p><h2 id="process-heading">One defined first assignment.</h2><p>Projects can include web copy, interview-led thought leadership, source review, substantive editing, fact-checking support and overflow work within your editorial process.</p></div><ol class="steps-list"><li><strong>Share the goal.</strong><span>Send the subject or URL, intended reader, available material and timing.</span></li><li><strong>Agree the scope.</strong><span>We define deliverables, price, reviewers and revisions before work begins.</span></li><li><strong>Build from the evidence.</strong><span>Research, source review and a clear structure guide the work.</span></li><li><strong>Review and hand off.</strong><span>Writing, diagnosis and implementation can be scoped separately.</span></li></ol></div></section>
-    <section class="article-cta" id="start"><div class="container simple-cta"><div><p class="small-label">Your next step</p><h2>Start with what needs to become clear.</h2><p>A draft, brief, source library or description of the problem is enough to begin.</p></div><div class="cta-actions"><a class="button button-primary" href="../index.html#contact">Discuss your project</a><a class="text-link" href="../authors/paul-shannon/index.html">Meet Paul Shannon</a></div></div></section>
+    <section class="article-cta" id="start"><div class="container simple-cta"><div><p class="small-label">Your next step</p><h2>Start with what needs to become clear.</h2><p>A draft, brief, source library or description of the problem is enough to begin.</p></div><div class="cta-actions"><a class="button button-primary" href="../index.html#contact">Discuss your project</a><a class="text-link" href="../authors/paul-shannon/index.html">Read my background</a></div></div></section>
   </main>
 ${footer("../")}
 </body>
@@ -1158,7 +1159,7 @@ ${header("../../", "about")}
       <p class="kicker">Writer · Environmental scientist · Researcher</p>
       <h1>${esc(AUTHOR_COPY.h1)}</h1>
       <p class="author-lede">${scientificText(AUTHOR_COPY.lede)}</p>
-      <div class="actions"><a class="button button-primary" href="../../portfolio.html">View Paul’s work</a><a class="button button-secondary" href="mailto:pshannon@paulwrites.net">pshannon@paulwrites.net</a></div>
+      <div class="actions"><a class="button button-primary" href="../../portfolio.html">View my work</a><a class="button button-secondary" href="mailto:pshannon@paulwrites.net">pshannon@paulwrites.net</a></div>
     </section>
 
     <section class="author-layout container">
@@ -1166,9 +1167,9 @@ ${header("../../", "about")}
         <h2>Writing, science, and research reinforce one another.</h2>
         ${AUTHOR_COPY.narrative.map((paragraph) => `<p>${scientificText(paragraph)}</p>`).join("")}
         <h2>Environmental research</h2>
-        <p>Paul’s research experience includes harmful algal blooms, cyanobacteria, freshwater systems, climate and precipitation analysis, rhizofiltration, phytoremediation, environmental remediation, and scientific literature review. His work has included original experiments, regional data analysis, and feasibility-focused synthesis.</p>
+        <p>My research experience includes harmful algal blooms, cyanobacteria, freshwater systems, climate and precipitation analysis, rhizofiltration, phytoremediation, environmental remediation, and scientific literature review. My work has included original experiments, regional data analysis, and feasibility-focused synthesis.</p>
         <h2>Professional writing</h2>
-        <p>Through PaulWrites, Paul produces long-form articles, SEO content, web and landing-page copy, thought leadership, LinkedIn ghostwriting, technical content, scientific communication, and editing. His Workinman Interactive work translated game design, interactive media, experiential technology, and product updates within a collaborative studio workflow.</p>
+        <p>Through PaulWrites, I produce long-form articles, SEO content, web and landing-page copy, thought leadership, LinkedIn ghostwriting, technical content, scientific communication, and editing. My Workinman Interactive work translated game design, interactive media, experiential technology, and product updates within a collaborative studio workflow.</p>
       </div>
       <aside class="credential-list" aria-label="Education and experience">
         <section><p class="small-label">Education</p><h2>Nazareth University</h2><p>B.S. Environmental Science &amp; Sustainability<br>Minor in Biology<br>Expected May 2027</p></section>
@@ -1190,7 +1191,7 @@ const portfolioUpdated = items.reduce((latest, item) => (item.dateModified || it
 
 const sitemapRoutes = [
   { path: "/", priority: "1.0" },
-  { path: "/portfolio", priority: "0.9", lastmod: portfolioUpdated },
+  { path: "/portfolio/", priority: "0.9", lastmod: portfolioUpdated },
   { path: "/services/", priority: "0.8" },
   { path: AUDIT_EXAMPLE_PATH, priority: "0.7", lastmod: "2026-10-02" },
   ...SERVICE_PAGES.map((service) => ({ path: `/${service.slug}/`, priority: "0.8" })),
@@ -1199,9 +1200,9 @@ const sitemapRoutes = [
     { path: `/work/${item.id}/`, priority: isResearch(item) ? "0.8" : "0.7", ...(item.dateModified ? { lastmod: item.dateModified } : isResearch(item) ? { lastmod: today } : {}) },
     { path: `/work/${item.id}/${readerFor(item).segment}/`, priority: readerFor(item).complete ? "0.8" : "0.6", ...(item.dateModified ? { lastmod: item.dateModified } : isResearch(item) ? { lastmod: today } : {}) }
   ]),
-  { path: "/privacy", priority: "0.2" },
-  { path: "/accessibility", priority: "0.3" },
-  { path: "/image-credits", priority: "0.2" }
+  { path: "/privacy/", priority: "0.2" },
+  { path: "/accessibility/", priority: "0.3" },
+  { path: "/image-credits/", priority: "0.2" }
 ];
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -1229,8 +1230,8 @@ const readingTimesScript = `window.PAULWRITES_READING_TIMES = ${JSON.stringify(O
 
 const redirects = [
   "/index.html / 301!",
-  "/portfolio/ /portfolio 301",
-  "/portfolio.html /portfolio 301!",
+  "/portfolio /portfolio/ 301",
+  "/portfolio.html /portfolio/ 301!",
   "/services /services/ 301",
   "/services/index.html /services/ 301!",
   `${AUDIT_EXAMPLE_PATH.slice(0, -1)} ${AUDIT_EXAMPLE_PATH} 301`,
@@ -1247,19 +1248,19 @@ const redirects = [
     `/work/${item.id}/${readerFor(item).segment} /work/${item.id}/${readerFor(item).segment}/ 301`,
     `/work/${item.id}/${readerFor(item).segment}/index.html /work/${item.id}/${readerFor(item).segment}/ 301!`
   ]),
-  "/work /portfolio 301",
-  "/work/ /portfolio 301",
-  "/articles /portfolio 301",
-  "/articles/ /portfolio 301",
+  "/work /portfolio/ 301",
+  "/work/ /portfolio/ 301",
+  "/articles /portfolio/ 301",
+  "/articles/ /portfolio/ 301",
   "/about /authors/paul-shannon/ 301",
   "/about/ /authors/paul-shannon/ 301",
   "/contact /#contact 301",
   "/contact/ /#contact 301",
-  "/privacy/ /privacy 301",
-  "/privacy.html /privacy 301!",
-  "/accessibility/ /accessibility 301",
-  "/accessibility.html /accessibility 301!",
-  "/image-credits/ /image-credits 301",
+  "/privacy /privacy/ 301",
+  "/privacy.html /privacy/ 301!",
+  "/accessibility /accessibility/ 301",
+  "/accessibility.html /accessibility/ 301!",
+  "/image-credits /image-credits/ 301",
   "/image-credits.html /image-credits/ 301!"
 ].join("\n") + "\n";
 

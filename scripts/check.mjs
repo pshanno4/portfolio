@@ -80,7 +80,7 @@ const readerCanonical = (item) => `${origin}/work/${item.id}/${readerSegment(ite
 
 const canonicalPages = [
   ["index.html", `${origin}/`],
-  ["portfolio/index.html", `${origin}/portfolio`],
+  ["portfolio/index.html", `${origin}/portfolio/`],
   ["services/index.html", `${origin}/services/`],
   ["services/seo-content-audit-example/index.html", `${origin}/services/seo-content-audit-example/`],
   ["seo-audits/index.html", `${origin}/seo-audits/`],
@@ -92,9 +92,9 @@ const canonicalPages = [
     [`work/${item.id}/index.html`, `${origin}/work/${item.id}/`],
     [`work/${item.id}/${readerSegment(item)}/index.html`, readerCanonical(item)]
   ]),
-  ["privacy/index.html", `${origin}/privacy`],
-  ["accessibility/index.html", `${origin}/accessibility`],
-  ["image-credits/index.html", `${origin}/image-credits`]
+  ["privacy/index.html", `${origin}/privacy/`],
+  ["accessibility/index.html", `${origin}/accessibility/`],
+  ["image-credits/index.html", `${origin}/image-credits/`]
 ];
 
 const titles = new Set();
@@ -161,7 +161,7 @@ for (const item of items) {
   assert(page.includes("Paul Shannon") && page.includes("authors/paul-shannon"), `${item.id} is not connected to Paul’s author entity.`);
   assert(page.includes(`href="${segment}/index.html"`), `${item.id} overview is missing its internal reading CTA.`);
   assert(/Read (?:Article|Report)/.test(page), `${item.id} overview is missing a clearly named Read Article/Report action.`);
-  assert(page.includes("Project in 60 seconds") && page.includes("Paul’s role"), `${item.id} overview is missing its scannable project summary.`);
+  assert(page.includes("Project in 60 seconds") && page.includes("My role"), `${item.id} overview is missing its scannable project summary.`);
   const summaryGrid = page.match(/class="overview-summary-grid">([\s\S]*?)<\/div>/)?.[1] || "";
   assert(summaryGrid && !summaryGrid.includes("…"), `${item.id} overview contains a clipped summary-card ellipsis.`);
 
@@ -316,7 +316,7 @@ assert(/User-agent:\s*\*/.test(robots) && /Allow:\s*\//.test(robots), "robots.tx
 assert(robots.includes("Sitemap: https://paulwrites.net/sitemap.xml"), "robots.txt does not reference the sitemap.");
 
 const redirects = await readFile(path.join(root, "_redirects"), "utf8");
-for (const route of ["/portfolio.html /portfolio 301!", "/about /authors/paul-shannon/ 301", "/privacy.html /privacy 301!"]) {
+for (const route of ["/portfolio.html /portfolio/ 301!", "/about /authors/paul-shannon/ 301", "/privacy.html /privacy/ 301!"]) {
   assert(redirects.includes(route), `Missing redirect: ${route}`);
 }
 

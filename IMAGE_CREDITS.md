@@ -49,6 +49,10 @@ The following photographs are used under the [Unsplash License](https://unsplash
 
 Adapted Creative Commons images retain their stated licenses.
 
+## Service introduction backgrounds (October 13, 2026)
+
+The environmental page reuses `duckweed.webp` (USFWS Midwest, public domain), the technical page `servers.webp` (NOIRLab/NSF/AURA/T. Slovinský, CC BY 4.0), the SEO content page `science-writing-notes.webp` (Nenad Stojković / Shixart1985, CC BY 2.0, from the supplied *Backed by Science* article), the audit page `freelance-persistence.webp` (Nik, Unsplash License), and the services hub `rochester.webp` (Andre Carrotflower, CC BY-SA 4.0). The files retain their existing source and license records. Decorative backgrounds are cropped with `object-fit: cover` and darkened with a CSS overlay; no image pixels are modified.
+
 ## Research figures
 
 The following figures were extracted from Paul Shannon's supplied research papers and converted to WebP for the semantic HTML editions. Copyright remains with Paul Shannon unless the source paper states otherwise.

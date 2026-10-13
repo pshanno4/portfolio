@@ -6,13 +6,22 @@ const article = (heading, text) => `<article><h3>${escape(heading)}</h3><p>${esc
 const contact = (type, context = "") => `../index.html?project=${type}${context ? `&amp;context=${context}` : ""}#contact`;
 const action = (type, label, context = "") => `<a class="button button-primary" href="${contact(type, context)}">${escape(label)}</a>`;
 
-const hero = (service, className, specimen) => `
-<section class="experience-hero ${className}"><div class="container experience-hero-layout">
+const heroImages = {
+  environmental: ["duckweed.webp", 1200, 750],
+  technical: ["servers.webp", 1200, 750],
+  seo: ["science-writing-notes.webp", 1488, 992],
+  audit: ["freelance-persistence.webp", 1200, 750]
+};
+const hero = (service, className, specimen) => {
+  const [image, width, height] = heroImages[service.projectType];
+  return `
+<section class="experience-hero ${className}"><img class="experience-background" src="../public/images/work/${image}" alt="" width="${width}" height="${height}" fetchpriority="high" decoding="async"><div class="container experience-hero-layout">
   <div><p class="kicker">${escape(service.eyebrow)}</p><h1>${escape(service.h1)}</h1>
     <p class="service-lede">${escape(service.lede)}</p><div class="actions">${action(service.projectType, service.ctaLabel)}<a class="button button-secondary" href="#demonstration">${escape(service.demoLabel)}</a></div>
     <p class="experience-starting">Start with ${escape(service.startingInput.charAt(0).toLowerCase() + service.startingInput.slice(1))}.</p>
   </div>${specimen}
 </div></section>`;
+};
 
 const proofSection = (proof, proofCard, heading, copy) => `
 <section class="section section-muted" id="proof" aria-labelledby="proof-heading"><div class="container">

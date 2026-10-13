@@ -538,6 +538,9 @@ a { color: var(--accent-dark); text-underline-offset: 0.18em; }
 .content-page h2 { margin: 2.25rem 0 0.6rem; font-size: 1.3rem; letter-spacing: -0.02em; }
 .content-page p,
 .content-page li { color: #39433e; }
+.policy-page main { min-height: 65vh; }
+.policy-page .content-page { padding-inline: 0; }
+.policy-page .content-page .kicker { color: var(--accent-dark); }
 .content-page .updated { margin-top: 3rem; color: var(--muted); font-size: 0.82rem; }
 
 .not-found { min-height: calc(100vh - 4.25rem); display: flex; flex-direction: column; justify-content: center; padding-block: 4rem; }
