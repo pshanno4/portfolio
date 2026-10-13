@@ -80,6 +80,7 @@
 .audit-specimen ol { margin: 0; padding-left: 1.25rem; }
 .audit-specimen li { padding-block: .45rem; }
 .audit-priority-demo { background: #fffef9; padding: 1.8rem; border: 1px solid #b9c8b8; }
+.audit-priority-demo .audit-findings { display: block; }
 .audit-findings details { border-top: 1px solid var(--line); padding-block: .8rem; }
 .audit-findings summary { cursor: pointer; min-height: 2.75rem; font-weight: 700; line-height: 1.6; }
 .finding-rank { display: inline-block; min-width: 2.2rem; color: var(--accent); font: 1.1rem ui-monospace, Consolas, monospace; }
