@@ -14,6 +14,8 @@ Open `index.html` in a browser. The homepage, inquiry form, portfolio filters, a
 - `content/research/` contains text extracted from the three supplied research PDFs; `scripts/research-parser.mjs` turns it into semantic report sections.
 - `scripts/generate.mjs` generates the portfolio index, every project overview, every reading page, services, author page, RSS feed, reading-time map, redirects, and sitemap.
 - `styles.css` is the shared responsive design system.
+- `scripts/service-experiences.mjs` renders a different buyer journey and demonstration for each service; service metadata and FAQs remain in `scripts/site-content.mjs`.
+- `service-experiences.css` and `service-experiences.js` provide scoped responsive layouts and optional interaction. All service copy and alternative examples are present in the initial HTML.
 - `public/images/work/` contains local optimized featured images.
 - `public/downloads/` contains the three research PDFs.
 
@@ -62,6 +64,8 @@ Dates use `YYYY-MM-DD`. When only a year is known, use January 1 and add `datePr
 The homepage posts directly to `https://formspree.io/f/mwpvgolv` and displays `pshannon@paulwrites.net` as the email alternative.
 
 The frontend includes Formspree’s `_gotcha` honeypot, a minimum completion time, native validation, field-length limits, and duplicate-submit prevention. Formspree’s server-side spam controls remain account settings and are not overstated here.
+
+Service links preserve the selected project type. SEO planner links also carry a whitelisted starting point into the visible form guidance and submitted inquiry. No arbitrary query text is inserted into the form.
 
 ## Build and verify
 

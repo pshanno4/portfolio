@@ -13,6 +13,17 @@
   const feedback = form.querySelector("[data-form-feedback]");
   const submit = form.querySelector("[data-submit-button]");
   const startedAt = Date.now();
+  const startingPoints = {
+    "seo-learn": { type: "seo", label: "Research-led explainer or guide" },
+    "seo-compare": { type: "seo", label: "Comparison article or decision guide" },
+    "seo-act": { type: "seo", label: "Service or landing-page copy" }
+  };
+  const requestedContext = new URLSearchParams(window.location.search).get("context");
+  const startingPoint = Object.hasOwn(startingPoints, requestedContext) ? startingPoints[requestedContext] : null;
+  const contextField = document.createElement("input");
+  contextField.type = "hidden";
+  contextField.name = "project_starting_point";
+  form.append(contextField);
 
   startTime.value = new Date(startedAt).toISOString();
 
@@ -70,7 +81,11 @@
     if (!prompt) return;
     help.textContent = prompt.help;
     detailsLabel.firstChild.textContent = `${prompt.label} `;
-    detailsHelp.textContent = prompt.details;
+    const matchingStartingPoint = startingPoint?.type === selected ? startingPoint : null;
+    detailsHelp.textContent = matchingStartingPoint
+      ? `Selected starting point: ${matchingStartingPoint.label}. ${prompt.details}`
+      : prompt.details;
+    contextField.value = matchingStartingPoint?.label || "";
     const selectedText = type.options[type.selectedIndex].text;
     if (subject) {
       const subjectLine = `PaulWrites inquiry — ${selectedText}`;

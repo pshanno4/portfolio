@@ -4,6 +4,7 @@ import vm from "node:vm";
 import { AUTHOR_COPY, SERVICE_PAGES, WORK_PAGE_CONTENT } from "./site-content.mjs";
 import { AUDIT_EXAMPLE_PATH, renderAuditExample, auditPreview, sectionNavigation } from "./audit-example.mjs";
 import { loadResearchReport, isResearchReport } from "./research-parser.mjs";
+import { renderServiceExperience, renderServiceRouter } from "./service-experiences.mjs";
 
 const root = process.cwd();
 const origin = "https://paulwrites.net";
@@ -1037,66 +1038,18 @@ const renderServicePage = (service) => {
       breadcrumbSchema(crumbs)
     ]
   };
+  const pageHead = head({
+    title: service.title, description: service.description, canonical,
+    image: `${origin}/${image}`, imageAlt, prefix: "../", schema
+  }).replace("</head>", '<link rel="stylesheet" href="../service-experiences.css"><script src="../service-experiences.js" defer></script></head>');
   return `<!doctype html>
-<html lang="en">${head({
-    title: service.title,
-    description: service.description,
-    canonical,
-    image: `${origin}/${image}`,
-    imageAlt,
-    prefix: "../",
-    schema
-  })}
-<body class="service-page">
+<html lang="en">${pageHead}
+<body class="service-page service-${service.projectType}">
 ${header("../", "services")}
-  <main id="main" tabindex="-1">
-    <div class="container">${breadcrumbs(crumbs)}</div>
-    <section class="service-hero container service-hero-grid">
-      <div><p class="kicker">${esc(service.eyebrow)}</p>
-      <h1>${esc(service.h1)}</h1>
-      <p class="service-lede">${scientificText(service.lede)}</p>
-      <div class="actions"><a class="button button-primary" href="../index.html?project=${service.projectType}#contact">${service.projectType === "audit" ? "Discuss your website" : "Discuss your project"}</a><a class="button button-secondary" href="${service.showAuditExample ? "../services/seo-content-audit-example/index.html" : "#proof"}">${service.showAuditExample ? "Explore the audit example" : "See relevant work"}</a></div></div>
-      <aside class="service-summary" aria-label="Service at a glance"><p class="small-label">At a glance</p><dl><div><dt>Best for</dt><dd>${esc(service.bestFor)}</dd></div><div><dt>Typical output</dt><dd>${esc(service.typicalOutput)}</dd></div><div><dt>Start with</dt><dd>${esc(service.startingInput)}</dd></div></dl><a class="text-link" href="../services/index.html">Compare all services</a></aside>
-    </section>
-    ${sectionNavigation([["overview", "Overview"], ["deliverables", "Deliverables"], ["process", "Process"], [service.showAuditExample ? "audit-preview" : "proof", service.showAuditExample ? "Example" : "Work"], ["questions", "Questions"], ["start", "Next step"]])}
-
-    <section class="service-copy container" id="overview" aria-labelledby="overview-heading">
-      <div class="article-body">
-        <p class="small-label">The right fit</p><h2 id="overview-heading">${esc(service.openingHeading || "Clear writing starts with understanding the subject.")}</h2>
-        ${service.opening.map((paragraph) => `<p>${scientificText(paragraph)}</p>`).join("")}
-      </div>
-      <aside class="source-panel"><h3>Useful source material</h3><p>${scientificText(service.sourceMaterial)}</p><a class="text-link" href="../authors/paul-shannon/index.html">About Paul’s research background</a></aside>
-    </section>
-    <section class="section section-muted" id="deliverables" aria-labelledby="deliverables-heading"><div class="container">
-      <p class="small-label">The deliverables</p><h2 id="deliverables-heading">${service.projectType === "audit" ? "A plan you can put to work." : "Choose the format your audience needs."}</h2>
-      <ul class="deliverable-cards">${service.deliverables.map((deliverable, index) => `<li><span aria-hidden="true">0${index + 1}</span><p>${esc(deliverable)}</p></li>`).join("")}</ul>
-      <p class="section-note">The proposal defines which deliverables, review responsibilities and revisions are included.</p>
-    </div></section>
-    <section class="section container process-section" id="process" aria-labelledby="process-heading">
-      <div><p class="small-label">Working together</p><h2 id="process-heading">A clear process, from brief to handoff.</h2><p>We agree the scope before work begins. Each stage connects the source material to a useful result for your reader.</p></div>
-      <ol class="steps-list">${service.process.map((step) => `<li>${esc(step)}</li>`).join("")}</ol>
-    </section>
-
-    ${proof.length ? `<section class="section section-muted" id="proof" aria-labelledby="proof-heading">
-      <div class="container">
-        <div class="section-heading compact-heading"><div><p class="small-label">Relevant evidence</p><h2 id="proof-heading">Work connected to this service.</h2></div><a href="../portfolio.html">View the complete portfolio</a></div>
-        <div class="proof-grid">${proof.map((item) => serviceProofCard(item)).join("")}</div>
-      </div>
-    </section>
-
-    ` : ""}
-    ${["seo-audits", "seo-content-writer", "technical-writer"].includes(service.slug) ? auditPreview("../") : ""}
-    ${service.slug === "seo-content-writer" ? `<div class="container audit-intro"><p>Need a diagnosis before new content? <a href="../seo-audits/index.html">Explore the SEO audit service</a>.</p></div>` : ""}
-    <section class="section container faq-section" id="questions" aria-labelledby="faq-heading">
-      <p class="small-label">Before you get in touch</p><h2 id="faq-heading">Your questions, answered.</h2>
-      <div class="faq-list">${service.faqs.map(([question, answer]) => `<details><summary>${esc(question)}</summary><p>${scientificText(answer)}</p></details>`).join("")}</div>
-    </section>
-
-    <section class="article-cta" id="start"><div class="container simple-cta"><div><p class="small-label">Next step</p><h2>${service.projectType === "audit" ? "Share your website and business goal." : "Share the subject, audience, and source material."}</h2><p>Tell me your goal, available material and timing. I’ll recommend a defined scope before work begins.</p></div><div class="cta-actions"><a class="button button-primary" href="../index.html?project=${service.projectType}#contact">${service.projectType === "audit" ? "Discuss your website" : "Discuss your project"}</a><a class="text-link" href="../services/index.html">Compare all services</a></div></div></section>
-  </main>
-${footer("../")}
-</body>
-</html>`;
+<main id="main" tabindex="-1"><div class="container">${breadcrumbs(crumbs)}</div>
+${renderServiceExperience(service, { sectionNavigation, auditPreview, proof, proofCard: serviceProofCard })}
+</main>${footer("../")}
+</body></html>`;
 };
 
 const renderServicesIndex = () => {
@@ -1129,7 +1082,7 @@ const renderServicesIndex = () => {
     imageAlt: "Board-game pieces beside an article title about making digital board games feel real",
     prefix: "../",
     schema
-  })}
+  }).replace("</head>", '<link rel="stylesheet" href="../service-experiences.css"><script src="../service-experiences.js" defer></script></head>')}
 <body class="services-page">
 ${header("../", "services")}
   <main id="main" tabindex="-1">
@@ -1140,10 +1093,11 @@ ${header("../", "services")}
     <section class="service-hero container service-hero-grid">
       <div><p class="kicker">Writing and SEO services</p>
       <h1>Research-driven writing and SEO services.</h1>
-      <p class="service-lede">Research-driven writing for environmental and technical subjects. SEO content and website audits that connect useful information to the next step.</p><div class="actions"><a class="button button-primary" href="#services">Find your service</a><a class="button button-secondary" href="../portfolio.html">Browse the portfolio</a></div></div>
+      <p class="service-lede">Research-driven writing for environmental and technical subjects. SEO content and website audits that connect useful information to the next step.</p><div class="actions"><a class="button button-primary" href="#find-service">Find your service</a><a class="button button-secondary" href="../portfolio.html">Browse the portfolio</a></div></div>
       <aside class="service-summary service-start-guide" aria-label="Where to start"><p class="small-label">Where should you start?</p><a href="../seo-audits/index.html"><strong>Review an existing website</strong><span>Find the issues and plan the repairs. <span aria-hidden="true">→</span></span></a><a href="../index.html#contact"><strong>Discuss a writing project</strong><span>Turn your brief and sources into a clear scope. <span aria-hidden="true">→</span></span></a></aside>
     </section>
-    ${sectionNavigation([["services", "Services"], ["audit-preview", "Audit example"], ["compare", "Compare"], ["process", "How it works"], ["start", "Next step"]])}
+    ${sectionNavigation([["find-service", "Choose a service"], ["services", "Services"], ["audit-preview", "Audit example"], ["compare", "Compare"], ["process", "How it works"], ["start", "Next step"]])}
+    ${renderServiceRouter()}
     <section class="section container" id="services" aria-labelledby="services-heading">
       <div class="section-heading compact-heading"><div><p class="small-label">Choose your starting point</p><h2 id="services-heading">What do you need to make clear?</h2></div></div>
       <div class="service-route-grid">${[...SERVICE_PAGES].sort((a, b) => Number(b.projectType === "audit") - Number(a.projectType === "audit")).map((service, index) => `<article class="${service.projectType === "audit" ? "service-card-featured" : ""}"><span class="route-number" aria-hidden="true">0${index + 1}</span><p class="card-purpose">${esc(service.bestFor)}</p><h3><a href="../${service.slug}/index.html">${esc(service.eyebrow)}</a></h3><p>${scientificText(service.description)}</p><dl><div><dt>Typical output</dt><dd>${esc(service.typicalOutput)}</dd></div></dl><a class="text-link" href="../${service.slug}/index.html">${esc(service.linkLabel)} <span aria-hidden="true">→</span></a></article>`).join("")}</div>

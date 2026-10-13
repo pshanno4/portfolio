@@ -13,6 +13,8 @@ const files = [
   "404.html",
   "styles.css",
   "site.js",
+  "service-experiences.css",
+  "service-experiences.js",
   "audio-player.js",
   "posts.js",
   "reading-times.js",
