@@ -25,7 +25,7 @@ The current build generates three distinct portfolio layers:
 2. `/work/[slug]/` is the project overview: subject, key findings or ideas, audience, Paul’s role, process, and source context.
 3. `/work/[slug]/article/` or `/work/[slug]/report/` is the dedicated reading experience.
 
-The build currently contains 31 overview pages and 31 reading pages, in addition to three dedicated service pages, a services index, and Paul’s author/entity page. It renders 27 complete article editions—20 independently published pieces and seven authorized Workinman client articles—plus three complete semantic research reports. The one record without a verified matching source, Sustainable585 Issue #2, deliberately remains an original guide.
+The build currently contains 32 overview pages and 32 reading pages, in addition to three dedicated service pages, a services index, and Paul’s author/entity page. It renders 28 complete article editions—21 independently published pieces and seven authorized Workinman client articles—plus three complete semantic research reports. The one record without a verified matching source, Sustainable585 Issue #2, deliberately remains an original guide.
 
 ## Add a portfolio item
 

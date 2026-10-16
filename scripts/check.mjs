@@ -38,7 +38,7 @@ vm.runInContext(dataSource, context);
 const items = context.window.PAULWRITES_ITEMS;
 
 assert(Array.isArray(items), "posts.js must set window.PAULWRITES_ITEMS to an array.");
-assert(items.length === 31, `Expected 31 portfolio records; found ${items.length}.`);
+assert(items.length === 32, `Expected 32 portfolio records; found ${items.length}.`);
 
 const ids = new Set();
 const images = new Set();
@@ -59,7 +59,7 @@ for (const item of items) {
   const imageHash = createHash("sha256").update(await readFile(path.join(root, item.image))).digest("hex");
   assert(!imageHashes.has(imageHash), `${item.id} reuses another portfolio item’s image bytes.`);
   imageHashes.add(imageHash);
-  assert(cleanLink(item.url || item.link) || item.sourceUnavailable === true, `${item.id} needs an original/source URL or an explicit sourceUnavailable flag.`);
+  assert(cleanLink(item.url || item.link) || item.sourceUnavailable === true || item.selfPublished === true, `${item.id} needs an original/source URL or an explicit selfPublished/sourceUnavailable flag.`);
 }
 
 const workinman = items.filter((item) => item.publisher === "Workinman Interactive");
@@ -233,7 +233,7 @@ const climateReport = await readFile(path.join(dist, "work", "climate-change-har
 assert(climateReport.includes("harmful-algal-blooms-contributing-factors-and-impacts.html"), "The CDC citation was truncated in the published research report.");
 
 const ownedArticleFiles = (await readdir(path.join(root, "content", "articles"))).filter((file) => file.endsWith(".json"));
-assert(ownedArticleFiles.length === 27, `Expected 27 complete article records; found ${ownedArticleFiles.length}.`);
+assert(ownedArticleFiles.length === 28, `Expected 28 complete article records; found ${ownedArticleFiles.length}.`);
 let authorizedClientArticles = 0;
 for (const filename of ownedArticleFiles) {
   const record = JSON.parse(await readFile(path.join(root, "content", "articles", filename), "utf8"));

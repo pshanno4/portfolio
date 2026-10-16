@@ -1,4 +1,37 @@
 export const WORK_PAGE_CONTENT = {
+  "biodiversity-summit-cop17-progress": {
+  "eyebrow": "Independent article · Biodiversity policy and conservation",
+  "overview": [
+    "I examine what the first global review of the Kunming–Montreal Global Biodiversity Framework can tell readers about conservation progress as COP17 approaches. The article separates national commitments from implementation and measurable ecological outcomes.",
+    "I follow three practical questions: whether protected areas are effectively managed, whether restoration is monitored over time, and whether financing reaches the people doing the work. Wetland and freshwater examples connect the international targets with decisions on the ground."
+  ],
+  "sections": [
+    {
+      "heading": "Effective conservation",
+      "paragraphs": [
+        "I explain why protected-area coverage needs to be read alongside habitat representation, connectivity, management quality, equitable governance and community rights."
+      ]
+    },
+    {
+      "heading": "Restoration that can be evaluated",
+      "paragraphs": [
+        "I distinguish ecosystems under effective restoration from ecosystems that have fully recovered, and examine the monitoring needed to follow a project’s trajectory."
+      ]
+    },
+    {
+      "heading": "Finance that reaches implementation",
+      "paragraphs": [
+        "I separate the framework’s all-source and international funding targets from delivered finance, then trace how access, disbursement and continuing costs affect conservation work."
+      ]
+    }
+  ],
+  "role": "I developed the editorial angle, researched the CBD’s primary sources, and wrote the full article. This PaulWrites web edition preserves the completed article text and source links, with credited public-domain photographs.",
+  "relatedIds": [
+    "backed-by-science-evidence-claims",
+    "clean-water-climate-change-habs",
+    "carbon-offsets-insetting"
+  ]
+},
   "backed-by-science-evidence-claims": {
   "eyebrow": "Independent article · Scientific evidence and technical claims",
   "overview": [
