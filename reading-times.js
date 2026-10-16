@@ -1,4 +1,5 @@
 window.PAULWRITES_READING_TIMES = {
+  "biodiversity-summit-cop17-progress": 6,
   "eu-greenwashing-rules-durability-repairability": 6,
   "backed-by-science-evidence-claims": 7,
   "environmental-tech-website-science-claims": 8,

@@ -80,3 +80,11 @@ The cover is PaulWrites artwork supplied through Paul Shannon’s published Link
 ## Backed by Science (October 5, 2026)
 
 Cover: PaulWrites artwork; original cover caption “Image Created With Canva.” Inline photographs retain their exact published credits: CSIRO Textile and Fibre Technology and David McClenaghan (CC BY 3.0), Alexander Bogatyrev (CC BY 4.0), and Nenad Stojković / Shixart1985 (CC BY 2.0), via Wikimedia Commons. Local WebP copies preserve the full composition. Source image URLs are recorded in the article JSON.
+
+## Biodiversity summit and COP17 (October 15, 2026)
+
+- `biodiversity-summit-cop17-progress.webp` — existing PaulWrites cover, using George Gentry / USFWS's public-domain songbird-banding photograph with a crop and headline overlay.
+- `cop17-songbird-banding.webp` — George Gentry / U.S. Fish and Wildlife Service. Public domain per https://www.fws.gov/media/bird-banding-2. Resized and converted to WebP, preserving the full photograph.
+- `cop17-san-joaquin-refuge.webp` — U.S. Fish and Wildlife Service. Public domain per https://www.fws.gov/media/aerial-view-san-joaquin-river-refuge. Photographed November 20, 2021; resized and converted to WebP, preserving the full photograph.
+
+These photographs illustrate monitoring and habitat; neither depicts COP17 or establishes conservation outcomes.

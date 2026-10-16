@@ -636,6 +636,7 @@ const renderRelated = (item, content, { rootPrefix = "../../", relatedPrefix = "
       </section>`;
 
 const heroCaption = (item) => {
+  if (item.imageCaption) return item.imageCaption;
   if (item.id === "climate-change-harmful-algal-blooms-genesee-finger-lakes") {
     return "Illustrative Lake Erie bloom photo; my regional analysis concerns the Genesee–Finger Lakes, not this pictured site.";
   }
@@ -758,7 +759,7 @@ ${header("../../", "portfolio")}
                 ? "This authorized portfolio edition reproduces my complete public-facing article with permission. Workinman Interactive remains the original publisher."
               : reader.guide
                 ? "This internal reading guide documents the subject and assignment without reproducing publisher-controlled copy. The official publisher remains the source for the complete client article."
-                : "The complete independently published article is available as an owned PaulWrites web edition, with the original publication retained as a secondary source."}</p>
+                : item.selfPublished ? "The complete independently written article is published here on PaulWrites, with its sources and image credits retained." : "The complete independently published article is available as an owned PaulWrites web edition, with the original publication retained as a secondary source."}</p>
             ${originalHref ? `<a href="${esc(originalHref)}"${isExternal(original) ? ' target="_blank" rel="noopener noreferrer"' : ""}>${esc(sourceLabel)}</a>` : ""}
           </aside>
         </div>

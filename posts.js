@@ -10,6 +10,29 @@
 */
 window.PAULWRITES_ITEMS = [
   {
+    "id": "biodiversity-summit-cop17-progress",
+    "title": "The Biodiversity Summit Is Coming. What Would Count as Progress?",
+    "seoTitle": "COP17 Biodiversity Summit: What Counts as Progress? | Paul Shannon",
+    "seoDescription": "What would count as progress at COP17? Paul Shannon examines effective conservation, measurable restoration and biodiversity finance that reaches implementation.",
+    "date": "2026-10-15",
+    "dateModified": "2026-10-15",
+    "type": "Article",
+    "publisher": "PaulWrites",
+    "selfPublished": true,
+    "summary": "A research-led guide to evaluating COP17 through effective conservation, restoration monitoring, and biodiversity finance that reaches implementation.",
+    "projectContext": "I researched the Convention on Biological Diversity’s framework, implementation review and target guidance, then wrote this independent article connecting international commitments with conservation work on the ground.",
+    "readingMinutes": 6,
+    "image": "public/images/work/biodiversity-summit-cop17-progress.webp",
+    "imageAlt": "PaulWrites cover showing researchers banding a songbird, with the headline The Biodiversity Summit Is Coming. What Would Count as Progress?",
+    "imageCaption": "Photo: George Gentry / U.S. Fish and Wildlife Service. Public domain. Cropped and overlaid with the PaulWrites headline; illustrative fieldwork, unrelated to COP17 reporting.",
+    "tags": [
+      "Environmental Science",
+      "Sustainability",
+      "Scientific Communication"
+    ],
+    "featured": false
+  },
+  {
     "id": "eu-greenwashing-rules-durability-repairability",
     "audio": { "src": "public/audio/eu-greenwashing-rules-durability-repairability.mp3", "durationSeconds": 555, "duration": "PT9M15S", "label": "9 min 15 sec" },
     "title": "The EU’s Greenwashing Crackdown Has a Second Target You Haven't Heard Of",

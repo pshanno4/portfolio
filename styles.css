@@ -1130,3 +1130,7 @@ img[src$="backed-by-science-evidence-claims.webp"] { object-fit: contain; }
   .audio-tools select { font-size: 1rem; }
 }
 @media print { .audio-slot, .audio-available { display: none !important; } .audio-dock-active { padding-bottom: 0; } }
+
+/* Preserve the complete branded COP17 cover, including its headline. */
+img[src$="biodiversity-summit-cop17-progress.webp"] { object-fit: contain; }
+.reading-hero img[src$="biodiversity-summit-cop17-progress.webp"] { aspect-ratio: 1672 / 941; height: auto; max-height: none; }
